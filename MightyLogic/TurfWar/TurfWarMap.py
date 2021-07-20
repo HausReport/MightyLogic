@@ -17,6 +17,9 @@ class TurfWarMap():
         tile.setRow(r)
         tile.setColumn(col)
 
+    def grid_distance(x0, y0, x1, y1):
+        return abs(x0 - x1) + abs(y0 - y1)
+
     def getTile(self, row, col):
         # print(f"Getting {row}-{col}")
         return self.arr[row, col]
@@ -89,3 +92,13 @@ class TurfWarMap():
                 # print(f"({r}-{c})",end='')
             row_num += 1
         return ret
+
+# for r in rows:
+#   for c in cols:
+#     print(f"({r}-{c})",end='')
+#   print("")
+#
+# for r in rows:
+#   for c in cols:
+#     print( "("+str(payout.iloc[row_dict[r]][c])+")",end='')
+#   print("")
