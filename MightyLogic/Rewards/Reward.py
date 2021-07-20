@@ -14,7 +14,7 @@ class Reward:
     SPARK = 0
     GEM = 0
 
-    def __init__(self, value=0, common=0, rare=0, soul_dust=0, epic=0, gold=0, legendary=0, contrib=0, influence=0,
+    def __init__(self, name="", value=0, common=0, rare=0, soul_dust=0, epic=0, gold=0, legendary=0, contrib=0, influence=0,
                  spark=0, gem=0):
         val = value
         if val == 0:
@@ -31,6 +31,7 @@ class Reward:
             val += Values.GEM * gem
         self.myValue = val
 
+        self.NAME = name
         self.COMMON_SOUL = common
         self.RARE_SOUL = rare
         self.SOUL_DUST = soul_dust

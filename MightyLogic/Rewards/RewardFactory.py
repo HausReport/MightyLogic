@@ -54,7 +54,7 @@ def epic_chest(verbose=False):
             print(f"{souls} gems")
         return Reward(name="Epic Chest", gem=souls)
 
-    def legendary_chest(verbose=False):
+def legendary_chest(verbose=False):
         branch = randrange(0, 99)
         if branch < 62:
             souls = randrange(40, 160)
