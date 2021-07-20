@@ -1,4 +1,5 @@
-from MightyLogic.Values import Values
+from Values import Values
+
 
 class Reward:
     myValue = 0
