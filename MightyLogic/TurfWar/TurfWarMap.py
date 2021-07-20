@@ -140,9 +140,9 @@ class TurfWarMap():
         X_train = np.array(ret)
         scaler = preprocessing.StandardScaler().fit(X_train)
         X_scaled = scaler.transform(X_train)
-        X_scaled = (X_scaled +1)/2
-        X_scaled = np.where(X_scaled <0.05,0,X_scaled)
-        X_scaled = np.where(X_scaled >0.95,1,X_scaled)
+        X_scaled = 50 * (X_scaled +1)
+        #X_scaled = np.where(X_scaled <5,0,X_scaled)
+        #X_scaled = np.where(X_scaled >95,1,X_scaled)
         return X_scaled.tolist()
         #return ret
 
