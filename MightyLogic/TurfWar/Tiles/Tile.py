@@ -39,3 +39,9 @@ class Tile:
         ret += "26-44               " + self.reward.share(.01) + "\n"
         ret += "```" + "\n"
         return ret
+
+    def __str__(self):
+        return f'Tile {self.name} at {self.row}:{self.column}'
+
+    def __repr__(self):
+        return f'Tile(name={self.name}, row={self.row}, column={self.column})'
