@@ -21,7 +21,10 @@ class Tile:
         self.reward.share(percent)
 
     def getLocation(self):
-        return self.row + ":" + self.column
+        return str(self.row) + ":" + str(self.column)
+
+    def getName(self):
+        return self.name
 
     def payouts(self):
         ret = "```"
