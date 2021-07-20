@@ -1,6 +1,9 @@
 #
 # Types of in-game currencies
 #
+from enum import Enum, auto
+
+
 class Currency(Enum):
     COMMON_SOUL = auto()
     RARE_SOUL = auto()
