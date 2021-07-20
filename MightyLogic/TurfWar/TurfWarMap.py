@@ -102,6 +102,7 @@ class TurfWarMap():
 
         # To sort the list in place...
         ret.sort(key=lambda x: x.getValue, reverse=True)
+        return ret
 
     def buildingListText(self):
         ret = ""
