@@ -1,7 +1,7 @@
 from MightyLogic.TurfWar.Tiles.Tile import Tile
 
 
-def altar(self, epic, influence, contrib, row="?", column="?"):
+def altar(epic, influence, contrib, row="?", column="?"):
     return Tile(name="Altar", row=row, column=column, epic=epic, influence=influence, contrib=contrib)
 
 #===============================================================================================================
