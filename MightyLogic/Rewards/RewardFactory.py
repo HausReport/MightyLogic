@@ -4,7 +4,7 @@
 #
 from random import randrange
 
-from Rewards.Reward import Reward
+from MightyLogic.Rewards.Reward import Reward
 
 
 def rare_chest(verbose=False):
