@@ -1,5 +1,6 @@
 from MightyLogic.TurfWar.Tiles.Tile import Tile
 
+from MightyLogic.Rewards.RewardFactory import legendary_chest
 
 class Altar(Tile):
 
