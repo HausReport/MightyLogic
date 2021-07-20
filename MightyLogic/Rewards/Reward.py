@@ -14,6 +14,21 @@ class Reward:
     SPARK = 0
     GEM = 0
 
+    def toDict(self):
+        return {
+            "value" : self.myValue,
+            "COMMON_SOUL" : self.COMMON_SOUL,
+            "RARE_SOUL" : self.RARE_SOUL,
+            "SOUL_DUST" : self.SOUL_DUST,
+            "EPIC_SOUL" : self.EPIC_SOUL,
+            "GOLD" : self.GOLD,
+            "LEGENDARY_SOUL" : self.LEGENDARY_SOUL,
+            "CONTRIBUTION" : self.CONTRIBUTION,
+            "INFLUENCE" : self.INFLUENCE,
+            "SPARK" : self.SPARK,
+            "GEM" : self.GEM
+        }
+
     def __init__(self, myName="", value=0, common=0, rare=0, soul_dust=0, epic=0, gold=0, legendary=0, contrib=0, influence=0,
                  spark=0, gem=0):
         val = value
