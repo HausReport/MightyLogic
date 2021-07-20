@@ -17,7 +17,7 @@ class TurfWarMap():
         tile.setRow(r)
         tile.setColumn(col)
 
-    def grid_distance(x0, y0, x1, y1):
+    def grid_distance(self, x0, y0, x1, y1):
         return abs(x0 - x1) + abs(y0 - y1)
 
     def getTile(self, row, col):
