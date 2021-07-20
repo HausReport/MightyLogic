@@ -101,7 +101,7 @@ class TurfWarMap():
                 ret.append(build)
 
         # To sort the list in place...
-        ret.sort(key=lambda x: x.getValue, reverse=True)
+        ret.sort(key=lambda x: x.getValue(), reverse=True)
         return ret
 
     def buildingListText(self):
