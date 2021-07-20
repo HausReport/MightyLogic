@@ -1,4 +1,4 @@
-from org.MightyLogic.TurfWar.Tiles.Tile import Tile
+from MightyLogic.TurfWar.Tiles.Tile import Tile
 
 
 class Altar(Tile):

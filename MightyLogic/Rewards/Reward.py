@@ -1,4 +1,4 @@
-from Values import Values
+from MightyLogic.Values import Values
 
 
 class Reward:

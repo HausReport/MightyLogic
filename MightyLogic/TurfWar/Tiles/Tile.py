@@ -1,4 +1,4 @@
-from MightyLogic.Reward import Reward
+from MightyLogic.Rewards.Reward import Reward
 
 
 class Tile:
