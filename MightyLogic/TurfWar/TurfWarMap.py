@@ -1,4 +1,6 @@
 import pandas as pd
+import numpy as np
+from sklearn import preprocessing
 
 
 class TurfWarMap():
@@ -27,7 +29,7 @@ class TurfWarMap():
     def isBuilding(self, row, col):
         if row not in self.rows:
             return False
-        if row not in self.cols:
+        if col not in self.cols:
             return False
         b = self.arr[row, col]
         return b.building
@@ -35,7 +37,7 @@ class TurfWarMap():
     def getValue(self, row, col):
         if row not in self.rows:
             return 0
-        if row not in self.cols:
+        if col not in self.cols:
             return 0
         b = self.arr[row, col]
         return b.getValue()
@@ -96,9 +98,6 @@ class TurfWarMap():
         return res
 
     def stagingScores(self):
-        pass
-
-    def stagingScore(self, row, col):
         ret = [[0 for x in range(0, 6)] for y in range(0, 5)]
 
         row_num = 0
@@ -106,7 +105,10 @@ class TurfWarMap():
             col_num = 0
             for c in self.cols:
                 score = 0
-                if not self.isBuilding(r,c):
+                if self.isBuilding(r,c):
+                    pass #print(f"{r}-{c} - Is a building")
+                else:
+                    #print(f"{r}-{c} - Not a building")
                     #
                     # this tile's score
                     #
@@ -127,7 +129,7 @@ class TurfWarMap():
                     tmp = self.leftCol(c)
                     if tmp is not None:
                         score += self.getBuildingValue(r,tmp)
-                    tmp = self.rightCol(r)
+                    tmp = self.rightCol(c)
                     if tmp is not None:
                         score += self.getBuildingValue(r,tmp)
                 # set score in array here
@@ -135,7 +137,14 @@ class TurfWarMap():
                 #...
                 col_num+=1
             row_num += 1
-        return score
+        X_train = np.array(ret)
+        scaler = preprocessing.StandardScaler().fit(X_train)
+        X_scaled = scaler.transform(X_train)
+        X_scaled = (X_scaled +1)/2
+        X_scaled = np.where(X_scaled <0.05,0,X_scaled)
+        X_scaled = np.where(X_scaled >0.95,1,X_scaled)
+        return X_scaled.tolist()
+        #return ret
 
     def oneMove(self, frame):
         ret = [[0 for x in range(0, 6)] for y in range(0, 5)]
@@ -183,7 +192,12 @@ class TurfWarMap():
                 col_num += 1
                 # print(f"({r}-{c})",end='')
             row_num += 1
-        return ret
+
+        X_train = np.array(ret)
+        scaler = preprocessing.StandardScaler().fit(X_train)
+        X_scaled = scaler.transform(X_train)
+        return X_scaled.tolist()
+        #return ret
 
     def buildingList(self):
         ret = []

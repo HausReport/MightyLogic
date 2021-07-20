@@ -60,7 +60,7 @@ class Reward:
 
     def append_value(self, ret, value, label):
         if value > 0:
-            if ret is not "":
+            if ret != "":
                 ret = ret + ", "
             ret = ret + f"{value:,.0f} {label}"
         return ret
