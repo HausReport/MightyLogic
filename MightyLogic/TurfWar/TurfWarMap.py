@@ -24,6 +24,32 @@ class TurfWarMap():
         # print(f"Getting {row}-{col}")
         return self.arr[row, col]
 
+    def isBuilding(self, row, col):
+        if row not in self.rows:
+            return False
+        if row not in self.cols:
+            return False
+        b = self.arr[row, col]
+        return b.building
+
+    def getValue(self, row, col):
+        if row not in self.rows:
+            return 0
+        if row not in self.cols:
+            return 0
+        b = self.arr[row, col]
+        return b.getValue()
+
+    def getBuildingValue(self, row, col):
+        if not self.isBuilding(row, col):
+            return 0
+        return self.getValue(row, col)
+
+    def getNonBuildingValue(self, row, col):
+        if self.isBuilding(row, col):
+            return 0
+        return self.getValue(row, col)
+
     def getValues(self):
         ret = [[0 for i in range(6)] for j in range(5)]
         r = 0
@@ -35,6 +61,30 @@ class TurfWarMap():
             r = r + 1
         return ret
 
+    def upRow(self, row):
+        up = chr(ord(row) - 1)
+        if up in self.rows:
+            return up
+        return None
+
+    def leftCol(self, col):
+        up = col - 1
+        if up in self.cols:
+            return up
+        return None
+
+    def downRow(self, row):
+        up = chr(ord(row) + 1)
+        if up in self.rows:
+            return up
+        return None
+
+    def rightCol(self, col):
+        up = col + 1
+        if up in self.cols:
+            return up
+        return None
+
     def getDataFrame(self):
         image = self.getValues()
         payout = pd.DataFrame(image, index=["A", "B", "C", "D", "E"], columns=[1, 2, 3, 4, 5, 6])
@@ -44,6 +94,48 @@ class TurfWarMap():
         frame = self.getDataFrame()
         res = self.oneMove(frame)
         return res
+
+    def stagingScores(self):
+        pass
+
+    def stagingScore(self, row, col):
+        ret = [[0 for x in range(0, 6)] for y in range(0, 5)]
+
+        row_num = 0
+        for r in self.rows:
+            col_num = 0
+            for c in self.cols:
+                score = 0
+                if not self.isBuilding(r,c):
+                    #
+                    # this tile's score
+                    #
+                    score += self.getNonBuildingValue(r,c)
+
+                    #
+                    # Up & Down nbrs
+                    #
+                    tmp = self.upRow(r)
+                    if tmp is not None:
+                        score += self.getBuildingValue(tmp,c)
+                    tmp = self.downRow(r)
+                    if tmp is not None:
+                        score += self.getBuildingValue(tmp,c)
+                    #
+                    # Left & right nbrs
+                    #
+                    tmp = self.leftCol(c)
+                    if tmp is not None:
+                        score += self.getBuildingValue(r,tmp)
+                    tmp = self.rightCol(r)
+                    if tmp is not None:
+                        score += self.getBuildingValue(r,tmp)
+                # set score in array here
+                ret[row_num][col_num] = score
+                #...
+                col_num+=1
+            row_num += 1
+        return score
 
     def oneMove(self, frame):
         ret = [[0 for x in range(0, 6)] for y in range(0, 5)]
@@ -104,6 +196,15 @@ class TurfWarMap():
         ret.sort(key=lambda x: x.getValue(), reverse=True)
         return ret
 
+    def buildingDict(self):
+        ret = {}
+
+        for build in self.arr.values():
+            if build.building:
+                ret[build.row, build.col] = build
+
+        return ret
+
     def buildingListText(self):
         ret = ""
         tmp = self.buildingList()
@@ -113,6 +214,9 @@ class TurfWarMap():
 
         return ret
 
+    # 0 if i'm a building
+    # sum of neighbor buildings + my score
+    #
 # for r in rows:
 #   for c in cols:
 #     print(f"({r}-{c})",end='')
