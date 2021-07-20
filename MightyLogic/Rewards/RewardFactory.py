@@ -54,20 +54,21 @@ def epic_chest(verbose=False):
             print(f"{souls} gems")
         return Reward(name="Epic Chest", gem=souls)
 
+
 def legendary_chest(verbose=False):
-        branch = randrange(0, 99)
-        if branch < 62:
-            souls = randrange(40, 160)
-            if verbose:
-                print(f"{souls} legendary souls")
-            return Reward(name="Legendary Chest", legendary=souls)
-        elif branch < 97:
-            souls = randrange(3500, 10000)
-            if verbose:
-                print(f"{souls} sparks")
-            return Reward(name="Legendary Chest", spark=souls)
-        else:
-            souls = 1000
-            if verbose:
-                print(f"{souls} gems")
-            return Reward(name="Legendary Chest", gem=souls)
+    branch = randrange(0, 99)
+    if branch < 62:
+        souls = randrange(40, 160)
+        if verbose:
+            print(f"{souls} legendary souls")
+        return Reward(name="Legendary Chest", legendary=souls)
+    elif branch < 97:
+        souls = randrange(3500, 10000)
+        if verbose:
+            print(f"{souls} sparks")
+        return Reward(name="Legendary Chest", spark=souls)
+    else:
+        souls = 1000
+        if verbose:
+            print(f"{souls} gems")
+        return Reward(name="Legendary Chest", gem=souls)
