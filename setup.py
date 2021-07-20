@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='MightyLogic',
     version='0.1',
-    packages=['MightyLogic', 'MightyLogic.TurfWar', 'MightyLogic.TurfWar.Tiles'],
+    packages=['org.MightyLogic', 'org.MightyLogic.TurfWar', 'org.MightyLogic.TurfWar.Tiles'],
     package_dir={'': 'org'},
     url='',
     license='',
