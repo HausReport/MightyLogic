@@ -8,6 +8,8 @@ class Tile:
         self.name = name
         self.row = row
         self.column = column
+        #myName = "", value = 0, common = 0, rare = 0, soul_dust = 0, epic = 0, gold = 0, legendary = 0, contrib = 0, influence = 0,
+        #spark = 0, gem = 0):
         self.reward = Reward(value, common, rare, soul_dust, epic, gold, legendary, contrib, influence, spark, gem)
         # print("world")
 
