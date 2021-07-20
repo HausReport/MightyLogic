@@ -1,0 +1,15 @@
+setup.py
+MightyLogic/Currency.py
+MightyLogic/Reward.py
+MightyLogic/Values.py
+MightyLogic/__init__.py
+MightyLogic/setup.py
+MightyLogic.egg-info/PKG-INFO
+MightyLogic.egg-info/SOURCES.txt
+MightyLogic.egg-info/dependency_links.txt
+MightyLogic.egg-info/top_level.txt
+MightyLogic/TurfWar/__init__.py
+MightyLogic/TurfWar/Tiles/Altar.py
+MightyLogic/TurfWar/Tiles/Factory.py
+MightyLogic/TurfWar/Tiles/Tile.py
+MightyLogic/TurfWar/Tiles/__init__.py
