@@ -4,14 +4,18 @@ from MightyLogic.Rewards.Reward import Reward
 class Tile:
 
     def __init__(self, name, row=0, column=0, value=0, common=0, rare=0, soul_dust=0, epic=0, gold=0, legendary=0,
-                 contrib=0, influence=0, spark=0, gem=0):
+                 contrib=0, influence=0, spark=0, gem=0, building=False):
         self.name = name
         self.row = row
         self.column = column
+        self.building = building
         #myName = "", value = 0, common = 0, rare = 0, soul_dust = 0, epic = 0, gold = 0, legendary = 0, contrib = 0, influence = 0,
         #spark = 0, gem = 0):
         self.reward = Reward(value, common, rare, soul_dust, epic, gold, legendary, contrib, influence, spark, gem)
         # print("world")
+
+    def getValue(self):
+        return self.reward.myValue
 
     def setRow(self,row):
         self.row = row
@@ -28,8 +32,10 @@ class Tile:
     def getName(self):
         return self.name
 
-    def payouts(self):
-        ret = "```"
+    def payouts(self, ticks=False):
+        ret = ""
+        if ticks:
+            ret = "```"
         ret += "Payouts for " + self.getLocation() + " " + self.name + "\n"
         ret += "Place               Reward" + "\n"
         ret += "First               " + self.reward.share(.07) + "\n"
@@ -39,7 +45,8 @@ class Tile:
         ret += "7-11                " + self.reward.share(.03) + "\n"
         ret += "12-25               " + self.reward.share(.02) + "\n"
         ret += "26-44               " + self.reward.share(.01) + "\n"
-        ret += "```" + "\n"
+        if ticks:
+            ret += "```" + "\n"
         return ret
 
     def __str__(self):

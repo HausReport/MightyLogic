@@ -93,6 +93,25 @@ class TurfWarMap():
             row_num += 1
         return ret
 
+    def buildingList(self):
+        ret = []
+
+        for build in self.arr.values():
+            if build.building:
+                ret.append(build)
+
+        # To sort the list in place...
+        ret.sort(key=lambda x: x.getValue, reverse=True)
+
+    def buildingListText(self):
+        ret = ""
+        tmp = self.buildingList()
+
+        for build in tmp:
+            ret = ret + build.payouts(ticks=False) + "\n"
+
+        return ret
+
 # for r in rows:
 #   for c in cols:
 #     print(f"({r}-{c})",end='')
