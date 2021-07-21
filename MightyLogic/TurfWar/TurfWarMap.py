@@ -93,9 +93,9 @@ class TurfWarMap():
         return payout
 
     def getStrategicDataFrame(self):
-        frame = self.getDataFrame()
-        res = self.oneMove(frame)
-        return res
+        res = self.stagingScores()
+        staging = pd.DataFrame(res, index=["A", "B", "C", "D", "E"], columns=[1, 2, 3, 4, 5, 6])
+        return staging
 
     def stagingScores(self):
         ret = [[0 for x in range(0, 6)] for y in range(0, 5)]
@@ -231,12 +231,12 @@ class TurfWarMap():
 
     def printBuildingList(self):
         bl = self.buildingList()
-        print("Buildings on this map                 For 1st Place                      Guild Gets")
-        print("======================================================================================")
+        print("Building          Points      For 1st Place                      Guild Gets")
+        print("===============================================================================")
         for build in bl:
             val = build.getValue()
             rew = build.reward.share(.07)
-            print(f"{build.row}-{build.column}: {build.name:11s} {val:>8,.0f} points.  {rew:>35s}, {build.reward.INFLUENCE:>4d} influence.")
+            print(f"{build.row}-{build.column}: {build.name:11s} {val:>8,.0f}  {rew:>35s}, {build.reward.INFLUENCE:>4d} influence.")
 
     # 0 if i'm a building
     # sum of neighbor buildings + my score

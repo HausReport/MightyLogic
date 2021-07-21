@@ -51,3 +51,5 @@ pprint(image)
 
 print("STAGING SCORES")
 pprint(map2.stagingScores())
+
+map2.printBuildingList()
