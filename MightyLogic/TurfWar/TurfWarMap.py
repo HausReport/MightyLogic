@@ -138,6 +138,7 @@ class TurfWarMap():
                 col_num+=1
             row_num += 1
         X_train = np.array(ret)
+        # FIXME: should give results in [0-100], giving some >100
         scaler = preprocessing.StandardScaler().fit(X_train)
         X_scaled = scaler.transform(X_train)
         X_scaled = 50 * (X_scaled +1)
@@ -227,6 +228,15 @@ class TurfWarMap():
             ret = ret + build.payouts(ticks=False) + "\n"
 
         return ret
+
+    def printBuildingList(self):
+        bl = self.buildingList()
+        print("Buildings on this map                 For 1st Place                      Guild Gets")
+        print("======================================================================================")
+        for build in bl:
+            val = build.getValue()
+            rew = build.reward.share(.07)
+            print(f"{build.row}-{build.column}: {build.name:11s} {val:>8,.0f} points.  {rew:>35s}, {build.reward.INFLUENCE:>4d} influence.")
 
     # 0 if i'm a building
     # sum of neighbor buildings + my score
