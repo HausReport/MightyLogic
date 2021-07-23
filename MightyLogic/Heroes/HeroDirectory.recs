@@ -1,0 +1,366 @@
+{"rarity":"Common","name":"Servant","alignment":"Order","id":"2","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Prophet","alignment":"Order","id":"3","shape":"Melee","gender":"Female"}
+{"rarity":"Common","name":"Warrioress","alignment":"Order","id":"4","shape":"Melee","gender":"Female"}
+{"rarity":"Common","name":"Shinobi","alignment":"Order","id":"5","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Priestess","alignment":"Order","id":"6","shape":"Ranged","gender":"Female"}
+{"rarity":"Common","name":"Archer","alignment":"Order","id":"7","shape":"Ranged","gender":"Female"}
+{"rarity":"Rare","name":"Mr. Toad","alignment":"Nature","id":"8","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Totem","alignment":"Nature","id":"9","shape":"Building","gender":"Sexless"}
+{"rarity":"Common","name":"Cat Lady","alignment":"Nature","id":"10","shape":"Melee","gender":"Female"}
+{"rarity":"Rare","name":"Viking","alignment":"Nature","id":"11","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Wood Spirit","alignment":"Nature","id":"12","shape":"Ranged","gender":"Female"}
+{"rarity":"Common","name":"Dryad","alignment":"Nature","id":"13","shape":"Ranged","gender":"Female"}
+{"rarity":"Rare","name":"Gargoyle","alignment":"Chaos","id":"14","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Chiropteran","alignment":"Chaos","id":"15","shape":"Melee","gender":"Male"}
+{"rarity":"Common","name":"Red Orc","alignment":"Chaos","id":"16","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Undead","alignment":"Chaos","id":"17","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Child of Chaos","alignment":"Chaos","id":"18","shape":"Ranged","gender":"Male"}
+{"rarity":"Common","name":"Blood Cult Adept","alignment":"Chaos","id":"19","shape":"Ranged","gender":"Female"}
+{"rarity":"Legendary","name":"Mr. Devil","alignment":"Chaos","id":"20","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Prince","alignment":"Order","id":"21","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Mother Owl","alignment":"Nature","id":"22","shape":"Ranged","gender":"Female"}
+{"rarity":"Epic","name":"Bard","alignment":"Order","id":"23","shape":"Ranged","gender":"Female"}
+{"rarity":"Epic","name":"Karas","alignment":"Nature","id":"24","shape":"Ranged","gender":"Male"}
+{"rarity":"Epic","name":"Void Juggler","alignment":"Chaos","id":"25","shape":"Ranged","gender":"Female"}
+{"rarity":"Epic","name":"Wild Tamer","alignment":"Nature","id":"26","shape":"Ranged","gender":"Female"}
+{"rarity":"Epic","name":"Tesla Tower","alignment":"Order","id":"27","shape":"Building","gender":"Sexless"}
+{"rarity":"Epic","name":"Soul Hunter","alignment":"Chaos","id":"28","shape":"Melee","gender":"Male"}
+{"rarity":"Common","name":"Idol","alignment":"Order","id":"29","shape":"Building","gender":"Sexless"}
+{"rarity":"Rare","name":"First Aid","alignment":"Order","id":"30","shape":"Building","gender":"Sexless"}
+{"rarity":"Common","name":"Tree","alignment":"Chaos","id":"31","shape":"Building","gender":"Sexless"}
+{"rarity":"Legendary","name":"Dead Lord","alignment":"Chaos","id":"32","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Erik the Grey","alignment":"Nature","id":"33","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Sir Lancelot","alignment":"Order","id":"34","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Count Vlad","alignment":"Chaos","id":"35","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Bastet","alignment":"Nature","id":"36","shape":"Melee","gender":"Female"}
+{"rarity":"Legendary","name":"Athena","alignment":"Order","id":"37","shape":"Ranged","gender":"Female"}
+{"rarity":"Legendary","name":"Goliath","alignment":"Chaos","id":"38","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Prince Nod","alignment":"Nature","id":"39","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Life Palace","alignment":"Order","id":"40","shape":"Building","gender":"Sexless"}
+{"rarity":"Legendary","name":"Vanakauri","alignment":"Nature","id":"41","shape":"Building","gender":"Sexless"}
+{"rarity":"Legendary","name":"Axe","alignment":"Chaos","id":"42","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Lady Clair","alignment":"Order","id":"43","shape":"Melee","gender":"Female"}
+{"rarity":"Epic","name":"Caesar's Head","alignment":"Order","id":"44","shape":"Building","gender":"Sexless"}
+{"rarity":"Epic","name":"Blood Lord","alignment":"Chaos","id":"45","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Lady Wild","alignment":"Nature","id":"46","shape":"Ranged","gender":"Female"}
+{"rarity":"Epic","name":"Cursed Oak","alignment":"Chaos","id":"47","shape":"Building","gender":"Sexless"}
+{"rarity":"Epic","name":"Soul Monger","alignment":"Chaos","id":"48","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Swordmaster","alignment":"Order","id":"49","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Archwitch","alignment":"Chaos","id":"50","shape":"Ranged","gender":"Female"}
+{"rarity":"Epic","name":"Luck Idol","alignment":"Nature","id":"51","shape":"Building","gender":"Sexless"}
+{"rarity":"Epic","name":"Lord Toad","alignment":"Nature","id":"52","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Engineer","alignment":"Order","id":"53","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Ronin","alignment":"Order","id":"54","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Wise Owl","alignment":"Nature","id":"55","shape":"Ranged","gender":"Female"}
+{"rarity":"Epic","name":"Gargantos","alignment":"Chaos","id":"56","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Olaf the Red","alignment":"Nature","id":"57","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Scarlet Warrior","alignment":"Order","id":"58","shape":"Melee","gender":"Female"}
+{"rarity":"Epic","name":"Ayfe the Arrow","alignment":"Order","id":"59","shape":"Ranged","gender":"Female"}
+{"rarity":"Epic","name":"Tent of Life","alignment":"Order","id":"60","shape":"Building","gender":"Sexless"}
+{"rarity":"Epic","name":"Void Rock","alignment":"Chaos","id":"61","shape":"Building","gender":"Sexless"}
+{"rarity":"Legendary","name":"Void Jewel","alignment":"Chaos","id":"62","shape":"Building","gender":"Sexless"}
+{"rarity":"Epic","name":"Argios","alignment":"Nature","id":"63","shape":"Melee","gender":"Male"}
+{"rarity":"Common","name":"Big Toad","alignment":"Nature","id":"64","shape":"Melee","gender":"Male"}
+{"rarity":"Common","name":"Gnome","alignment":"Order","id":"65","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Leaf Child","alignment":"Nature","id":"66","shape":"Ranged","gender":"Female"}
+{"rarity":"Rare","name":"Pharaon","alignment":"Order","id":"67","shape":"Building","gender":"Sexless"}
+{"rarity":"Common","name":"Vampire","alignment":"Chaos","id":"68","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Void Stone","alignment":"Chaos","id":"69","shape":"Building","gender":"Sexless"}
+{"rarity":"Rare","name":"Satyr","alignment":"Nature","id":"70","shape":"Melee","gender":"Male"}
+{"rarity":"Common","name":"Pilgrim","alignment":"Order","id":"71","shape":"Ranged","gender":"Female"}
+{"rarity":"Common","name":"Shaman","alignment":"Nature","id":"72","shape":"Ranged","gender":"Female"}
+{"rarity":"Rare","name":"Dark Witch","alignment":"Chaos","id":"73","shape":"Ranged","gender":"Female"}
+{"rarity":"Common","name":"Raven","alignment":"Nature","id":"74","shape":"Ranged","gender":"Male"}
+{"rarity":"Common","name":"Warrior","alignment":"Order","id":"75","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Forest Mage","alignment":"Nature","id":"76","shape":"Ranged","gender":"Male"}
+{"rarity":"Rare","name":"Dark Tree","alignment":"Chaos","id":"77","shape":"Building","gender":"Sexless"}
+{"rarity":"Rare","name":"Orc Master","alignment":"Chaos","id":"78","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Soulblade","alignment":"Order","id":"79","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Minstrel","alignment":"Order","id":"80","shape":"Ranged","gender":"Female"}
+{"rarity":"Rare","name":"Crafter","alignment":"Order","id":"81","shape":"Melee","gender":"Male"}
+{"rarity":"Common","name":"Lumberjack","alignment":"Nature","id":"82","shape":"Melee","gender":"Male"}
+{"rarity":"Common","name":"Witch","alignment":"Chaos","id":"83","shape":"Ranged","gender":"Female"}
+{"rarity":"Rare","name":"Bone Hunter","alignment":"Chaos","id":"84","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Bowmaster","alignment":"Order","id":"85","shape":"Ranged","gender":"Female"}
+{"rarity":"Legendary","name":"Aphrodite","alignment":"Order","id":"86","shape":"Ranged","gender":"Female"}
+{"rarity":"Epic","name":"Love Goddess","alignment":"Order","id":"87","shape":"Ranged","gender":"Female"}
+{"rarity":"Rare","name":"Love Mage","alignment":"Order","id":"88","shape":"Ranged","gender":"Female"}
+{"rarity":"Common","name":"Love Lady","alignment":"Order","id":"89","shape":"Ranged","gender":"Female"}
+{"rarity":"Epic","name":"Dark Mage","alignment":"Chaos","id":"90","shape":"Ranged","gender":"Male"}
+{"rarity":"Rare","name":"Angry Imp","alignment":"Chaos","id":"91","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Untouchable","alignment":"Order","id":"92","shape":"Melee","gender":"Male"}
+{"rarity":"Common","name":"Apprentice","alignment":"Order","id":"93","shape":"Ranged","gender":"Female"}
+{"rarity":"Epic","name":"Predator","alignment":"Nature","id":"94","shape":"Melee","gender":"Female"}
+{"rarity":"Legendary","name":"Miss Lapin","alignment":"Order","id":"95","shape":"Ranged","gender":"Female"}
+{"rarity":"Epic","name":"Lucky Rabbit","alignment":"Order","id":"96","shape":"Ranged","gender":"Female"}
+{"rarity":"Rare","name":"Bunny","alignment":"Order","id":"97","shape":"Ranged","gender":"Female"}
+{"rarity":"Epic","name":"Hell Gate","alignment":"Chaos","id":"98","shape":"Building","gender":"Sexless"}
+{"rarity":"Legendary","name":"El Mariachi","alignment":"Nature","id":"99","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"El Cactus","alignment":"Nature","id":"100","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Cactusito","alignment":"Nature","id":"101","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Marquis de Sat","alignment":"Nature","id":"102","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Maeve","alignment":"Nature","id":"103","shape":"Ranged","gender":"Female"}
+{"rarity":"Legendary","name":"Regardus Diplius","alignment":"Chaos","id":"104","shape":"Ranged","gender":"Male"}
+{"rarity":"Legendary","name":"King Taurus","alignment":"Nature","id":"105","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Minotaur","alignment":"Nature","id":"106","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Bully","alignment":"Nature","id":"107","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Queen Ananta","alignment":"Nature","id":"108","shape":"Melee","gender":"Female"}
+{"rarity":"Epic","name":"High Naga","alignment":"Nature","id":"109","shape":"Melee","gender":"Female"}
+{"rarity":"Rare","name":"Naga","alignment":"Nature","id":"110","shape":"Melee","gender":"Female"}
+{"rarity":"Rare","name":"Squire","alignment":"Order","id":"111","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Hanzo Sama","alignment":"Order","id":"112","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Alexandria","alignment":"Order","id":"113","shape":"Ranged","gender":"Female"}
+{"rarity":"Legendary","name":"Titania","alignment":"Order","id":"114","shape":"Melee","gender":"Female"}
+{"rarity":"Legendary","name":"Stormrage","alignment":"Chaos","id":"115","shape":"Melee","gender":"Male"}
+{"rarity":"Common","name":"Singer","alignment":"Order","id":"116","shape":"Ranged","gender":"Female"}
+{"rarity":"Rare","name":"Voltage Tower","alignment":"Order","id":"117","shape":"Building","gender":"Sexless"}
+{"rarity":"Legendary","name":"Tesla X","alignment":"Order","id":"118","shape":"Building","gender":"Sexless"}
+{"rarity":"Epic","name":"Living Dead","alignment":"Chaos","id":"119","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Red Woman","alignment":"Chaos","id":"120","shape":"Ranged","gender":"Female"}
+{"rarity":"Rare","name":"Lady of the Warriors","alignment":"Nature","id":"121","shape":"Ranged","gender":"Female"}
+{"rarity":"Legendary","name":"Draggara","alignment":"Nature","id":"122","shape":"Ranged","gender":"Female"}
+{"rarity":"Legendary","name":"Blair","alignment":"Order","id":"123","shape":"Ranged","gender":"Female"}
+{"rarity":"Epic","name":"Adherent","alignment":"Order","id":"124","shape":"Ranged","gender":"Female"}
+{"rarity":"Rare","name":"Follower","alignment":"Order","id":"125","shape":"Ranged","gender":"Female"}
+{"rarity":"Legendary","name":"Fury, the Great Warrior","alignment":"Order","id":"126","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Cruel Gladiator","alignment":"Order","id":"127","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Berserk","alignment":"Order","id":"128","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Chernomor","alignment":"Chaos","id":"129","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Dark Knight","alignment":"Chaos","id":"130","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Dark Warrior","alignment":"Chaos","id":"131","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Leader Nilen","alignment":"Chaos","id":"132","shape":"Ranged","gender":"Male"}
+{"rarity":"Epic","name":"Embalmed Priest","alignment":"Chaos","id":"133","shape":"Ranged","gender":"Male"}
+{"rarity":"Rare","name":"Mummy","alignment":"Chaos","id":"134","shape":"Ranged","gender":"Male"}
+{"rarity":"Legendary","name":"Koschei the Immortal","alignment":"Chaos","id":"135","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Bone Warrior","alignment":"Chaos","id":"136","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Skeleton","alignment":"Chaos","id":"137","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Anak, Princess Dragon","alignment":"Nature","id":"138","shape":"Ranged","gender":"Female"}
+{"rarity":"Epic","name":"Wyvern","alignment":"Nature","id":"139","shape":"Ranged","gender":"Female"}
+{"rarity":"Rare","name":"Wind Snake","alignment":"Nature","id":"140","shape":"Ranged","gender":"Female"}
+{"rarity":"Legendary","name":"Matriarch Eona","alignment":"Nature","id":"141","shape":"Melee","gender":"Female"}
+{"rarity":"Epic","name":"Emerald Dragon","alignment":"Nature","id":"142","shape":"Melee","gender":"Female"}
+{"rarity":"Rare","name":"Dream Whelpling","alignment":"Nature","id":"143","shape":"Melee","gender":"Female"}
+{"rarity":"Legendary","name":"Enlil, Wind of Change","alignment":"Nature","id":"144","shape":"Melee","gender":"Female"}
+{"rarity":"Epic","name":"Wind Warrior","alignment":"Nature","id":"145","shape":"Melee","gender":"Female"}
+{"rarity":"Rare","name":"Harpy","alignment":"Nature","id":"146","shape":"Melee","gender":"Female"}
+{"rarity":"Legendary","name":"Iceberg","alignment":"Order","id":"147","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Ice Clod","alignment":"Order","id":"148","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Piece of Ice","alignment":"Order","id":"149","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Evil Santa","alignment":"Order","id":"150","shape":"Ranged","gender":"Male"}
+{"rarity":"Epic","name":"Evil's Helper","alignment":"Order","id":"151","shape":"Ranged","gender":"Male"}
+{"rarity":"Rare","name":"Ding Viesel","alignment":"Order","id":"152","shape":"Ranged","gender":"Male"}
+{"rarity":"Legendary","name":"Ghosta","alignment":"Order","id":"153","shape":"Ranged","gender":"Female"}
+{"rarity":"Epic","name":"Dark Huntress","alignment":"Order","id":"154","shape":"Ranged","gender":"Female"}
+{"rarity":"Rare","name":"Drow","alignment":"Order","id":"155","shape":"Ranged","gender":"Female"}
+{"rarity":"Legendary","name":"Tengu, Ravencrest","alignment":"Nature","id":"156","shape":"Ranged","gender":"Male"}
+{"rarity":"Legendary","name":"Groot, Silent Guardian","alignment":"Nature","id":"157","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Treebeard","alignment":"Nature","id":"158","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Treant","alignment":"Nature","id":"159","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Loath, Spore Loser","alignment":"Nature","id":"160","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Sporelok","alignment":"Nature","id":"161","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Shroomkin","alignment":"Nature","id":"162","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Mi the Ten-Tailed Fox","alignment":"Nature","id":"163","shape":"Melee","gender":"Female"}
+{"rarity":"Epic","name":"Lolli Pop","alignment":"Nature","id":"164","shape":"Melee","gender":"Female"}
+{"rarity":"Rare","name":"Baby Rattle","alignment":"Nature","id":"165","shape":"Melee","gender":"Female"}
+{"rarity":"Legendary","name":"Grand Ma, Reaper","alignment":"Chaos","id":"166","shape":"Ranged","gender":"Female"}
+{"rarity":"Epic","name":"Harbinger of Death","alignment":"Chaos","id":"167","shape":"Ranged","gender":"Female"}
+{"rarity":"Rare","name":"Old Bones","alignment":"Chaos","id":"168","shape":"Ranged","gender":"Female"}
+{"rarity":"Legendary","name":"Super Mary","alignment":"Order","id":"169","shape":"Melee","gender":"Female"}
+{"rarity":"Epic","name":"Lady Curl","alignment":"Order","id":"170","shape":"Melee","gender":"Female"}
+{"rarity":"Rare","name":"Wonder Girl","alignment":"Order","id":"171","shape":"Melee","gender":"Female"}
+{"rarity":"Legendary","name":"Strik, the Fiery Heart","alignment":"Order","id":"172","shape":"Ranged","gender":"Male"}
+{"rarity":"Epic","name":"Flame Juggler","alignment":"Order","id":"173","shape":"Ranged","gender":"Male"}
+{"rarity":"Rare","name":"Pyromancer","alignment":"Order","id":"174","shape":"Ranged","gender":"Male"}
+{"rarity":"Legendary","name":"High Tinker Gear","alignment":"Order","id":"175","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"TNT, Crazy Demolitionist","alignment":"Chaos","id":"176","shape":"Ranged","gender":"Male"}
+{"rarity":"Epic","name":"Mr. Boom","alignment":"Chaos","id":"177","shape":"Ranged","gender":"Male"}
+{"rarity":"Rare","name":"Fireworker","alignment":"Chaos","id":"178","shape":"Ranged","gender":"Male"}
+{"rarity":"Legendary","name":"General Zor'Ma","alignment":"Chaos","id":"179","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Old God's Servant","alignment":"Chaos","id":"180","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Faceless","alignment":"Chaos","id":"181","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Ysh'tmala, the Old God","alignment":"Chaos","id":"182","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Terror From Below","alignment":"Chaos","id":"183","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Flesh Spawn","alignment":"Chaos","id":"184","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Valkyrie","alignment":"Order","id":"185","shape":"Melee","gender":"Female"}
+{"rarity":"Legendary","name":"Tani Windrunner","alignment":"Nature","id":"186","shape":"Ranged","gender":"Female"}
+{"rarity":"Epic","name":"Windsong","alignment":"Nature","id":"187","shape":"Ranged","gender":"Female"}
+{"rarity":"Rare","name":"Wood Elf","alignment":"Nature","id":"188","shape":"Ranged","gender":"Female"}
+{"rarity":"Legendary","name":"Coba, Temple Keeper","alignment":"Nature","id":"189","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Stone Guardian","alignment":"Nature","id":"190","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Rock","alignment":"Nature","id":"191","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Hoodoo","alignment":"Nature","id":"192","shape":"Ranged","gender":"Male"}
+{"rarity":"Epic","name":"Cursed Shaman","alignment":"Nature","id":"193","shape":"Ranged","gender":"Male"}
+{"rarity":"Rare","name":"Cultist","alignment":"Nature","id":"194","shape":"Ranged","gender":"Male"}
+{"rarity":"Epic","name":"Chieftain Orc","alignment":"Chaos","id":"195","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Bravi, Deadly Blade","alignment":"Order","id":"196","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Crazy Harlequin","alignment":"Order","id":"197","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Jester-Killer","alignment":"Order","id":"198","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Mjolnir, Lightning God","alignment":"Order","id":"199","shape":"Ranged","gender":"Male"}
+{"rarity":"Epic","name":"Keeper of Storm","alignment":"Order","id":"200","shape":"Ranged","gender":"Male"}
+{"rarity":"Rare","name":"Thunder","alignment":"Order","id":"201","shape":"Ranged","gender":"Male"}
+{"rarity":"Legendary","name":"Diana, Amazonian Queen","alignment":"Order","id":"202","shape":"Melee","gender":"Female"}
+{"rarity":"Epic","name":"Defender of Tribe","alignment":"Order","id":"203","shape":"Melee","gender":"Female"}
+{"rarity":"Rare","name":"Wild Huntress","alignment":"Order","id":"204","shape":"Melee","gender":"Female"}
+{"rarity":"Legendary","name":"Apep, Aspect of Chaos","alignment":"Chaos","id":"205","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Bone Dragon","alignment":"Chaos","id":"206","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Death Whelpling","alignment":"Chaos","id":"207","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Yorik, the Risen One","alignment":"Chaos","id":"208","shape":"Ranged","gender":"Male"}
+{"rarity":"Epic","name":"Dead Bowman","alignment":"Chaos","id":"209","shape":"Ranged","gender":"Male"}
+{"rarity":"Rare","name":"Talking Skull","alignment":"Chaos","id":"210","shape":"Ranged","gender":"Male"}
+{"rarity":"Legendary","name":"Hanako Lady Banshee","alignment":"Chaos","id":"211","shape":"Ranged","gender":"Female"}
+{"rarity":"Epic","name":"Moody Ghost","alignment":"Chaos","id":"212","shape":"Ranged","gender":"Female"}
+{"rarity":"Rare","name":"Friendly Spirit","alignment":"Chaos","id":"213","shape":"Ranged","gender":"Female"}
+{"rarity":"Legendary","name":"D'Arc, Iron Maiden","alignment":"Order","id":"214","shape":"Melee","gender":"Female"}
+{"rarity":"Epic","name":"Battle Angel","alignment":"Order","id":"215","shape":"Ranged","gender":"Female"}
+{"rarity":"Legendary","name":"Mizu, the Sea Foam","alignment":"Nature","id":"216","shape":"Ranged","gender":"Female"}
+{"rarity":"Epic","name":"Lake Pixy","alignment":"Nature","id":"217","shape":"Ranged","gender":"Female"}
+{"rarity":"Rare","name":"The Aqua Spirit","alignment":"Nature","id":"218","shape":"Ranged","gender":"Female"}
+{"rarity":"Legendary","name":"Morgan, the Sea Tusk","alignment":"Nature","id":"219","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Sharp Fin","alignment":"Nature","id":"220","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Shark","alignment":"Nature","id":"221","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Triton, the Bottom Herald","alignment":"Nature","id":"222","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Trident Master","alignment":"Nature","id":"223","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Sea Guardian","alignment":"Nature","id":"224","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Discordia","alignment":"Chaos","id":"225","shape":"Ranged","gender":"Female"}
+{"rarity":"Legendary","name":"Angelia the Lightbringer","alignment":"Order","id":"226","shape":"Melee","gender":"Female"}
+{"rarity":"Epic","name":"Winged Knight","alignment":"Order","id":"227","shape":"Melee","gender":"Female"}
+{"rarity":"Rare","name":"Celestial Maiden","alignment":"Order","id":"228","shape":"Melee","gender":"Female"}
+{"rarity":"Legendary","name":"Apollo","alignment":"Order","id":"229","shape":"Ranged","gender":"Male"}
+{"rarity":"Legendary","name":"Melia, Forest's Daughter","alignment":"Nature","id":"230","shape":"Ranged","gender":"Female"}
+{"rarity":"Legendary","name":"Cernun, Archdruid","alignment":"Nature","id":"231","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Keeper of the Grove","alignment":"Nature","id":"232","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Druid","alignment":"Nature","id":"233","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Lady Medusa","alignment":"Chaos","id":"234","shape":"Ranged","gender":"Female"}
+{"rarity":"Epic","name":"Insidious Gorgon","alignment":"Chaos","id":"235","shape":"Ranged","gender":"Female"}
+{"rarity":"Rare","name":"Clever Viper","alignment":"Chaos","id":"236","shape":"Ranged","gender":"Female"}
+{"rarity":"Epic","name":"Knight","alignment":"Order","id":"237","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Shao Lin","alignment":"Order","id":"238","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Drunk Master","alignment":"Order","id":"239","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Monk","alignment":"Order","id":"240","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Poison Flos","alignment":"Nature","id":"241","shape":"Ranged","gender":"Male"}
+{"rarity":"Epic","name":"Ogre Plant","alignment":"Nature","id":"242","shape":"Ranged","gender":"Male"}
+{"rarity":"Rare","name":"Planty","alignment":"Nature","id":"243","shape":"Ranged","gender":"Male"}
+{"rarity":"Rare","name":"Scratchy","alignment":"Nature","id":"244","shape":"Melee","gender":"Female"}
+{"rarity":"Epic","name":"Song of Forest","alignment":"Nature","id":"245","shape":"Ranged","gender":"Female"}
+{"rarity":"Legendary","name":"Necro, Master Lich","alignment":"Chaos","id":"246","shape":"Ranged","gender":"Male"}
+{"rarity":"Epic","name":"Lord of the Undead","alignment":"Chaos","id":"247","shape":"Ranged","gender":"Male"}
+{"rarity":"Rare","name":"Necromancer","alignment":"Chaos","id":"248","shape":"Ranged","gender":"Male"}
+{"rarity":"Legendary","name":"Jaxy, the Thunderfist","alignment":"Order","id":"249","shape":"Melee","gender":"Female"}
+{"rarity":"Epic","name":"Champion of the Arena","alignment":"Order","id":"250","shape":"Melee","gender":"Female"}
+{"rarity":"Rare","name":"The Undisputed","alignment":"Order","id":"251","shape":"Melee","gender":"Female"}
+{"rarity":"Legendary","name":"Snake, the Lizard Prince","alignment":"Nature","id":"252","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"The Killer Serpent","alignment":"Nature","id":"253","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Lizardfolk","alignment":"Nature","id":"254","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Mr. Flap","alignment":"Chaos","id":"255","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Demon the Ripper","alignment":"Chaos","id":"256","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Butcher","alignment":"Chaos","id":"257","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Frost, the Snow Queen","alignment":"Order","id":"258","shape":"Ranged","gender":"Female"}
+{"rarity":"Epic","name":"Lady Snow","alignment":"Order","id":"259","shape":"Ranged","gender":"Female"}
+{"rarity":"Rare","name":"Snow Maiden","alignment":"Order","id":"260","shape":"Ranged","gender":"Female"}
+{"rarity":"Legendary","name":"Madam Agony","alignment":"Chaos","id":"261","shape":"Ranged","gender":"Female"}
+{"rarity":"Epic","name":"Flamy Helly","alignment":"Chaos","id":"262","shape":"Ranged","gender":"Female"}
+{"rarity":"Rare","name":"Igneous Girl","alignment":"Chaos","id":"263","shape":"Ranged","gender":"Female"}
+{"rarity":"Legendary","name":"Kung Fucius","alignment":"Nature","id":"264","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Bamboo Master","alignment":"Nature","id":"265","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Panda Warrior","alignment":"Nature","id":"266","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Griffius, the Celestial","alignment":"Order","id":"267","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Young Griffin","alignment":"Order","id":"269","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Ogrok, the Leader","alignment":"Chaos","id":"270","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"One-Eyed Ogre","alignment":"Chaos","id":"271","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Cyclop","alignment":"Chaos","id":"272","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Tsukumogami","alignment":"Nature","id":"273","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Gnoll, the Blade Master","alignment":"Nature","id":"274","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Samurai Dog","alignment":"Nature","id":"275","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Mina Hellsing","alignment":"Order","id":"276","shape":"Ranged","gender":"Female"}
+{"rarity":"Epic","name":"Evil Slayer","alignment":"Order","id":"277","shape":"Ranged","gender":"Female"}
+{"rarity":"Rare","name":"Demon Huntress","alignment":"Order","id":"278","shape":"Ranged","gender":"Female"}
+{"rarity":"Legendary","name":"Ball'zt, the Warden","alignment":"Chaos","id":"279","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Beholder","alignment":"Chaos","id":"280","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Demon Orb","alignment":"Chaos","id":"281","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Tortulus, the Wise One","alignment":"Nature","id":"282","shape":"Ranged","gender":"Male"}
+{"rarity":"Epic","name":"Turtle Teacher","alignment":"Nature","id":"283","shape":"Ranged","gender":"Male"}
+{"rarity":"Rare","name":"Sage Disciple","alignment":"Nature","id":"284","shape":"Ranged","gender":"Male"}
+{"rarity":"Legendary","name":"All, Prince of Sands","alignment":"Order","id":"285","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Free-folk Leader","alignment":"Order","id":"286","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Winged Protector","alignment":"Order","id":"286","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Nomad","alignment":"Order","id":"287","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Kong, Monkey King","alignment":"Nature","id":"288","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Ape Warlord","alignment":"Nature","id":"289","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Young Primate","alignment":"Nature","id":"290","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Freddy, Lord of Terror","alignment":"Chaos","id":"291","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Doctor Fear","alignment":"Chaos","id":"292","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Scarecrow","alignment":"Chaos","id":"293","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Scrap, the King of Garbage","alignment":"Nature","id":"294","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Angler Vole","alignment":"Nature","id":"295","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Junk Rat","alignment":"Nature","id":"296","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Charon, Soul Catcher","alignment":"Order","id":"297","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Grim Warden","alignment":"Order","id":"298","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Gravekeeper","alignment":"Order","id":"299","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Shadow Shaa-Moona","alignment":"Chaos","id":"300","shape":"Melee","gender":"Female"}
+{"rarity":"Epic","name":"Half Moon Priestess","alignment":"Chaos","id":"301","shape":"Melee","gender":"Female"}
+{"rarity":"Rare","name":"Moon Child","alignment":"Chaos","id":"302","shape":"Melee","gender":"Female"}
+{"rarity":"Legendary","name":"Dandy Croc","alignment":"Nature","id":"303","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Thug Hunter","alignment":"Nature","id":"304","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Toothy Thuggie","alignment":"Nature","id":"305","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Legion, God of War","alignment":"Order","id":"306","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Harbringer of War","alignment":"Order","id":"307","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Immortal Warrior","alignment":"Order","id":"308","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Serket Sen Scorp","alignment":"Nature","id":"309","shape":"Melee","gender":"Female"}
+{"rarity":"Epic","name":"The Scorpion Queen","alignment":"Nature","id":"310","shape":"Melee","gender":"Female"}
+{"rarity":"Rare","name":"Ancient Scorpid","alignment":"Nature","id":"311","shape":"Melee","gender":"Female"}
+{"rarity":"Rare","name":"Dark Acolyte","alignment":"Chaos","id":"312","shape":"Ranged","gender":"Female"}
+{"rarity":"Legendary","name":"Madam Lo'Trix","alignment":"Chaos","id":"313","shape":"Ranged","gender":"Female"}
+{"rarity":"Epic","name":"Shadow Manipulator","alignment":"Chaos","id":"314","shape":"Ranged","gender":"Female"}
+{"rarity":"Rare","name":"Puppet Mistress","alignment":"Chaos","id":"315","shape":"Ranged","gender":"Female"}
+{"rarity":"Legendary","name":"Yuri, Shadow Dagger","alignment":"Order","id":"316","shape":"Ranged","gender":"Female"}
+{"rarity":"Epic","name":"Kunai Master","alignment":"Order","id":"317","shape":"Ranged","gender":"Female"}
+{"rarity":"Rare","name":"Kunoichi","alignment":"Order","id":"318","shape":"Ranged","gender":"Female"}
+{"rarity":"Legendary","name":"Sheer-Shah","alignment":"Nature","id":"319","shape":"Melee","gender":"Male"}
+{"rarity":"epic","name":"Fierce Rakshesh","alignment":"Nature","id":"320","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Furious Sabertooth","alignment":"Nature","id":"321","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Chuba Cabras","alignment":"Chaos","id":"322","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Flesh Eater","alignment":"Chaos","id":"323","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Insatiable Beast","alignment":"Chaos","id":"324","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Justia, Law Goddess","alignment":"Order","id":"325","shape":"Ranged","gender":"Female"}
+{"rarity":"Epic","name":"Justice Inquisitor","alignment":"Order","id":"326","shape":"Ranged","gender":"Female"}
+{"rarity":"Rare","name":"Priestess of Equilibrium","alignment":"Order","id":"327","shape":"Ranged","gender":"Female"}
+{"rarity":"Legendary","name":"Cabas, Wasteland Lord","alignment":"Nature","id":"328","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Desert Sentry","alignment":"Nature","id":"329","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Wild Stalker","alignment":"Nature","id":"330","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Dominus, the Swarm King","alignment":"Chaos","id":"331","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"The Colonist Invader","alignment":"Chaos","id":"332","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Visitor","alignment":"Chaos","id":"333","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Jormun Grand","alignment":"Nature","id":"334","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Ice Big","alignment":"Nature","id":"335","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Jotunn","alignment":"Nature","id":"336","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Amaterasu, Eternal Sun","alignment":"Order","id":"337","shape":"Melee","gender":"Female"}
+{"rarity":"Epic","name":"Sayuki","alignment":"Order","id":"338","shape":"Melee","gender":"Female"}
+{"rarity":"Rare","name":"Fan Dancer","alignment":"Order","id":"339","shape":"Melee","gender":"Female"}
+{"rarity":"Legendary","name":"Taeral Kelhorn","alignment":"Chaos","id":"340","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Elwin Fierce","alignment":"Chaos","id":"341","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Elf Slayer","alignment":"Chaos","id":"342","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Toxic Mantas","alignment":"Nature","id":"343","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Kamacuras","alignment":"Nature","id":"344","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Mantis","alignment":"Nature","id":"345","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Morgen Von Stern","alignment":"Order","id":"346","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Lord Punisher","alignment":"Order","id":"347","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Crusader","alignment":"Order","id":"348","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Deep Maw","alignment":"Chaos","id":"349","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Muddy Trog","alignment":"Chaos","id":"350","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Mor Lock","alignment":"Chaos","id":"351","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Myrddin Caer","alignment":"Nature","id":"352","shape":"Ranged","gender":"Male"}
+{"rarity":"Epic","name":"Lord of the Forest","alignment":"Nature","id":"353","shape":"Ranged","gender":"Male"}
+{"rarity":"Rare","name":"Woodland Hermit","alignment":"Nature","id":"354","shape":"Ranged","gender":"Male"}
+{"rarity":"Legendary","name":"Onmoraki","alignment":"Chaos","id":"355","shape":"Ranged","gender":"Male"}
+{"rarity":"Epic","name":"Demonic Shadow","alignment":"Chaos","id":"356","shape":"Ranged","gender":"Male"}
+{"rarity":"Rare","name":"Grim Harvester","alignment":"Chaos","id":"357","shape":"Ranged","gender":"Male"}
+{"rarity":"Legendary","name":"Vixen, the Storm Lord","alignment":"Nature","id":"358","shape":"Ranged","gender":"Male"}
+{"rarity":"Epic","name":"Warden of the North","alignment":"Nature","id":"359","shape":"Ranged","gender":"Male"}
+{"rarity":"Rare","name":"Frozen Moor Guard","alignment":"Nature","id":"360","shape":"Ranged","gender":"Male"}
+{"rarity":"Legendary","name":"Eostre, the Dawn Glow","alignment":"Order","id":"361","shape":"Ranged","gender":"Female"}
+{"rarity":"Epic","name":"Sunrise Maiden","alignment":"Order","id":"362","shape":"Ranged","gender":"Female"}
+{"rarity":"Rare","name":"Herald of Spring","alignment":"Order","id":"363","shape":"Ranged","gender":"Female"}
+{"rarity":"Legendary","name":"Arioch, Nemesis Weapon","alignment":"Chaos","id":"364","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Ruthless Executioner","alignment":"Chaos","id":"365","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Splintered Soul","alignment":"Chaos","id":"366","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Owl","alignment":"Nature","id":"367","shape":"Ranged","gender":"Female"}
