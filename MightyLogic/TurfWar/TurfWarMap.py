@@ -17,7 +17,7 @@ class TurfWarMap():
     def getGuild(self):
         return self.guild
 
-    def setStartDate(self,year, month, day):
+    def setStartDate(self, year, month, day):
         self.date = datetime(year=year, month=month, day=day)
 
     def getStartDate(self):
@@ -39,6 +39,14 @@ class TurfWarMap():
         return abs(x0 - x1) + abs(y0 - y1)
 
     def getTile(self, row, col):
+        if row == None:
+            return None
+        if col == None:
+            return None
+        if row not in self.rows:
+            return None
+        if col not in self.cols:
+            return None
         # print(f"Getting {row}-{col}")
         return self.arr[row, col]
 
@@ -88,11 +96,30 @@ class TurfWarMap():
                 ret += val
         return ret
 
+    #
+    # Neighboring tile functions
+    #
     def upRow(self, row):
         up = chr(ord(row) - 1)
         if up in self.rows:
             return up
         return None
+
+    def upTile(self, row, col):
+        r = self.upRow(row)
+        return self.getTile(r, col)
+
+    def downTile(self, row, col):
+        r = self.downRow(row)
+        return self.getTile(r, col)
+
+    def leftTile(self, row, col):
+        c = self.leftCol(col)
+        return self.getTile(row, c)
+
+    def rightTile(self, row, col):
+        c = self.rightCol(col)
+        return self.getTile(row, c)
 
     def leftCol(self, col):
         up = col - 1
@@ -112,6 +139,25 @@ class TurfWarMap():
             return up
         return None
 
+    def getNeighbors(self, row, col):
+        ret = []
+        tmp = self.leftTile(row, col)
+        if tmp is not None:
+            ret.append(tmp)
+        tmp = self.rightTile(row, col)
+        if tmp is not None:
+            ret.append(tmp)
+        tmp = self.upTile(row, col)
+        if tmp is not None:
+            ret.append(tmp)
+        tmp = self.downTile(row, col)
+        if tmp is not None:
+            ret.append(tmp)
+        return ret
+
+    #
+    # Useful representations
+    #
     def getDataFrame(self):
         image = self.getValues()
         payout = pd.DataFrame(image, index=["A", "B", "C", "D", "E"], columns=[1, 2, 3, 4, 5, 6])
@@ -130,47 +176,47 @@ class TurfWarMap():
             col_num = 0
             for c in self.cols:
                 score = 0
-                if self.isBuilding(r,c):
-                    pass #print(f"{r}-{c} - Is a building")
+                if self.isBuilding(r, c):
+                    pass  # print(f"{r}-{c} - Is a building")
                 else:
-                    #print(f"{r}-{c} - Not a building")
+                    # print(f"{r}-{c} - Not a building")
                     #
                     # this tile's score
                     #
-                    score += self.getNonBuildingValue(r,c)
+                    score += self.getNonBuildingValue(r, c)
 
                     #
                     # Up & Down nbrs
                     #
                     tmp = self.upRow(r)
                     if tmp is not None:
-                        score += self.getBuildingValue(tmp,c)
+                        score += self.getBuildingValue(tmp, c)
                     tmp = self.downRow(r)
                     if tmp is not None:
-                        score += self.getBuildingValue(tmp,c)
+                        score += self.getBuildingValue(tmp, c)
                     #
                     # Left & right nbrs
                     #
                     tmp = self.leftCol(c)
                     if tmp is not None:
-                        score += self.getBuildingValue(r,tmp)
+                        score += self.getBuildingValue(r, tmp)
                     tmp = self.rightCol(c)
                     if tmp is not None:
-                        score += self.getBuildingValue(r,tmp)
+                        score += self.getBuildingValue(r, tmp)
                 # set score in array here
                 ret[row_num][col_num] = score
-                #...
-                col_num+=1
+                # ...
+                col_num += 1
             row_num += 1
         X_train = np.array(ret)
         # FIXME: should give results in [0-100], giving some >100
         scaler = preprocessing.StandardScaler().fit(X_train)
         X_scaled = scaler.transform(X_train)
-        X_scaled = 50 * (X_scaled +1)
-        X_scaled = np.where(X_scaled <10,0,X_scaled)
-        #X_scaled = np.where(X_scaled >95,1,X_scaled)
+        X_scaled = 50 * (X_scaled + 1)
+        X_scaled = np.where(X_scaled < 10, 0, X_scaled)
+        # X_scaled = np.where(X_scaled >95,1,X_scaled)
         return X_scaled.tolist()
-        #return ret
+        # return ret
 
     def oneMove(self, frame):
         ret = [[0 for x in range(0, 6)] for y in range(0, 5)]
@@ -223,7 +269,7 @@ class TurfWarMap():
         scaler = preprocessing.StandardScaler().fit(X_train)
         X_scaled = scaler.transform(X_train)
         return X_scaled.tolist()
-        #return ret
+        # return ret
 
     def buildingList(self):
         ret = []
@@ -261,19 +307,27 @@ class TurfWarMap():
         val = self.getTotalValue()
         return f"Total Map Value: {val:,.0f} common souls"
 
-    def printBuildingList(self):
-        bl = self.buildingList()
+    def printTileListHeader(self):
         print("Building          Points      For 1st Place                      Guild Gets")
         print("===============================================================================")
+
+    def printNeighborList(self, row, col):
+        print( f"Neighbors of tile {row}:{col}")
+        self.printTileListHeader()
+        nbrs = self.getNeighbors(row, col)
+        for nbr in nbrs:
+            print(nbr.getTileLine())
+
+    def printBuildingList(self):
+        bl = self.buildingList()
+        self.printTileListHeader()
         for build in bl:
-            val = build.getValue()
-            rew = build.reward.share(.07)
-            print(f"{build.row}-{build.column}: {build.name:11s} {val:>8,.0f}  {rew:>35s}, {build.reward.INFLUENCE:>4d} influence.")
+           print(build.getTileLine())
 
     def printReport(self):
         print("Turf War Map Report")
         gn = self.getGuild()
-        if gn !="":
+        if gn != "":
             print(f"Guild: {gn}")
         sd = self.getStartDate()
         if sd != "":

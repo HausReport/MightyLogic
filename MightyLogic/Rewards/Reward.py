@@ -78,3 +78,4 @@ class Reward:
         ret = self.append_value(ret, self.SPARK * percent, "sparks")
         ret = self.append_value(ret, self.GEM * percent, "gems")
         return ret
+

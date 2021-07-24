@@ -55,4 +55,5 @@ map2.setGuild("Nightterror")
 map2.setStartDate(year=2021, month=7, day=17)
 map2.printReport()
 
-
+print("")
+map2.printNeighborList('B',2)

@@ -24,7 +24,9 @@ class Tile:
         self.column = column
 
     def share(self, percent):
-        self.reward.share(percent)
+        if self.reward is None:
+            return "ERROR: Undefined reward"
+        return self.reward.share(percent)
 
     def getLocation(self):
         return str(self.row) + ":" + str(self.column)
@@ -48,6 +50,17 @@ class Tile:
         if ticks:
             ret += "```" + "\n"
         return ret
+
+    def getTileLine(self):
+        val = self.getValue()
+        rew = self.share(.07)
+        if self.name is None:
+            self.name="Unknown"
+        if self.row is None:
+            self.row="?"
+        if self.column is None:
+            self.column="?"
+        return f"{self.row}-{self.column}: {self.name:11s} {val:>8,.0f}  {rew:>35s}, {self.reward.INFLUENCE:>4d} influence."
 
     def __str__(self):
         return f'Tile {self.name} at {self.row}:{self.column}'
