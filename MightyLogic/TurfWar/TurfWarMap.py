@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from sklearn import preprocessing
+from datetime import datetime
 
 
 class TurfWarMap():
@@ -8,6 +9,21 @@ class TurfWarMap():
     rows = ['A', 'B', 'C', 'D', 'E']
     cols = [1, 2, 3, 4, 5, 6]
     arr = {}  # [[0]*6]*5
+    guild = ""
+
+    def setGuild(self, gn):
+        self.guild = gn
+
+    def getGuild(self):
+        return self.guild
+
+    def setStartDate(self,year, month, day):
+        self.date = datetime(year=year, month=month, day=day)
+
+    def getStartDate(self):
+        if self.date is None:
+            return ""
+        return self.date.strftime("%d %B %Y")
 
     def addTile(self, row, col, tile):
         r = row
@@ -61,6 +77,15 @@ class TurfWarMap():
                 # print(f"{r}-{col} = {val}")
                 ret[r][col - 1] = val
             r = r + 1
+        return ret
+
+    def getTotalValue(self):
+        ret = 0
+        for row in self.rows:
+            for col in self.cols:
+                val = self.arr[row, col].reward.myValue
+                # print(f"{r}-{col} = {val}")
+                ret += val
         return ret
 
     def upRow(self, row):
@@ -220,6 +245,9 @@ class TurfWarMap():
 
         return ret
 
+    #
+    # Human-readable reports
+    #
     def buildingListText(self):
         ret = ""
         tmp = self.buildingList()
@@ -229,6 +257,10 @@ class TurfWarMap():
 
         return ret
 
+    def getTotalValueString(self):
+        val = self.getTotalValue()
+        return f"Total Map Value: {val:,.0f} common souls"
+
     def printBuildingList(self):
         bl = self.buildingList()
         print("Building          Points      For 1st Place                      Guild Gets")
@@ -237,6 +269,19 @@ class TurfWarMap():
             val = build.getValue()
             rew = build.reward.share(.07)
             print(f"{build.row}-{build.column}: {build.name:11s} {val:>8,.0f}  {rew:>35s}, {build.reward.INFLUENCE:>4d} influence.")
+
+    def printReport(self):
+        print("Turf War Map Report")
+        gn = self.getGuild()
+        if gn !="":
+            print(f"Guild: {gn}")
+        sd = self.getStartDate()
+        if sd != "":
+            print(f"For the Week of: {sd}")
+
+        print(self.getTotalValueString())
+        print("")
+        self.printBuildingList()
 
     # 0 if i'm a building
     # sum of neighbor buildings + my score

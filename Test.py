@@ -46,10 +46,13 @@ map2.addTile('E',6, forest(3000,0,2000))
 
 
 # Payout array
-image = map2.getValues()
-pprint(image)
+#image = map2.getValues()
+#pprint(image)
 
-print("STAGING SCORES")
-pprint(map2.stagingScores())
+#print("STAGING SCORES")
+#pprint(map2.stagingScores())
+map2.setGuild("Nightterror")
+map2.setStartDate(year=2021, month=7, day=17)
+map2.printReport()
 
-map2.printBuildingList()
+
