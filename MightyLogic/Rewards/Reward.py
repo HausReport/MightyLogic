@@ -8,6 +8,7 @@ def append_value(ret, value, label):
         ret = ret + f"{value:,.0f} {label}"
     return ret
 
+# FIXME: name conflicts with name in Tile
 
 class Reward:
     myValue = 0
@@ -36,6 +37,20 @@ class Reward:
             "SPARK"         : self.SPARK,
             "GEM"           : self.GEM
         }
+
+    def combine(self, o):
+        common=self.COMMON_SOUL+o.COMMON_SOUL
+        rare=self.RARE_SOUL+o.RARE_SOUL
+        soul_dust=self.SOUL_DUST+o.SOUL_DUST
+        epic=self.EPIC_SOUL+ o.EPIC_SOUL
+        gold=self.GOLD+o.GOLD
+        legendary= self.LEGENDARY_SOUL+o.LEGENDARY_SOUL
+        contrib= self.CONTRIBUTION+o.CONTRIBUTION
+        influence=self.INFLUENCE+o.INFLUENCE
+        spark=self.SPARK+o.SPARK
+        gem=self.GEM+o.GEM
+        myName= self.myName + ", " + o.myName
+        return Reward(common, rare, soul_dust, epic, gold, legendary, contrib, influence, spark, gem, myName)
 
     def __init__(self, value=0, common=0, rare=0, soul_dust=0, epic=0, gold=0, legendary=0, contrib=0, influence=0,
                  spark=0, gem=0, myName=""):

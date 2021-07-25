@@ -225,7 +225,7 @@ class TurfWarMap():
 
     def getRecommendedMovesArrays(self):
         flip = self.getAdjustedMoves() #moves
-        epsilon = 0.05
+        #epsilon = 0.05
         rows = range(5)
         cols = range(6)
         retx = [[0 for i in cols] for j in rows]
