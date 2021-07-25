@@ -57,9 +57,9 @@ class TurfWarMap():
         return abs(x0 - x1) + abs(y0 - y1)
 
     def getTile(self, row, col):
-        if row == None:
+        if row is None:
             return None
-        if col == None:
+        if col is None:
             return None
         if row not in self.rows:
             return None
@@ -228,13 +228,13 @@ class TurfWarMap():
             row_num += 1
         X_train = np.array(ret)
         # FIXME: should give results in [0-100], giving some >100
-        scaler = preprocessing.StandardScaler().fit(X_train)
-        X_scaled = scaler.transform(X_train)
-        X_scaled = 50 * (X_scaled + 1)
-        X_scaled = np.where(X_scaled < 10, 0, X_scaled)
+        #scaler = preprocessing.StandardScaler().fit(X_train)
+        #X_scaled = scaler.transform(X_train)
+        #X_scaled = 50 * (X_scaled + 1)
+        #X_scaled = np.where(X_scaled < 10, 0, X_scaled)
         # X_scaled = np.where(X_scaled >95,1,X_scaled)
-        return X_scaled.tolist()
-        # return ret
+        #return X_scaled.tolist()
+        return ret
 
     def getScaledPayout(self):
         return scaler(self.getDataFrame())
