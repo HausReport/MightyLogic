@@ -270,7 +270,7 @@ class TurfWarMap():
         return scaler(self.getStrategicDataFrame()) / 3
 
     def getAdjustedMoves(self):
-        adjusted_move = self.getScaledPayout() - self.getScaledStaging()
+        adjusted_move = np.maximum(self.getScaledPayout(), self.getScaledStaging() )
         adjusted_move -= adjusted_move.min()
         return adjusted_move
 
