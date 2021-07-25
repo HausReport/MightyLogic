@@ -1,6 +1,14 @@
 from MightyLogic.Values import Values
 
 
+def append_value(ret, value, label):
+    if value > 0:
+        if ret != "":
+            ret = ret + ", "
+        ret = ret + f"{value:,.0f} {label}"
+    return ret
+
+
 class Reward:
     myValue = 0
     COMMON_SOUL = 0
@@ -16,17 +24,17 @@ class Reward:
 
     def toDict(self):
         return {
-            "value" : self.myValue,
-            "COMMON_SOUL" : self.COMMON_SOUL,
-            "RARE_SOUL" : self.RARE_SOUL,
-            "SOUL_DUST" : self.SOUL_DUST,
-            "EPIC_SOUL" : self.EPIC_SOUL,
-            "GOLD" : self.GOLD,
-            "LEGENDARY_SOUL" : self.LEGENDARY_SOUL,
-            "CONTRIBUTION" : self.CONTRIBUTION,
-            "INFLUENCE" : self.INFLUENCE,
-            "SPARK" : self.SPARK,
-            "GEM" : self.GEM
+            "value"         : self.myValue,
+            "COMMON_SOUL"   : self.COMMON_SOUL,
+            "RARE_SOUL"     : self.RARE_SOUL,
+            "SOUL_DUST"     : self.SOUL_DUST,
+            "EPIC_SOUL"     : self.EPIC_SOUL,
+            "GOLD"          : self.GOLD,
+            "LEGENDARY_SOUL": self.LEGENDARY_SOUL,
+            "CONTRIBUTION"  : self.CONTRIBUTION,
+            "INFLUENCE"     : self.INFLUENCE,
+            "SPARK"         : self.SPARK,
+            "GEM"           : self.GEM
         }
 
     def __init__(self, value=0, common=0, rare=0, soul_dust=0, epic=0, gold=0, legendary=0, contrib=0, influence=0,
@@ -58,24 +66,16 @@ class Reward:
         self.SPARK = spark
         self.GEM = gem
 
-    def append_value(self, ret, value, label):
-        if value > 0:
-            if ret != "":
-                ret = ret + ", "
-            ret = ret + f"{value:,.0f} {label}"
-        return ret
-
     def share(self, percent):
         ret = ""
-        ret = self.append_value(ret, self.COMMON_SOUL * percent, "common souls")
-        ret = self.append_value(ret, self.RARE_SOUL * percent, "rare souls")
-        ret = self.append_value(ret, self.SOUL_DUST * percent, "soul dust")
-        ret = self.append_value(ret, self.EPIC_SOUL * percent, "epic souls")
-        ret = self.append_value(ret, self.GOLD * percent, "gold")
-        ret = self.append_value(ret, self.LEGENDARY_SOUL * percent, "legendary souls")
-        ret = self.append_value(ret, self.CONTRIBUTION * percent, "contribution")
+        ret = append_value(ret, self.COMMON_SOUL * percent, "common souls")
+        ret = append_value(ret, self.RARE_SOUL * percent, "rare souls")
+        ret = append_value(ret, self.SOUL_DUST * percent, "soul dust")
+        ret = append_value(ret, self.EPIC_SOUL * percent, "epic souls")
+        ret = append_value(ret, self.GOLD * percent, "gold")
+        ret = append_value(ret, self.LEGENDARY_SOUL * percent, "legendary souls")
+        ret = append_value(ret, self.CONTRIBUTION * percent, "contribution")
         # ret = self.append_value(ret,self.INFLUENCE * percent, "gold" )
-        ret = self.append_value(ret, self.SPARK * percent, "sparks")
-        ret = self.append_value(ret, self.GEM * percent, "gems")
+        ret = append_value(ret, self.SPARK * percent, "sparks")
+        ret = append_value(ret, self.GEM * percent, "gems")
         return ret
-

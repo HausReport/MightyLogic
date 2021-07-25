@@ -1,7 +1,8 @@
-import pandas as pd
-import numpy as np
-from sklearn import preprocessing
 from datetime import datetime
+
+import numpy as np
+import pandas as pd
+from sklearn import preprocessing
 
 
 class TurfWarMap():
@@ -312,7 +313,7 @@ class TurfWarMap():
         print("===============================================================================")
 
     def printNeighborList(self, row, col):
-        print( f"Neighbors of tile {row}:{col}")
+        print(f"Neighbors of tile {row}:{col}")
         self.printTileListHeader()
         nbrs = self.getNeighbors(row, col)
         for nbr in nbrs:
@@ -322,7 +323,7 @@ class TurfWarMap():
         bl = self.buildingList()
         self.printTileListHeader()
         for build in bl:
-           print(build.getTileLine())
+            print(build.getTileLine())
 
     def printReport(self):
         print("Turf War Map Report")

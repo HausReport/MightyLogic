@@ -9,15 +9,15 @@ class Tile:
         self.row = row
         self.column = column
         self.building = building
-        #myName = "", value = 0, common = 0, rare = 0, soul_dust = 0, epic = 0, gold = 0, legendary = 0, contrib = 0, influence = 0,
-        #spark = 0, gem = 0):
+        # myName = "", value = 0, common = 0, rare = 0, soul_dust = 0, epic = 0, gold = 0, legendary = 0, contrib = 0, influence = 0,
+        # spark = 0, gem = 0):
         self.reward = Reward(value, common, rare, soul_dust, epic, gold, legendary, contrib, influence, spark, gem)
         # print("world")
 
     def getValue(self):
         return self.reward.myValue
 
-    def setRow(self,row):
+    def setRow(self, row):
         self.row = row
 
     def setColumn(self, column):
@@ -55,11 +55,11 @@ class Tile:
         val = self.getValue()
         rew = self.share(.07)
         if self.name is None:
-            self.name="Unknown"
+            self.name = "Unknown"
         if self.row is None:
-            self.row="?"
+            self.row = "?"
         if self.column is None:
-            self.column="?"
+            self.column = "?"
         return f"{self.row}-{self.column}: {self.name:11s} {val:>8,.0f}  {rew:>35s}, {self.reward.INFLUENCE:>4d} influence."
 
     def __str__(self):
