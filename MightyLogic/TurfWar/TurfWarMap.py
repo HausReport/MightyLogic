@@ -3,6 +3,23 @@ from datetime import datetime
 import numpy as np
 import pandas as pd
 from sklearn import preprocessing
+from sklearn.preprocessing import StandardScaler, scale
+
+
+#
+# Scales all entries in the given map to values in [0,2]
+#
+def scaler(target):
+    oldShape = target.shape
+    foo = target.to_numpy()
+    flat = foo.reshape([1, 30])
+    X_scaled = scale(flat, axis=1)
+    X_scaled -= X_scaled.min()
+
+    # super_threshold_indices = scaled_payout < 0.5
+    # scaled_payout[super_threshold_indices] = 0
+
+    return np.reshape(X_scaled, oldShape)
 
 
 class TurfWarMap():
@@ -219,58 +236,69 @@ class TurfWarMap():
         return X_scaled.tolist()
         # return ret
 
-    def oneMove(self, frame):
-        ret = [[0 for x in range(0, 6)] for y in range(0, 5)]
+    def getScaledPayout(self):
+        return scaler(self.getDataFrame())
 
-        row_num = 0
-        for r in self.rows:
-            col_num = 0
-            for c in self.cols:
-                max = 0
+    def getScaledStaging(self):
+        return scaler(self.getStrategicDataFrame()) / 3
 
-                # scan nbr above
-                up = chr(ord(r) - 1)
-                if up in self.rows:
-                    tval = frame.iloc[self.row_dict[up]][c]
-                    if tval > max:
-                        max = tval
+    def getAdjustedMoves(self):
+        adjusted_move = self.getScaledPayout() - self.getScaledStaging()
+        adjusted_move -= adjusted_move.min()
+        return adjusted_move
 
-                        # scan nbr below
-                dn = chr(ord(r) + 1)
-                if dn in self.rows:
-                    tval = frame.iloc[self.row_dict[dn]][c]
-                    if tval > max:
-                        max = tval
-
-                        # scan nbr left
-                left = c - 1
-                if left in self.cols:
-                    tval = frame.iloc[self.row_dict[r]][left]
-                    if tval > max:
-                        max = tval
-
-                        # scan nbr right
-                right = c + 1
-                if right in self.cols:
-                    tval = frame.iloc[self.row_dict[r]][right]
-                    if tval > max:
-                        max = tval
-
-                        # scan my val
-                tval = frame.iloc[self.row_dict[r]][c]
-                if tval > max:
-                    max = tval
-
-                ret[row_num][col_num] = max
-                col_num += 1
-                # print(f"({r}-{c})",end='')
-            row_num += 1
-
-        X_train = np.array(ret)
-        scaler = preprocessing.StandardScaler().fit(X_train)
-        X_scaled = scaler.transform(X_train)
-        return X_scaled.tolist()
-        # return ret
+    # def oneMove(self, frame):
+    #     ret = [[0 for x in range(0, 6)] for y in range(0, 5)]
+    #
+    #     row_num = 0
+    #     for r in self.rows:
+    #         col_num = 0
+    #         for c in self.cols:
+    #             max = 0
+    #
+    #             # scan nbr above
+    #             up = chr(ord(r) - 1)
+    #             if up in self.rows:
+    #                 tval = frame.iloc[self.row_dict[up]][c]
+    #                 if tval > max:
+    #                     max = tval
+    #
+    #                     # scan nbr below
+    #             dn = chr(ord(r) + 1)
+    #             if dn in self.rows:
+    #                 tval = frame.iloc[self.row_dict[dn]][c]
+    #                 if tval > max:
+    #                     max = tval
+    #
+    #                     # scan nbr left
+    #             left = c - 1
+    #             if left in self.cols:
+    #                 tval = frame.iloc[self.row_dict[r]][left]
+    #                 if tval > max:
+    #                     max = tval
+    #
+    #                     # scan nbr right
+    #             right = c + 1
+    #             if right in self.cols:
+    #                 tval = frame.iloc[self.row_dict[r]][right]
+    #                 if tval > max:
+    #                     max = tval
+    #
+    #                     # scan my val
+    #             tval = frame.iloc[self.row_dict[r]][c]
+    #             if tval > max:
+    #                 max = tval
+    #
+    #             ret[row_num][col_num] = max
+    #             col_num += 1
+    #             # print(f"({r}-{c})",end='')
+    #         row_num += 1
+    #
+    #     X_train = np.array(ret)
+    #     scaler = preprocessing.StandardScaler().fit(X_train)
+    #     X_scaled = scaler.transform(X_train)
+    #     return X_scaled.tolist()
+    #     # return ret
 
     def buildingList(self):
         ret = []
