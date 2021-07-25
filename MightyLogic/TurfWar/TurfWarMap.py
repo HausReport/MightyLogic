@@ -3,8 +3,7 @@ from datetime import datetime
 import numpy as np
 import pandas as pd
 from scipy.signal import convolve2d
-from sklearn import preprocessing
-from sklearn.preprocessing import StandardScaler, scale
+from sklearn.preprocessing import scale
 
 
 #
@@ -213,56 +212,6 @@ class TurfWarMap():
 
         return res
 
-    def stagingScoresOld(self):
-        ret = [[0 for x in range(0, 6)] for y in range(0, 5)]
-
-        row_num = 0
-        for r in self.rows:
-            col_num = 0
-            for c in self.cols:
-                score = 0
-                if self.isBuilding(r, c):
-                    pass  # print(f"{r}-{c} - Is a building")
-                else:
-                    # print(f"{r}-{c} - Not a building")
-                    #
-                    # this tile's score
-                    #
-                    score += self.getNonBuildingValue(r, c)
-
-                    #
-                    # Up & Down nbrs
-                    #
-                    tmp = self.upRow(r)
-                    if tmp is not None:
-                        score += self.getBuildingValue(tmp, c)
-                    tmp = self.downRow(r)
-                    if tmp is not None:
-                        score += self.getBuildingValue(tmp, c)
-                    #
-                    # Left & right nbrs
-                    #
-                    tmp = self.leftCol(c)
-                    if tmp is not None:
-                        score += self.getBuildingValue(r, tmp)
-                    tmp = self.rightCol(c)
-                    if tmp is not None:
-                        score += self.getBuildingValue(r, tmp)
-                # set score in array here
-                ret[row_num][col_num] = score
-                # ...
-                col_num += 1
-            row_num += 1
-        #X_train = np.array(ret)
-        # FIXME: should give results in [0-100], giving some >100
-        #scaler = preprocessing.StandardScaler().fit(X_train)
-        #X_scaled = scaler.transform(X_train)
-        #X_scaled = 50 * (X_scaled + 1)
-        #X_scaled = np.where(X_scaled < 10, 0, X_scaled)
-        # X_scaled = np.where(X_scaled >95,1,X_scaled)
-        #return X_scaled.tolist()
-        return ret
-
     def getScaledPayout(self):
         return scaler(self.getDataFrame())
 
@@ -270,62 +219,71 @@ class TurfWarMap():
         return scaler(self.getStrategicDataFrame()) / 3
 
     def getAdjustedMoves(self):
-        adjusted_move = np.maximum(self.getScaledPayout(), self.getScaledStaging() )
+        adjusted_move = np.maximum(self.getScaledPayout(), self.getScaledStaging())
         adjusted_move -= adjusted_move.min()
         return adjusted_move
 
-    # def oneMove(self, frame):
-    #     ret = [[0 for x in range(0, 6)] for y in range(0, 5)]
-    #
-    #     row_num = 0
-    #     for r in self.rows:
-    #         col_num = 0
-    #         for c in self.cols:
-    #             max = 0
-    #
-    #             # scan nbr above
-    #             up = chr(ord(r) - 1)
-    #             if up in self.rows:
-    #                 tval = frame.iloc[self.row_dict[up]][c]
-    #                 if tval > max:
-    #                     max = tval
-    #
-    #                     # scan nbr below
-    #             dn = chr(ord(r) + 1)
-    #             if dn in self.rows:
-    #                 tval = frame.iloc[self.row_dict[dn]][c]
-    #                 if tval > max:
-    #                     max = tval
-    #
-    #                     # scan nbr left
-    #             left = c - 1
-    #             if left in self.cols:
-    #                 tval = frame.iloc[self.row_dict[r]][left]
-    #                 if tval > max:
-    #                     max = tval
-    #
-    #                     # scan nbr right
-    #             right = c + 1
-    #             if right in self.cols:
-    #                 tval = frame.iloc[self.row_dict[r]][right]
-    #                 if tval > max:
-    #                     max = tval
-    #
-    #                     # scan my val
-    #             tval = frame.iloc[self.row_dict[r]][c]
-    #             if tval > max:
-    #                 max = tval
-    #
-    #             ret[row_num][col_num] = max
-    #             col_num += 1
-    #             # print(f"({r}-{c})",end='')
-    #         row_num += 1
-    #
-    #     X_train = np.array(ret)
-    #     scaler = preprocessing.StandardScaler().fit(X_train)
-    #     X_scaled = scaler.transform(X_train)
-    #     return X_scaled.tolist()
-    #     # return ret
+    def getRecommendedMovesArrays(self):
+        flip = self.getAdjustedMoves() #moves
+        epsilon = 0.05
+        rows = range(5)
+        cols = range(6)
+        retx = [[0 for i in cols] for j in rows]
+        rety = [[0 for i in cols] for j in rows]
+
+        for row in rows:
+            for col in cols:
+                up = row + 1
+                down = row - 1
+                left = col - 1
+                right = col + 1
+
+                me = flip[row][col]
+                max = me
+                z_up = -1000000
+                z_dn = -1000000
+                z_left = -1000000
+                z_right = -1000000
+
+                if up in rows:
+                    tmp = flip[up][col]
+                    z_up = tmp
+                    if tmp > max:
+                        max = tmp
+                if down in rows:
+                    tmp = flip[down][col]
+                    z_dn = tmp
+                    if tmp > max:
+                        max = tmp
+                if left in cols:
+                    tmp = flip[row][left]
+                    z_left = tmp
+                    if tmp > max:
+                        max = tmp
+                if right in cols:
+                    tmp = flip[row][right]
+                    z_right = tmp
+                    if tmp > max:
+                        max = tmp
+
+                drow = 4 - row
+                if max == me:
+                    retx[drow][col] = 0
+                    rety[drow][col] = 0
+                elif max == z_left:
+                    retx[drow][col] = -1
+                    rety[drow][col] = 0
+                elif max == z_right:
+                    retx[drow][col] = 1
+                    rety[drow][col] = 0
+                elif max == z_up:
+                    retx[drow][col] = 0
+                    rety[drow][col] = -1
+                elif max == z_dn:
+                    retx[drow][col] = 0
+                    rety[drow][col] = 1
+
+        return retx, rety
 
     def buildingList(self):
         ret = []
@@ -405,3 +363,107 @@ class TurfWarMap():
 #   for c in cols:
 #     print( "("+str(payout.iloc[row_dict[r]][c])+")",end='')
 #   print("")
+
+
+# def stagingScoresOld(self):
+#     ret = [[0 for x in range(0, 6)] for y in range(0, 5)]
+#
+#     row_num = 0
+#     for r in self.rows:
+#         col_num = 0
+#         for c in self.cols:
+#             score = 0
+#             if self.isBuilding(r, c):
+#                 pass  # print(f"{r}-{c} - Is a building")
+#             else:
+#                 # print(f"{r}-{c} - Not a building")
+#                 #
+#                 # this tile's score
+#                 #
+#                 score += self.getNonBuildingValue(r, c)
+#
+#                 #
+#                 # Up & Down nbrs
+#                 #
+#                 tmp = self.upRow(r)
+#                 if tmp is not None:
+#                     score += self.getBuildingValue(tmp, c)
+#                 tmp = self.downRow(r)
+#                 if tmp is not None:
+#                     score += self.getBuildingValue(tmp, c)
+#                 #
+#                 # Left & right nbrs
+#                 #
+#                 tmp = self.leftCol(c)
+#                 if tmp is not None:
+#                     score += self.getBuildingValue(r, tmp)
+#                 tmp = self.rightCol(c)
+#                 if tmp is not None:
+#                     score += self.getBuildingValue(r, tmp)
+#             # set score in array here
+#             ret[row_num][col_num] = score
+#             # ...
+#             col_num += 1
+#         row_num += 1
+#     #X_train = np.array(ret)
+#     # FIXME: should give results in [0-100], giving some >100
+#     #scaler = preprocessing.StandardScaler().fit(X_train)
+#     #X_scaled = scaler.transform(X_train)
+#     #X_scaled = 50 * (X_scaled + 1)
+#     #X_scaled = np.where(X_scaled < 10, 0, X_scaled)
+#     # X_scaled = np.where(X_scaled >95,1,X_scaled)
+#     #return X_scaled.tolist()
+#     return ret
+
+# def oneMove(self, frame):
+#     ret = [[0 for x in range(0, 6)] for y in range(0, 5)]
+#
+#     row_num = 0
+#     for r in self.rows:
+#         col_num = 0
+#         for c in self.cols:
+#             max = 0
+#
+#             # scan nbr above
+#             up = chr(ord(r) - 1)
+#             if up in self.rows:
+#                 tval = frame.iloc[self.row_dict[up]][c]
+#                 if tval > max:
+#                     max = tval
+#
+#                     # scan nbr below
+#             dn = chr(ord(r) + 1)
+#             if dn in self.rows:
+#                 tval = frame.iloc[self.row_dict[dn]][c]
+#                 if tval > max:
+#                     max = tval
+#
+#                     # scan nbr left
+#             left = c - 1
+#             if left in self.cols:
+#                 tval = frame.iloc[self.row_dict[r]][left]
+#                 if tval > max:
+#                     max = tval
+#
+#                     # scan nbr right
+#             right = c + 1
+#             if right in self.cols:
+#                 tval = frame.iloc[self.row_dict[r]][right]
+#                 if tval > max:
+#                     max = tval
+#
+#                     # scan my val
+#             tval = frame.iloc[self.row_dict[r]][c]
+#             if tval > max:
+#                 max = tval
+#
+#             ret[row_num][col_num] = max
+#             col_num += 1
+#             # print(f"({r}-{c})",end='')
+#         row_num += 1
+#
+#     X_train = np.array(ret)
+#     scaler = preprocessing.StandardScaler().fit(X_train)
+#     X_scaled = scaler.transform(X_train)
+#     return X_scaled.tolist()
+#     # return ret
