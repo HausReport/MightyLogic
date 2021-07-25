@@ -59,3 +59,30 @@ print("")
 map2.printNeighborList('B',2)
 
 pprint(map2.getScaledStaging())
+
+
+def getTiles(args):
+  ret = []
+  for arg in args:
+    ret.append(map2.getTile(arg[0], arg[1]))
+  return ret
+
+ts = getTiles([ ['A',1], ['B',3]])
+for t in ts:
+  print( str(t))
+
+rew1 = ts[0].reward
+rew2 = ts[1].reward
+
+rew3 = rew1.combine(rew2)
+print(rew1.share(.07))
+print(rew2.share(.07))
+print(rew3.share(.07))
+
+rewiv = ts[0].combineRewards(ts[1])
+print(rewiv.share(.07))
+
+print("combined")
+t4 = ts[0].combine(ts[1])
+print( t4 )
+print(t4.share(.07))
