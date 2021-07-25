@@ -57,3 +57,5 @@ map2.printReport()
 
 print("")
 map2.printNeighborList('B',2)
+
+pprint(map2.getScaledStaging())

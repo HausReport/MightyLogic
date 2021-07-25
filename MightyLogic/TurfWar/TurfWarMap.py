@@ -2,6 +2,7 @@ from datetime import datetime
 
 import numpy as np
 import pandas as pd
+from scipy.signal import convolve2d
 from sklearn import preprocessing
 from sklearn.preprocessing import StandardScaler, scale
 
@@ -187,6 +188,32 @@ class TurfWarMap():
         return staging
 
     def stagingScores(self):
+        # easier to do the summing with a convolve then
+        # zero out buildings than both at the same time
+        image = self.getValues()
+
+        filter_kernel = [[0, 1, 0],
+                         [1, 0, 1],
+                         [0, 1, 0]]
+        res = convolve2d(image,
+                         filter_kernel,
+                         mode='same',
+                         boundary='fill',
+                         fillvalue=0)
+        row_num = 0
+        for r in self.rows:
+            col_num = 0
+            for c in self.cols:
+                score = 0
+                if self.isBuilding(r, c):
+                    res[row_num][col_num] = score
+                # ...
+                col_num += 1
+            row_num += 1
+
+        return res
+
+    def stagingScoresOld(self):
         ret = [[0 for x in range(0, 6)] for y in range(0, 5)]
 
         row_num = 0
@@ -226,7 +253,7 @@ class TurfWarMap():
                 # ...
                 col_num += 1
             row_num += 1
-        X_train = np.array(ret)
+        #X_train = np.array(ret)
         # FIXME: should give results in [0-100], giving some >100
         #scaler = preprocessing.StandardScaler().fit(X_train)
         #X_scaled = scaler.transform(X_train)
