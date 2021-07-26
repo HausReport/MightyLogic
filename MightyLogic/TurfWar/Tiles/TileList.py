@@ -70,7 +70,7 @@ class TileList:
         loc = self.getCoordsString()
         #if self.name is None:
         #    self.name = "Unknown"
-        return f"{loc}: {val:>8,.0f}  {rew:>35s}, {self.reward.INFLUENCE:>4d} influence."
+        return f"{loc}: {val:>8,.0f}  {rew:>35s}, {rew.INFLUENCE:>4d} influence."
 
     def payouts(self):
         ret = ""
