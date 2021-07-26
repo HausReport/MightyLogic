@@ -73,5 +73,6 @@ class TileList:
     def __hash__(self):
         l1 = self.getShortNameList()
         l1.sort()
-        srted = string.join(l1)
+        srted = ""
+        srted.join(l1)
         return hash(srted)
