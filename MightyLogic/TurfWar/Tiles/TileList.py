@@ -1,3 +1,5 @@
+import string
+
 from MightyLogic.Rewards.Reward import Reward
 from MightyLogic.TurfWar.Tiles.Tile import Tile
 
@@ -15,6 +17,13 @@ class TileList:
         ret = []
         for arg in args:
             ret.append(self.amap.getTile(arg[0], arg[1]))
+        return ret
+
+    def getShortNameList(self):
+        ret = []
+        tile: Tile
+        for tile in self.tiles:
+            ret.append(tile.getLocation())
         return ret
 
     def getName(self):
@@ -49,3 +58,20 @@ class TileList:
         rewards = self.getRewards()
         ret += rewards.payouts()
         return ret
+
+    def __eq__(self, other):
+        l1 = self.getShortNameList()
+        l2 = other.getShortNameList()
+        for aStr in l1:
+            if aStr not in l2:
+                return False
+        for aStr in l2:
+            if aStr not in l1:
+                return False
+        return True
+
+    def __hash__(self):
+        l1 = self.getShortNameList()
+        l1.sort()
+        srted = string.join(l1)
+        return hash(srted)
