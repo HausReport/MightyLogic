@@ -20,6 +20,9 @@ def hells_gate(epic, influence, contrib, row="?", column="?", building=True):
     return Tile(name="Hell's Gate", epic=epic, influence=influence, contrib=contrib, row=row, column=column,
                 building=True)
 
+def stronghold(epic, influence, contrib, row="?", column="?", building=True):
+    return Tile(name="Stronghold", epic=epic, influence=influence, contrib=contrib, row=row, column=column,
+                building=True)
 
 def lighthouse(rare, influence, contrib, row="?", column="?", building=True):
     return Tile(name="Lighthouse", rare=rare, influence=influence, contrib=contrib, row=row, column=column,

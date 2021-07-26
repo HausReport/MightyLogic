@@ -19,6 +19,9 @@ class TileList:
             ret.append(self.amap.getTile(arg[0], arg[1]))
         return ret
 
+    #
+    # Informational output
+    #
     def getCoordsString(self):
         ret = ""
         tile: Tile
@@ -81,6 +84,9 @@ class TileList:
         ret += rewards.payouts()
         return ret
 
+    #
+    # for removing redundant combos with sets
+    #
     def __eq__(self, other):
         l1 = self.getShortNameList()
         l2 = other.getShortNameList()
