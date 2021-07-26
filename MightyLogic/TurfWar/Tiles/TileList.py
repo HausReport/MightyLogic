@@ -11,7 +11,7 @@ class TileList:
         self.amap = amap
         self.tiles = self.getTiles(coordList)
         self.value = self.getValue() # for sorting lists
-        print("In constructor")
+        #print("In constructor")
 
     def getTiles(self, args):
         ret = []
@@ -60,7 +60,7 @@ class TileList:
     def getRewards(self):
         rew = Reward(myName="Combo")
         for tile in self.tiles:
-            print(tile.reward)
+            #print(tile.reward)
             rew = rew.combine(tile.reward)
         return rew
 
