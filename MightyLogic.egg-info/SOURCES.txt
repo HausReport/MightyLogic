@@ -1,6 +1,7 @@
 README.md
 setup.py
 MightyLogic/Currency.py
+MightyLogic/HighGrowthRunner.py
 MightyLogic/Values.py
 MightyLogic/__init__.py
 MightyLogic.egg-info/PKG-INFO
@@ -23,10 +24,11 @@ MightyLogic/HighGrowth/Strategies/__init__.py
 MightyLogic/Rewards/Reward.py
 MightyLogic/Rewards/RewardFactory.py
 MightyLogic/Rewards/__init__.py
+MightyLogic/TurfWar/TestMaps.py
 MightyLogic/TurfWar/TurfWarMap.py
 MightyLogic/TurfWar/__init__.py
-MightyLogic/TurfWar/Tiles/Altar.py
 MightyLogic/TurfWar/Tiles/BuildingFactory.py
 MightyLogic/TurfWar/Tiles/Factory.py
 MightyLogic/TurfWar/Tiles/Tile.py
+MightyLogic/TurfWar/Tiles/TileList.py
 MightyLogic/TurfWar/Tiles/__init__.py

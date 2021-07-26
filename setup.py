@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='MightyLogic',
-    version='0.1',
+    version='0.2',
     packages=[
         'MightyLogic',
         'MightyLogic.Heroes',
@@ -11,7 +11,6 @@ setup(
         'MightyLogic.Rewards',
         'MightyLogic.TurfWar',
         'MightyLogic.TurfWar.Tiles',
-        'HighGrowth'
     ],
     url='https://github.com/HausReport/MightyLogic',
     license='',
