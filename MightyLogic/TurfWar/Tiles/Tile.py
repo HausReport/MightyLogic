@@ -43,6 +43,9 @@ class Tile:
     def getLocation(self):
         return str(self.row) + ":" + str(self.column)
 
+    def getMediumDescriptor(self):
+        return self.getName() + " at " + self.getLocation()
+
     def getName(self):
         return self.name
 

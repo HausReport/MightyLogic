@@ -93,7 +93,7 @@ class Reward:
         ret += "26-44               " + self.share(.01) + "\n"
         return ret
 
-    def share(self, percent):
+    def share(self, percent, include_inf=False):
         ret = ""
         ret = append_value(ret, self.COMMON_SOUL * percent, "common souls")
         ret = append_value(ret, self.RARE_SOUL * percent, "rare souls")
@@ -102,7 +102,14 @@ class Reward:
         ret = append_value(ret, self.GOLD * percent, "gold")
         ret = append_value(ret, self.LEGENDARY_SOUL * percent, "legendary souls")
         ret = append_value(ret, self.CONTRIBUTION * percent, "contribution")
-        # ret = self.append_value(ret,self.INFLUENCE * percent, "gold" )
+        if include_inf:
+            ret = append_value(ret,self.INFLUENCE * percent, "influence" )
         ret = append_value(ret, self.SPARK * percent, "sparks")
         ret = append_value(ret, self.GEM * percent, "gems")
         return ret
+
+    def __str__(self):
+        return self.share(1, True)
+
+    def __repr__(self):
+        return self.share(1, True)

@@ -2,6 +2,7 @@ from pprint import pprint
 
 from MightyLogic.Rewards.Reward import Reward
 from MightyLogic.TurfWar.Tiles.BuildingFactory import *
+from MightyLogic.TurfWar.Tiles.TileList import TileList
 from MightyLogic.TurfWar.TurfWarMap import TurfWarMap
 #
 # A Turf War Map
@@ -97,3 +98,15 @@ rew = rew.combine(rew3)
 print(rew.share(.07))
 print(rew)
 print("End")
+
+print("Here")
+ret =  [['A', 1], ['B', 1], ['C', 1]]
+tarr = map2.getTiles(ret)
+pprint(tarr)
+#tlist = TileList(map=map2,coords=tarr)
+tlist = TileList(map2,ret)
+print(type(tlist))
+print(tlist.getName())
+print(tlist.payouts()) #share(0.20))
+
+print("WTF")
