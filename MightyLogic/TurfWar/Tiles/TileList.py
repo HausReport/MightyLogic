@@ -53,6 +53,10 @@ class TileList:
             ret += tile.getValue()
         return ret
 
+    def share(self, percent):
+        rew = self.getRewards()
+        return rew.share(percent)
+
     def getRewards(self):
         rew = Reward(myName="Combo")
         for tile in self.tiles:
