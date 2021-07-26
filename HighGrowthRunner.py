@@ -3,9 +3,9 @@ import logging
 from pathlib import Path
 from typing import Any, Dict
 
-from HighGrowth import Discount
-from HighGrowth.Calculator import HighGrowthCalculation
-from HighGrowth.Strategies.MinimizeGold import MinimizeGold
+from HighGrowthCalculation import Discount
+from HighGrowthCalculation.Calculator import HighGrowthCalculation
+from HighGrowthCalculation.Strategies.MinimizeGold import MinimizeGold
 from Heroes.HeroDirectory import HeroDirectory
 from Heroes.OwnedHeroDirectory import OwnedHeroDirectory
 

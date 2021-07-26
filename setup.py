@@ -11,6 +11,7 @@ setup(
         'MightyLogic.Rewards',
         'MightyLogic.TurfWar',
         'MightyLogic.TurfWar.Tiles',
+        'HighGrowth'
     ],
     url='https://github.com/HausReport/MightyLogic',
     license='',
