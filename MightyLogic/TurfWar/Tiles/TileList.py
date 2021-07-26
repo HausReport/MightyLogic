@@ -19,6 +19,15 @@ class TileList:
             ret.append(self.amap.getTile(arg[0], arg[1]))
         return ret
 
+    def getCoordsString(self):
+        ret = ""
+        tile: Tile
+        for tile in self.tiles:
+            if ret != "":
+                ret = ret + ", "
+            ret = ret + tile.getLocation()
+        return ret
+
     def getShortNameList(self):
         ret = []
         tile: Tile
@@ -50,6 +59,14 @@ class TileList:
             print(tile.reward)
             rew = rew.combine(tile.reward)
         return rew
+
+    def getTileLine(self):
+        val = self.getValue()
+        rew = self.share(.07)
+        loc = self.getCoordsString()
+        #if self.name is None:
+        #    self.name = "Unknown"
+        return f"{loc}: {val:>8,.0f}  {rew:>35s}, {self.reward.INFLUENCE:>4d} influence."
 
     def payouts(self):
         ret = ""

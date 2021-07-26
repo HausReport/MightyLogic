@@ -55,6 +55,7 @@ class Tile:
             ret = "```"
         ret += "Payouts for " + self.getLocation() + " " + self.name + "\n"
         ret += self.reward.payouts()
+        ret += str(self.reward.INFLUENCE) + " guild influence"
         if ticks:
             ret += "```" + "\n"
         return ret
