@@ -8,6 +8,7 @@ class TileList:
     def __init__(self, amap, coordList):
         self.amap = amap
         self.tiles = self.getTiles(coordList)
+        self.value = self.getValue() # for sorting lists
         print("In constructor")
 
     def getTiles(self, args):
