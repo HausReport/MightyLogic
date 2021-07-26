@@ -8,7 +8,6 @@ def append_value(ret, value, label):
         ret = ret + f"{value:,.0f} {label}"
     return ret
 
-
 # FIXME: name conflicts with name in Tile
 
 class Reward:
@@ -81,6 +80,18 @@ class Reward:
         self.INFLUENCE = influence
         self.SPARK = spark
         self.GEM = gem
+
+    def payouts(self):
+        ret = ""
+        ret += "Place               Reward" + "\n"
+        ret += "First               " + self.reward.share(.07) + "\n"
+        ret += "2nd                 " + self.reward.share(.06) + "\n"
+        ret += "3rd                 " + self.reward.share(.05) + "\n"
+        ret += "4-6                 " + self.reward.share(.04) + "\n"
+        ret += "7-11                " + self.reward.share(.03) + "\n"
+        ret += "12-25               " + self.reward.share(.02) + "\n"
+        ret += "26-44               " + self.reward.share(.01) + "\n"
+        return ret
 
     def share(self, percent):
         ret = ""

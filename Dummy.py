@@ -1,5 +1,6 @@
 from pprint import pprint
 
+from MightyLogic.Rewards.Reward import Reward
 from MightyLogic.TurfWar.Tiles.BuildingFactory import *
 from MightyLogic.TurfWar.TurfWarMap import TurfWarMap
 #
@@ -86,3 +87,13 @@ print("combined")
 t4 = ts[0].combine(ts[1])
 print( t4 )
 print(t4.share(.07))
+
+print("New")
+
+rew = Reward(myName="Combo")
+rew = rew.combine(rew1)
+rew = rew.combine(rew2)
+rew = rew.combine(rew3)
+print(rew.share(.07))
+print(rew)
+print("End")

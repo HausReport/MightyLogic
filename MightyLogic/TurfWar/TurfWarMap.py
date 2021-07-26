@@ -115,6 +115,15 @@ class TurfWarMap():
         return ret
 
     #
+    # Multi-tile support
+    #
+    def getTiles(self, args):
+        ret = []
+        for arg in args:
+            ret.append(self.getTile(arg[0], arg[1]))
+        return ret
+
+    #
     # Neighboring tile functions
     #
     def upRow(self, row):

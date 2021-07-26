@@ -51,14 +51,7 @@ class Tile:
         if ticks:
             ret = "```"
         ret += "Payouts for " + self.getLocation() + " " + self.name + "\n"
-        ret += "Place               Reward" + "\n"
-        ret += "First               " + self.reward.share(.07) + "\n"
-        ret += "2nd                 " + self.reward.share(.06) + "\n"
-        ret += "3rd                 " + self.reward.share(.05) + "\n"
-        ret += "4-6                 " + self.reward.share(.04) + "\n"
-        ret += "7-11                " + self.reward.share(.03) + "\n"
-        ret += "12-25               " + self.reward.share(.02) + "\n"
-        ret += "26-44               " + self.reward.share(.01) + "\n"
+        ret += self.reward.payouts()
         if ticks:
             ret += "```" + "\n"
         return ret
