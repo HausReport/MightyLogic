@@ -66,11 +66,12 @@ class TileList:
 
     def getTileLine(self):
         val = self.getValue()
-        rew = self.share(.07)
+        share = self.share(.07)
         loc = self.getCoordsString()
+        rew = self.getRewards()
         #if self.name is None:
         #    self.name = "Unknown"
-        return f"{loc}: {val:>8,.0f}  {rew:>35s}, {rew.INFLUENCE:>4d} influence."
+        return f"{loc}: {val:>8,.0f}  {share:>35s}, {rew.INFLUENCE:>4d} influence."
 
     def payouts(self):
         ret = ""
