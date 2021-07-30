@@ -8,6 +8,7 @@ setup(
         'MightyLogic.Heroes',
         'MightyLogic.HighGrowth',
         'MightyLogic.HighGrowth.Strategies',
+        'MightyLogic.Player',
         'MightyLogic.Rewards',
         'MightyLogic.TurfWar',
         'MightyLogic.TurfWar.Tiles',
