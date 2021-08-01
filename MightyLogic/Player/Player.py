@@ -10,6 +10,9 @@ class Player():
     def setElixirBoost(self, boost):
         self.elixirBoost = boost
 
+    def setSpent(self, amt):
+        self.spent = amt
+
     def getOrder(self, amt):
         return self.getTroops() / 3
 

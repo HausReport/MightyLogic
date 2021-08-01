@@ -27,6 +27,18 @@ class PlayerGroup():
                 if self.strength()>= desiredStrength:
                     return
 
+    def getPlayer(self, name):
+        for player in self.players:
+            if player.name == name:
+                return player
+        return None
+
+    def setPlayerSpent(self, name, amt):
+        player = self.getPlayer(name)
+        if player is None:
+            return False
+        player.setSpent(amt)
+
     def sort(self):
         # keyfun= operator.attrgetter("getTroops") # use operator since it's faster than lambda
         self.players.sort(reverse=True)  # sort in-place

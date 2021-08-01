@@ -15,6 +15,16 @@ print(playerGroup.strength())
 playerGroup.elixirize(1200000)
 print(playerGroup.strength())
 
+playerGroup.setPlayerSpent("Panda", 55798)
+playerGroup.setPlayerSpent("Rags", 29942)
+playerGroup.setPlayerSpent("PiXeL1K", 28221)
+playerGroup.setPlayerSpent("Ender", 27789)
+playerGroup.setPlayerSpent("Wheeler", 9871)
+playerGroup.setPlayerSpent("Hung", 8350)
+playerGroup.setPlayerSpent("iahobo", 1450)
+playerGroup.setPlayerSpent("ThaBozz", 559)
+playerGroup.setPlayerSpent("Hung", 132)
+
 # print("Report Generated at " + datetime.utcnow().strftime("%H:%M GMT on %d %B %Y"))
 # four_groups= playerGroup.split(4)
 # i=0
@@ -23,14 +33,47 @@ print(playerGroup.strength())
 #   i +=1
 
 print("Report Generated at " + datetime.utcnow().strftime("%H:%M GMT on %d %B %Y"))
-four_groups= playerGroup.splitDesired([250000,250000,350000,125000])
+four_groups= playerGroup.splitDesired([335000,250000,250000,250000])
 i=0
 for group in four_groups:
   group.print(title="Team " + str(i), time=False)
   i +=1
 
-
-
+# Rags
+# BilBisqqit
+# Malbad
+# Hashem
+# Panda
+# chingcheng
+#
+# LordOtto
+# Flowbites
+# Erlaed
+# Sente
+#
+# negro
+# FriarKen
+# Stalguard
+#
+# OmniMan
+# ThaBozz
+# Wheeler
+# Vasilich
+#
+# Eragon
+# Litch
+# iahobo
+# RoMiC
+# Ender
+# PiXeL1K
+# Tech34
+# Hung
+# Iceman
+# Seph
+# Beeznutz
+# Ramzinator
+# Holymight
+# Nikki
 
 
 
