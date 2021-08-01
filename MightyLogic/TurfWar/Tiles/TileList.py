@@ -76,11 +76,17 @@ class TileList:
         #    self.name = "Unknown"
         return f"{loc}: {val:>8,.0f}  {share:>35s}, {rew.INFLUENCE:>4d} influence."
 
-    def payouts(self):
+    def payouts(self, double=False):
         ret = ""
-        ret += "Payouts for " + self.getName() + "\n"
+        ret += "Payouts for " + self.getName() + " "
+        if double:
+            ret += "(Sunday Double)"
+        ret += "\n"
         #ret += "Payouts for " + self.getLocation() + " " + self.name + "\n"
         rewards = self.getRewards()
+        if double:
+            rewards = rewards.double()
+
         ret += rewards.payouts()
         return ret
 

@@ -38,6 +38,9 @@ class Reward:
             "GEM"           : self.GEM
         }
 
+    def double(self):
+        return self.combine(self)
+
     def combine(self, o):
         common = self.COMMON_SOUL + o.COMMON_SOUL
         rare = self.RARE_SOUL + o.RARE_SOUL

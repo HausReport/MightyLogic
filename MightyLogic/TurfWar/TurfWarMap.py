@@ -341,7 +341,7 @@ class TurfWarMap():
         for nbr in nbrs:
             print(nbr.getTileLine())
 
-    def printBuildingList(self):
+    def printBuildingList(self, double):
         bl = self.buildingList()
         self.printTileListHeader()
         for build in bl:
