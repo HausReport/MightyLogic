@@ -45,7 +45,7 @@ class PlayerGroup():
 
     def print(self, title="", time=True):
         if time:
-            print("Report Generated at " + datetime.datetime.utcnow().strftime("%H:%M GMT on %d %B %Y"))
+            print("Report Generated at " + datetime.utcnow().strftime("%H:%M GMT on %d %B %Y"))
         self.sort()
         sum = 0
         if title != "":

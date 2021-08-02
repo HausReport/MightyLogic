@@ -19,6 +19,7 @@ def getNightTerrorPlayerGroup() -> PlayerGroup:
         players.append(Player("Iceman", 25681))
         players.append(Player("Jman", 57447))
 
+        players.append(Player("Karpet", 34719))
         players.append(Player("LordOtto", 46693))
         players.append(Player("Malbad", 58747))
         players.append(Player("negro", 33060))
