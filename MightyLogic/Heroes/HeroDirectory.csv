@@ -331,9 +331,9 @@ id,name,rarity,alignment,gender,shape
 331,"Dominus, the Swarm King",Legendary,Chaos,Male,Melee
 332,The Colonist Invader,Epic,Chaos,Male,Melee
 333,Visitor,Rare,Chaos,Male,Melee
-334,Jormun Grand,Legendary,Nature,Male,Melee
+334,Jörmun Grand,Legendary,Nature,Male,Melee
 335,Ice Big,Epic,Nature,Male,Melee
-336,Jotunn,Rare,Nature,Male,Melee
+336,Jötunn,Rare,Nature,Male,Melee
 337,"Amaterasu, Eternal Sun",Legendary,Order,Female,Melee
 338,Sayuki,Epic,Order,Female,Melee
 339,Fan Dancer,Rare,Order,Female,Melee
@@ -365,3 +365,6 @@ id,name,rarity,alignment,gender,shape
 365,Ruthless Executioner,Epic,Chaos,Male,Melee
 366,Splintered Soul,Rare,Chaos,Male,Melee
 367,Owl,Rare,Nature,Female,Ranged
+368,Grace of Rockfleet,Legendary,Order,Female,Ranged
+369,Red-haired Beast,Epic,Order,Female,Ranged
+370,Pirate,Rare,Order,Female,Ranged
