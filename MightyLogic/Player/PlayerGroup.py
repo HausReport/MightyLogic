@@ -36,6 +36,7 @@ class PlayerGroup():
     def setPlayerSpent(self, name, amt):
         player = self.getPlayer(name)
         if player is None:
+            print("No such player `"+name+"`")
             return False
         player.setSpent(amt)
 
