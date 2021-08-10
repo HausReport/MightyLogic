@@ -1,29 +1,37 @@
 from pprint import pprint
+import uuid
 
 import requests
-payload = {'profile_id': 'KMGKBP', 'content-type':'text/utf-8'}
+
+player_id = 'KMGKBP'
+payload = {'profile_id': player_id, 'content-type':'text/utf-8'}
 URL_BASE = "https://blitzmightyparty.ru/gs_api/"
+VERSION = "0.85"
+
 headers = {}
 headers['PNK-Retry'] ='1'
+headers['PNK-Login-ID'] = player_id
+headers['PNK-Player-ID'] = player_id
+headers['PNK-Platform'] = 'FB_GAMEROOM'
+headers['PNK-Env'] = 'WindowsPlayer'
+headers['PNK-Version'] = VERSION
+
+# correct format?
+guid = str(uuid.uuid4()) # like 'f50ec0b7-f960-400d-91f0-c42a6d44e3d0'
+headers['PNK-Request-Id'] = guid
+
+# message.Headers.Add("PNK-Retry", 1.ToString());
 
 ### HEADER STUFF
 # string secureString = SecureString(data, device_id, VERSION, ping.ToString());
 # string numberObscured = ObscureNumber(ping);
 # string start = DateTime.Now.ToString("O");
-#
-# message.Headers.Add("PNK-Retry", 1.ToString());
 # message.Headers.Add("PNK-Device-ID", device_id);
-# message.Headers.Add("PNK-Login-ID", player_id);
-# message.Headers.Add("PNK-Player-ID", player_id);
-# message.Headers.Add("PNK-Platform", "FB_GAMEROOM");
-# message.Headers.Add("PNK-Env", "WindowsPlayer");
-# message.Headers.Add("PNK-Version", VERSION);
 # message.Headers.Add("PNK-Secure-String", secureString);
 # message.Headers.Add("PNK-request-client-start-time", start);
 # message.Headers.Add("PNK-request-client-system-time", DateTime.Now.ToString("O"));
 # message.Headers.Add("PNK-request-client-system-time-utc", DateTime.UtcNow.ToString("O"));
 # message.Headers.Add("PNK-number", numberObscured);
-# message.Headers.Add("PNK-Request-Id", Guid.NewGuid().ToString());
 ### END HEADER STUFF
 
 
