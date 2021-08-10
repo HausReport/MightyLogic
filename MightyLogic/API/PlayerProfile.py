@@ -25,6 +25,11 @@ headers['PNK-Request-Id'] = guid
 ### HEADER STUFF
 # string secureString = SecureString(data, device_id, VERSION, ping.ToString());
 # string numberObscured = ObscureNumber(ping);
+
+#
+# The datetime formatter is O like Oscar, not 0 like zero
+# ex. 2008-10-31T17:04:32.0000000
+#
 # string start = DateTime.Now.ToString("O");
 # message.Headers.Add("PNK-Device-ID", device_id);
 # message.Headers.Add("PNK-Secure-String", secureString);
