@@ -1,3 +1,4 @@
+from datetime import datetime
 from pprint import pprint
 import uuid
 
@@ -22,20 +23,28 @@ headers['PNK-Request-Id'] = guid
 
 # message.Headers.Add("PNK-Retry", 1.ToString());
 
-### HEADER STUFF
-# string secureString = SecureString(data, device_id, VERSION, ping.ToString());
-# string numberObscured = ObscureNumber(ping);
 
 #
 # The datetime formatter is O like Oscar, not 0 like zero
+# think this is .isoformat() in python
 # ex. 2008-10-31T17:04:32.0000000
 #
-# string start = DateTime.Now.ToString("O");
+now = datetime.now() # current date and time
+start = now.isoformat()
+
+current_utc = datetime.datetime.utcnow()
+start_utc = current_utc.isoformat()
+
+headers['PNK-request-client-start-time'] = start
+headers['PNK-request-client-system-time'] = start
+headers['PNK-request-client-system-time-utc'] = start_utc
+
+### HEADER STUFF I HAVEN'T WORKED OUT YET
+# string secureString = SecureString(data, device_id, VERSION, ping.ToString());
+# string numberObscured = ObscureNumber(ping);
 # message.Headers.Add("PNK-Device-ID", device_id);
+
 # message.Headers.Add("PNK-Secure-String", secureString);
-# message.Headers.Add("PNK-request-client-start-time", start);
-# message.Headers.Add("PNK-request-client-system-time", DateTime.Now.ToString("O"));
-# message.Headers.Add("PNK-request-client-system-time-utc", DateTime.UtcNow.ToString("O"));
 # message.Headers.Add("PNK-number", numberObscured);
 ### END HEADER STUFF
 
