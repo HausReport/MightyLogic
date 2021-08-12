@@ -8,6 +8,17 @@ player_id = 'KMGKBP'
 payload = {'profile_id': player_id, 'content-type':'text/utf-8'}
 URL_BASE = "https://blitzmightyparty.ru/gs_api/"
 VERSION = "0.85"
+ping = 1
+#
+# ping starts off as 1, then is rec'd from server
+#
+# public async Task Ping()
+# {
+#     var pingInfo = await SendMessageAsync("profile/ping", "{}");
+#     var info = Deserialize < PingInfo > (pingInfo);
+#     ping = info.result.pingNumber;
+#     log.LogInformation($"Ping set to {ping}");
+# }
 
 headers = {}
 headers['PNK-Retry'] ='1'
@@ -32,7 +43,7 @@ headers['PNK-Request-Id'] = guid
 now = datetime.now() # current date and time
 start = now.isoformat()
 
-current_utc = datetime.datetime.utcnow()
+current_utc = datetime.utcnow()
 start_utc = current_utc.isoformat()
 
 headers['PNK-request-client-start-time'] = start
@@ -56,3 +67,42 @@ pprint(r.json())
 pprint(r.headers)
 #print(r.encoding)
 #print(r.json())
+
+
+# C# for obscurenumber
+# private static string ObscureNumber(int ping)
+# {
+# return new string(((long)ping ^ int.MaxValue).ToString().Reverse().ToArray());
+# }
+#
+# private static string
+# SecureString(string data, string deviceId, string version, string ping)
+# {
+# var b = new
+# StringBuilder();
+# b.Length = 0;
+# b.Append(GetMD5(data));
+# b.Append(deviceId);
+# b.Append(version);
+# b.Append(ping);
+# string mD = GetMD5(b.ToString());
+# b.Length = 0;
+# return mD;
+# }
+# private static string GetMD5(string data)
+# {
+# return GetMD5(new UTF8Encoding().GetBytes(data));
+# }
+# private static string GetMD5(byte[] bytes)
+# {
+# bytes = new
+# MD5CryptoServiceProvider().ComputeHash(bytes);
+# StringBuilder stringBuilder = new StringBuilder(32);
+# for (int i = 0; i < bytes.Length; i++)
+#     {
+#         stringBuilder.Append(Convert.ToString(bytes[i], 16).PadLeft(2, '0'));
+#     }
+# int count = 32 - stringBuilder.Length;
+# stringBuilder.Insert(0, "0", count);
+# return stringBuilder.ToString();
+# }
