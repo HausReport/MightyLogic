@@ -10,7 +10,7 @@ URL_BASE = "https://blitzmightyparty.ru/gs_api/"
 VERSION = "0.85"
 ping = 1
 #
-# ping starts off as 1, then is rec'd from server
+# ping starts off as 1, then is apparently rec'd from server
 #
 # public async Task Ping()
 # {
@@ -75,8 +75,7 @@ pprint(r.headers)
 # return new string(((long)ping ^ int.MaxValue).ToString().Reverse().ToArray());
 # }
 #
-# private static string
-# SecureString(string data, string deviceId, string version, string ping)
+# private static string SecureString(string data, string deviceId, string version, string ping)
 # {
 # var b = new
 # StringBuilder();
@@ -106,3 +105,9 @@ pprint(r.headers)
 # stringBuilder.Insert(0, "0", count);
 # return stringBuilder.ToString();
 # }
+
+# MD5 in Python3:
+# import hashlib
+# msg = "whatever your string is"
+# encoded = hashlib.md5(msg.encode('utf-8')).hexdigest()
+# print(encoded)
