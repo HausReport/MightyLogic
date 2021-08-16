@@ -3,40 +3,41 @@ from MightyLogic.Player.PlayerGroup import PlayerGroup
 
 def getNightTerrorPlayerGroup() -> PlayerGroup:
         players = PlayerGroup()
-        players.append(Player("Beeznutz", 19690))
-        players.append(Player("BilBisqqit", 60345))
-        players.append(Player("chingcheng", 51683))
-        players.append(Player("Ender", 26609))
+        players.append(Player("Beeznutz", 21396))         # x
+        players.append(Player("BilBisqqit", 63284))
+        players.append(Player("chingcheng", 53400))         # x
+        players.append(Player("Ender", 27555))         # x
         players.append(Player("Eragon", 32978))
-        players.append(Player("Erlaed", 41480))
-        players.append(Player("Flowbites", 42872))
-        players.append(Player("FriarKen", 32337))
+        players.append(Player("Erlaed", 45367))         # x
+        players.append(Player("Flowbites", 43983))         # x
+        players.append(Player("FriarKen", 33555))         # x
 
-        players.append(Player("Hashem", 57040))
-        players.append(Player("Holymight", 14587))
-        players.append(Player("Hung", 26101))
-        players.append(Player("iahobo", 29080))
-        players.append(Player("Iceman", 25681))
-        players.append(Player("Jman", 57447))
+        players.append(Player("Hashem", 57929))         # x
+        players.append(Player("HellSente", 39408))         # x
+        players.append(Player("Holymight", 15347))         # x
+        players.append(Player("Hung", 27313))         # x
+        players.append(Player("iahobo", 30964))         # x
+        players.append(Player("Iceman", 26949))         # x
+        players.append(Player("Jman", 62633))         # x
 
-        players.append(Player("karpet", 34719))
-        players.append(Player("LordOtto", 46693))
-        players.append(Player("Malbad", 58747))
-        players.append(Player("negro", 33060))
-        players.append(Player("Nikki", 12275))
-        players.append(Player("Omniman", 31453))
-        players.append(Player("Panda", 54463))
-        players.append(Player("PiXeL1K", 27047))
+        players.append(Player("karpet", 40715))         # x
+        players.append(Player("LiJhun", 41261))         # x
+        players.append(Player("LordOtto", 48441))         # x
+        players.append(Player("Malbad", 61138))         # x
+        #players.append(Player("negro", 33060))
+        players.append(Player("Nikki", 12770))         # x
+        players.append(Player("Omniman", 35875))         # x
+        players.append(Player("Panda", 57862))         # x
+        players.append(Player("PiXeL1K", 29476))         # x
 
-        players.append(Player("Rags", 66223))
-        players.append(Player("Ramzinator", 14642))
-        players.append(Player("RoMiC", 26869))
-        players.append(Player("Sente", 38869))
-        players.append(Player("Seph", 19765))
-        players.append(Player("Stalguard", 32983))
-        players.append(Player("Tech34", 26210))
-        players.append(Player("ThaBozz", 31410))
-        players.append(Player("Vasilich", 29960))
-        players.append(Player("Wheeler", 31438))
+        players.append(Player("Rags", 68377))         # x
+        players.append(Player("Ramzinator", 15463))         # x
+        players.append(Player("RoMiC", 27541))         # x
+        players.append(Player("Seph", 20872))         # x
+        players.append(Player("Stalguard", 34529))         # x
+        players.append(Player("Tech34", 27197))         # x
+        players.append(Player("ThaBozz", 32304))         # x
+        #players.append(Player("Vasilich", 29960))
+        players.append(Player("Wheeler", 34767))         # x
 
         return players
