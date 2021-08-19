@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import json
-from typing import Any, Dict
+from typing import Any, Dict, Tuple
 
 from Heroes import Rarity, Shape, Alignment, Gender, LevelingCost, Level, LevelingSteps
 
@@ -13,8 +13,10 @@ class Hero:
     shape: Shape
     alignment: Alignment
     gender: Gender
+    soulbind_nums: Tuple
 
-    def __init__(self, num: int, name: str, rarity: Rarity, shape: Shape, alignment: Alignment, gender: Gender):
+    def __init__(self, num: int, name: str, rarity: Rarity, shape: Shape, alignment: Alignment, gender: Gender,
+                 soulbind_nums: Tuple = ()):
         if shape is Shape.BUILDING and gender is not Gender.SEXLESS:
             raise RuntimeError(f"Buildings must be sexless (was: {num}. {name}: {shape}, {gender})")
 
@@ -24,6 +26,7 @@ class Hero:
         self.shape = shape
         self.alignment = alignment
         self.gender = gender
+        self.soulbind_nums = soulbind_nums
 
     def __eq__(self, other):
         return self.num == other.num
