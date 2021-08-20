@@ -39,6 +39,9 @@ class OwnedHero:
     def __hash__(self):
         return self.hero.num
 
+    def __repr__(self):
+        return self.__str__()
+
     def __str__(self):
         return f"{self.hero} - {self.level} - {self.souls} available souls"
 

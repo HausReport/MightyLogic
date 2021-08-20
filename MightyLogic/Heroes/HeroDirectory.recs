@@ -146,7 +146,7 @@
 {"rarity":"Legendary","name":"Iceberg","alignment":"Order","id":"147","shape":"Melee","gender":"Male"}
 {"rarity":"Epic","name":"Ice Clod","alignment":"Order","id":"148","shape":"Melee","gender":"Male"}
 {"rarity":"Rare","name":"Piece of Ice","alignment":"Order","id":"149","shape":"Melee","gender":"Male"}
-{"rarity":"Legendary","name":"Evil Santa","alignment":"Order","id":"150","shape":"Ranged","gender":"Male"}
+{"rarity":"Legendary","name":"Evil \"Santa\"","alignment":"Order","id":"150","shape":"Ranged","gender":"Male"}
 {"rarity":"Epic","name":"Evil's Helper","alignment":"Order","id":"151","shape":"Ranged","gender":"Male"}
 {"rarity":"Rare","name":"Ding Viesel","alignment":"Order","id":"152","shape":"Ranged","gender":"Male"}
 {"rarity":"Legendary","name":"Ghosta","alignment":"Order","id":"153","shape":"Ranged","gender":"Female"}
@@ -282,7 +282,7 @@
 {"rarity":"Rare","name":"Sage Disciple","alignment":"Nature","id":"284","shape":"Ranged","gender":"Male"}
 {"rarity":"Legendary","name":"All, Prince of Sands","alignment":"Order","id":"285","shape":"Melee","gender":"Male"}
 {"rarity":"Epic","name":"Free-folk Leader","alignment":"Order","id":"286","shape":"Melee","gender":"Male"}
-{"rarity":"Epic","name":"Winged Protector","alignment":"Order","id":"286","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Winged Protector","alignment":"Order","id":"268","shape":"Melee","gender":"Male"}
 {"rarity":"Rare","name":"Nomad","alignment":"Order","id":"287","shape":"Melee","gender":"Male"}
 {"rarity":"Legendary","name":"Kong, Monkey King","alignment":"Nature","id":"288","shape":"Melee","gender":"Male"}
 {"rarity":"Epic","name":"Ape Warlord","alignment":"Nature","id":"289","shape":"Melee","gender":"Male"}

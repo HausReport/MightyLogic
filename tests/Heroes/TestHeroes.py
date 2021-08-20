@@ -272,3 +272,97 @@ def test_owned_hero_from_squad_export():
     assert oh.hero == mother_owl
     assert oh.level == Level(14, 2)
     assert oh.souls == 24
+
+
+# ======================================================================================================================
+# HeroDirectory
+# ----------------------------------------------------------------------------------------------------------------------
+
+hero_dir = HeroDirectory.default()
+
+
+# find
+
+def test_find_by_num():
+    maybe_hero = hero_dir.find_by_num(90)
+    assert maybe_hero and maybe_hero.name == "Dark Mage"
+
+    maybe_hero = hero_dir.find_by_num(1)
+    assert not maybe_hero
+
+
+def test_find_by_name():
+    maybe_hero = hero_dir.find_by_name("Dark Mage")
+    assert maybe_hero and maybe_hero.num == 90
+
+    maybe_hero = hero_dir.find_by_name("")
+    assert not maybe_hero
+
+    maybe_hero = hero_dir.find_by_name("asdhadjad")
+    assert not maybe_hero
+
+
+def test_find():
+    # ID
+    maybe_hero = hero_dir.find(186)
+    assert maybe_hero and maybe_hero.name == "Tani Windrunner"
+
+    # str(ID)
+    maybe_hero = hero_dir.find("186")
+    assert maybe_hero and maybe_hero.name == "Tani Windrunner"
+
+    # Exact name
+    maybe_hero = hero_dir.find("Tani Windrunner")
+    assert maybe_hero and maybe_hero.num == 186
+
+    # Word
+    maybe_hero = hero_dir.find("tAnI")  # Ti[tani]a comes first when ordered by ID, hence biasing for word matches
+    assert maybe_hero and maybe_hero.num == 186
+
+    # Substring
+    maybe_hero = hero_dir.find("rOOm")  # Only match is Sh[room]kin
+    assert maybe_hero and maybe_hero.num == 162
+
+
+# evolving
+
+def test_evolutions_from():
+    singer = hero_dir.find_by_name("Singer")
+    minstrel = hero_dir.find_by_name("Minstrel")
+    bard = hero_dir.find_by_name("Bard")
+    apollo = hero_dir.find_by_name("Apollo")
+
+    # Hero w/ no evolutions (any legendary works)
+    assert not hero_dir.evolutions_from(apollo)
+
+    # Hero w/ exactly one evolution
+    assert hero_dir.evolutions_from(minstrel) == {bard}
+    assert hero_dir.evolutions_from(bard) == {apollo}
+
+    # Hero w/ many evolutions
+    assert hero_dir.evolutions_from(singer) == {
+        minstrel,
+        hero_dir.find_by_name("Voltage Tower"),
+        hero_dir.find_by_name("Squire")
+    }
+
+
+def test_evolutions_to():
+    singer = hero_dir.find_by_name("Singer")
+    minstrel = hero_dir.find_by_name("Minstrel")
+    bard = hero_dir.find_by_name("Bard")
+    apollo = hero_dir.find_by_name("Apollo")
+
+    # Hero w/ no evolutions to (any common works)
+    assert not hero_dir.evolutions_to(singer)
+
+    # Hero w/ exactly one evolution to
+    assert hero_dir.evolutions_to(bard) == {minstrel}
+    assert hero_dir.evolutions_to(apollo) == {bard}
+
+    # Hero w/ multiple evolutions to
+    assert hero_dir.evolutions_to(minstrel) == {
+        singer,
+        hero_dir.find_by_name("Gnome"),
+        hero_dir.find_by_name("Archer")
+    }
