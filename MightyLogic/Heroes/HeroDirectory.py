@@ -4,8 +4,9 @@ import csv
 import importlib.resources
 import json
 import re
+from collections import defaultdict
 from pathlib import Path
-from typing import Dict, Set, FrozenSet, Optional, Any
+from typing import Dict, Set, FrozenSet, Optional, Any, List
 
 import Heroes
 from Heroes import create_secondary_indices, deserialize_lines
@@ -23,12 +24,6 @@ class HeroDirectory:
             lambda hero: hero.num,
             lambda hero: hero.name
         ])
-
-    def evolutions_from(self, from_hero: Hero) -> Set[Hero]:
-        return set(self.find_by_num(num) for num in from_hero.evolves_to_nums)
-
-    def evolutions_to(self, to_hero: Hero) -> Set[Hero]:
-        return set(from_hero for from_hero in self.heroes if to_hero.num in from_hero.evolves_to_nums)
 
     def find(self, identifier: Any) -> Optional[Hero]:
         # We only know how to work with ints and strs
@@ -92,9 +87,29 @@ class HeroDirectory:
 
     @staticmethod
     def from_csv_file(path_to_csv_file: Path) -> HeroDirectory:
+        def find_all_by_num(nums: Set[int]) -> FrozenSet[Hero]:
+            return frozenset(hero_dir.find_by_num(num) for num in nums if num)
+
         with path_to_csv_file.open(newline='') as csv_file:
             reader = csv.DictReader(csv_file)
-            return HeroDirectory(set(Hero.from_csv(row) for row in reader))
+
+            heroes: Set[Hero] = set()
+            evolves_to_by_num: Dict[int, Set[int]] = dict()
+            evolves_from_by_num: Dict[int, Set[int]] = defaultdict(set)
+            for row in reader:
+                hero = Hero.from_csv(row)
+                heroes.add(hero)
+
+                evolves_to = json.loads(row["evolves_to"])
+                evolves_to_by_num[hero.num] = evolves_to
+                for to_num in evolves_to:
+                    evolves_from_by_num[to_num].add(hero.num)
+
+            hero_dir = HeroDirectory(heroes)
+            for hero in hero_dir.values():
+                hero.evolves_to = find_all_by_num(evolves_to_by_num[hero.num])
+                hero.evolves_from = find_all_by_num(evolves_from_by_num[hero.num])
+            return hero_dir
 
     @staticmethod
     def from_recs_file(path_to_recs_file: Path) -> HeroDirectory:

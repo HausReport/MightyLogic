@@ -1,7 +1,6 @@
 from __future__ import annotations
 
-from collections import defaultdict
-from typing import Dict, Optional
+from typing import Dict, Optional, FrozenSet
 
 from Heroes.Hero import LevelingSteps, Hero
 from Heroes.OwnedHero import OwnedHero
@@ -9,6 +8,7 @@ from HighGrowth.Strategies import HighGrowthStrategy
 
 
 class HighGrowthCalculation:
+    strategy: HighGrowthStrategy
     gold_remaining: Optional[int]
     gold_discount: int
     gold_required: int = 0
@@ -17,15 +17,17 @@ class HighGrowthCalculation:
     level_ups_remaining: int = 0  # TODO
     steps_by_hero: Dict[Hero, LevelingSteps] = dict()
 
-    def __init__(self, gold_cap: Optional[int], gold_discount: int):
+    def __init__(self, strategy: HighGrowthStrategy, gold_cap: Optional[int]):
+        self.strategy = strategy
         self.gold_remaining = gold_cap
-        self.gold_discount = gold_discount
+        self.gold_discount = strategy.gold_discount
 
     def __str__(self):
         s = f"Gold: required={self.gold_required}, remaining={self.gold_remaining}, discount="
         s += "NONE" if self.gold_discount is None else f"{self.gold_discount}%"
         s += f"\nLevel ups: completed={self.level_ups_completed}, remaining={self.level_ups_remaining}," \
              f" tier={self.completion_tier}\n"
+        s += f"Strategy: {self.strategy}\n"
         s += "End state for each hero:\n"
         for i, (hero, steps) in enumerate(self.steps_by_hero.items()):
             s += f"{i + 1}. Take hero: {hero}\n    all the way to: {steps.final_level()}\n" \
@@ -51,9 +53,9 @@ class HighGrowthCalculation:
         self.level_ups_completed += level_ups
 
     @staticmethod
-    def from_strategy(high_growth_strategy: HighGrowthStrategy, gold_cap: Optional[int]) -> HighGrowthCalculation:
-        calc = HighGrowthCalculation(gold_cap, high_growth_strategy.gold_discount)
-        while high_growth_strategy.has_next(calc.gold_remaining):
-            hero, steps = high_growth_strategy.process_next(calc.gold_remaining)
+    def from_strategy(strategy: HighGrowthStrategy, gold_cap: Optional[int]) -> HighGrowthCalculation:
+        calc = HighGrowthCalculation(strategy, gold_cap)
+        while strategy.has_next(calc.gold_remaining):
+            hero, steps = strategy.process_next(calc.gold_remaining)
             calc.add_steps(hero, steps)
         return calc

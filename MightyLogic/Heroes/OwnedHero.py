@@ -2,10 +2,11 @@ from __future__ import annotations
 
 import json
 import re
-from typing import Optional, Dict, Any, Tuple
+from typing import Dict, Any
+from typing import Tuple, Optional
 
 from Heroes import Hero
-from Heroes.Hero import Level, LevelingCost, LevelingSteps
+from Heroes.Hero import LevelingCost, Level, LevelingSteps
 from Heroes.HeroDirectory import HeroDirectory
 
 

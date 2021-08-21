@@ -1,10 +1,10 @@
 from dataclasses import dataclass, field
-from typing import Any, Optional
+from typing import Any, Optional, FrozenSet
 from typing import Tuple
 
-from Heroes.Hero import LevelingSteps
+from Heroes.Collection import Collection, HeroSelector
+from Heroes.Hero import LevelingSteps, Hero
 from Heroes.OwnedHero import OwnedHero
-from Heroes.OwnedHeroDirectory import OwnedHeroDirectory
 
 
 @dataclass(order=True)
@@ -14,11 +14,13 @@ class PrioritizedItem:
 
 
 class HighGrowthStrategy:
-    oh_dir: OwnedHeroDirectory
+    collection: Collection
+    exclusions: FrozenSet[Hero]
     gold_discount: Optional[int]
 
-    def __init__(self, oh_dir: OwnedHeroDirectory, gold_discount: Optional[int]):
-        self.oh_dir = oh_dir
+    def __init__(self, collection: Collection, excluding: HeroSelector, gold_discount: Optional[int]):
+        self.collection = collection
+        self.exclusions = frozenset(collection.resolve(excluding))
         self.gold_discount = gold_discount
 
     def has_next(self, gold_remaining: Optional[int]) -> bool:
