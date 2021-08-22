@@ -21,7 +21,7 @@ class LevelingCost:
             raise RuntimeError(f"Gold must be greater than or equal to {min_cost} (was: {self.gold})")
 
     def __str__(self):
-        return f"{self.souls} souls + {self.gold} gold"
+        return f"{self.souls:,} souls + {self.gold:,} gold"
 
     def with_discount(self, gold_discount: Optional[int] = None) -> LevelingCost:
         if gold_discount is None:

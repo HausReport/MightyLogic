@@ -38,7 +38,7 @@ def deserialize_lines(path_to_file: Path, deserializer: Callable[[str], Any]) ->
     return _list
 
 
-def group_by(values: Set[Any], grouper: Callable[[Any], Any], include_all: bool) -> Dict[Any, Set[Any]]:
+def group_by(values: Iterable[Any], grouper: Callable[[Any], Any], include_all: bool) -> Dict[Any, Set[Any]]:
     grouped = defaultdict(set)
     for value in values:
         if include_all:

@@ -1,9 +1,9 @@
 from __future__ import annotations
 
 import json
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Dict, Set, FrozenSet, Any, Callable, List
+from typing import Dict, Set, FrozenSet, Any, Callable, List, Iterable, Optional
 
 from Heroes import create_secondary_index, per_group, group_by, stats_for, deserialize_lines
 from Heroes.Hero import Rarity, Hero
@@ -11,21 +11,36 @@ from Heroes.HeroDirectory import HeroDirectory
 from Heroes.OwnedHero import OwnedHero
 
 
+def stringify_heroes(heroes: Iterable[Hero]) -> str:
+    return "[" + ", ".join(f"\"{hero.name}\"" for hero in heroes) + "]"
+
+
 class HeroSelector:
 
     def __add__(self, other: HeroSelector) -> HeroSelector:
-        return self.all_of([self, other])
+        # Optimize by flattening multiple union selectors
+        self_selectors = self.of_selectors if isinstance(self, UnionSelector) else [self]
+        other_selectors = other.of_selectors if isinstance(other, UnionSelector) else [other]
+        return self.union_of(self_selectors + other_selectors)
 
-    def select(self, collection: Collection) -> Set[Hero]:
+    def complement(self) -> HeroSelector:
+        # If we're already a complement, optimize by returning the underlying selector instead
+        # (complement(complement(x)) == x)
+        return self.of_selector if isinstance(self, ComplementSelector) else HeroSelector.complement_of(self)
+
+    def describe(self, collection: Collection) -> str:
+        raise NotImplementedError("Method needs to be implemented by subclasses")
+
+    def select(self, collection: Collection) -> FrozenSet[Hero]:
         raise NotImplementedError("Method needs to be implemented by subclasses")
 
     @staticmethod
-    def all_evolutions_to(hero_identifiers: Set[Any], including: bool = False) -> HeroSelector:
-        return EvolutionsSelector(frozenset(hero_identifiers), including=including)
+    def all_evolutions_to(hero_identifiers: Set[Any], inclusive: bool = False) -> HeroSelector:
+        return EvolutionsSelector(frozenset(hero_identifiers), inclusive=inclusive)
 
     @staticmethod
-    def all_of(selectors: List[HeroSelector]) -> HeroSelector:
-        return UnionSelector(selectors)
+    def complement_of(selector: HeroSelector) -> HeroSelector:
+        return ComplementSelector(selector)
 
     @staticmethod
     def exactly(hero_identifiers: Set[Any]) -> HeroSelector:
@@ -39,70 +54,119 @@ class HeroSelector:
     def none() -> HeroSelector:
         return NoneSelector()
 
+    @staticmethod
+    def union_of(selectors: List[HeroSelector]) -> HeroSelector:
+        return UnionSelector(selectors)
+
 
 class NoneSelector(HeroSelector):
 
-    def select(self, collection: Collection) -> Set[Hero]:
-        return set()
+    def describe(self, collection: Collection) -> str:
+        return "none"
+
+    def select(self, collection: Collection) -> FrozenSet[Hero]:
+        return frozenset()
 
 
-@dataclass()
-class UnionSelector(HeroSelector):
-    selectors: List[HeroSelector]
+@dataclass
+class ComplementSelector(HeroSelector):
+    of_selector: HeroSelector
 
-    def select(self, collection: Collection) -> Set[Hero]:
-        return set(
+    def describe(self, collection: Collection) -> str:
+        return f"complement of <{self.of_selector.describe(collection)}>"
+
+    def select(self, collection: Collection) -> FrozenSet[Hero]:
+        return frozenset(
             hero
-            for selector in self.selectors
-            for hero in selector.select(collection)
+            for hero in collection.all_heroes()
+            if hero not in self.of_selector.select(collection)
         )
+
+
+@dataclass
+class UnionSelector(HeroSelector):
+    of_selectors: List[HeroSelector]
+
+    def describe(self, collection: Collection) -> str:
+        prefix = "\n   - "
+        nested_descriptions = prefix.join(f"{selector.describe(collection)}" for selector in self.of_selectors)
+        return f"union of:{prefix}{nested_descriptions}"
+
+    def select(self, collection: Collection) -> FrozenSet[Hero]:
+        heroes = set()
+        for selector in self.of_selectors:
+            ir = selector.select(collection)
+            heroes = heroes.union(ir)
+        return frozenset(heroes)
 
 
 @dataclass
 class ExactlySelector(HeroSelector):
     hero_identifiers: FrozenSet[Any]
+    __heroes: FrozenSet[Hero] = field(default=None)
 
-    def select(self, collection: Collection) -> Set[Hero]:
-        return set(
-            collection.hero_dir.find(identifier)
-            for identifier in self.hero_identifiers
-        )
+    def describe(self, collection: Collection) -> str:
+        return f"exactly {stringify_heroes(self.select(collection))}"
+
+    def select(self, collection: Collection) -> FrozenSet[Hero]:
+        if not self.__heroes:
+            self.__heroes = frozenset(
+                collection.hero_dir.find(identifier)
+                for identifier in self.hero_identifiers
+            )
+        return self.__heroes
 
 
 @dataclass
 class EvolutionsSelector(HeroSelector):
     hero_identifiers: FrozenSet[Any]
-    including: bool
+    inclusive: bool
+    __target_heroes: FrozenSet = field(default=None)
+    __heroes: FrozenSet[Hero] = field(default=None)
 
-    def select(self, collection: Collection) -> Set[Hero]:
-        return set(
-            from_hero
-            for to_hero in ExactlySelector(self.hero_identifiers).select(collection)
-            for from_hero in to_hero.all_evolutions_to(include_self=self.including)
-        )
+    def describe(self, collection: Collection) -> str:
+        heroes = self.select(collection)
+        return f"evolutions to {stringify_heroes(self.__target_heroes)} " \
+               f"({'inclusive' if self.inclusive else 'exclusive'}), i.e. {stringify_heroes(heroes)}"
+
+    def select(self, collection: Collection) -> FrozenSet[Hero]:
+        if not self.__heroes:
+            self.__target_heroes = ExactlySelector(self.hero_identifiers).select(collection)
+            self.__heroes = frozenset(
+                from_hero
+                for to_hero in self.__target_heroes
+                for from_hero in to_hero.all_evolutions_to(include_self=self.inclusive)
+            )
+        return self.__heroes
 
 
 @dataclass
 class RaritySelector(HeroSelector):
     rarity: Rarity
+    __heroes: FrozenSet[Hero] = field(default=None)
 
-    def select(self, collection: Collection) -> Set[Hero]:
-        return set(
-            hero
-            for hero in collection.all_heroes()
-            if hero.rarity == self.rarity
-        )
+    def describe(self, collection: Collection) -> str:
+        return f"all {self.rarity} heroes, i.e. {stringify_heroes(self.select(collection))}"
+
+    def select(self, collection: Collection) -> FrozenSet[Hero]:
+        if not self.__heroes:
+            self.__heroes = frozenset(
+                hero
+                for hero in collection.all_heroes()
+                if hero.rarity == self.rarity
+            )
+        return self.__heroes
 
 
 class Collection:
     hero_dir: HeroDirectory
     owned_heroes = FrozenSet[OwnedHero]
-    by_num: Dict[int, OwnedHero]
+    by_hero: Dict[Hero, OwnedHero]
 
     def __init__(self, hero_dir: HeroDirectory, owned_heroes: Set[OwnedHero]):
         self.hero_dir = hero_dir
         self.owned_heroes = frozenset(owned_heroes)
-        self.by_num = create_secondary_index(owned_heroes, lambda oh: oh.hero.num)
+        self.by_hero = create_secondary_index(owned_heroes, lambda oh: oh.hero)
 
     def all_heroes(self) -> FrozenSet[Hero]:
         return self.hero_dir.values()
@@ -110,22 +174,38 @@ class Collection:
     def all_owned_heroes(self) -> FrozenSet[OwnedHero]:
         return self.owned_heroes
 
-    def find(self, identifier: Any) -> OwnedHero:
-        hero = self.hero_dir.find(identifier)
-        return self.by_num[hero.num]
+    def __by_hero(self, maybe_hero: Optional[Hero]) -> Optional[OwnedHero]:
+        return self.by_hero[maybe_hero] if maybe_hero else None
+
+    def find(self, identifier: Any) -> Optional[OwnedHero]:
+        maybe_hero: Optional[Hero] = None
+
+        # 1: if we're given an owned hero, just fetch the hero
+        if isinstance(identifier, OwnedHero):
+            maybe_hero = identifier.hero
+
+        # 2: if we're given a hero, just use that
+        if not maybe_hero and isinstance(identifier, Hero):
+            maybe_hero = identifier
+
+        # 3: otherwise, try find the hero in the hero directory
+        if not maybe_hero:
+            maybe_hero = self.hero_dir.find(identifier)
+
+        return self.__by_hero(maybe_hero)
 
     def find_by_name(self, name: str) -> OwnedHero:
-        hero = self.hero_dir.find_by_name(name)
-        return self.by_num[hero.num]
+        return self.__by_hero(self.hero_dir.find_by_name(name))
 
     def find_by_num(self, num: int) -> OwnedHero:
-        return self.by_num[num]
+        return self.__by_hero(self.hero_dir.find_by_num(num))
 
     def resolve(self, selector: HeroSelector) -> Set[Hero]:
         return selector.select(self)
 
     def summarize(self) -> Dict[str, Any]:
-        by_rarity: Dict[Rarity, Set[OwnedHero]] = group_by(self.all_owned_heroes(), lambda oh: oh.hero.rarity, include_all=True)
+        by_rarity: Dict[Rarity, Set[OwnedHero]] = group_by(self.all_owned_heroes(), lambda oh: oh.hero.rarity,
+                                                           include_all=True)
         return {
             "count_by_rarity": per_group(by_rarity, lambda heroes: len(heroes)),
             "level_by_rarity": per_group(by_rarity, lambda heroes: stats_for(list(oh.level for oh in heroes))),

@@ -13,15 +13,11 @@ class PrioritizedItem:
     item: Any = field(compare=False)
 
 
+@dataclass
 class HighGrowthStrategy:
     collection: Collection
-    exclusions: FrozenSet[Hero]
+    excluding: HeroSelector
     gold_discount: Optional[int]
-
-    def __init__(self, collection: Collection, excluding: HeroSelector, gold_discount: Optional[int]):
-        self.collection = collection
-        self.exclusions = frozenset(collection.resolve(excluding))
-        self.gold_discount = gold_discount
 
     def has_next(self, gold_remaining: Optional[int]) -> bool:
         raise NotImplementedError("Method needs to be implemented by subclasses")

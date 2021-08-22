@@ -6,7 +6,7 @@ import json
 import re
 from collections import defaultdict
 from pathlib import Path
-from typing import Dict, Set, FrozenSet, Optional, Any, List
+from typing import Dict, Set, FrozenSet, Optional, Any
 
 import Heroes
 from Heroes import create_secondary_indices, deserialize_lines

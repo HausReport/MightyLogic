@@ -1,9 +1,9 @@
 import pytest
 
-from MightyLogic.Heroes.Collection import Collection
+from MightyLogic.Heroes.Collection import Collection, HeroSelector
+from MightyLogic.Heroes.Hero import Hero, Rarity, Shape, Alignment, Gender, Level, LevelingCost, LevelingSteps
 from MightyLogic.Heroes.HeroDirectory import HeroDirectory
-from MightyLogic.Heroes.OwnedHero import *
-from MightyLogic.Heroes.Hero import *
+from MightyLogic.Heroes.OwnedHero import OwnedHero
 
 # ======================================================================================================================
 # LevelOwnedHero
@@ -111,10 +111,10 @@ def test_leveling_cost_free():
 # ----------------------------------------------------------------------------------------------------------------------
 
 test_steps = LevelingSteps([
-        (l_2_rb_0, s_1_g_10),
-        (l_1_rb_1, LevelingCost.free()),
-        (l_2_rb_1, s_3_g_30)
-    ])
+    (l_2_rb_0, s_1_g_10),
+    (l_1_rb_1, LevelingCost.free()),
+    (l_2_rb_1, s_3_g_30)
+])
 
 
 # aggregate cost
@@ -379,6 +379,64 @@ def test_all_evolutions_to():
 # Collection
 # ----------------------------------------------------------------------------------------------------------------------
 
-#collection = Collection()
+collection = Collection(hero_dir, set())  # FIXME: provide non-empty set of owned heroes
 
+
+# ======================================================================================================================
+# HeroSelector
+# ----------------------------------------------------------------------------------------------------------------------
+
+common_selector = HeroSelector.has_rarity(Rarity.COMMON)
+rare_selector = HeroSelector.has_rarity(Rarity.RARE)
+epic_selector = HeroSelector.has_rarity(Rarity.EPIC)
+leg_selector = HeroSelector.has_rarity(Rarity.LEGENDARY)
+
+
+def test_evolutions_to():
+    assert HeroSelector.all_evolutions_to({"apollo"}).select(collection) == apollo.all_evolutions_to()
+    assert HeroSelector.all_evolutions_to({"minstrel"}, inclusive=True).select(collection)\
+           == minstrel.all_evolutions_to(include_self=True)
+
+
+def test_exactly():
+    assert HeroSelector.exactly(["grace", "eostre"]).select(collection) == {
+        hero_dir.find("grace"),
+        hero_dir.find("eostre")
+    }
+
+
+def test_has_rarity():
+    assert common_selector.select(collection) == set(
+        hero
+        for hero in hero_dir.values()
+        if hero.rarity == Rarity.COMMON
+    )
+
+
+def test_and():
+    two = common_selector + leg_selector
+    assert two.of_selectors == [common_selector, leg_selector]
+    assert two.select(collection) == set(
+        hero
+        for hero in hero_dir.values()
+        if hero.rarity in {Rarity.COMMON, Rarity.LEGENDARY}
+    )
+
+    three = common_selector + rare_selector + epic_selector
+    assert three.of_selectors == [common_selector, rare_selector, epic_selector]
+    assert three.select(collection) == set(
+        hero
+        for hero in hero_dir.values()
+        if hero.rarity in {Rarity.COMMON, Rarity.LEGENDARY, Rarity.EPIC}
+    )
+
+
+def test_complement():
+    assert leg_selector.complement().select(collection) == set(
+        hero
+        for hero in hero_dir.values()
+        if hero.rarity != Rarity.LEGENDARY
+    )
+
+    assert rare_selector.complement().complement() == rare_selector
 
