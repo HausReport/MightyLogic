@@ -26,9 +26,12 @@ class HeroDirectory:
         ])
 
     def find(self, identifier: Any) -> Optional[Hero]:
+        if isinstance(identifier, Hero):
+            return identifier
+
         # We only know how to work with ints and strs
         if not (isinstance(identifier, str) or isinstance(identifier, int)):
-            raise f"Not sure how to find hero given identifier {identifier}"
+            raise RuntimeError(f"Not sure how to find hero given identifier {identifier}")
 
         maybe_hero: Optional[Hero] = None
         identifier_s = str(identifier)

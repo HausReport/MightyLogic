@@ -44,7 +44,7 @@ class OwnedHero:
         return self.__str__()
 
     def __str__(self):
-        return f"{self.hero} - {self.level} - {self.souls} available souls"
+        return f"{self.hero} - {self.level} - {self.souls:,} available souls"
 
     def __precompute_leveling_info(self):
         self.__next_level = self.level.level_up()

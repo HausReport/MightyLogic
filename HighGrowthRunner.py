@@ -40,7 +40,7 @@ def pretty_format(thing: Any, indent: int = 0):
 
 
 collection = Collection.from_squad_export_file(
-    Path("tests/HighGrowth/2021-08-21_1431_Seph_squad_export.txt"),
+    Path("tests/HighGrowth/2021-08-20-1626_SirBrychee_squad_export.txt"),
     HeroDirectory.default()
 )
 
@@ -98,12 +98,12 @@ calc = HighGrowthCalculation.from_strategy(
         #excluding=none(),
         #never_reborn=none(),
         # SirBrychee
-        #excluding=exactly({"grace"}),
-        #never_reborn=has_rarity(Rarity.LEGENDARY) + has_rarity(Rarity.EPIC),
+        excluding=exactly({"grace"}),
+        never_reborn=has_rarity(Rarity.LEGENDARY),  # + has_rarity(Rarity.EPIC),
         # Seph:
-        excluding=all_evolutions_to(seph_farming, inclusive=True),
-        never_reborn=none(),
-        gold_discount=Discount.GUILD_5.value,
+        #excluding=all_evolutions_to(seph_farming, inclusive=True),
+        #never_reborn=none(),
+        gold_discount=Discount.NIGHTMARE,
     ),
     gold_cap=2_000_000
 )

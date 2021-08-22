@@ -3,6 +3,7 @@ from __future__ import annotations
 from copy import deepcopy
 from dataclasses import dataclass, field, InitVar
 from enum import Enum, auto, unique
+from functools import total_ordering
 from typing import Any, Dict, List, Set, Tuple, Optional
 
 
@@ -114,6 +115,7 @@ class LevelingSteps:
 
 
 @unique
+@total_ordering
 class Rarity(Enum):
     leveling_costs: Tuple
     reborn_milestones: Tuple
@@ -239,7 +241,16 @@ class Rarity(Enum):
         self.reborn_milestones = reborn_milestones
         self.soulbind_reqs = soulbind_reqs
 
-    def __str__(self):
+    def __eq__(self, other: Rarity) -> bool:
+        return self.name == other.name
+
+    def __hash__(self) -> int:
+        return self.leveling_costs[0].gold
+
+    def __lt__(self, other: Rarity) -> bool:
+        return self.leveling_costs[0].gold < other.leveling_costs[0].gold
+
+    def __str__(self) -> str:
         return self.name.capitalize()
 
     @staticmethod
@@ -351,16 +362,19 @@ class Hero:
         if self.shape is Shape.BUILDING and self.gender is not Gender.SEXLESS:
             raise RuntimeError(f"Buildings must be sexless (was: {self})")
 
-    def __eq__(self, other):
+    def __eq__(self, other: Hero) -> bool:
         return self.num == other.num
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         return self.num
 
-    def __repr__(self):
+    def __lt__(self, other: Hero) -> bool:
+        return self.num < other.num
+
+    def __repr__(self) -> str:
         return self.__str__()
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.num}: {self.name} ({self.rarity} / {self.shape} / {self.alignment} / {self.gender})"
 
     def all_evolutions_to(self, include_self: bool = False) -> Set[Hero]:
