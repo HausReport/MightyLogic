@@ -4,7 +4,6 @@ from pathlib import Path
 from typing import Any
 
 from MightyLogic.Heroes.Collection import Collection, HeroSelector
-from MightyLogic.Heroes.Hero import Rarity
 from MightyLogic.Heroes.HeroDirectory import HeroDirectory
 from MightyLogic.HighGrowth import Discount
 from MightyLogic.HighGrowth.Calculator import HighGrowthCalculation
@@ -40,7 +39,7 @@ def pretty_format(thing: Any, indent: int = 0):
 
 
 collection = Collection.from_squad_export_file(
-    Path("tests/HighGrowth/2021-08-20-1626_SirBrychee_squad_export.txt"),
+    Path("tests/HighGrowth/2021-08-20-2210_Bobo_squad_export.txt"),
     HeroDirectory.default()
 )
 
@@ -92,20 +91,20 @@ calc = HighGrowthCalculation.from_strategy(
     strategy=MinimizeGold(
         collection=collection,
         # Bobo:
-        #excluding=all_evolutions_to(bobo_squad, inclusive=False) + all_evolutions_to(bobo_farming, inclusive=True),
-        #never_reborn=none(),
+        excluding=all_evolutions_to(bobo_squad, inclusive=False) + all_evolutions_to(bobo_farming, inclusive=True),
+        never_reborn=none(),
         # Gravy:
         #excluding=none(),
         #never_reborn=none(),
         # SirBrychee
-        excluding=exactly({"grace"}),
-        never_reborn=has_rarity(Rarity.LEGENDARY),  # + has_rarity(Rarity.EPIC),
+        #excluding=exactly({"grace"}),
+        #never_reborn=has_rarity(Rarity.LEGENDARY),  # + has_rarity(Rarity.EPIC),
         # Seph:
         #excluding=all_evolutions_to(seph_farming, inclusive=True),
         #never_reborn=none(),
         gold_discount=Discount.NIGHTMARE,
     ),
-    gold_cap=2_000_000
+    gold_cap=3_000_000
 )
 
 logger.info(calc)

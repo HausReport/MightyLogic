@@ -6,7 +6,7 @@ from MightyLogic.Heroes.HeroDirectory import HeroDirectory
 from MightyLogic.Heroes.OwnedHero import OwnedHero
 
 # ======================================================================================================================
-# LevelOwnedHero
+# Level
 # ----------------------------------------------------------------------------------------------------------------------
 
 l_1_rb_0 = Level(1, 0)
@@ -134,6 +134,17 @@ def test_leveling_steps_final_level():
 
 def test_leveling_steps_level_up_count():
     assert test_steps.level_up_count() == 2  # reborn step doesn't count
+
+
+# ======================================================================================================================
+# Rarity
+# ----------------------------------------------------------------------------------------------------------------------
+
+def test_optimal_soulbind_level():
+    assert Rarity.optimal_soulbind_level(Rarity.COMMON) == 16
+    assert Rarity.optimal_soulbind_level(Rarity.RARE) == 13
+    assert Rarity.optimal_soulbind_level(Rarity.EPIC) == 8
+    assert Rarity.optimal_soulbind_level(Rarity.LEGENDARY) == 6
 
 
 # ======================================================================================================================
