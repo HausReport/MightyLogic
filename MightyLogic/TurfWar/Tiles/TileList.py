@@ -64,7 +64,7 @@ class TileList:
         rew = Reward(myName="Combo")
         for tile in self.tiles:
             #print(tile.reward)
-            rew = rew.combine(tile.reward)
+            rew = rew.combine(tile.gems)
         return rew
 
     def getTileLine(self):

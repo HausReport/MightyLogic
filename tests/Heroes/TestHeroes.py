@@ -1,8 +1,9 @@
 import pytest
 
-from Heroes.HeroDirectory import HeroDirectory
-from Heroes.OwnedHero import OwnedHero
-from MightyLogic.Heroes.Hero import *
+from MightyLogic.Heroes.Collection import Collection, HeroSelector
+from MightyLogic.Heroes.Hero import Hero, Rarity, Shape, Alignment, Gender, Level, LevelingCost, LevelingSteps
+from MightyLogic.Heroes.HeroDirectory import HeroDirectory
+from MightyLogic.Heroes.OwnedHero import OwnedHero
 
 # ======================================================================================================================
 # Level
@@ -110,10 +111,10 @@ def test_leveling_cost_free():
 # ----------------------------------------------------------------------------------------------------------------------
 
 test_steps = LevelingSteps([
-        (l_2_rb_0, s_1_g_10),
-        (l_1_rb_1, LevelingCost.free()),
-        (l_2_rb_1, s_3_g_30)
-    ])
+    (l_2_rb_0, s_1_g_10),
+    (l_1_rb_1, LevelingCost.free()),
+    (l_2_rb_1, s_3_g_30)
+])
 
 
 # aggregate cost
@@ -133,6 +134,17 @@ def test_leveling_steps_final_level():
 
 def test_leveling_steps_level_up_count():
     assert test_steps.level_up_count() == 2  # reborn step doesn't count
+
+
+# ======================================================================================================================
+# Rarity
+# ----------------------------------------------------------------------------------------------------------------------
+
+def test_optimal_soulbind_level():
+    assert Rarity.optimal_soulbind_level(Rarity.COMMON) == 16
+    assert Rarity.optimal_soulbind_level(Rarity.RARE) == 13
+    assert Rarity.optimal_soulbind_level(Rarity.EPIC) == 8
+    assert Rarity.optimal_soulbind_level(Rarity.LEGENDARY) == 6
 
 
 # ======================================================================================================================
@@ -272,3 +284,180 @@ def test_owned_hero_from_squad_export():
     assert oh.hero == mother_owl
     assert oh.level == Level(14, 2)
     assert oh.souls == 24
+
+
+# ======================================================================================================================
+# HeroDirectory
+# ----------------------------------------------------------------------------------------------------------------------
+
+hero_dir = HeroDirectory.default()
+
+singer = hero_dir.find_by_name("Singer")
+minstrel = hero_dir.find_by_name("Minstrel")
+bard = hero_dir.find_by_name("Bard")
+apollo = hero_dir.find_by_name("Apollo")
+
+
+# find
+
+def test_find():
+    # ID
+    maybe_hero = hero_dir.find(186)
+    assert maybe_hero and maybe_hero.name == "Tani Windrunner"
+
+    # str(ID)
+    maybe_hero = hero_dir.find("186")
+    assert maybe_hero and maybe_hero.name == "Tani Windrunner"
+
+    # Exact name
+    maybe_hero = hero_dir.find("Tani Windrunner")
+    assert maybe_hero and maybe_hero.num == 186
+
+    # Word
+    maybe_hero = hero_dir.find("tAnI")  # Ti[tani]a comes first when ordered by ID, hence biasing for word matches
+    assert maybe_hero and maybe_hero.num == 186
+
+    # Substring
+    maybe_hero = hero_dir.find("rOOm")  # Only match is Sh[room]kin
+    assert maybe_hero and maybe_hero.num == 162
+
+
+def test_find_by_num():
+    maybe_hero = hero_dir.find_by_num(90)
+    assert maybe_hero and maybe_hero.name == "Dark Mage"
+
+    maybe_hero = hero_dir.find_by_num(1)
+    assert not maybe_hero
+
+
+def test_find_by_name():
+    maybe_hero = hero_dir.find_by_name("Dark Mage")
+    assert maybe_hero and maybe_hero.num == 90
+
+    maybe_hero = hero_dir.find_by_name("")
+    assert not maybe_hero
+
+    maybe_hero = hero_dir.find_by_name("asdhadjad")
+    assert not maybe_hero
+
+
+# evolving
+
+def test_evolves_to():
+    # Hero w/ no evolutions (any legendary works)
+    assert not apollo.evolves_to
+
+    # Hero w/ exactly one evolution
+    assert minstrel.evolves_to == {bard}
+    assert bard.evolves_to == {apollo}
+
+    # Hero w/ many evolutions
+    assert singer.evolves_to == {
+        minstrel,
+        hero_dir.find_by_name("Voltage Tower"),
+        hero_dir.find_by_name("Squire")
+    }
+
+
+def test_evolves_from():
+    # Hero w/ no evolutions to (any common works)
+    assert not singer.evolves_from
+
+    # Hero w/ exactly one evolution to
+    assert bard.evolves_from == {minstrel}
+    assert apollo.evolves_from == {bard}
+
+    # Hero w/ multiple evolutions to
+    assert minstrel.evolves_from == {
+        singer,
+        hero_dir.find_by_name("Gnome"),
+        hero_dir.find_by_name("Archer")
+    }
+
+
+def test_all_evolutions_to():
+    assert not singer.all_evolutions_to()
+    assert minstrel.all_evolutions_to() == {
+        singer,
+        hero_dir.find_by_name("Gnome"),
+        hero_dir.find_by_name("Archer")
+    }
+    assert bard.all_evolutions_to() == minstrel.all_evolutions_to(include_self=True)
+    assert apollo.all_evolutions_to() == bard.all_evolutions_to(include_self=True)
+
+
+# ======================================================================================================================
+# Collection
+# ----------------------------------------------------------------------------------------------------------------------
+
+collection = Collection(hero_dir, set())  # FIXME: provide non-empty set of owned heroes
+
+
+# ======================================================================================================================
+# HeroSelector
+# ----------------------------------------------------------------------------------------------------------------------
+
+common_selector = HeroSelector.has_rarity(Rarity.COMMON)
+rare_selector = HeroSelector.has_rarity(Rarity.RARE)
+epic_selector = HeroSelector.has_rarity(Rarity.EPIC)
+leg_selector = HeroSelector.has_rarity(Rarity.LEGENDARY)
+
+
+def test_evolutions_to():
+    assert HeroSelector.all_evolutions_to({"apollo"}).select(collection) == apollo.all_evolutions_to()
+    assert HeroSelector.all_evolutions_to({"minstrel"}, inclusive=True).select(collection)\
+           == minstrel.all_evolutions_to(include_self=True)
+
+
+def test_exactly():
+    assert HeroSelector.exactly(["grace", "eostre"]).select(collection) == {
+        hero_dir.find("grace"),
+        hero_dir.find("eostre")
+    }
+
+
+def test_has_rarity():
+    assert common_selector.select(collection) == set(
+        hero
+        for hero in hero_dir.values()
+        if hero.rarity == Rarity.COMMON
+    )
+
+
+def test_and():
+    two = common_selector + leg_selector
+    assert two.of_selectors == [common_selector, leg_selector]
+    assert sorted(two.select(collection)) == sorted(set(
+        hero
+        for hero in hero_dir.values()
+        if hero.rarity in {Rarity.COMMON, Rarity.LEGENDARY}
+    ))
+
+    three = common_selector + rare_selector + epic_selector
+    assert three.of_selectors == [common_selector, rare_selector, epic_selector]
+    assert sorted(three.select(collection)) == sorted(set(
+        hero
+        for hero in hero_dir.values()
+        if hero.rarity in {Rarity.COMMON, Rarity.RARE, Rarity.EPIC}
+    ))
+
+
+def test_complement():
+    assert leg_selector.complement().select(collection) == set(
+        hero
+        for hero in hero_dir.values()
+        if hero.rarity != Rarity.LEGENDARY
+    )
+
+    assert rare_selector.complement().complement() == rare_selector
+
+
+def test_intersection():
+    two = common_selector & HeroSelector.exactly({singer, minstrel, bard})
+    assert len(two.of_selectors) == 2
+    assert sorted(two.select(collection)) == [singer]
+
+    three = common_selector & HeroSelector.exactly({singer, minstrel, bard})\
+            & HeroSelector.all_evolutions_to({apollo}, inclusive=True)
+    assert len(three.of_selectors) == 3
+    assert sorted(three.select(collection)) == [singer]

@@ -1,367 +1,370 @@
-id,name,rarity,alignment,gender,shape
-2,Servant,Common,Order,Male,Melee
-3,Prophet,Rare,Order,Female,Melee
-4,Warrioress,Common,Order,Female,Melee
-5,Shinobi,Common,Order,Male,Melee
-6,Priestess,Rare,Order,Female,Ranged
-7,Archer,Common,Order,Female,Ranged
-8,Mr. Toad,Rare,Nature,Male,Melee
-9,Totem,Rare,Nature,Sexless,Building
-10,Cat Lady,Common,Nature,Female,Melee
-11,Viking,Rare,Nature,Male,Melee
-12,Wood Spirit,Rare,Nature,Female,Ranged
-13,Dryad,Common,Nature,Female,Ranged
-14,Gargoyle,Rare,Chaos,Male,Melee
-15,Chiropteran,Rare,Chaos,Male,Melee
-16,Red Orc,Common,Chaos,Male,Melee
-17,Undead,Rare,Chaos,Male,Melee
-18,Child of Chaos,Rare,Chaos,Male,Ranged
-19,Blood Cult Adept,Common,Chaos,Female,Ranged
-20,Mr. Devil,Legendary,Chaos,Male,Melee
-21,Prince,Legendary,Order,Male,Melee
-22,Mother Owl,Legendary,Nature,Female,Ranged
-23,Bard,Epic,Order,Female,Ranged
-24,Karas,Epic,Nature,Male,Ranged
-25,Void Juggler,Epic,Chaos,Female,Ranged
-26,Wild Tamer,Epic,Nature,Female,Ranged
-27,Tesla Tower,Epic,Order,Sexless,Building
-28,Soul Hunter,Epic,Chaos,Male,Melee
-29,Idol,Common,Order,Sexless,Building
-30,First Aid,Rare,Order,Sexless,Building
-31,Tree,Common,Chaos,Sexless,Building
-32,Dead Lord,Legendary,Chaos,Male,Melee
-33,Erik the Grey,Legendary,Nature,Male,Melee
-34,Sir Lancelot,Legendary,Order,Male,Melee
-35,Count Vlad,Legendary,Chaos,Male,Melee
-36,Bastet,Legendary,Nature,Female,Melee
-37,Athena,Legendary,Order,Female,Ranged
-38,Goliath,Legendary,Chaos,Male,Melee
-39,Prince Nod,Legendary,Nature,Male,Melee
-40,Life Palace,Legendary,Order,Sexless,Building
-41,Vanakauri,Legendary,Nature,Sexless,Building
-42,Axe,Legendary,Chaos,Male,Melee
-43,Lady Clair,Epic,Order,Female,Melee
-44,Caesar's Head,Epic,Order,Sexless,Building
-45,Blood Lord,Epic,Chaos,Male,Melee
-46,Lady Wild,Epic,Nature,Female,Ranged
-47,Cursed Oak,Epic,Chaos,Sexless,Building
-48,Soul Monger,Epic,Chaos,Male,Melee
-49,Swordmaster,Epic,Order,Male,Melee
-50,Archwitch,Epic,Chaos,Female,Ranged
-51,Luck Idol,Epic,Nature,Sexless,Building
-52,Lord Toad,Epic,Nature,Male,Melee
-53,Engineer,Epic,Order,Male,Melee
-54,Ronin,Epic,Order,Male,Melee
-55,Wise Owl,Epic,Nature,Female,Ranged
-56,Gargantos,Epic,Chaos,Male,Melee
-57,Olaf the Red,Epic,Nature,Male,Melee
-58,Scarlet Warrior,Epic,Order,Female,Melee
-59,Ayfe the Arrow,Epic,Order,Female,Ranged
-60,Tent of Life,Epic,Order,Sexless,Building
-61,Void Rock,Epic,Chaos,Sexless,Building
-62,Void Jewel,Legendary,Chaos,Sexless,Building
-63,Argios,Epic,Nature,Male,Melee
-64,Big Toad,Common,Nature,Male,Melee
-65,Gnome,Common,Order,Male,Melee
-66,Leaf Child,Rare,Nature,Female,Ranged
-67,Pharaon,Rare,Order,Sexless,Building
-68,Vampire,Common,Chaos,Male,Melee
-69,Void Stone,Rare,Chaos,Sexless,Building
-70,Satyr,Rare,Nature,Male,Melee
-71,Pilgrim,Common,Order,Female,Ranged
-72,Shaman,Common,Nature,Female,Ranged
-73,Dark Witch,Rare,Chaos,Female,Ranged
-74,Raven,Common,Nature,Male,Ranged
-75,Warrior,Common,Order,Male,Melee
-76,Forest Mage,Rare,Nature,Male,Ranged
-77,Dark Tree,Rare,Chaos,Sexless,Building
-78,Orc Master,Rare,Chaos,Male,Melee
-79,Soulblade,Rare,Order,Male,Melee
-80,Minstrel,Rare,Order,Female,Ranged
-81,Crafter,Rare,Order,Male,Melee
-82,Lumberjack,Common,Nature,Male,Melee
-83,Witch,Common,Chaos,Female,Ranged
-84,Bone Hunter,Rare,Chaos,Male,Melee
-85,Bowmaster,Rare,Order,Female,Ranged
-86,Aphrodite,Legendary,Order,Female,Ranged
-87,Love Goddess,Epic,Order,Female,Ranged
-88,Love Mage,Rare,Order,Female,Ranged
-89,Love Lady,Common,Order,Female,Ranged
-90,Dark Mage,Epic,Chaos,Male,Ranged
-91,Angry Imp,Rare,Chaos,Male,Melee
-92,Untouchable,Rare,Order,Male,Melee
-93,Apprentice,Common,Order,Female,Ranged
-94,Predator,Epic,Nature,Female,Melee
-95,Miss Lapin,Legendary,Order,Female,Ranged
-96,Lucky Rabbit,Epic,Order,Female,Ranged
-97,Bunny,Rare,Order,Female,Ranged
-98,Hell Gate,Epic,Chaos,Sexless,Building
-99,El Mariachi,Legendary,Nature,Male,Melee
-100,El Cactus,Epic,Nature,Male,Melee
-101,Cactusito,Rare,Nature,Male,Melee
-102,Marquis de Sat,Legendary,Nature,Male,Melee
-103,Maeve,Legendary,Nature,Female,Ranged
-104,Regardus Diplius,Legendary,Chaos,Male,Ranged
-105,King Taurus,Legendary,Nature,Male,Melee
-106,Minotaur,Epic,Nature,Male,Melee
-107,Bully,Rare,Nature,Male,Melee
-108,Queen Ananta,Legendary,Nature,Female,Melee
-109,High Naga,Epic,Nature,Female,Melee
-110,Naga,Rare,Nature,Female,Melee
-111,Squire,Rare,Order,Male,Melee
-112,Hanzo Sama,Legendary,Order,Male,Melee
-113,Alexandria,Legendary,Order,Female,Ranged
-114,Titania,Legendary,Order,Female,Melee
-115,Stormrage,Legendary,Chaos,Male,Melee
-116,Singer,Common,Order,Female,Ranged
-117,Voltage Tower,Rare,Order,Sexless,Building
-118,Tesla X,Legendary,Order,Sexless,Building
-119,Living Dead,Epic,Chaos,Male,Melee
-120,Red Woman,Legendary,Chaos,Female,Ranged
-121,Lady of the Warriors,Rare,Nature,Female,Ranged
-122,Draggara,Legendary,Nature,Female,Ranged
-123,Blair,Legendary,Order,Female,Ranged
-124,Adherent,Epic,Order,Female,Ranged
-125,Follower,Rare,Order,Female,Ranged
-126,"Fury, the Great Warrior",Legendary,Order,Male,Melee
-127,Cruel Gladiator,Epic,Order,Male,Melee
-128,Berserk,Rare,Order,Male,Melee
-129,Chernomor,Legendary,Chaos,Male,Melee
-130,Dark Knight,Epic,Chaos,Male,Melee
-131,Dark Warrior,Rare,Chaos,Male,Melee
-132,Leader Nilen,Legendary,Chaos,Male,Ranged
-133,Embalmed Priest,Epic,Chaos,Male,Ranged
-134,Mummy,Rare,Chaos,Male,Ranged
-135,Koschei the Immortal,Legendary,Chaos,Male,Melee
-136,Bone Warrior,Epic,Chaos,Male,Melee
-137,Skeleton,Rare,Chaos,Male,Melee
-138,"Anak, Princess Dragon",Legendary,Nature,Female,Ranged
-139,Wyvern,Epic,Nature,Female,Ranged
-140,Wind Snake,Rare,Nature,Female,Ranged
-141,Matriarch Eona,Legendary,Nature,Female,Melee
-142,Emerald Dragon,Epic,Nature,Female,Melee
-143,Dream Whelpling,Rare,Nature,Female,Melee
-144,"Enlil, Wind of Change",Legendary,Nature,Female,Melee
-145,Wind Warrior,Epic,Nature,Female,Melee
-146,Harpy,Rare,Nature,Female,Melee
-147,Iceberg,Legendary,Order,Male,Melee
-148,Ice Clod,Epic,Order,Male,Melee
-149,Piece of Ice,Rare,Order,Male,Melee
-150,Evil Santa,Legendary,Order,Male,Ranged
-151,Evil's Helper,Epic,Order,Male,Ranged
-152,Ding Viesel,Rare,Order,Male,Ranged
-153,Ghosta,Legendary,Order,Female,Ranged
-154,Dark Huntress,Epic,Order,Female,Ranged
-155,Drow,Rare,Order,Female,Ranged
-156,"Tengu, Ravencrest",Legendary,Nature,Male,Ranged
-157,"Groot, Silent Guardian",Legendary,Nature,Male,Melee
-158,Treebeard,Epic,Nature,Male,Melee
-159,Treant,Rare,Nature,Male,Melee
-160,"Loath, Spore Loser",Legendary,Nature,Male,Melee
-161,Sporelok,Epic,Nature,Male,Melee
-162,Shroomkin,Rare,Nature,Male,Melee
-163,Mi the Ten-Tailed Fox,Legendary,Nature,Female,Melee
-164,Lolli Pop,Epic,Nature,Female,Melee
-165,Baby Rattle,Rare,Nature,Female,Melee
-166,"Grand Ma, Reaper",Legendary,Chaos,Female,Ranged
-167,Harbinger of Death,Epic,Chaos,Female,Ranged
-168,Old Bones,Rare,Chaos,Female,Ranged
-169,Super Mary,Legendary,Order,Female,Melee
-170,Lady Curl,Epic,Order,Female,Melee
-171,Wonder Girl,Rare,Order,Female,Melee
-172,"Strik, the Fiery Heart",Legendary,Order,Male,Ranged
-173,Flame Juggler,Epic,Order,Male,Ranged
-174,Pyromancer,Rare,Order,Male,Ranged
-175,High Tinker Gear,Legendary,Order,Male,Melee
-176,"TNT, Crazy Demolitionist",Legendary,Chaos,Male,Ranged
-177,Mr. Boom,Epic,Chaos,Male,Ranged
-178,Fireworker,Rare,Chaos,Male,Ranged
-179,General Zor'Ma,Legendary,Chaos,Male,Melee
-180,Old God's Servant,Epic,Chaos,Male,Melee
-181,Faceless,Rare,Chaos,Male,Melee
-182,"Ysh'tmala, the Old God",Legendary,Chaos,Male,Melee
-183,Terror From Below,Epic,Chaos,Male,Melee
-184,Flesh Spawn,Rare,Chaos,Male,Melee
-185,Valkyrie,Rare,Order,Female,Melee
-186,Tani Windrunner,Legendary,Nature,Female,Ranged
-187,Windsong,Epic,Nature,Female,Ranged
-188,Wood Elf,Rare,Nature,Female,Ranged
-189,"Coba, Temple Keeper",Legendary,Nature,Male,Melee
-190,Stone Guardian,Epic,Nature,Male,Melee
-191,Rock,Rare,Nature,Male,Melee
-192,Hoodoo,Legendary,Nature,Male,Ranged
-193,Cursed Shaman,Epic,Nature,Male,Ranged
-194,Cultist,Rare,Nature,Male,Ranged
-195,Chieftain Orc,Epic,Chaos,Male,Melee
-196,"Bravi, Deadly Blade",Legendary,Order,Male,Melee
-197,Crazy Harlequin,Epic,Order,Male,Melee
-198,Jester-Killer,Rare,Order,Male,Melee
-199,"Mjolnir, Lightning God",Legendary,Order,Male,Ranged
-200,Keeper of Storm,Epic,Order,Male,Ranged
-201,Thunder,Rare,Order,Male,Ranged
-202,"Diana, Amazonian Queen",Legendary,Order,Female,Melee
-203,Defender of Tribe,Epic,Order,Female,Melee
-204,Wild Huntress,Rare,Order,Female,Melee
-205,"Apep, Aspect of Chaos",Legendary,Chaos,Male,Melee
-206,Bone Dragon,Epic,Chaos,Male,Melee
-207,Death Whelpling,Rare,Chaos,Male,Melee
-208,"Yorik, the Risen One",Legendary,Chaos,Male,Ranged
-209,Dead Bowman,Epic,Chaos,Male,Ranged
-210,Talking Skull,Rare,Chaos,Male,Ranged
-211,Hanako Lady Banshee,Legendary,Chaos,Female,Ranged
-212,Moody Ghost,Epic,Chaos,Female,Ranged
-213,Friendly Spirit,Rare,Chaos,Female,Ranged
-214,"D'Arc, Iron Maiden",Legendary,Order,Female,Melee
-215,Battle Angel,Epic,Order,Female,Ranged
-216,"Mizu, the Sea Foam",Legendary,Nature,Female,Ranged
-217,Lake Pixy,Epic,Nature,Female,Ranged
-218,The Aqua Spirit,Rare,Nature,Female,Ranged
-219,"Morgan, the Sea Tusk",Legendary,Nature,Male,Melee
-220,Sharp Fin,Epic,Nature,Male,Melee
-221,Shark,Rare,Nature,Male,Melee
-222,"Triton, the Bottom Herald",Legendary,Nature,Male,Melee
-223,Trident Master,Epic,Nature,Male,Melee
-224,Sea Guardian,Rare,Nature,Male,Melee
-225,Discordia,Legendary,Chaos,Female,Ranged
-226,Angelia the Lightbringer,Legendary,Order,Female,Melee
-227,Winged Knight,Epic,Order,Female,Melee
-228,Celestial Maiden,Rare,Order,Female,Melee
-229,Apollo,Legendary,Order,Male,Ranged
-230,"Melia, Forest's Daughter",Legendary,Nature,Female,Ranged
-231,"Cernun, Archdruid",Legendary,Nature,Male,Melee
-232,Keeper of the Grove,Epic,Nature,Male,Melee
-233,Druid,Rare,Nature,Male,Melee
-234,Lady Medusa,Legendary,Chaos,Female,Ranged
-235,Insidious Gorgon,Epic,Chaos,Female,Ranged
-236,Clever Viper,Rare,Chaos,Female,Ranged
-237,Knight,Epic,Order,Male,Melee
-238,Shao Lin,Legendary,Order,Male,Melee
-239,Drunk Master,Epic,Order,Male,Melee
-240,Monk,Rare,Order,Male,Melee
-241,Poison Flos,Legendary,Nature,Male,Ranged
-242,Ogre Plant,Epic,Nature,Male,Ranged
-243,Planty,Rare,Nature,Male,Ranged
-244,Scratchy,Rare,Nature,Female,Melee
-245,Song of Forest,Epic,Nature,Female,Ranged
-246,"Necro, Master Lich",Legendary,Chaos,Male,Ranged
-247,Lord of the Undead,Epic,Chaos,Male,Ranged
-248,Necromancer,Rare,Chaos,Male,Ranged
-249,"Jaxy, the Thunderfist",Legendary,Order,Female,Melee
-250,Champion of the Arena,Epic,Order,Female,Melee
-251,The Undisputed,Rare,Order,Female,Melee
-252,"Snake, the Lizard Prince",Legendary,Nature,Male,Melee
-253,The Killer Serpent,Epic,Nature,Male,Melee
-254,Lizardfolk,Rare,Nature,Male,Melee
-255,Mr. Flap,Legendary,Chaos,Male,Melee
-256,Demon the Ripper,Epic,Chaos,Male,Melee
-257,Butcher,Rare,Chaos,Male,Melee
-258,"Frost, the Snow Queen",Legendary,Order,Female,Ranged
-259,Lady Snow,Epic,Order,Female,Ranged
-260,Snow Maiden,Rare,Order,Female,Ranged
-261,Madam Agony,Legendary,Chaos,Female,Ranged
-262,Flamy Helly,Epic,Chaos,Female,Ranged
-263,Igneous Girl,Rare,Chaos,Female,Ranged
-264,Kung Fucius,Legendary,Nature,Male,Melee
-265,Bamboo Master,Epic,Nature,Male,Melee
-266,Panda Warrior,Rare,Nature,Male,Melee
-267,"Griffius, the Celestial",Legendary,Order,Male,Melee
-269,Young Griffin,Rare,Order,Male,Melee
-270,"Ogrok, the Leader",Legendary,Chaos,Male,Melee
-271,One-Eyed Ogre,Epic,Chaos,Male,Melee
-272,Cyclop,Rare,Chaos,Male,Melee
-273,Tsukumogami,Legendary,Nature,Male,Melee
-274,"Gnoll, the Blade Master",Epic,Nature,Male,Melee
-275,Samurai Dog,Rare,Nature,Male,Melee
-276,Mina Hellsing,Legendary,Order,Female,Ranged
-277,Evil Slayer,Epic,Order,Female,Ranged
-278,Demon Huntress,Rare,Order,Female,Ranged
-279,"Ball'zt, the Warden",Legendary,Chaos,Male,Melee
-280,Beholder,Epic,Chaos,Male,Melee
-281,Demon Orb,Rare,Chaos,Male,Melee
-282,"Tortulus, the Wise One",Legendary,Nature,Male,Ranged
-283,Turtle Teacher,Epic,Nature,Male,Ranged
-284,Sage Disciple,Rare,Nature,Male,Ranged
-285,"All, Prince of Sands",Legendary,Order,Male,Melee
-286,Free-folk Leader,Epic,Order,Male,Melee
-286,Winged Protector,Epic,Order,Male,Melee
-287,Nomad,Rare,Order,Male,Melee
-288,"Kong, Monkey King",Legendary,Nature,Male,Melee
-289,Ape Warlord,Epic,Nature,Male,Melee
-290,Young Primate,Rare,Nature,Male,Melee
-291,"Freddy, Lord of Terror",Legendary,Chaos,Male,Melee
-292,Doctor Fear,Epic,Chaos,Male,Melee
-293,Scarecrow,Rare,Chaos,Male,Melee
-294,"Scrap, the King of Garbage",Legendary,Nature,Male,Melee
-295,Angler Vole,Epic,Nature,Male,Melee
-296,Junk Rat,Rare,Nature,Male,Melee
-297,"Charon, Soul Catcher",Legendary,Order,Male,Melee
-298,Grim Warden,Epic,Order,Male,Melee
-299,Gravekeeper,Rare,Order,Male,Melee
-300,Shadow Shaa-Moona,Legendary,Chaos,Female,Melee
-301,Half Moon Priestess,Epic,Chaos,Female,Melee
-302,Moon Child,Rare,Chaos,Female,Melee
-303,Dandy Croc,Legendary,Nature,Male,Melee
-304,Thug Hunter,Epic,Nature,Male,Melee
-305,Toothy Thuggie,Rare,Nature,Male,Melee
-306,"Legion, God of War",Legendary,Order,Male,Melee
-307,Harbringer of War,Epic,Order,Male,Melee
-308,Immortal Warrior,Rare,Order,Male,Melee
-309,Serket Sen Scorp,Legendary,Nature,Female,Melee
-310,The Scorpion Queen,Epic,Nature,Female,Melee
-311,Ancient Scorpid,Rare,Nature,Female,Melee
-312,Dark Acolyte,Rare,Chaos,Female,Ranged
-313,Madam Lo'Trix,Legendary,Chaos,Female,Ranged
-314,Shadow Manipulator,Epic,Chaos,Female,Ranged
-315,Puppet Mistress,Rare,Chaos,Female,Ranged
-316,"Yuri, Shadow Dagger",Legendary,Order,Female,Ranged
-317,Kunai Master,Epic,Order,Female,Ranged
-318,Kunoichi,Rare,Order,Female,Ranged
-319,Sheer-Shah,Legendary,Nature,Male,Melee
-320,Fierce Rakshesh,epic,Nature,Male,Melee
-321,Furious Sabertooth,Rare,Nature,Male,Melee
-322,Chuba Cabras,Legendary,Chaos,Male,Melee
-323,Flesh Eater,Epic,Chaos,Male,Melee
-324,Insatiable Beast,Rare,Chaos,Male,Melee
-325,"Justia, Law Goddess",Legendary,Order,Female,Ranged
-326,Justice Inquisitor,Epic,Order,Female,Ranged
-327,Priestess of Equilibrium,Rare,Order,Female,Ranged
-328,"Cabas, Wasteland Lord",Legendary,Nature,Male,Melee
-329,Desert Sentry,Epic,Nature,Male,Melee
-330,Wild Stalker,Rare,Nature,Male,Melee
-331,"Dominus, the Swarm King",Legendary,Chaos,Male,Melee
-332,The Colonist Invader,Epic,Chaos,Male,Melee
-333,Visitor,Rare,Chaos,Male,Melee
-334,Jormun Grand,Legendary,Nature,Male,Melee
-335,Ice Big,Epic,Nature,Male,Melee
-336,Jotunn,Rare,Nature,Male,Melee
-337,"Amaterasu, Eternal Sun",Legendary,Order,Female,Melee
-338,Sayuki,Epic,Order,Female,Melee
-339,Fan Dancer,Rare,Order,Female,Melee
-340,Taeral Kelhorn,Legendary,Chaos,Male,Melee
-341,Elwin Fierce,Epic,Chaos,Male,Melee
-342,Elf Slayer,Rare,Chaos,Male,Melee
-343,Toxic Mantas,Legendary,Nature,Male,Melee
-344,Kamacuras,Epic,Nature,Male,Melee
-345,Mantis,Rare,Nature,Male,Melee
-346,Morgen Von Stern,Legendary,Order,Male,Melee
-347,Lord Punisher,Epic,Order,Male,Melee
-348,Crusader,Rare,Order,Male,Melee
-349,Deep Maw,Legendary,Chaos,Male,Melee
-350,Muddy Trog,Epic,Chaos,Male,Melee
-351,Mor Lock,Rare,Chaos,Male,Melee
-352,Myrddin Caer,Legendary,Nature,Male,Ranged
-353,Lord of the Forest,Epic,Nature,Male,Ranged
-354,Woodland Hermit,Rare,Nature,Male,Ranged
-355,Onmoraki,Legendary,Chaos,Male,Ranged
-356,Demonic Shadow,Epic,Chaos,Male,Ranged
-357,Grim Harvester,Rare,Chaos,Male,Ranged
-358,"Vixen, the Storm Lord",Legendary,Nature,Male,Ranged
-359,Warden of the North,Epic,Nature,Male,Ranged
-360,Frozen Moor Guard,Rare,Nature,Male,Ranged
-361,"Eostre, the Dawn Glow",Legendary,Order,Female,Ranged
-362,Sunrise Maiden,Epic,Order,Female,Ranged
-363,Herald of Spring,Rare,Order,Female,Ranged
-364,"Arioch, Nemesis Weapon",Legendary,Chaos,Male,Melee
-365,Ruthless Executioner,Epic,Chaos,Male,Melee
-366,Splintered Soul,Rare,Chaos,Male,Melee
-367,Owl,Rare,Nature,Female,Ranged
+id,name,rarity,alignment,gender,shape,evolves_to
+2,Servant,Common,Order,Male,Melee,"[111, 3, 30]"
+3,Prophet,Rare,Order,Female,Melee,[43]
+4,Warrioress,Common,Order,Female,Melee,"[185, 6, 67]"
+5,Shinobi,Common,Order,Male,Melee,"[92, 67, 79]"
+6,Priestess,Rare,Order,Female,Ranged,"[215, 58]"
+7,Archer,Common,Order,Female,Ranged,"[85, 30, 80]"
+8,Mr. Toad,Rare,Nature,Male,Melee,[52]
+9,Totem,Rare,Nature,Sexless,Building,[51]
+10,Cat Lady,Common,Nature,Female,Melee,"[244, 9, 8]"
+11,Viking,Rare,Nature,Male,Melee,[57]
+12,Wood Spirit,Rare,Nature,Female,Ranged,[245]
+13,Dryad,Common,Nature,Female,Ranged,"[66, 107, 9]"
+14,Gargoyle,Rare,Chaos,Male,Melee,[56]
+15,Chiropteran,Rare,Chaos,Male,Melee,[45]
+16,Red Orc,Common,Chaos,Male,Melee,"[78, 84, 14]"
+17,Undead,Rare,Chaos,Male,Melee,"[119, 98]"
+18,Child of Chaos,Rare,Chaos,Male,Ranged,[90]
+19,Blood Cult Adept,Common,Chaos,Female,Ranged,"[312, 14, 15]"
+20,Mr. Devil,Legendary,Chaos,Male,Melee,[]
+21,Prince,Legendary,Order,Male,Melee,[]
+22,Mother Owl,Legendary,Nature,Female,Ranged,[]
+23,Bard,Epic,Order,Female,Ranged,[229]
+24,Karas,Epic,Nature,Male,Ranged,[156]
+25,Void Juggler,Epic,Chaos,Female,Ranged,[225]
+26,Wild Tamer,Epic,Nature,Female,Ranged,[122]
+27,Tesla Tower,Epic,Order,Sexless,Building,[118]
+28,Soul Hunter,Epic,Chaos,Male,Melee,[115]
+29,Idol,Common,Order,Sexless,Building,"[67, 79, 81]"
+30,First Aid,Rare,Order,Sexless,Building,[60]
+31,Tree,Common,Chaos,Sexless,Building,"[77, 17, 18]"
+32,Dead Lord,Legendary,Chaos,Male,Melee,[]
+33,Erik the Grey,Legendary,Nature,Male,Melee,[]
+34,Sir Lancelot,Legendary,Order,Male,Melee,[]
+35,Count Vlad,Legendary,Chaos,Male,Melee,[]
+36,Bastet,Legendary,Nature,Female,Melee,[]
+37,Athena,Legendary,Order,Female,Ranged,[]
+38,Goliath,Legendary,Chaos,Male,Melee,[]
+39,Prince Nod,Legendary,Nature,Male,Melee,[]
+40,Life Palace,Legendary,Order,Sexless,Building,[]
+41,Vanakauri,Legendary,Nature,Sexless,Building,[]
+42,Axe,Legendary,Chaos,Male,Melee,[]
+43,Lady Clair,Epic,Order,Female,Melee,[214]
+44,Caesar's Head,Epic,Order,Sexless,Building,[]
+45,Blood Lord,Epic,Chaos,Male,Melee,[35]
+46,Lady Wild,Epic,Nature,Female,Ranged,[230]
+47,Cursed Oak,Epic,Chaos,Sexless,Building,[]
+48,Soul Monger,Epic,Chaos,Male,Melee,[20]
+49,Swordmaster,Epic,Order,Male,Melee,[21]
+50,Archwitch,Epic,Chaos,Female,Ranged,[120]
+51,Luck Idol,Epic,Nature,Sexless,Building,[41]
+52,Lord Toad,Epic,Nature,Male,Melee,[39]
+53,Engineer,Epic,Order,Male,Melee,[175]
+54,Ronin,Epic,Order,Male,Melee,[112]
+55,Wise Owl,Epic,Nature,Female,Ranged,[22]
+56,Gargantos,Epic,Chaos,Male,Melee,[38]
+57,Olaf the Red,Epic,Nature,Male,Melee,[33]
+58,Scarlet Warrior,Epic,Order,Female,Melee,[114]
+59,Ayfe the Arrow,Epic,Order,Female,Ranged,[37]
+60,Tent of Life,Epic,Order,Sexless,Building,[40]
+61,Void Rock,Epic,Chaos,Sexless,Building,[62]
+62,Void Jewel,Legendary,Chaos,Sexless,Building,[]
+63,Argios,Epic,Nature,Male,Melee,[102]
+64,Big Toad,Common,Nature,Male,Melee,"[8, 11, 66]"
+65,Gnome,Common,Order,Male,Melee,"[81, 80, 85]"
+66,Leaf Child,Rare,Nature,Female,Ranged,[46]
+67,Pharaon,Rare,Order,Sexless,Building,[44]
+68,Vampire,Common,Chaos,Male,Melee,"[15, 18, 17]"
+69,Void Stone,Rare,Chaos,Sexless,Building,[61]
+70,Satyr,Rare,Nature,Male,Melee,[63]
+71,Pilgrim,Common,Order,Female,Ranged,"[3, 92, 88]"
+72,Shaman,Common,Nature,Female,Ranged,"[12, 76, 8]"
+73,Dark Witch,Rare,Chaos,Female,Ranged,[25]
+74,Raven,Common,Nature,Male,Ranged,"[76, 66, 9]"
+75,Warrior,Common,Order,Male,Melee,"[79, 97, 92]"
+76,Forest Mage,Rare,Nature,Male,Ranged,[24]
+77,Dark Tree,Rare,Chaos,Sexless,Building,[47]
+78,Orc Master,Rare,Chaos,Male,Melee,[195]
+79,Soulblade,Rare,Order,Male,Melee,[49]
+80,Minstrel,Rare,Order,Female,Ranged,[23]
+81,Crafter,Rare,Order,Male,Melee,[53]
+82,Lumberjack,Common,Nature,Male,Melee,"[11, 66, 76]"
+83,Witch,Common,Chaos,Female,Ranged,"[73, 69, 78]"
+84,Bone Hunter,Rare,Chaos,Male,Melee,[28]
+85,Bowmaster,Rare,Order,Female,Ranged,[59]
+86,Aphrodite,Legendary,Order,Female,Ranged,[]
+87,Love Goddess,Epic,Order,Female,Ranged,[86]
+88,Love Mage,Rare,Order,Female,Ranged,[87]
+89,Love Lady,Common,Order,Female,Ranged,"[88, 85, 97]"
+90,Dark Mage,Epic,Chaos,Male,Ranged,[104]
+91,Angry Imp,Rare,Chaos,Male,Melee,[48]
+92,Untouchable,Rare,Order,Male,Melee,[54]
+93,Apprentice,Common,Order,Female,Ranged,"[6, 97, 88]"
+94,Predator,Epic,Nature,Female,Melee,[36]
+95,Miss Lapin,Legendary,Order,Female,Ranged,[]
+96,Lucky Rabbit,Epic,Order,Female,Ranged,[95]
+97,Bunny,Rare,Order,Female,Ranged,[96]
+98,Hell Gate,Epic,Chaos,Sexless,Building,[]
+99,El Mariachi,Legendary,Nature,Male,Melee,[]
+100,El Cactus,Epic,Nature,Male,Melee,[99]
+101,Cactusito,Rare,Nature,Male,Melee,[100]
+102,Marquis de Sat,Legendary,Nature,Male,Melee,[]
+103,Maeve,Legendary,Nature,Female,Ranged,[]
+104,Regardus Diplius,Legendary,Chaos,Male,Ranged,[]
+105,King Taurus,Legendary,Nature,Male,Melee,[]
+106,Minotaur,Epic,Nature,Male,Melee,[105]
+107,Bully,Rare,Nature,Male,Melee,[106]
+108,Queen Ananta,Legendary,Nature,Female,Melee,[]
+109,High Naga,Epic,Nature,Female,Melee,[108]
+110,Naga,Rare,Nature,Female,Melee,[109]
+111,Squire,Rare,Order,Male,Melee,[237]
+112,Hanzo Sama,Legendary,Order,Male,Melee,[]
+113,Alexandria,Legendary,Order,Female,Ranged,[]
+114,Titania,Legendary,Order,Female,Melee,[]
+115,Stormrage,Legendary,Chaos,Male,Melee,[]
+116,Singer,Common,Order,Female,Ranged,"[80, 117, 111]"
+117,Voltage Tower,Rare,Order,Sexless,Building,[27]
+118,Tesla X,Legendary,Order,Sexless,Building,[]
+119,Living Dead,Epic,Chaos,Male,Melee,[32]
+120,Red Woman,Legendary,Chaos,Female,Ranged,[]
+121,Lady of the Warriors,Rare,Nature,Female,Ranged,[26]
+122,Draggara,Legendary,Nature,Female,Ranged,[]
+123,Blair,Legendary,Order,Female,Ranged,[]
+124,Adherent,Epic,Order,Female,Ranged,[123]
+125,Follower,Rare,Order,Female,Ranged,[124]
+126,"Fury, the Great Warrior",Legendary,Order,Male,Melee,[]
+127,Cruel Gladiator,Epic,Order,Male,Melee,[126]
+128,Berserk,Rare,Order,Male,Melee,[127]
+129,Chernomor,Legendary,Chaos,Male,Melee,[]
+130,Dark Knight,Epic,Chaos,Male,Melee,[129]
+131,Dark Warrior,Rare,Chaos,Male,Melee,[130]
+132,Leader Nilen,Legendary,Chaos,Male,Ranged,[]
+133,Embalmed Priest,Epic,Chaos,Male,Ranged,[132]
+134,Mummy,Rare,Chaos,Male,Ranged,[133]
+135,Koschei the Immortal,Legendary,Chaos,Male,Melee,[]
+136,Bone Warrior,Epic,Chaos,Male,Melee,[135]
+137,Skeleton,Rare,Chaos,Male,Melee,[136]
+138,"Anak, Princess Dragon",Legendary,Nature,Female,Ranged,[]
+139,Wyvern,Epic,Nature,Female,Ranged,[138]
+140,Wind Snake,Rare,Nature,Female,Ranged,[139]
+141,Matriarch Eona,Legendary,Nature,Female,Melee,[]
+142,Emerald Dragon,Epic,Nature,Female,Melee,[141]
+143,Dream Whelpling,Rare,Nature,Female,Melee,[142]
+144,"Enlil, Wind of Change",Legendary,Nature,Female,Melee,[]
+145,Wind Warrior,Epic,Nature,Female,Melee,[144]
+146,Harpy,Rare,Nature,Female,Melee,[145]
+147,Iceberg,Legendary,Order,Male,Melee,[]
+148,Ice Clod,Epic,Order,Male,Melee,[147]
+149,Piece of Ice,Rare,Order,Male,Melee,[148]
+150,"Evil ""Santa""",Legendary,Order,Male,Ranged,[]
+151,Evil's Helper,Epic,Order,Male,Ranged,[150]
+152,Ding Viesel,Rare,Order,Male,Ranged,[151]
+153,Ghosta,Legendary,Order,Female,Ranged,[]
+154,Dark Huntress,Epic,Order,Female,Ranged,[153]
+155,Drow,Rare,Order,Female,Ranged,[154]
+156,"Tengu, Ravencrest",Legendary,Nature,Male,Ranged,[]
+157,"Groot, Silent Guardian",Legendary,Nature,Male,Melee,[]
+158,Treebeard,Epic,Nature,Male,Melee,[157]
+159,Treant,Rare,Nature,Male,Melee,[158]
+160,"Loath, Spore Loser",Legendary,Nature,Male,Melee,[]
+161,Sporelok,Epic,Nature,Male,Melee,[160]
+162,Shroomkin,Rare,Nature,Male,Melee,[161]
+163,Mi the Ten-Tailed Fox,Legendary,Nature,Female,Melee,[]
+164,Lolli Pop,Epic,Nature,Female,Melee,[163]
+165,Baby Rattle,Rare,Nature,Female,Melee,[164]
+166,"Grand Ma, Reaper",Legendary,Chaos,Female,Ranged,[]
+167,Harbinger of Death,Epic,Chaos,Female,Ranged,[166]
+168,Old Bones,Rare,Chaos,Female,Ranged,[167]
+169,Super Mary,Legendary,Order,Female,Melee,[]
+170,Lady Curl,Epic,Order,Female,Melee,[169]
+171,Wonder Girl,Rare,Order,Female,Melee,[170]
+172,"Strik, the Fiery Heart",Legendary,Order,Male,Ranged,[]
+173,Flame Juggler,Epic,Order,Male,Ranged,[172]
+174,Pyromancer,Rare,Order,Male,Ranged,[173]
+175,High Tinker Gear,Legendary,Order,Male,Melee,[]
+176,"TNT, Crazy Demolitionist",Legendary,Chaos,Male,Ranged,[]
+177,Mr. Boom,Epic,Chaos,Male,Ranged,[176]
+178,Fireworker,Rare,Chaos,Male,Ranged,[177]
+179,General Zor'Ma,Legendary,Chaos,Male,Melee,[]
+180,Old God's Servant,Epic,Chaos,Male,Melee,[179]
+181,Faceless,Rare,Chaos,Male,Melee,[180]
+182,"Ysh'tmala, the Old God",Legendary,Chaos,Male,Melee,[]
+183,Terror From Below,Epic,Chaos,Male,Melee,[182]
+184,Flesh Spawn,Rare,Chaos,Male,Melee,[183]
+185,Valkyrie,Rare,Order,Female,Melee,[58]
+186,Tani Windrunner,Legendary,Nature,Female,Ranged,[]
+187,Windsong,Epic,Nature,Female,Ranged,[186]
+188,Wood Elf,Rare,Nature,Female,Ranged,[187]
+189,"Coba, Temple Keeper",Legendary,Nature,Male,Melee,[]
+190,Stone Guardian,Epic,Nature,Male,Melee,[189]
+191,Rock,Rare,Nature,Male,Melee,[190]
+192,Hoodoo,Legendary,Nature,Male,Ranged,[]
+193,Cursed Shaman,Epic,Nature,Male,Ranged,[192]
+194,Cultist,Rare,Nature,Male,Ranged,[193]
+195,Chieftain Orc,Epic,Chaos,Male,Melee,[42]
+196,"Bravi, Deadly Blade",Legendary,Order,Male,Melee,[]
+197,Crazy Harlequin,Epic,Order,Male,Melee,[196]
+198,Jester-Killer,Rare,Order,Male,Melee,[197]
+199,"Mjolnir, Lightning God",Legendary,Order,Male,Ranged,[]
+200,Keeper of Storm,Epic,Order,Male,Ranged,[199]
+201,Thunder,Rare,Order,Male,Ranged,[200]
+202,"Diana, Amazonian Queen",Legendary,Order,Female,Melee,[]
+203,Defender of Tribe,Epic,Order,Female,Melee,[202]
+204,Wild Huntress,Rare,Order,Female,Melee,[203]
+205,"Apep, Aspect of Chaos",Legendary,Chaos,Male,Melee,[]
+206,Bone Dragon,Epic,Chaos,Male,Melee,[205]
+207,Death Whelpling,Rare,Chaos,Male,Melee,[206]
+208,"Yorik, the Risen One",Legendary,Chaos,Male,Ranged,[]
+209,Dead Bowman,Epic,Chaos,Male,Ranged,[208]
+210,Talking Skull,Rare,Chaos,Male,Ranged,[209]
+211,Hanako Lady Banshee,Legendary,Chaos,Female,Ranged,[]
+212,Moody Ghost,Epic,Chaos,Female,Ranged,[211]
+213,Friendly Spirit,Rare,Chaos,Female,Ranged,[212]
+214,"D'Arc, Iron Maiden",Legendary,Order,Female,Melee,[]
+215,Battle Angel,Epic,Order,Female,Ranged,[113]
+216,"Mizu, the Sea Foam",Legendary,Nature,Female,Ranged,[]
+217,Lake Pixy,Epic,Nature,Female,Ranged,[216]
+218,The Aqua Spirit,Rare,Nature,Female,Ranged,[217]
+219,"Morgan, the Sea Tusk",Legendary,Nature,Male,Melee,[]
+220,Sharp Fin,Epic,Nature,Male,Melee,[219]
+221,Shark,Rare,Nature,Male,Melee,[220]
+222,"Triton, the Bottom Herald",Legendary,Nature,Male,Melee,[]
+223,Trident Master,Epic,Nature,Male,Melee,[222]
+224,Sea Guardian,Rare,Nature,Male,Melee,[223]
+225,Discordia,Legendary,Chaos,Female,Ranged,[]
+226,Angelia the Lightbringer,Legendary,Order,Female,Melee,[]
+227,Winged Knight,Epic,Order,Female,Melee,[226]
+228,Celestial Maiden,Rare,Order,Female,Melee,[227]
+229,Apollo,Legendary,Order,Male,Ranged,[]
+230,"Melia, Forest's Daughter",Legendary,Nature,Female,Ranged,[]
+231,"Cernun, Archdruid",Legendary,Nature,Male,Melee,[]
+232,Keeper of the Grove,Epic,Nature,Male,Melee,[231]
+233,Druid,Rare,Nature,Male,Melee,[232]
+234,Lady Medusa,Legendary,Chaos,Female,Ranged,[]
+235,Insidious Gorgon,Epic,Chaos,Female,Ranged,[234]
+236,Clever Viper,Rare,Chaos,Female,Ranged,[235]
+237,Knight,Epic,Order,Male,Melee,[34]
+238,Shao Lin,Legendary,Order,Male,Melee,[]
+239,Drunk Master,Epic,Order,Male,Melee,[238]
+240,Monk,Rare,Order,Male,Melee,[239]
+241,Poison Flos,Legendary,Nature,Male,Ranged,[]
+242,Ogre Plant,Epic,Nature,Male,Ranged,[241]
+243,Planty,Rare,Nature,Male,Ranged,[242]
+244,Scratchy,Rare,Nature,Female,Melee,[94]
+245,Song of Forest,Epic,Nature,Female,Ranged,[103]
+246,"Necro, Master Lich",Legendary,Chaos,Male,Ranged,[]
+247,Lord of the Undead,Epic,Chaos,Male,Ranged,[246]
+248,Necromancer,Rare,Chaos,Male,Ranged,[247]
+249,"Jaxy, the Thunderfist",Legendary,Order,Female,Melee,[]
+250,Champion of the Arena,Epic,Order,Female,Melee,[249]
+251,The Undisputed,Rare,Order,Female,Melee,[250]
+252,"Snake, the Lizard Prince",Legendary,Nature,Male,Melee,[]
+253,The Killer Serpent,Epic,Nature,Male,Melee,[252]
+254,Lizardfolk,Rare,Nature,Male,Melee,[253]
+255,Mr. Flap,Legendary,Chaos,Male,Melee,[]
+256,Demon the Ripper,Epic,Chaos,Male,Melee,[255]
+257,Butcher,Rare,Chaos,Male,Melee,[256]
+258,"Frost, the Snow Queen",Legendary,Order,Female,Ranged,[]
+259,Lady Snow,Epic,Order,Female,Ranged,[258]
+260,Snow Maiden,Rare,Order,Female,Ranged,[259]
+261,Madam Agony,Legendary,Chaos,Female,Ranged,[]
+262,Flamy Helly,Epic,Chaos,Female,Ranged,[261]
+263,Igneous Girl,Rare,Chaos,Female,Ranged,[262]
+264,Kung Fucius,Legendary,Nature,Male,Melee,[]
+265,Bamboo Master,Epic,Nature,Male,Melee,[264]
+266,Panda Warrior,Rare,Nature,Male,Melee,[265]
+267,"Griffius, the Celestial",Legendary,Order,Male,Melee,[]
+268,Winged Protector,Epic,Order,Male,Melee,[267]
+269,Young Griffin,Rare,Order,Male,Melee,[268]
+270,"Ogrok, the Leader",Legendary,Chaos,Male,Melee,[]
+271,One-Eyed Ogre,Epic,Chaos,Male,Melee,[270]
+272,Cyclop,Rare,Chaos,Male,Melee,[271]
+273,Tsukumogami,Legendary,Nature,Male,Melee,[]
+274,"Gnoll, the Blade Master",Epic,Nature,Male,Melee,[273]
+275,Samurai Dog,Rare,Nature,Male,Melee,[274]
+276,Mina Hellsing,Legendary,Order,Female,Ranged,[]
+277,Evil Slayer,Epic,Order,Female,Ranged,[276]
+278,Demon Huntress,Rare,Order,Female,Ranged,[277]
+279,"Ball'zt, the Warden",Legendary,Chaos,Male,Melee,[]
+280,Beholder,Epic,Chaos,Male,Melee,[279]
+281,Demon Orb,Rare,Chaos,Male,Melee,[280]
+282,"Tortulus, the Wise One",Legendary,Nature,Male,Ranged,[]
+283,Turtle Teacher,Epic,Nature,Male,Ranged,[282]
+284,Sage Disciple,Rare,Nature,Male,Ranged,[283]
+285,"All, Prince of Sands",Legendary,Order,Male,Melee,[]
+286,Free-folk Leader,Epic,Order,Male,Melee,[285]
+287,Nomad,Rare,Order,Male,Melee,[286]
+288,"Kong, Monkey King",Legendary,Nature,Male,Melee,[]
+289,Ape Warlord,Epic,Nature,Male,Melee,[288]
+290,Young Primate,Rare,Nature,Male,Melee,[289]
+291,"Freddy, Lord of Terror",Legendary,Chaos,Male,Melee,[]
+292,Doctor Fear,Epic,Chaos,Male,Melee,[291]
+293,Scarecrow,Rare,Chaos,Male,Melee,[292]
+294,"Scrap, the King of Garbage",Legendary,Nature,Male,Melee,[]
+295,Angler Vole,Epic,Nature,Male,Melee,[294]
+296,Junk Rat,Rare,Nature,Male,Melee,[295]
+297,"Charon, Soul Catcher",Legendary,Order,Male,Melee,[]
+298,Grim Warden,Epic,Order,Male,Melee,[297]
+299,Gravekeeper,Rare,Order,Male,Melee,[298]
+300,Shadow Shaa-Moona,Legendary,Chaos,Female,Melee,[]
+301,Half Moon Priestess,Epic,Chaos,Female,Melee,[300]
+302,Moon Child,Rare,Chaos,Female,Melee,[301]
+303,Dandy Croc,Legendary,Nature,Male,Melee,[]
+304,Thug Hunter,Epic,Nature,Male,Melee,[303]
+305,Toothy Thuggie,Rare,Nature,Male,Melee,[304]
+306,"Legion, God of War",Legendary,Order,Male,Melee,[]
+307,Harbringer of War,Epic,Order,Male,Melee,[306]
+308,Immortal Warrior,Rare,Order,Male,Melee,[307]
+309,Serket Sen Scorp,Legendary,Nature,Female,Melee,[]
+310,The Scorpion Queen,Epic,Nature,Female,Melee,[309]
+311,Ancient Scorpid,Rare,Nature,Female,Melee,[310]
+312,Dark Acolyte,Rare,Chaos,Female,Ranged,[50]
+313,Madam Lo'Trix,Legendary,Chaos,Female,Ranged,[]
+314,Shadow Manipulator,Epic,Chaos,Female,Ranged,[313]
+315,Puppet Mistress,Rare,Chaos,Female,Ranged,[314]
+316,"Yuri, Shadow Dagger",Legendary,Order,Female,Ranged,[]
+317,Kunai Master,Epic,Order,Female,Ranged,[316]
+318,Kunoichi,Rare,Order,Female,Ranged,[317]
+319,Sheer-Shah,Legendary,Nature,Male,Melee,[]
+320,Fierce Rakshesh,Epic,Nature,Male,Melee,[319]
+321,Furious Sabertooth,Rare,Nature,Male,Melee,[320]
+322,Chuba Cabras,Legendary,Chaos,Male,Melee,[]
+323,Flesh Eater,Epic,Chaos,Male,Melee,[322]
+324,Insatiable Beast,Rare,Chaos,Male,Melee,[323]
+325,"Justia, Law Goddess",Legendary,Order,Female,Ranged,[]
+326,Justice Inquisitor,Epic,Order,Female,Ranged,[325]
+327,Priestess of Equilibrium,Rare,Order,Female,Ranged,[326]
+328,"Cabas, Wasteland Lord",Legendary,Nature,Male,Melee,[]
+329,Desert Sentry,Epic,Nature,Male,Melee,[328]
+330,Wild Stalker,Rare,Nature,Male,Melee,[329]
+331,"Dominus, the Swarm King",Legendary,Chaos,Male,Melee,[]
+332,The Colonist Invader,Epic,Chaos,Male,Melee,[331]
+333,Visitor,Rare,Chaos,Male,Melee,[332]
+334,Jörmun Grand,Legendary,Nature,Male,Melee,[]
+335,Ice Big,Epic,Nature,Male,Melee,[334]
+336,Jötunn,Rare,Nature,Male,Melee,[335]
+337,"Amaterasu, Eternal Sun",Legendary,Order,Female,Melee,[]
+338,Sayuki,Epic,Order,Female,Melee,[337]
+339,Fan Dancer,Rare,Order,Female,Melee,[338]
+340,Taeral Kelhorn,Legendary,Chaos,Male,Melee,[]
+341,Elwin Fierce,Epic,Chaos,Male,Melee,[340]
+342,Elf Slayer,Rare,Chaos,Male,Melee,[341]
+343,Toxic Mantas,Legendary,Nature,Male,Melee,[]
+344,Kamacuras,Epic,Nature,Male,Melee,[343]
+345,Mantis,Rare,Nature,Male,Melee,[344]
+346,Morgen Von Stern,Legendary,Order,Male,Melee,[]
+347,Lord Punisher,Epic,Order,Male,Melee,[346]
+348,Crusader,Rare,Order,Male,Melee,[347]
+349,Deep Maw,Legendary,Chaos,Male,Melee,[]
+350,Muddy Trog,Epic,Chaos,Male,Melee,[349]
+351,Mor Lock,Rare,Chaos,Male,Melee,[350]
+352,Myrddin Caer,Legendary,Nature,Male,Ranged,[]
+353,Lord of the Forest,Epic,Nature,Male,Ranged,[352]
+354,Woodland Hermit,Rare,Nature,Male,Ranged,[353]
+355,Onmoraki,Legendary,Chaos,Male,Ranged,[]
+356,Demonic Shadow,Epic,Chaos,Male,Ranged,[355]
+357,Grim Harvester,Rare,Chaos,Male,Ranged,[356]
+358,"Vixen, the Storm Lord",Legendary,Nature,Male,Ranged,[]
+359,Warden of the North,Epic,Nature,Male,Ranged,[358]
+360,Frozen Moor Guard,Rare,Nature,Male,Ranged,[359]
+361,"Eostre, the Dawn Glow",Legendary,Order,Female,Ranged,[]
+362,Sunrise Maiden,Epic,Order,Female,Ranged,[361]
+363,Herald of Spring,Rare,Order,Female,Ranged,[362]
+364,"Arioch, Nemesis Weapon",Legendary,Chaos,Male,Melee,[]
+365,Ruthless Executioner,Epic,Chaos,Male,Melee,[364]
+366,Splintered Soul,Rare,Chaos,Male,Melee,[365]
+367,Owl,Rare,Nature,Female,Ranged,[55]
+368,Grace of Rockfleet,Legendary,Order,Female,Ranged,[]
+369,Red-haired Beast,Epic,Order,Female,Ranged,[368]
+370,Pirate,Rare,Order,Female,Ranged,[369]

@@ -2,10 +2,11 @@ from __future__ import annotations
 
 import json
 import re
-from typing import Optional, Dict, Any
+from typing import Dict, Any
+from typing import Tuple, Optional
 
 from Heroes import Hero
-from Heroes.Hero import Level, LevelingCost, LevelingSteps
+from Heroes.Hero import LevelingCost, Level, LevelingSteps
 from Heroes.HeroDirectory import HeroDirectory
 
 
@@ -13,28 +14,37 @@ class OwnedHero:
     hero: Hero
     level: Level
     souls: int
+    soulbinds_mask: Tuple[bool, bool, bool, bool]
 
     __next_level: Level
     __steps_to_next_level: LevelingSteps
 
-    def __init__(self, hero: Hero, level: Level, souls: int):
+    def __init__(self, hero: Hero, level: Level, souls: int,
+                 soulbinds_mask: Tuple[bool, bool, bool, bool] = (False, False, False, False)):  # FIXME
         if souls < 0:
             raise RuntimeError(f"Cannot have fewer than 0 souls (was: {hero}: {souls})")
 
         self.hero = hero
         self.level = level
         self.souls = souls
+        self.soulbinds_mask = soulbinds_mask
 
         self.__precompute_leveling_info()
 
     def __eq__(self, other):
-        return self.hero == other.hero and self.level == other.level and self.souls == other.souls
+        return self.hero == other.hero\
+               and self.level == other.soulbind_level\
+               and self.souls == other.souls\
+               and self.soulbinds_mask == other.soulbinds_mask
 
     def __hash__(self):
         return self.hero.num
 
+    def __repr__(self):
+        return self.__str__()
+
     def __str__(self):
-        return f"{self.hero} - {self.level} - {self.souls} available souls"
+        return f"{self.hero} - {self.level} - {self.souls:,} available souls"
 
     def __precompute_leveling_info(self):
         self.__next_level = self.level.level_up()
@@ -77,6 +87,9 @@ class OwnedHero:
         if require and not can_reborn:
             raise RuntimeError(f"Not at a reborn milestone; current: {current_level}, required: {reborn_milestone}")
         return can_reborn
+
+    def completed_soulbinds(self):
+        return None  # FIXME
 
     def cost_to_next_level(self, gold_discount: Optional[int] = None) -> LevelingCost:
         return self.__steps_to_next_level.aggregate_cost(gold_discount)

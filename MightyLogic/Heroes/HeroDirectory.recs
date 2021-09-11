@@ -146,7 +146,7 @@
 {"rarity":"Legendary","name":"Iceberg","alignment":"Order","id":"147","shape":"Melee","gender":"Male"}
 {"rarity":"Epic","name":"Ice Clod","alignment":"Order","id":"148","shape":"Melee","gender":"Male"}
 {"rarity":"Rare","name":"Piece of Ice","alignment":"Order","id":"149","shape":"Melee","gender":"Male"}
-{"rarity":"Legendary","name":"Evil Santa","alignment":"Order","id":"150","shape":"Ranged","gender":"Male"}
+{"rarity":"Legendary","name":"Evil \"Santa\"","alignment":"Order","id":"150","shape":"Ranged","gender":"Male"}
 {"rarity":"Epic","name":"Evil's Helper","alignment":"Order","id":"151","shape":"Ranged","gender":"Male"}
 {"rarity":"Rare","name":"Ding Viesel","alignment":"Order","id":"152","shape":"Ranged","gender":"Male"}
 {"rarity":"Legendary","name":"Ghosta","alignment":"Order","id":"153","shape":"Ranged","gender":"Female"}
@@ -282,7 +282,7 @@
 {"rarity":"Rare","name":"Sage Disciple","alignment":"Nature","id":"284","shape":"Ranged","gender":"Male"}
 {"rarity":"Legendary","name":"All, Prince of Sands","alignment":"Order","id":"285","shape":"Melee","gender":"Male"}
 {"rarity":"Epic","name":"Free-folk Leader","alignment":"Order","id":"286","shape":"Melee","gender":"Male"}
-{"rarity":"Epic","name":"Winged Protector","alignment":"Order","id":"286","shape":"Melee","gender":"Male"}
+{"rarity":"Epic","name":"Winged Protector","alignment":"Order","id":"268","shape":"Melee","gender":"Male"}
 {"rarity":"Rare","name":"Nomad","alignment":"Order","id":"287","shape":"Melee","gender":"Male"}
 {"rarity":"Legendary","name":"Kong, Monkey King","alignment":"Nature","id":"288","shape":"Melee","gender":"Male"}
 {"rarity":"Epic","name":"Ape Warlord","alignment":"Nature","id":"289","shape":"Melee","gender":"Male"}
@@ -330,9 +330,9 @@
 {"rarity":"Legendary","name":"Dominus, the Swarm King","alignment":"Chaos","id":"331","shape":"Melee","gender":"Male"}
 {"rarity":"Epic","name":"The Colonist Invader","alignment":"Chaos","id":"332","shape":"Melee","gender":"Male"}
 {"rarity":"Rare","name":"Visitor","alignment":"Chaos","id":"333","shape":"Melee","gender":"Male"}
-{"rarity":"Legendary","name":"Jormun Grand","alignment":"Nature","id":"334","shape":"Melee","gender":"Male"}
+{"rarity":"Legendary","name":"Jörmun Grand","alignment":"Nature","id":"334","shape":"Melee","gender":"Male"}
 {"rarity":"Epic","name":"Ice Big","alignment":"Nature","id":"335","shape":"Melee","gender":"Male"}
-{"rarity":"Rare","name":"Jotunn","alignment":"Nature","id":"336","shape":"Melee","gender":"Male"}
+{"rarity":"Rare","name":"Jötunn","alignment":"Nature","id":"336","shape":"Melee","gender":"Male"}
 {"rarity":"Legendary","name":"Amaterasu, Eternal Sun","alignment":"Order","id":"337","shape":"Melee","gender":"Female"}
 {"rarity":"Epic","name":"Sayuki","alignment":"Order","id":"338","shape":"Melee","gender":"Female"}
 {"rarity":"Rare","name":"Fan Dancer","alignment":"Order","id":"339","shape":"Melee","gender":"Female"}
@@ -364,3 +364,6 @@
 {"rarity":"Epic","name":"Ruthless Executioner","alignment":"Chaos","id":"365","shape":"Melee","gender":"Male"}
 {"rarity":"Rare","name":"Splintered Soul","alignment":"Chaos","id":"366","shape":"Melee","gender":"Male"}
 {"rarity":"Rare","name":"Owl","alignment":"Nature","id":"367","shape":"Ranged","gender":"Female"}
+{"rarity":"Legendary","name":"Grace of Rockfleet","alignment":"Order","id":"368","shape":"Ranged","gender":"Female"}
+{"rarity":"Epic","name":"Red-haired Beast","alignment":"Order","id":"369","shape":"Ranged","gender":"Female"}
+{"rarity":"Rare","name":"Pirate","alignment":"Order","id":"370","shape":"Ranged","gender":"Female"}

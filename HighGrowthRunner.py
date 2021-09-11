@@ -1,16 +1,21 @@
-import json
 import logging
+import sys
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any
 
-from HighGrowthCalculation import Discount
-from HighGrowthCalculation.Calculator import HighGrowthCalculation
-from HighGrowthCalculation.Strategies.MinimizeGold import MinimizeGold
-from Heroes.HeroDirectory import HeroDirectory
-from Heroes.OwnedHeroDirectory import OwnedHeroDirectory
+from MightyLogic.Heroes.Collection import Collection, HeroSelector
+from MightyLogic.Heroes.HeroDirectory import HeroDirectory
+from MightyLogic.HighGrowth import Discount
+from MightyLogic.HighGrowth.Calculator import HighGrowthCalculation
+from MightyLogic.HighGrowth.Strategies.MinimizeGold import MinimizeGold
 
-# TODO: Fix format
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(stream=sys.stdout, format='[%(asctime)s] %(levelname)s - %(message)s', level=logging.INFO)
+logger = logging.getLogger()
+
+all_evolutions_to = HeroSelector.all_evolutions_to
+exactly = HeroSelector.exactly
+has_rarity = HeroSelector.has_rarity
+none = HeroSelector.none
 
 
 def pretty_format(thing: Any, indent: int = 0):
@@ -33,34 +38,78 @@ def pretty_format(thing: Any, indent: int = 0):
     return formatted
 
 
-def pretty_print(thing: Any):
-    print(pretty_format(thing).rstrip())
-
-
-hero_dir = HeroDirectory.default()
-
-print(f"All known heroes: {pretty_format(hero_dir.values())}")
-
-print("-" * 120)
-
-oh_dir = OwnedHeroDirectory.from_squad_export_file(
-    Path("tests/HighGrowth/2021-07-25-1342_Bobo_squad_export.txt"),
-    hero_dir
+collection = Collection.from_squad_export_file(
+    Path("tests/HighGrowth/2021-08-20-2210_Bobo_squad_export.txt"),
+    HeroDirectory.default()
 )
 
-print(f"Your heroes (before): {pretty_format(oh_dir.values())}")
-print(f"Summary: {pretty_format(oh_dir.summarize())}")
+logger.info(f"Your heroes (before): {pretty_format(collection.all_owned_heroes())}")
+logger.info(f"Summary: {pretty_format(collection.summarize())}")
 
-print("-" * 120)
+logger.info("-" * 120)
 
+bobo_squad = {
+    # melee
+    "shaa",
+    "arioch",
+    "shao lin",
+
+    # ranged
+    "eostre",
+    "blair",
+    "yuri",
+    "grace",
+    "strik",
+    "alex",
+    "aphro"
+}
+bobo_farming = {
+    "diana",
+    "groot",
+    "charon",
+    "vixen",
+    "dominus",
+    "chuba",
+    "legion",
+    "frost",
+    "angelia",
+    "super mary",
+    "ghosta",
+    "trix",
+    "red woman",
+    "melia",
+    "draggara"
+}
+
+seph_farming = {
+    "alexandria",
+    "dominus"
+}
+
+# TODO: Support "minimizing"
 calc = HighGrowthCalculation.from_strategy(
-    high_growth_strategy=MinimizeGold(oh_dir, Discount.GUILD_5.value),
-    gold_cap=188_000
+    strategy=MinimizeGold(
+        collection=collection,
+        # Bobo:
+        excluding=all_evolutions_to(bobo_squad, inclusive=False) + all_evolutions_to(bobo_farming, inclusive=True),
+        never_reborn=none(),
+        # Gravy:
+        #excluding=none(),
+        #never_reborn=none(),
+        # SirBrychee
+        #excluding=exactly({"grace"}),
+        #never_reborn=has_rarity(Rarity.LEGENDARY),  # + has_rarity(Rarity.EPIC),
+        # Seph:
+        #excluding=all_evolutions_to(seph_farming, inclusive=True),
+        #never_reborn=none(),
+        gold_discount=Discount.NIGHTMARE,
+    ),
+    gold_cap=3_000_000
 )
 
-print(calc)
+logger.info(calc)
 
-print("-" * 120)
+logger.info("-" * 120)
 
-print(f"Your heroes (after): {pretty_format(oh_dir.values())}")
-print(f"Summary: {pretty_format(oh_dir.summarize())}")
+logger.info(f"Your heroes (after): {pretty_format(collection.all_owned_heroes())}")
+logger.info(f"Summary: {pretty_format(collection.summarize())}")

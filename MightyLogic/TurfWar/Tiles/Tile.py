@@ -15,7 +15,7 @@ class Tile:
         # print("world")
 
     def combineRewards(self, o):
-        return self.reward.combine(o.reward)
+        return self.reward.combine(o.gems)
 
     def combine(self, o):
         name = self.name + ", " + o.name
