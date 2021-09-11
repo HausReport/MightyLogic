@@ -1,7 +1,7 @@
 from MightyLogic.Player.Player import Player
 from MightyLogic.Player.PlayerGroup import PlayerGroup
 
-def getNightTerrorPlayerGroup() -> PlayerGroup:
+def getNightmarePlayerGroup() -> PlayerGroup:
         players = PlayerGroup()
         players.append(Player("Caramel2", 58000))         # x
         players.append(Player("Bobo", 104530))
