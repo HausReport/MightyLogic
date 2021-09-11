@@ -99,7 +99,7 @@ class TurfWarMap():
         r = 0
         for row in self.rows:
             for col in self.cols:
-                val = self.arr[row, col].gems.myValue
+                val = self.arr[row, col].reward.myValue
                 # print(f"{r}-{col} = {val}")
                 ret[r][col - 1] = val
             r = r + 1
