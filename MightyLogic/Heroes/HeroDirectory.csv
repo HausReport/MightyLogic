@@ -368,3 +368,6 @@ id,name,rarity,alignment,gender,shape,evolves_to
 368,Grace of Rockfleet,Legendary,Order,Female,Ranged,[]
 369,Red-haired Beast,Epic,Order,Female,Ranged,[368]
 370,Pirate,Rare,Order,Female,Ranged,[369]
+371,Mosura Wind Breath,Legendary,Nature,Female,Melee,[]
+372,Imago,Epic,Nature,Female,Melee,[371]
+373,Moth,Rare,Nature,Female,Melee,[372]
