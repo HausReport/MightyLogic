@@ -10,5 +10,5 @@ class MaximizeLevelUps(HighGrowthStrategy):
     Reborn everything as late as possible.
     """
 
-    def __init__(self, collection: Collection, excluding: HeroSelector, gold_discount: Optional[int]):
-        super(MaximizeLevelUps, self).__init__(collection, excluding, gold_discount)
+    def __init__(self, collection: Collection, exclude: HeroSelector, gold_discount: Optional[int]):
+        super(MaximizeLevelUps, self).__init__(collection, exclude, gold_discount)

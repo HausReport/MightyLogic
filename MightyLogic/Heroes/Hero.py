@@ -251,7 +251,7 @@ class Rarity(Enum):
         self.reborn_milestones = reborn_milestones
 
     def __eq__(self, other: Rarity) -> bool:
-        return self.name == other.name
+        return other and self.name == other.name
 
     def __hash__(self) -> int:
         return self.leveling_costs[0].gold
@@ -466,8 +466,15 @@ class Hero:
     def to_csv(self) -> Dict[str, Any]:
         return self.to_rec()
 
+    def to_data_frame_rec(self) -> Dict[str, Any]:
+        d = self.to_dict()
+        for k in ["evolves_from", "evolves_to", "soulbinds"]:
+            if k in d.keys():
+                del d[k]
+        return d
+
     def to_dict(self) -> Dict[str, Any]:
-        return deepcopy(self.__dict__)
+        return self.__dict__
 
     # TODO: Move into Codec.Rec
     def to_rec(self) -> Dict[str, Any]:

@@ -120,8 +120,16 @@ class OwnedHero:
     def reborn_milestone(self) -> int:
         return self.hero.reborn_milestone(self.level)
 
+    def to_data_frame_rec(self) -> Dict[str, Any]:
+        d = self.hero.to_data_frame_rec()
+        d.update({
+            "level": self.level,
+            "souls": self.souls,
+        })
+        return d
+
     # TODO: Move into Codec.Rec
-    def to_rec(self):
+    def to_rec(self) -> str:
         return json.dumps({
             "id": self.hero.id,
             "level": self.level.level_count,

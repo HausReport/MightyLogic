@@ -39,46 +39,63 @@ def pretty_format(thing: Any, indent: int = 0):
 
 
 collection = Collection.from_squad_export_file(
-    Path("tests/HighGrowth/2021-08-20-2210_Bobo_squad_export.txt"),
+    Path("tests/HighGrowth/2021-09-14-1523_JoeDaddy_squad_export.txt"),
     HeroDirectory.default()
 )
 
 logger.info(f"Your heroes (before): {pretty_format(collection.all_owned_heroes())}")
-logger.info(f"Summary: {pretty_format(collection.summarize())}")
+logger.info(f"Summary: {collection.summarize()}")
 
 logger.info("-" * 120)
 
-bobo_squad = {
+bobo_squad = {  # minimize evolutions to these heroes
     # melee
+    "charon",
+    "groot",
     "shaa",
-    "arioch",
-    "shao lin",
 
     # ranged
-    "eostre",
     "blair",
-    "yuri",
+    "eostre",
     "grace",
     "strik",
-    "alex",
-    "aphro"
+    "yuri",
 }
-bobo_farming = {
-    "diana",
-    "groot",
-    "charon",
-    "vixen",
-    "dominus",
-    "chuba",
-    "legion",
-    "frost",
-    "angelia",
-    "super mary",
-    "ghosta",
-    "trix",
-    "red woman",
-    "melia",
-    "draggara"
+bobo_to_farm = {  # minimize these heroes + their evolutions
+    # melee
+    "angelia",  # 10/11
+    "arioch",  # 15/16
+    "chuba",  # 11/16
+    "fury",  # 11/11
+    "legion",  # 11/11
+    "mi",  # 8/11
+    "shao lin",  # 13/16
+
+    # ranged
+    "agony",  # 11/11
+    "alex",  # 13/16
+    "aphro",  # 12/16
+    "draggara",  # 11/11
+    "melia",  # 11/11
+    "mina",  # 2/16
+    "red woman",  # 11/11
+    "trix",  # 1/16
+}
+bobo_farming = {  # exclude these heroes + minimize evolutions to them
+    # melee
+    "dead lord",  # locked
+    "diana",  # 1/6
+    "dominus",  # locked
+    "flap",  # 1/6
+    "mosura",  # 1/6
+    "super mary",  # locked
+
+    # ranged
+    "flos",  # 1/11
+    "frost",  # 1/6
+    "ghosta",  # locked
+    "justia",  # locked
+    "vixen",  # locked
 }
 
 seph_farming = {
@@ -91,20 +108,23 @@ calc = HighGrowthCalculation.from_strategy(
     strategy=MinimizeGold(
         collection=collection,
         # Bobo:
-        excluding=all_evolutions_to(bobo_squad, inclusive=False) + all_evolutions_to(bobo_farming, inclusive=True),
-        never_reborn=none(),
+        #exclude=all_evolutions_to(bobo_squad, inclusive=False) + all_evolutions_to(bobo_to_farm, inclusive=True) + all_evolutions_to(bobo_farming, inclusive=True),
+        #exclude=exactly(bobo_farming),
+        #minimize=all_evolutions_to(bobo_squad, inclusive=False) +
+                 #all_evolutions_to(bobo_to_farm, inclusive=True) +
+                 #all_evolutions_to(bobo_farming, inclusive=False),
+        #never_reborn=exactly({"charon"}),
         # Gravy:
-        #excluding=none(),
-        #never_reborn=none(),
-        # SirBrychee
-        #excluding=exactly({"grace"}),
-        #never_reborn=has_rarity(Rarity.LEGENDARY),  # + has_rarity(Rarity.EPIC),
+        # JoeDaddy:
         # Seph:
-        #excluding=all_evolutions_to(seph_farming, inclusive=True),
-        #never_reborn=none(),
-        gold_discount=Discount.NIGHTMARE,
+        # excluding=all_evolutions_to(seph_farming, inclusive=True),
+        # never_reborn=none(),
+        # SirBrychee
+        # excluding=exactly({"grace"}),
+        # never_reborn=has_rarity(Rarity.LEGENDARY),  # + has_rarity(Rarity.EPIC),
+        gold_discount=Discount.NIGHT_FALL,
     ),
-    gold_cap=3_000_000
+    gold_cap=2_600_000
 )
 
 logger.info(calc)
@@ -112,4 +132,4 @@ logger.info(calc)
 logger.info("-" * 120)
 
 logger.info(f"Your heroes (after): {pretty_format(collection.all_owned_heroes())}")
-logger.info(f"Summary: {pretty_format(collection.summarize())}")
+logger.info(f"Summary:\n{collection.summarize()}")

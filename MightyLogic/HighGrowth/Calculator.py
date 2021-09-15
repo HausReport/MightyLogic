@@ -137,7 +137,7 @@ class HighGrowthCalculation:
              f" - tier completed: {completion_tier}\n" \
              f" - total gems: {CompletionTier.aggregate_to(completion_tier)[1]:,}\n" \
              f" - next tier: {next_tier}\n" \
-             f" - progress to next tier: {level_ups_remaining:,} of {next_tier.level_ups:,}\n"
+             f" - progress to next tier: {level_ups_remaining:,} of {next_tier.level_ups:,} level ups\n"
         s += "End state for each hero:\n"
         for i, (hero, steps) in enumerate(self.steps_by_hero.items()):
             s += f"{i + 1}. Take hero: {hero}\n    all the way to: {steps.final_level()}\n" \

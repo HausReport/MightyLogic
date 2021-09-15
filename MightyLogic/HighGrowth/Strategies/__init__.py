@@ -1,22 +1,16 @@
-from dataclasses import dataclass, field
-from typing import Any, Optional, FrozenSet
+from dataclasses import dataclass
+from typing import Optional
 from typing import Tuple
 
 from Heroes.Collection import Collection, HeroSelector
-from Heroes.Hero import LevelingSteps, Hero
+from Heroes.Hero import LevelingSteps
 from Heroes.OwnedHero import OwnedHero
-
-
-@dataclass(order=True)
-class PrioritizedItem:
-    priority: int
-    item: Any = field(compare=False)
 
 
 @dataclass
 class HighGrowthStrategy:
     collection: Collection
-    excluding: HeroSelector
+    exclude: HeroSelector
     gold_discount: Optional[int]
 
     def has_next(self, gold_remaining: Optional[int]) -> bool:

@@ -49,16 +49,3 @@ def group_by(values: Iterable[Any], grouper: Callable[[Any], Any], include_all: 
 
 def per_group(grouped: Dict[Any, Set[Any]], do: Callable[[Set[Any]], Any]) -> Dict[Any, Any]:
     return dict((name, do(group)) for name, group in grouped.items())
-
-
-def stats_for(values: Iterable[Any]) -> Dict[str, float]:
-    return {
-        "min": min(values) if values else None,
-        #"mean": mean(values) if values else None,
-        #"median": median(values) if values else None,
-        #"mode": mode(values) if values else None,
-        "max": max(values) if values else None,
-        #"variance": pvariance(values) if values else None,
-        #"stdev": stdev(values) if values else None,
-        # TODO: "quantiles": quantiles(values, n=4, method="inclusive")
-    }

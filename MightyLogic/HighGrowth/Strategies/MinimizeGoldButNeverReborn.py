@@ -10,5 +10,5 @@ class MinimizeGoldButNeverReborn(HighGrowthStrategy):
     Always level up the cheapest hero, but never reborn - could also be called MaximizeLevelUpsButNeverReborn.
     """
 
-    def __init__(self, collection: Collection, excluding: HeroSelector, gold_discount: Optional[int]):
-        super(MinimizeGoldButNeverReborn, self).__init__(collection, excluding, gold_discount)
+    def __init__(self, collection: Collection, exclude: HeroSelector, gold_discount: Optional[int]):
+        super(MinimizeGoldButNeverReborn, self).__init__(collection, exclude, gold_discount)
