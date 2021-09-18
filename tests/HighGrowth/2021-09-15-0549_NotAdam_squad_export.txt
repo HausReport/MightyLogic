@@ -1,0 +1,331 @@
+313: Madam Lo'Trix                83/126  Level 13 Reborn 2 Unused Souls 8
+297: Charon, Soul Catcher         62/39   Level 14 Reborn 1 Unused Souls 179
+166: Grand Ma, Reaper             75/51   Level 12 Reborn 2 Unused Souls 10
+368: Grace of Rockfleet           81/70   Level 11 Reborn 2 Unused Souls 51
+331: Dominus, the Swarm King      65/110  Level 11 Reborn 2 Unused Souls 35
+316: Yuri, Shadow Dagger          76/49   Level 13 Reborn 1 Unused Souls 144
+309: Serket Sen Scorp             56/133  Level 10 Reborn 2 Unused Souls 74
+361: Eostre the Dawn Glow         49/94   Level 10 Reborn 2 Unused Souls 66
+358: Vixen, The Storm Lord        15/12   Level 1  Reborn 0 Unused Souls 1183
+122: Draggara                     23/43   Level 6  Reborn 0 Unused Souls 1070
+288: Kong, Monkey King            47/79   Level 9  Reborn 2 Unused Souls 45
+261: Madam Agony                  57/44   Level 12 Reborn 1 Unused Souls 150
+118: Tesla X                       0/163  Level 9  Reborn 2 Unused Souls 0
+176: TNT, Crazy Demolitionist     58/34   Level 11 Reborn 1 Unused Souls 303
+ 39: Prince Nod                   21/132  Level 12 Reborn 1 Unused Souls 99
+156: Tengu, Ravencrest            47/54   Level 12 Reborn 1 Unused Souls 91
+276: Mina Hellsing                55/71   Level 12 Reborn 1 Unused Souls 52
+349: Deep Maw                     55/124  Level 8  Reborn 2 Unused Souls 7
+371: Mosura Wind Breath           23/20   Level 1  Reborn 0 Unused Souls 905
+186: Tani Windrunner              65/41   Level 7  Reborn 2 Unused Souls 48
+102: Marquis de Sat               15/56   Level 6  Reborn 0 Unused Souls 778
+343: Toxic Mantas                 86/23   Level 7  Reborn 2 Unused Souls 19
+249: Jaxy, the Thunderfist        29/55   Level 11 Reborn 1 Unused Souls 154
+255: Mr. Flap                     56/96   Level 11 Reborn 1 Unused Souls 150
+ 86: Aphrodite                    51/48   Level 1  Reborn 2 Unused Souls 121
+300: Shadow Shaa-Moona            52/46   Level 11 Reborn 1 Unused Souls 120
+322: Chuba Cabras                 40/119  Level 6  Reborn 2 Unused Souls 27
+241: Poison Flos                  43/94   Level 6  Reborn 2 Unused Souls 4
+230: Melia, Forest's Daughter     54/48   Level 11 Reborn 1 Unused Souls 81
+103: Maeve                        48/42   Level 9  Reborn 1 Unused Souls 336
+ 95: Miss Lapin                   66/34   Level 9  Reborn 1 Unused Souls 335
+132: Leader Nilen                 43/24   Level 6  Reborn 1 Unused Souls 569
+199: Mjolnir, Lightning God       34/41   Level 6  Reborn 1 Unused Souls 555
+ 34: Sir Lancelot                 27/105  Level 11 Reborn 1 Unused Souls 32
+113: Alexandria                   56/47   Level 9  Reborn 1 Unused Souls 302
+147: Iceberg                      28/84   Level 9  Reborn 1 Unused Souls 300
+252: Snake, the Lizard Prince     68/63   Level 11 Reborn 1 Unused Souls 18
+202: Diana, Amazonian Queen       38/89   Level 11 Reborn 1 Unused Souls 0
+ 35: Count Vlad                   24/110  Level 11 Reborn 1 Unused Souls 0
+120: Red Woman                    58/62   Level 10 Reborn 1 Unused Souls 96
+ 38: Goliath                      29/88   Level 10 Reborn 1 Unused Souls 89
+364: Arioch Nemesis Weapon        45/29   Level 9  Reborn 1 Unused Souls 193
+179: General Zor'Ma               26/92   Level 10 Reborn 1 Unused Souls 58
+112: Hanzo Sama                   56/41   Level 10 Reborn 1 Unused Souls 53
+ 21: Prince                       23/76   Level 9  Reborn 1 Unused Souls 163
+196: Bravi, Deadly Blade          61/55   Level 10 Reborn 1 Unused Souls 30
+205: Apep, Aspect of Chaos        35/76   Level 10 Reborn 1 Unused Souls 25
+226: Angelia the Lightbringer     43/83   Level 9  Reborn 1 Unused Souls 115
+334: Jörmun Grand                 55/46   Level 9  Reborn 1 Unused Souls 108
+222: Triton, The Bottom Herald    28/101  Level 9  Reborn 1 Unused Souls 107
+115: Stormrage                    51/32   Level 9  Reborn 1 Unused Souls 95
+135: Koschei the Immortal         55/56   Level 9  Reborn 1 Unused Souls 94
+306: Legion, God of War           34/72   Level 6  Reborn 1 Unused Souls 324
+172: Strik, The Fiery Heart       37/28   Level 9  Reborn 1 Unused Souls 80
+294: Scrap, the King of Garbage    9/12   Level 1  Reborn 0 Unused Souls 478
+175: High Tinker Gear             26/86   Level 9  Reborn 1 Unused Souls 49
+211: Hanako Lady Banshee          20/90   Level 9  Reborn 1 Unused Souls 35
+ 20: Mr. Devil                    51/33   Level 8  Reborn 1 Unused Souls 97
+216: Mizu, the Sea Foam           44/61   Level 8  Reborn 1 Unused Souls 69
+ 22: Mother Owl                   31/62   Level 8  Reborn 1 Unused Souls 59
+105: King Taurus                  20/64   Level 6  Reborn 1 Unused Souls 155
+123: Blair                        52/41   Level 8  Reborn 1 Unused Souls 14
+325: Justia, Law Goddess          36/50   Level 8  Reborn 1 Unused Souls 13
+ 36: Bastet                       46/44   Level 8  Reborn 1 Unused Souls 0
+246: Necro, Master Lich           34/60   Level 7  Reborn 1 Unused Souls 37
+238: Shao Lin                     32/62   Level 7  Reborn 1 Unused Souls 33
+258: Frost, the Snow Queen        36/65   Level 7  Reborn 1 Unused Souls 31
+229: Apollo                       42/39   Level 7  Reborn 1 Unused Souls 25
+126: Fury, the great warrior      20/32   Level 6  Reborn 1 Unused Souls 79
+129: Chernomor                    26/77   Level 6  Reborn 1 Unused Souls 74
+225: Discordia                    53/20   Level 7  Reborn 1 Unused Souls 4
+114: Titania                      14/35   Level 6  Reborn 0 Unused Souls 152
+282: Tortulus, the Wise One       27/63   Level 7  Reborn 1 Unused Souls 0
+285: All, Prince of Sands         25/23   Level 6  Reborn 0 Unused Souls 145
+264: Kung Fucius                  29/72   Level 6  Reborn 1 Unused Souls 47
+ 32: Dead Lord                    20/84   Level 6  Reborn 1 Unused Souls 21
+108: Queen Ananta                 14/50   Level 6  Reborn 1 Unused Souls 1
+141: Matriarch Eona               29/62   Level 6  Reborn 1 Unused Souls 0
+337: Amaterasu, Eternal Sun       41/42   Level 6  Reborn 1 Unused Souls 0
+ 33: Erik the Grey                14/45   Level 6  Reborn 0 Unused Souls 69
+182: Ysh'Tmala, The Old God       25/71   Level 5  Reborn 1 Unused Souls 0
+ 40: Life Palace                   0/74   Level 6  Reborn 0 Unused Souls 38
+ 37: Athena                       19/37   Level 6  Reborn 0 Unused Souls 15
+138: Anak, Princess Dragon        31/15   Level 5  Reborn 0 Unused Souls 35
+ 41: Vanakauri                     0/57   Level 2  Reborn 0 Unused Souls 3
+250: Champion of the Arena        18/22   Level 6  Reborn 0 Unused Souls 4005
+109: High Naga                    30/48   Level 9  Reborn 1 Unused Souls 2262
+ 25: Void Juggler                 28/15   Level 10 Reborn 1 Unused Souls 1985
+ 44: Caesar's Head                 0/26   Level 1  Reborn 0 Unused Souls 2925
+ 90: Dark Mage                    24/20   Level 9  Reborn 1 Unused Souls 2026
+142: Emerald Dragon               15/48   Level 9  Reborn 1 Unused Souls 2019
+220: Sharp Fin                    16/65   Level 9  Reborn 1 Unused Souls 1815
+ 49: Swordmaster                  16/54   Level 9  Reborn 1 Unused Souls 1697
+372: Imago                         8/10   Level 1  Reborn 0 Unused Souls 2178
+154: Dark Huntress                28/18   Level 9  Reborn 1 Unused Souls 1257
+ 98: Hell Gate                     0/117  Level 9  Reborn 1 Unused Souls 1199
+203: Defender of Tribe            13/34   Level 9  Reborn 1 Unused Souls 1183
+262: Flamy Helly                  31/15   Level 8  Reborn 1 Unused Souls 1318
+183: Terror From Below            30/54   Level 9  Reborn 1 Unused Souls 1174
+320: Fierce Rakshesh              36/38   Level 11 Reborn 1 Unused Souls 813
+136: Bone Warrior                 28/31   Level 8  Reborn 1 Unused Souls 1290
+268: Winged Protector             34/28   Level 9  Reborn 1 Unused Souls 1120
+193: Cursed Shaman                26/26   Level 7  Reborn 1 Unused Souls 1316
+145: Wind Warrior                 14/12   Level 3  Reborn 0 Unused Souls 1821
+ 61: Void Rock                     0/73   Level 9  Reborn 1 Unused Souls 1044
+100: El Cactus                    20/59   Level 9  Reborn 1 Unused Souls 1036
+245: Song of Forest               28/36   Level 8  Reborn 1 Unused Souls 1161
+ 96: Lucky Rabbit                 22/29   Level 9  Reborn 1 Unused Souls 1021
+ 56: Gargantos                    15/53   Level 8  Reborn 1 Unused Souls 1150
+ 47: Cursed Oak                    0/71   Level 9  Reborn 1 Unused Souls 998
+286: Free-folk Leader             29/26   Level 9  Reborn 1 Unused Souls 981
+347: Lord Punisher                18/62   Level 9  Reborn 1 Unused Souls 966
+307: Harbringer of War            22/46   Level 9  Reborn 1 Unused Souls 949
+133: Embalmed Priest              28/26   Level 9  Reborn 1 Unused Souls 853
+139: Wyvern                       12/8    Level 1  Reborn 0 Unused Souls 1624
+187: Windsong                     33/22   Level 9  Reborn 1 Unused Souls 799
+265: Bamboo Master                 9/26   Level 5  Reborn 0 Unused Souls 1444
+ 24: Karas                        27/33   Level 10 Reborn 1 Unused Souls 606
+ 28: Soul Hunter                  41/24   Level 9  Reborn 1 Unused Souls 765
+ 48: Soul Monger                   9/49   Level 9  Reborn 1 Unused Souls 752
+369: Red-haired Beast             10/9    Level 1  Reborn 0 Unused Souls 1551
+341: Elwin Fierce                 30/46   Level 9  Reborn 1 Unused Souls 712
+271: One-Eyed Ogre                 9/60   Level 9  Reborn 1 Unused Souls 622
+158: Treebeard                    11/53   Level 8  Reborn 1 Unused Souls 761
+ 63: Argios                       15/63   Level 10 Reborn 0 Unused Souls 675
+ 45: Blood Lord                   15/56   Level 9  Reborn 1 Unused Souls 585
+ 23: Bard                         24/17   Level 8  Reborn 1 Unused Souls 699
+106: Minotaur                     10/58   Level 8  Reborn 1 Unused Souls 664
+190: Stone Guardian               11/81   Level 9  Reborn 1 Unused Souls 521
+ 51: Luck Idol                     0/77   Level 9  Reborn 1 Unused Souls 477
+359: Warden of the North          37/37   Level 9  Reborn 1 Unused Souls 476
+289: Ape Warlord                  34/34   Level 11 Reborn 1 Unused Souls 115
+ 50: Archwitch                    25/36   Level 9  Reborn 1 Unused Souls 461
+242: Ogre Plant                   29/33   Level 10 Reborn 1 Unused Souls 300
+227: Winged Knight                24/54   Level 8  Reborn 1 Unused Souls 587
+ 87: Love Goddess                 26/21   Level 8  Reborn 1 Unused Souls 560
+180: Old god's servant            15/58   Level 9  Reborn 1 Unused Souls 411
+ 54: Ronin                        18/22   Level 5  Reborn 1 Unused Souls 833
+274: Gnoll, the Blade Master      17/40   Level 9  Reborn 1 Unused Souls 370
+323: Flesh Eater                  21/65   Level 9  Reborn 1 Unused Souls 369
+259: Lady Snow                    34/20   Level 9  Reborn 1 Unused Souls 359
+239: Drunk Master                 17/58   Level 9  Reborn 1 Unused Souls 327
+344: Kamacuras                    42/20   Level 10 Reborn 1 Unused Souls 153
+177: Mr. Boom                     29/22   Level 9  Reborn 1 Unused Souls 308
+295: Angler Vole                  27/27   Level 9  Reborn 1 Unused Souls 304
+277: Evil Slayer                  12/37   Level 9  Reborn 1 Unused Souls 301
+130: Dark Knight                  16/67   Level 8  Reborn 1 Unused Souls 439
+335: Ice Big                      15/19   Level 6  Reborn 0 Unused Souls 888
+237: Knight                       13/39   Level 7  Reborn 1 Unused Souls 556
+197: Crazy Harlequin              16/27   Level 5  Reborn 1 Unused Souls 731
+ 57: Olaf the Red                 11/64   Level 8  Reborn 1 Unused Souls 408
+256: Demon the Ripper             17/40   Level 7  Reborn 1 Unused Souls 523
+ 27: Tesla Tower                   0/59   Level 4  Reborn 1 Unused Souls 761
+310: The Scorpion Queen           26/43   Level 9  Reborn 1 Unused Souls 237
+ 43: Lady Clair                   19/29   Level 8  Reborn 1 Unused Souls 369
+338: Sayuki                       33/33   Level 9  Reborn 1 Unused Souls 207
+148: Ice Clod                     19/64   Level 9  Reborn 1 Unused Souls 189
+206: Bone Dragon                  20/43   Level 7  Reborn 1 Unused Souls 448
+212: Moody Ghost                  28/16   Level 9  Reborn 1 Unused Souls 186
+326: Justice Inquisitor           18/39   Level 7  Reborn 1 Unused Souls 441
+365: Ruthless Executioner         32/29   Level 6  Reborn 1 Unused Souls 532
+127: Cruel Gladiator              13/33   Level 7  Reborn 1 Unused Souls 428
+ 46: Lady Wild                    26/32   Level 10 Reborn 1 Unused Souls 2
+223: Trident Master               12/60   Level 9  Reborn 1 Unused Souls 147
+170: Lady Curl                    19/15   Level 7  Reborn 0 Unused Souls 559
+362: Sunrise Maiden               19/53   Level 9  Reborn 1 Unused Souls 65
+ 55: Wise Owl                     14/23   Level 7  Reborn 1 Unused Souls 315
+ 60: Tent of Life                  0/65   Level 6  Reborn 1 Unused Souls 411
+ 53: Engineer                     15/56   Level 9  Reborn 1 Unused Souls 47
+232: Keeper of the Grove          12/25   Level 7  Reborn 0 Unused Souls 534
+350: Muddy Trog                   23/62   Level 9  Reborn 1 Unused Souls 29
+332: The Colonist Invader         22/59   Level 9  Reborn 1 Unused Souls 13
+215: Battle Angel                 24/25   Level 9  Reborn 1 Unused Souls 11
+119: Living Dead                  30/22   Level 6  Reborn 1 Unused Souls 369
+317: Kunai Master                 34/23   Level 9  Reborn 1 Unused Souls 5
+329: Desert Sentry                14/25   Level 5  Reborn 1 Unused Souls 392
+173: Flame Juggler                22/32   Level 8  Reborn 1 Unused Souls 30
+314: Shadow Manipulator           27/22   Level 8  Reborn 1 Unused Souls 14
+253: The Killer Serpent           26/22   Level 8  Reborn 1 Unused Souls 10
+124: Adherent                     17/21   Level 6  Reborn 1 Unused Souls 228
+ 52: Lord Toad                     8/60   Level 8  Reborn 1 Unused Souls 4
+283: Turtle Teacher               21/37   Level 7  Reborn 0 Unused Souls 333
+ 94: Predator                     18/33   Level 5  Reborn 1 Unused Souls 259
+167: Harbinger of Death           12/8    Level 3  Reborn 0 Unused Souls 592
+ 58: Scarlet Warrior               7/28   Level 7  Reborn 0 Unused Souls 298
+200: Keeper of Storm              23/37   Level 7  Reborn 1 Unused Souls 40
+247: Lord of the Undead           16/33   Level 7  Reborn 1 Unused Souls 8
+ 26: Wild Tamer                    6/9    Level 1  Reborn 0 Unused Souls 525
+ 59: Ayfe the Arrow               16/23   Level 6  Reborn 1 Unused Souls 13
+298: Grim Warden                  15/41   Level 6  Reborn 1 Unused Souls 13
+164: Lolli Pop                     7/43   Level 5  Reborn 1 Unused Souls 14
+356: Demonic Shadow               18/17   Level 4  Reborn 1 Unused Souls 71
+ 11: Viking                       28/25   Level 13 Reborn 1 Unused Souls 14794
+152: Ding Viesel                  21/25   Level 11 Reborn 1 Unused Souls 14261
+194: Cultist                      22/25   Level 10 Reborn 1 Unused Souls 11329
+ 80: Minstrel                     14/10   Level 1  Reborn 1 Unused Souls 12209
+168: Old bones                    25/28   Level 11 Reborn 1 Unused Souls 10394
+134: Mummy                        20/16   Level 9  Reborn 1 Unused Souls 10861
+ 70: Satyr                        19/43   Level 12 Reborn 1 Unused Souls 7788
+302: Moon Child                   23/29   Level 9  Reborn 1 Unused Souls 8644
+101: Cactusito                    27/62   Level 11 Reborn 1 Unused Souls 7838
+  6: Priestess                    41/28   Level 10 Reborn 2 Unused Souls 3358
+131: Dark Warrior                 15/67   Level 9  Reborn 1 Unused Souls 8126
+266: Panda Warrior                29/24   Level 9  Reborn 1 Unused Souls 7851
+339: Fan Dancer                   24/25   Level 12 Reborn 1 Unused Souls 6758
+198: Jester-Killer                33/25   Level 11 Reborn 1 Unused Souls 6838
+ 84: Bone Hunter                  30/14   Level 9  Reborn 1 Unused Souls 7306
+363: Herald of Spring             19/42   Level 10 Reborn 1 Unused Souls 7035
+184: Flesh Spawn                  15/40   Level 9  Reborn 1 Unused Souls 7280
+260: Snow Maiden                  15/46   Level 9  Reborn 1 Unused Souls 7098
+ 14: Gargoyle                     11/44   Level 11 Reborn 1 Unused Souls 6490
+ 30: First Aid                     0/67   Level 12 Reborn 1 Unused Souls 6051
+233: Druid                        42/33   Level 13 Reborn 1 Unused Souls 5497
+204: Wild Huntress                13/32   Level 9  Reborn 1 Unused Souls 6761
+251: The Undisputed               17/36   Level 11 Reborn 1 Unused Souls 6169
+ 15: Chiropteran                   7/49   Level 9  Reborn 1 Unused Souls 6740
+305: Toothy Thuggie               21/40   Level 8  Reborn 1 Unused Souls 6942
+ 78: Orc Master                   14/35   Level 9  Reborn 1 Unused Souls 6578
+281: Demon Orb                    24/22   Level 9  Reborn 1 Unused Souls 6575
+ 18: Child of Chaos               19/13   Level 8  Reborn 1 Unused Souls 6769
+228: Celestial Maiden             27/28   Level 9  Reborn 1 Unused Souls 6549
+ 81: Crafter                      15/33   Level 9  Reborn 1 Unused Souls 6524
+201: Thunder                      22/24   Level 11 Reborn 1 Unused Souls 5866
+ 85: Bowmaster                    13/8    Level 1  Reborn 1 Unused Souls 7384
+342: Elf Slayer                   33/25   Level 9  Reborn 1 Unused Souls 6368
+107: Bully                        14/51   Level 11 Reborn 1 Unused Souls 5758
+224: Sea Guardian                 45/28   Level 12 Reborn 1 Unused Souls 5298
+185: Valkyrie                     16/33   Level 10 Reborn 1 Unused Souls 5995
+125: Follower                     21/18   Level 11 Reborn 1 Unused Souls 5532
+236: Clever Viper                 23/14   Level 9  Reborn 1 Unused Souls 6055
+ 12: Wood Spirit                  23/15   Level 12 Reborn 1 Unused Souls 5041
+ 69: Void Stone                    0/65   Level 11 Reborn 1 Unused Souls 5428
+308: Immortal Warrior             19/63   Level 13 Reborn 1 Unused Souls 4436
+336: Jötunn                       29/42   Level 13 Reborn 1 Unused Souls 4389
+174: Pyromancer                   26/17   Level 11 Reborn 1 Unused Souls 5279
+351: Mor Lock                     26/53   Level 10 Reborn 1 Unused Souls 5539
+191: Rock                         19/73   Level 11 Reborn 1 Unused Souls 5172
+240: Monk                         32/26   Level 10 Reborn 1 Unused Souls 5480
+155: Drow                         26/11   Level 9  Reborn 1 Unused Souls 5706
+257: Butcher                      16/33   Level 9  Reborn 1 Unused Souls 5683
+218: The Aqua Spirit              28/24   Level 10 Reborn 1 Unused Souls 5396
+284: Sage Disciple                13/67   Level 9  Reborn 1 Unused Souls 5617
+221: Shark                        23/29   Level 9  Reborn 1 Unused Souls 5577
+171: Wonder Girl                  22/31   Level 11 Reborn 1 Unused Souls 4956
+330: Wild Stalker                 19/34   Level 11 Reborn 1 Unused Souls 4941
+ 67: Pharaon                       0/69   Level 11 Reborn 1 Unused Souls 4887
+ 73: Dark Witch                   22/12   Level 10 Reborn 1 Unused Souls 5215
+357: Grim Harvester               27/18   Level 10 Reborn 1 Unused Souls 5200
+354: Woodland Hermit              19/48   Level 10 Reborn 1 Unused Souls 5198
+121: Lady of the Warriors         20/26   Level 9  Reborn 1 Unused Souls 5447
+181: Faceless                      9/51   Level 9  Reborn 1 Unused Souls 5396
+348: Crusader                     16/47   Level 11 Reborn 1 Unused Souls 4802
+ 79: Soulblade                     8/50   Level 11 Reborn 1 Unused Souls 4779
+159: Treant                       16/79   Level 9  Reborn 1 Unused Souls 5278
+275: Samurai Dog                  16/31   Level 9  Reborn 1 Unused Souls 5278
+ 97: Bunny                        23/17   Level 11 Reborn 1 Unused Souls 4680
+287: Nomad                        30/26   Level 10 Reborn 1 Unused Souls 5005
+162: Shroomkin                    17/77   Level 11 Reborn 1 Unused Souls 4557
+178: Fireworker                   40/24   Level 10 Reborn 1 Unused Souls 4835
+137: Skeleton                     17/24   Level 9  Reborn 1 Unused Souls 4954
+213: Friendly Spirit              35/13   Level 11 Reborn 1 Unused Souls 4204
+210: Talking Skull                29/23   Level 11 Reborn 1 Unused Souls 4075
+128: Berserk                      23/20   Level 9  Reborn 1 Unused Souls 4640
+140: Wind Snake                   29/19   Level 12 Reborn 1 Unused Souls 3637
+ 17: Undead                       16/37   Level 9  Reborn 1 Unused Souls 4549
+269: Young Griffin                20/24   Level 11 Reborn 1 Unused Souls 3944
+ 92: Untouchable                  19/14   Level 9  Reborn 1 Unused Souls 4483
+  3: Prophet                      11/22   Level 9  Reborn 0 Unused Souls 5920
+117: Voltage Tower                 0/60   Level 9  Reborn 1 Unused Souls 4339
+ 77: Dark Tree                     0/60   Level 11 Reborn 1 Unused Souls 3655
+321: Furious Sabertooth           28/30   Level 9  Reborn 1 Unused Souls 4210
+165: Baby rattle                  11/47   Level 9  Reborn 1 Unused Souls 4047
+ 88: Love Mage                    24/18   Level 10 Reborn 1 Unused Souls 3684
+146: Harpy                        21/20   Level 11 Reborn 1 Unused Souls 3280
+293: Scarecrow                    24/15   Level 9  Reborn 1 Unused Souls 3857
+296: Junk Rat                     27/21   Level 9  Reborn 1 Unused Souls 3764
+  9: Totem                         0/40   Level 9  Reborn 0 Unused Souls 5290
+272: Cyclop                        8/61   Level 9  Reborn 1 Unused Souls 3432
+312: Dark Acolyte                 20/29   Level 9  Reborn 1 Unused Souls 3240
+111: Squire                       15/35   Level 9  Reborn 1 Unused Souls 3087
+366: Splintered Soul              33/20   Level 11 Reborn 1 Unused Souls 2502
+367: Owl                          18/43   Level 11 Reborn 1 Unused Souls 2458
+149: Piece of Ice                 14/51   Level 9  Reborn 1 Unused Souls 2968
+311: Ancient Scorpid              24/26   Level 9  Reborn 1 Unused Souls 2880
+278: Demon Huntress               21/23   Level 9  Reborn 1 Unused Souls 2830
+299: Gravekeeper                  21/40   Level 9  Reborn 1 Unused Souls 2558
+248: Necromancer                  18/44   Level 9  Reborn 1 Unused Souls 2485
+324: Insatiable Beast             18/55   Level 9  Reborn 1 Unused Souls 2338
+ 76: Forest Mage                  25/28   Level 9  Reborn 1 Unused Souls 2158
+254: Lizardfolk                   28/26   Level 11 Reborn 1 Unused Souls 1554
+290: Young Primate                34/34   Level 10 Reborn 1 Unused Souls 1839
+327: Priestess of Equilibrium     27/23   Level 9  Reborn 1 Unused Souls 2077
+373: Moth                          6/7    Level 1  Reborn 0 Unused Souls 4535
+360: Frozen Moor Guard            35/16   Level 11 Reborn 1 Unused Souls 1422
+345: Mantis                       29/15   Level 9  Reborn 1 Unused Souls 1971
+188: Wood Elf                     34/19   Level 10 Reborn 1 Unused Souls 1490
+263: Igneous Girl                 29/18   Level 11 Reborn 1 Unused Souls 1136
+315: Puppet Mistress              28/23   Level 9  Reborn 1 Unused Souls 1677
+244: Scratchy                     19/29   Level 12 Reborn 1 Unused Souls 533
+ 66: Leaf Child                   20/16   Level 9  Reborn 1 Unused Souls 1160
+143: Dream Whelpling              18/54   Level 11 Reborn 1 Unused Souls 475
+243: Planty                       25/18   Level 10 Reborn 1 Unused Souls 774
+333: Visitor                      16/36   Level 11 Reborn 1 Unused Souls 356
+ 91: Angry Imp                    17/53   Level 10 Reborn 1 Unused Souls 507
+207: Death Whelpling              24/31   Level 9  Reborn 1 Unused Souls 632
+318: Kunoichi                     25/24   Level 10 Reborn 1 Unused Souls 10
+  8: Mr. Toad                      7/27   Level 9  Reborn 0 Unused Souls 1140
+370: Pirate                       17/9    Level 8  Reborn 0 Unused Souls 1162
+110: Naga                         19/29   Level 10 Reborn 0 Unused Souls 116
+ 93: Apprentice                   40/33   Level 17 Reborn 2 Unused Souls 29049
+  2: Servant                       8/76   Level 13 Reborn 2 Unused Souls 31387
+ 75: Warrior                      23/41   Level 12 Reborn 2 Unused Souls 30366
+ 82: Lumberjack                   21/66   Level 14 Reborn 2 Unused Souls 28111
+ 31: Tree                          0/98   Level 16 Reborn 2 Unused Souls 22709
+  5: Shinobi                      35/18   Level 12 Reborn 2 Unused Souls 25754
+ 13: Dryad                        31/34   Level 13 Reborn 2 Unused Souls 24921
+ 72: Shaman                       28/24   Level 11 Reborn 2 Unused Souls 26169
+116: Singer                       38/23   Level 12 Reborn 2 Unused Souls 25266
+ 29: Idol                          0/109  Level 17 Reborn 2 Unused Souls 18972
+ 16: Red Orc                      16/43   Level 12 Reborn 2 Unused Souls 24556
+ 71: Pilgrim                      29/40   Level 12 Reborn 2 Unused Souls 24499
+ 68: Vampire                      13/69   Level 13 Reborn 2 Unused Souls 23612
+  7: Archer                       27/22   Level 11 Reborn 2 Unused Souls 23972
+ 65: Gnome                        21/59   Level 14 Reborn 2 Unused Souls 21359
+  4: Warrioress                   15/59   Level 16 Reborn 2 Unused Souls 16774
+ 64: Big Toad                      9/70   Level 12 Reborn 2 Unused Souls 20636
+ 83: Witch                        34/24   Level 12 Reborn 2 Unused Souls 18149
+ 10: Cat Lady                     32/36   Level 12 Reborn 2 Unused Souls 15641
+ 19: Blood Cult Adept             28/21   Level 12 Reborn 2 Unused Souls 12107
+ 74: Raven                        36/33   Level 16 Reborn 2 Unused Souls 5339
+ 89: Love Lady                    31/20   Level 12 Reborn 2 Unused Souls 9440

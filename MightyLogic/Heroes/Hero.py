@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from copy import deepcopy
+from copy import deepcopy, copy
 from dataclasses import dataclass, field, InitVar
 from enum import Enum, auto, unique
 from functools import total_ordering
@@ -474,7 +474,7 @@ class Hero:
         return d
 
     def to_dict(self) -> Dict[str, Any]:
-        return self.__dict__
+        return copy(self.__dict__)
 
     # TODO: Move into Codec.Rec
     def to_rec(self) -> Dict[str, Any]:

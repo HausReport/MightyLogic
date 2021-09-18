@@ -3,6 +3,7 @@ import sys
 from pathlib import Path
 from typing import Any
 
+from Heroes.Hero import Rarity
 from MightyLogic.Heroes.Collection import Collection, HeroSelector
 from MightyLogic.Heroes.HeroDirectory import HeroDirectory
 from MightyLogic.HighGrowth import Discount
@@ -39,12 +40,12 @@ def pretty_format(thing: Any, indent: int = 0):
 
 
 collection = Collection.from_squad_export_file(
-    Path("tests/HighGrowth/2021-09-14-1523_JoeDaddy_squad_export.txt"),
+    Path("tests/HighGrowth/2021-09-17-1510_SirBrychee_squad_export.txt"),
     HeroDirectory.default()
 )
 
 logger.info(f"Your heroes (before): {pretty_format(collection.all_owned_heroes())}")
-logger.info(f"Summary: {collection.summarize()}")
+logger.info(f"Summary:\n{collection.summarize()}")
 
 logger.info("-" * 120)
 
@@ -98,6 +99,13 @@ bobo_farming = {  # exclude these heroes + minimize evolutions to them
     "vixen",  # locked
 }
 
+not_adam_farming = {  # exclude these heroes + all evolutions to them
+    "vixen",
+    "scrap",
+    "mosura",
+    "aphro"
+}
+
 seph_farming = {
     "alexandria",
     "dominus"
@@ -107,6 +115,7 @@ seph_farming = {
 calc = HighGrowthCalculation.from_strategy(
     strategy=MinimizeGold(
         collection=collection,
+
         # Bobo:
         #exclude=all_evolutions_to(bobo_squad, inclusive=False) + all_evolutions_to(bobo_to_farm, inclusive=True) + all_evolutions_to(bobo_farming, inclusive=True),
         #exclude=exactly(bobo_farming),
@@ -114,17 +123,27 @@ calc = HighGrowthCalculation.from_strategy(
                  #all_evolutions_to(bobo_to_farm, inclusive=True) +
                  #all_evolutions_to(bobo_farming, inclusive=False),
         #never_reborn=exactly({"charon"}),
+
         # Gravy:
+        # none
+
         # JoeDaddy:
+        # none
+
+        # NotAdam:
+        #exclude=all_evolutions_to(not_adam_farming, inclusive=True),
+
         # Seph:
-        # excluding=all_evolutions_to(seph_farming, inclusive=True),
-        # never_reborn=none(),
+        #exclude=all_evolutions_to(seph_farming, inclusive=True),
+        #never_reborn=none(),
+
         # SirBrychee
-        # excluding=exactly({"grace"}),
-        # never_reborn=has_rarity(Rarity.LEGENDARY),  # + has_rarity(Rarity.EPIC),
-        gold_discount=Discount.NIGHT_FALL,
+        exclude=exactly({"grace"}),
+        never_reborn=has_rarity(Rarity.LEGENDARY),  # + has_rarity(Rarity.EPIC),
+
+        gold_discount=Discount.NIGHTMARE,
     ),
-    gold_cap=2_600_000
+    gold_cap=None
 )
 
 logger.info(calc)

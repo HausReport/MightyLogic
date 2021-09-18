@@ -62,7 +62,10 @@ class Collection:
 
     def summarize(self) -> FrameOrSeries:
         data_frame = self.to_data_frame()
-        return data_frame.groupby("rarity")["level"].describe()  # FIXME: Play w/ this more
+        # TODO: def mymean(x):
+        #     return x.mean()
+        #  data_frame["A"].agg(["sum", mymean])
+        return data_frame.groupby("rarity")["level"].agg(["count", "min", "max"])
 
     def to_data_frame(self) -> pandas.DataFrame:
         records = [oh.to_data_frame_rec() for oh in self.owned_heroes]
