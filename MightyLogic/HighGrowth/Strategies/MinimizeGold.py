@@ -20,7 +20,7 @@ class MinimizeGold(HighGrowthStrategy):
 
     def __init__(self, collection: Collection, exclude: HeroSelector = HeroSelector.none(),
                  minimize: HeroSelector = HeroSelector.none(), never_reborn: HeroSelector = HeroSelector.none(),
-                 gold_discount: Optional[int] = None):
+                 gold_discount: Optional[float] = None):
         super(MinimizeGold, self).__init__(collection, exclude, gold_discount)
 
         self.minimize = minimize
@@ -77,7 +77,7 @@ class MinimizeGold(HighGrowthStrategy):
         else:
             self.unconstrained_cost_heap.push(oh)
 
-    def __should_reborn(self, oh: OwnedHero, with_gold: Optional[int], gold_discount: Optional[int]) -> bool:
+    def __should_reborn(self, oh: OwnedHero, with_gold: Optional[int], gold_discount: Optional[float]) -> bool:
         eligible_to_reborn = oh.hero not in self.never_reborn.select(self.collection)
         can_level_up_afterwards = oh.can_level_up_after_reborn(with_gold=with_gold, gold_discount=gold_discount)
         return eligible_to_reborn and can_level_up_afterwards
@@ -88,15 +88,19 @@ class MinimizeGold(HighGrowthStrategy):
         return (remaining_gold is None or remaining_gold > 0) and self.unconstrained_cost_heap  # FIXME: min termination
 
     def process_next(self, remaining_gold: Optional[int]) -> Tuple[OwnedHero, LevelingSteps]:
-        min_unconstrained_hero = self.unconstrained_cost_heap.peek()
+        min_unconstrained_hero: OwnedHero = self.unconstrained_cost_heap.peek()
         cost_of_min_unconstrained = self.__cost(min_unconstrained_hero)
 
-        min_minimized_hero = self.minimized_cost_heap.peek()
+        min_minimized_hero: OwnedHero = self.minimized_cost_heap.peek()
         cost_of_min_minimized = self.__cost(min_minimized_hero)
 
+        # TODO: There should be special prioritization for getting rebornable min heroes thru a milestone and back to L1
         if cost_of_min_minimized < cost_of_min_unconstrained:
-            min_unconstrained_hero_of_same_rarity = self.unconstrained_cost_heap.peek(min_minimized_hero.hero.rarity)
-            if cost_of_min_minimized < self.__cost(min_unconstrained_hero_of_same_rarity):
+            # Only level up if doing so will not make the level of this hero == the level of the cheapest (i.e.
+            # lowest-leveled) hero of the same rarity (we always want to be the lowest level for this rarity)
+            min_unconstrained_hero_of_same_rarity: OwnedHero =\
+                self.unconstrained_cost_heap.peek(min_minimized_hero.hero.rarity)
+            if min_minimized_hero.level.level_count < min_unconstrained_hero_of_same_rarity.level.level_count - 1:
                 return self.__level_up(self.minimized_cost_heap.pop(), remaining_gold)
 
         return self.__level_up(self.unconstrained_cost_heap.pop(), remaining_gold)

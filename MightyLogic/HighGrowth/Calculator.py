@@ -109,7 +109,7 @@ class HighGrowthCalculation:
     strategy: HighGrowthStrategy
     gold_cap: Optional[int]
     gold_remaining: Optional[int]
-    gold_discount: int
+    gold_discount: float
     gold_required: int = 0
     level_ups_completed: int = 0
     steps_by_hero: Dict[Hero, LevelingSteps] = dict()
@@ -125,7 +125,7 @@ class HighGrowthCalculation:
 
         s += f"Gold:\n" \
             f" - cap: " + ("none" if self.gold_cap is None else f"{self.gold_cap:,}") + "\n" \
-            f" - discount: " + ("none" if self.gold_discount is None else f"{self.gold_discount}%") + "\n" \
+            f" - discount: " + ("none" if self.gold_discount is None else f"{self.gold_discount * 100}%") + "\n" \
             f" - required: {self.gold_required:,}\n" \
             f" - remaining: " + ("infinite" if self.gold_remaining is None else f"{self.gold_remaining:,}") + "\n"
 

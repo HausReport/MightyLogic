@@ -1,5 +1,6 @@
 import pytest
 
+from HighGrowth import Discount
 from MightyLogic.HighGrowth.Calculator import CompletionTier
 
 # ======================================================================================================================
@@ -43,3 +44,11 @@ def test_for_level_ups():
 def test_next():
     assert CompletionTier.next(t1) == CompletionTier.TIER_2
     assert CompletionTier.next(t15) is None
+
+
+# ======================================================================================================================
+# Discount
+# ----------------------------------------------------------------------------------------------------------------------
+
+def test_both():
+    assert Discount.both(Discount.NIGHTMARE, Discount.CRISIS) == 0.33  # 0.3276 rounded to 2 decimal places

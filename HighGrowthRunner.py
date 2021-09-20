@@ -40,7 +40,7 @@ def pretty_format(thing: Any, indent: int = 0):
 
 
 collection = Collection.from_squad_export_file(
-    Path("tests/HighGrowth/2021-09-17-1510_SirBrychee_squad_export.txt"),
+    Path("tests/HighGrowth/2021-09-19-1021_Bobo_squad_export.txt"),
     HeroDirectory.default()
 )
 
@@ -97,6 +97,7 @@ bobo_farming = {  # exclude these heroes + minimize evolutions to them
     "ghosta",  # locked
     "justia",  # locked
     "vixen",  # locked
+    "yorik",  # locked
 }
 
 not_adam_farming = {  # exclude these heroes + all evolutions to them
@@ -118,16 +119,19 @@ calc = HighGrowthCalculation.from_strategy(
 
         # Bobo:
         #exclude=all_evolutions_to(bobo_squad, inclusive=False) + all_evolutions_to(bobo_to_farm, inclusive=True) + all_evolutions_to(bobo_farming, inclusive=True),
-        #exclude=exactly(bobo_farming),
-        #minimize=all_evolutions_to(bobo_squad, inclusive=False) +
-                 #all_evolutions_to(bobo_to_farm, inclusive=True) +
-                 #all_evolutions_to(bobo_farming, inclusive=False),
-        #never_reborn=exactly({"charon"}),
+        exclude=exactly(bobo_farming),
+        minimize=all_evolutions_to(bobo_squad, inclusive=False) +
+                 all_evolutions_to(bobo_to_farm, inclusive=True) +
+                 all_evolutions_to(bobo_farming, inclusive=False),
+        never_reborn=exactly({"charon"}),
 
         # Gravy:
         # none
 
         # JoeDaddy:
+        # none
+
+        # MikeLouie:
         # none
 
         # NotAdam:
@@ -138,12 +142,12 @@ calc = HighGrowthCalculation.from_strategy(
         #never_reborn=none(),
 
         # SirBrychee
-        exclude=exactly({"grace"}),
-        never_reborn=has_rarity(Rarity.LEGENDARY),  # + has_rarity(Rarity.EPIC),
+        #exclude=exactly({"grace"}),
+        #never_reborn=has_rarity(Rarity.LEGENDARY),  # + has_rarity(Rarity.EPIC),
 
-        gold_discount=Discount.NIGHTMARE,
+        gold_discount=Discount.both(Discount.NIGHTMARE, Discount.CRISIS),
     ),
-    gold_cap=None
+    gold_cap=950_000
 )
 
 logger.info(calc)

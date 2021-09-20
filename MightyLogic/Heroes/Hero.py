@@ -11,7 +11,7 @@ from typing import Any, Dict, List, Set, Tuple, Optional
 class LevelingCost:
     souls: int
     gold: int
-    discount: Optional[int] = field(default=None, compare=False)
+    discount: Optional[float] = field(default=None, compare=False)
     allow_zero: InitVar[bool] = False
 
     def __post_init__(self, allow_zero: bool = False):
@@ -24,12 +24,12 @@ class LevelingCost:
     def __str__(self):
         return f"{self.souls:,} souls + {self.gold:,} gold"
 
-    def with_discount(self, gold_discount: Optional[int] = None) -> LevelingCost:
+    def with_discount(self, gold_discount: Optional[float] = None) -> LevelingCost:
         if gold_discount is None:
             gold_after_discount = self.gold
             combined_discount = self.discount
         else:
-            gold_after_discount = round(float(self.gold) * ((100 - gold_discount) / 100))
+            gold_after_discount = round(float(self.gold) * (1.0 - gold_discount))
             combined_discount = gold_discount + (0 if self.discount is None else self.discount)
         return LevelingCost(souls=self.souls, gold=gold_after_discount, discount=combined_discount, allow_zero=True)
 
@@ -93,7 +93,7 @@ class LevelingSteps:
     def __add__(self, other: LevelingSteps) -> LevelingSteps:
         return LevelingSteps(self.steps + other.steps)
 
-    def aggregate_cost(self, gold_discount: Optional[int] = None) -> LevelingCost:
+    def aggregate_cost(self, gold_discount: Optional[float] = None) -> LevelingCost:
         souls = sum(cost.souls for __, cost in self.steps)
         gold = sum(cost.gold for __, cost in self.steps)
         return LevelingCost(souls, gold, allow_zero=True).with_discount(gold_discount)
@@ -105,7 +105,7 @@ class LevelingSteps:
     def level_up_count(self) -> int:
         return len(list(level for level, __ in self.steps if level.level_count > 1))
 
-    def with_discount(self, gold_discount: Optional[int] = None) -> LevelingSteps:
+    def with_discount(self, gold_discount: Optional[float] = None) -> LevelingSteps:
         return LevelingSteps([
             (level, cost.with_discount(gold_discount))
             for level, cost
