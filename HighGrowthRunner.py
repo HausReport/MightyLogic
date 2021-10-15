@@ -40,7 +40,7 @@ def pretty_format(thing: Any, indent: int = 0):
 
 
 collection = Collection.from_squad_export_file(
-    Path("tests/HighGrowth/2021-10-14-2023_Bobo_squad_export.txt"),
+    Path("tests/HighGrowth/2021-10-15-0309-Stalguard_squad_export.txt"),
     HeroDirectory.default()
 )
 
@@ -150,12 +150,15 @@ strategy = MinimizeGold(
     # exclude=exactly({"grace"}),
     # never_reborn=has_rarity(Rarity.LEGENDARY),  # + has_rarity(Rarity.EPIC),
 
-    gold_discount=Discount.combine(Discount.NIGHTMARE, Discount.VIP8),
+    # Stalguard
+    exclude=all_evolutions_to({"dominus", "mosura"}, inclusive=True) + all_evolutions_to({"grace"}),
+
+    gold_discount=Discount.combine(Discount.NIGHT_FALL),
 )
 
 # calc = HighGrowthCalculation.with_gold_cap(
 #     strategy=strategy,
-#     gold_cap=3_000_000
+#     gold_cap=1_000_000
 # )
 
 calc = HighGrowthCalculation.for_level_ups(

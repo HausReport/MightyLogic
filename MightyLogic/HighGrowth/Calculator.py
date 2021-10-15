@@ -43,29 +43,29 @@ class CompletionTier(Enum):
         return self.level_ups
 
     def __le__(self, other: CompletionTier) -> bool:
-        return abs(self) <= abs(other)
+        return other is not None and abs(self) <= abs(other)
 
     def __lt__(self, other: CompletionTier) -> bool:
-        return abs(self) <= abs(other)
+        return other is not None and abs(self) < abs(other)
 
     def __ge__(self, other: CompletionTier) -> bool:
-        return abs(self) >= abs(other)
+        return other is None or abs(self) >= abs(other)
 
     def __gt__(self, other: CompletionTier) -> bool:
-        return abs(self) > abs(other)
+        return other is None or abs(self) > abs(other)
 
     def __str__(self):
         return f"{self.name} (level ups={self.level_ups:,}, gems={self.gems:,})"
 
     @staticmethod
-    def aggregate_between(from_tier: Optional[CompletionTier], to_tier: CompletionTier) -> Tuple[int, int]:
+    def aggregate_between(from_tier: Optional[CompletionTier], to_tier: Optional[CompletionTier]) -> Tuple[int, int]:
         if from_tier and from_tier > to_tier:
             raise RuntimeError("From tier {from_tier} is greater than to tier {to_tier}")
 
         level_ups = 0
         gems = 0
         for __, tier in CompletionTier.__members__.items():
-            if from_tier and tier <= from_tier:
+            if tier <= from_tier:
                 continue
 
             if tier > to_tier:
@@ -128,7 +128,7 @@ class HighGrowthCalculation:
 
         s += f"Gold:\n" \
             f" - cap: " + ("none" if self.gold_cap is None else f"{self.gold_cap:,}") + "\n" \
-            f" - discount: " + ("none" if self.gold_discount is None else f"{self.gold_discount * 100}%") + "\n" \
+            f" - discount: " + ("none" if self.gold_discount is None else f"{self.gold_discount * 100:.0f}%") + "\n" \
             f" - required: {self.gold_required:,}\n" \
             f" - remaining: " + ("infinite" if self.gold_remaining is None else f"{self.gold_remaining:,}") + "\n"
 
@@ -140,7 +140,7 @@ class HighGrowthCalculation:
              f" - completed: {self.level_ups_completed:,}\n" \
 
         s += f"Tier and gems:\n" \
-             f" - tier completed: {completion_tier}\n" \
+             f" - tier completed: {'none' if completion_tier is None else completion_tier}\n" \
              f" - total gems: {CompletionTier.aggregate_to(completion_tier)[1]:,}\n" \
              f" - next tier: {next_tier}\n" \
              f" - progress to next tier: {level_ups_remaining:,} of {next_tier.level_ups:,} level ups\n"
@@ -169,21 +169,27 @@ class HighGrowthCalculation:
         self.level_ups_completed += level_ups
 
     def calculate(self) -> HighGrowthCalculation:
-        while self.can_level_up() and not self.satisfied_level_ups_goal():
+        while self.can_level_up() and self.should_level_up():
             hero, steps = self.strategy.process_next(self.gold_remaining)
             self.add_steps(hero, steps)
 
-        if not self.satisfied_level_ups_goal():
-            raise RuntimeError(f"Not possible to reach {self.level_ups_goal} level ups with infinite gold; it is only"
-                               f"possible to make {self.level_ups_completed} with the constraints provided.")
+        if self.has_level_ups_goal() and not self.satisfied_level_ups_goal():
+            raise RuntimeError(f"Not possible to reach {self.level_ups_goal:,} level ups with infinite gold; it is only"
+                               f" possible to make {self.level_ups_completed:,} with the constraints provided.")
 
         return self
 
     def can_level_up(self) -> bool:
         return self.strategy.has_next(self.gold_remaining)
 
+    def has_level_ups_goal(self) -> bool:
+        return self.level_ups_goal is not None
+
     def satisfied_level_ups_goal(self) -> bool:
-        return self.level_ups_goal is None or self.level_ups_completed >= self.level_ups_goal
+        return self.level_ups_completed >= self.level_ups_goal
+
+    def should_level_up(self) -> bool:
+        return not self.has_level_ups_goal() or not self.satisfied_level_ups_goal()
 
     @staticmethod
     def for_level_ups(strategy: HighGrowthStrategy, level_ups_goal: int) -> HighGrowthCalculation:
