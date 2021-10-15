@@ -98,9 +98,10 @@ class MinimizeGold(HighGrowthStrategy):
         if cost_of_min_minimized < cost_of_min_unconstrained:
             # Only level up if doing so will not make the level of this hero == the level of the cheapest (i.e.
             # lowest-leveled) hero of the same rarity (we always want to be the lowest level for this rarity)
-            min_unconstrained_hero_of_same_rarity: OwnedHero =\
+            min_unconstrained_hero_of_same_rarity: OwnedHero = \
                 self.unconstrained_cost_heap.peek(min_minimized_hero.hero.rarity)
-            if min_minimized_hero.level.level_count < min_unconstrained_hero_of_same_rarity.level.level_count - 1:
+            if min_unconstrained_hero_of_same_rarity and \
+                    min_minimized_hero.level.level_count < min_unconstrained_hero_of_same_rarity.level.level_count - 1:
                 return self.__level_up(self.minimized_cost_heap.pop(), remaining_gold)
 
         return self.__level_up(self.unconstrained_cost_heap.pop(), remaining_gold)

@@ -7,7 +7,7 @@ from Heroes.Hero import Rarity
 from MightyLogic.Heroes.Collection import Collection, HeroSelector
 from MightyLogic.Heroes.HeroDirectory import HeroDirectory
 from MightyLogic.HighGrowth import Discount
-from MightyLogic.HighGrowth.Calculator import HighGrowthCalculation
+from MightyLogic.HighGrowth.Calculator import HighGrowthCalculation, CompletionTier
 from MightyLogic.HighGrowth.Strategies.MinimizeGold import MinimizeGold
 
 logging.basicConfig(stream=sys.stdout, format='[%(asctime)s] %(levelname)s - %(message)s', level=logging.INFO)
@@ -40,7 +40,7 @@ def pretty_format(thing: Any, indent: int = 0):
 
 
 collection = Collection.from_squad_export_file(
-    Path("tests/HighGrowth/2021-09-19-1021_Bobo_squad_export.txt"),
+    Path("tests/HighGrowth/2021-10-14-2023_Bobo_squad_export.txt"),
     HeroDirectory.default()
 )
 
@@ -64,38 +64,40 @@ bobo_squad = {  # minimize evolutions to these heroes
 }
 bobo_to_farm = {  # minimize these heroes + their evolutions
     # melee
-    "angelia",  # 10/11
-    "arioch",  # 15/16
-    "chuba",  # 11/16
-    "fury",  # 11/11
-    "legion",  # 11/11
-    "mi",  # 8/11
-    "shao lin",  # 13/16
+    "arioch",  # 15R2
+    "chuba",  # 12R2
+    "shao lin",  # 15R2
 
     # ranged
-    "agony",  # 11/11
-    "alex",  # 13/16
-    "aphro",  # 12/16
-    "draggara",  # 11/11
-    "melia",  # 11/11
-    "mina",  # 2/16
-    "red woman",  # 11/11
-    "trix",  # 1/16
+    "alex",  # 14R2
+    "aphro",  # 14R2
+    "melia",  # 6R2
+    "mina",  # 11R2
 }
 bobo_farming = {  # exclude these heroes + minimize evolutions to them
     # melee
+    "angelia",  # 1R2
     "dead lord",  # locked
-    "diana",  # 1/6
+    "diana",  # 1R0
     "dominus",  # locked
-    "flap",  # 1/6
-    "mosura",  # 1/6
+    "flap",  # 1R0
+    "fury",  # 1R2
+    "legion",  # 1R2
+    "mi",  # 1R2
+    "mosura",  # 1R1
+    "scrap",  # locked
     "super mary",  # locked
 
     # ranged
-    "flos",  # 1/11
-    "frost",  # 1/6
+    "agony",  # 1R2
+    "draggara",  # 1R2
+    "flos",  # 1R1
+    "frost",  # 1R0
     "ghosta",  # locked
     "justia",  # locked
+    "necro",  # 2R0
+    "red woman",  # 1R2
+    "trix",  # 1R2
     "vixen",  # locked
     "yorik",  # locked
 }
@@ -112,42 +114,53 @@ seph_farming = {
     "dominus"
 }
 
-# TODO: Support "minimizing"
-calc = HighGrowthCalculation.from_strategy(
-    strategy=MinimizeGold(
-        collection=collection,
+strategy = MinimizeGold(
+    collection=collection,
 
-        # Bobo:
-        #exclude=all_evolutions_to(bobo_squad, inclusive=False) + all_evolutions_to(bobo_to_farm, inclusive=True) + all_evolutions_to(bobo_farming, inclusive=True),
-        exclude=exactly(bobo_farming),
-        minimize=all_evolutions_to(bobo_squad, inclusive=False) +
-                 all_evolutions_to(bobo_to_farm, inclusive=True) +
-                 all_evolutions_to(bobo_farming, inclusive=False),
-        never_reborn=exactly({"charon"}),
+    # Bobo:
+    # exclude=exactly(bobo_farming) + (
+    #         (
+    #                 all_evolutions_to(bobo_squad) +
+    #                 all_evolutions_to(bobo_farming) +
+    #                 all_evolutions_to(bobo_to_farm)
+    #         ) & has_rarity(Rarity.EPIC)
+    # ),
+    # minimize=all_evolutions_to(bobo_squad) +
+    #          all_evolutions_to(bobo_farming) +
+    #          all_evolutions_to(bobo_to_farm, inclusive=True),
+    # never_reborn=exactly({"charon"}),
 
-        # Gravy:
-        # none
+    # Gravy:
+    # none
 
-        # JoeDaddy:
-        # none
+    # JoeDaddy:
+    # none
 
-        # MikeLouie:
-        # none
+    # MikeLouie:
+    # none
 
-        # NotAdam:
-        #exclude=all_evolutions_to(not_adam_farming, inclusive=True),
+    # NotAdam:
+    # exclude=all_evolutions_to(not_adam_farming, inclusive=True),
 
-        # Seph:
-        #exclude=all_evolutions_to(seph_farming, inclusive=True),
-        #never_reborn=none(),
+    # Seph:
+    # exclude=all_evolutions_to(seph_farming, inclusive=True),
+    # never_reborn=none(),
 
-        # SirBrychee
-        #exclude=exactly({"grace"}),
-        #never_reborn=has_rarity(Rarity.LEGENDARY),  # + has_rarity(Rarity.EPIC),
+    # SirBrychee
+    # exclude=exactly({"grace"}),
+    # never_reborn=has_rarity(Rarity.LEGENDARY),  # + has_rarity(Rarity.EPIC),
 
-        gold_discount=Discount.both(Discount.NIGHTMARE, Discount.CRISIS),
-    ),
-    gold_cap=950_000
+    gold_discount=Discount.combine(Discount.NIGHTMARE, Discount.VIP8),
+)
+
+# calc = HighGrowthCalculation.with_gold_cap(
+#     strategy=strategy,
+#     gold_cap=3_000_000
+# )
+
+calc = HighGrowthCalculation.for_level_ups(
+    strategy=strategy,
+    level_ups_goal=CompletionTier.aggregate_to(CompletionTier.TIER_11)[0]
 )
 
 logger.info(calc)

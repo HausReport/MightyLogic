@@ -111,14 +111,17 @@ class HighGrowthCalculation:
     gold_remaining: Optional[int]
     gold_discount: float
     gold_required: int = 0
+    level_ups_goal: Optional[int]
     level_ups_completed: int = 0
     steps_by_hero: Dict[Hero, LevelingSteps] = dict()
 
-    def __init__(self, strategy: HighGrowthStrategy, gold_cap: Optional[int]):
+    def __init__(self, strategy: HighGrowthStrategy, gold_cap: Optional[int] = None,
+                 level_ups_goal: Optional[int] = None):
         self.strategy = strategy
         self.gold_cap = gold_cap
         self.gold_remaining = gold_cap
         self.gold_discount = strategy.gold_discount
+        self.level_ups_goal = level_ups_goal
 
     def __str__(self):
         s = f"Strategy: {self.strategy}\n"
@@ -132,8 +135,11 @@ class HighGrowthCalculation:
         completion_tier, level_ups_remaining = CompletionTier.for_level_ups(self.level_ups_completed)
         next_tier = CompletionTier.next(completion_tier)
 
-        s += f"Results:\n" \
-             f" - level-ups completed: {self.level_ups_completed:,}\n" \
+        s += f"Level-ups:\n" \
+             f" - goal: " + ("none" if self.level_ups_goal is None else f"{self.level_ups_goal:,}") + "\n" \
+             f" - completed: {self.level_ups_completed:,}\n" \
+
+        s += f"Tier and gems:\n" \
              f" - tier completed: {completion_tier}\n" \
              f" - total gems: {CompletionTier.aggregate_to(completion_tier)[1]:,}\n" \
              f" - next tier: {next_tier}\n" \
@@ -162,10 +168,27 @@ class HighGrowthCalculation:
         level_ups = steps.level_up_count()
         self.level_ups_completed += level_ups
 
+    def calculate(self) -> HighGrowthCalculation:
+        while self.can_level_up() and not self.satisfied_level_ups_goal():
+            hero, steps = self.strategy.process_next(self.gold_remaining)
+            self.add_steps(hero, steps)
+
+        if not self.satisfied_level_ups_goal():
+            raise RuntimeError(f"Not possible to reach {self.level_ups_goal} level ups with infinite gold; it is only"
+                               f"possible to make {self.level_ups_completed} with the constraints provided.")
+
+        return self
+
+    def can_level_up(self) -> bool:
+        return self.strategy.has_next(self.gold_remaining)
+
+    def satisfied_level_ups_goal(self) -> bool:
+        return self.level_ups_goal is None or self.level_ups_completed >= self.level_ups_goal
+
     @staticmethod
-    def from_strategy(strategy: HighGrowthStrategy, gold_cap: Optional[int]) -> HighGrowthCalculation:
-        calc = HighGrowthCalculation(strategy, gold_cap)
-        while strategy.has_next(calc.gold_remaining):
-            hero, steps = strategy.process_next(calc.gold_remaining)
-            calc.add_steps(hero, steps)
-        return calc
+    def for_level_ups(strategy: HighGrowthStrategy, level_ups_goal: int) -> HighGrowthCalculation:
+        return HighGrowthCalculation(strategy=strategy, level_ups_goal=level_ups_goal).calculate()
+
+    @staticmethod
+    def with_gold_cap(strategy: HighGrowthStrategy, gold_cap: Optional[int]) -> HighGrowthCalculation:
+        return HighGrowthCalculation(strategy=strategy, gold_cap=gold_cap).calculate()

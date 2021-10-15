@@ -50,5 +50,8 @@ def test_next():
 # Discount
 # ----------------------------------------------------------------------------------------------------------------------
 
-def test_both():
-    assert Discount.both(Discount.NIGHTMARE, Discount.CRISIS) == 0.33  # 0.3276 rounded to 2 decimal places
+def test_combine():
+    assert Discount.combine() == 0.00
+    assert Discount.combine(Discount.NIGHTMARE) == 0.20
+    assert Discount.combine(Discount.NIGHTMARE, Discount.VIP8) == 0.30  # 0.296 rounded
+    assert Discount.combine(Discount.NIGHTMARE, Discount.VIP8, Discount.CRISIS) == 0.42  # 0.4227 rounded
