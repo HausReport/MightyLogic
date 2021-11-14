@@ -40,7 +40,7 @@ def pretty_format(thing: Any, indent: int = 0):
 
 
 collection = Collection.from_squad_export_file(
-    Path("tests/HighGrowth/2021-10-15-0309-Stalguard_squad_export.txt"),
+    Path("tests/HighGrowth/2021-10-17-2138_Bobo_squad_export.txt"),
     HeroDirectory.default()
 )
 
@@ -118,7 +118,7 @@ strategy = MinimizeGold(
     collection=collection,
 
     # Bobo:
-    # exclude=exactly(bobo_farming) + (
+    exclude=exactly(bobo_farming),  #+ (
     #         (
     #                 all_evolutions_to(bobo_squad) +
     #                 all_evolutions_to(bobo_farming) +
@@ -128,7 +128,7 @@ strategy = MinimizeGold(
     # minimize=all_evolutions_to(bobo_squad) +
     #          all_evolutions_to(bobo_farming) +
     #          all_evolutions_to(bobo_to_farm, inclusive=True),
-    # never_reborn=exactly({"charon"}),
+    never_reborn=exactly({"charon"}),
 
     # Gravy:
     # none
@@ -139,6 +139,10 @@ strategy = MinimizeGold(
     # MikeLouie:
     # none
 
+    # Minato:
+    # exclude=exactly({"draggara", "yorik"}),
+    # never_reborn=exactly({"grace", "charon"}),
+
     # NotAdam:
     # exclude=all_evolutions_to(not_adam_farming, inclusive=True),
 
@@ -146,24 +150,29 @@ strategy = MinimizeGold(
     # exclude=all_evolutions_to(seph_farming, inclusive=True),
     # never_reborn=none(),
 
-    # SirBrychee
+    # SirBrychee:
     # exclude=exactly({"grace"}),
     # never_reborn=has_rarity(Rarity.LEGENDARY),  # + has_rarity(Rarity.EPIC),
 
-    # Stalguard
-    exclude=all_evolutions_to({"dominus", "mosura"}, inclusive=True) + all_evolutions_to({"grace"}),
+    # SoulD3aD:
+    # none
 
-    gold_discount=Discount.combine(Discount.NIGHT_FALL),
+    # Stalguard:
+    # exclude=all_evolutions_to({"dominus", "mosura"}, inclusive=True) + all_evolutions_to({"grace"}),
+
+    gold_discount=Discount.combine(Discount.NIGHTMARE, Discount.VIP8, Discount.CRISIS),
 )
 
 # calc = HighGrowthCalculation.with_gold_cap(
 #     strategy=strategy,
-#     gold_cap=1_000_000
+#     gold_cap=1_000_000,
+#     level_ups_already_completed=CompletionTier.aggregate_to(CompletionTier.TIER_4)[0]
 # )
 
 calc = HighGrowthCalculation.for_level_ups(
     strategy=strategy,
-    level_ups_goal=CompletionTier.aggregate_to(CompletionTier.TIER_11)[0]
+    level_ups_already_completed=CompletionTier.aggregate_to(CompletionTier.TIER_9)[0],
+    level_ups_goal=CompletionTier.aggregate_to(CompletionTier.TIER_10)[0]
 )
 
 logger.info(calc)

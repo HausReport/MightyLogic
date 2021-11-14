@@ -111,16 +111,24 @@ class HighGrowthCalculation:
     gold_remaining: Optional[int]
     gold_discount: float
     gold_required: int = 0
+    level_ups_already_completed: Optional[int]
+    level_ups_completed: int
     level_ups_goal: Optional[int]
-    level_ups_completed: int = 0
     steps_by_hero: Dict[Hero, LevelingSteps] = dict()
 
-    def __init__(self, strategy: HighGrowthStrategy, gold_cap: Optional[int] = None,
-                 level_ups_goal: Optional[int] = None):
+    def __init__(
+            self,
+            strategy: HighGrowthStrategy,
+            gold_cap: Optional[int] = None,
+            level_ups_already_completed: Optional[int] = None,
+            level_ups_goal: Optional[int] = None
+    ):
         self.strategy = strategy
         self.gold_cap = gold_cap
         self.gold_remaining = gold_cap
         self.gold_discount = strategy.gold_discount
+        self.level_ups_already_completed = level_ups_already_completed
+        self.level_ups_completed = level_ups_already_completed if level_ups_already_completed else 0
         self.level_ups_goal = level_ups_goal
 
     def __str__(self):
@@ -134,10 +142,12 @@ class HighGrowthCalculation:
 
         completion_tier, level_ups_remaining = CompletionTier.for_level_ups(self.level_ups_completed)
         next_tier = CompletionTier.next(completion_tier)
+        new_level_ups = self.level_ups_completed - (self.level_ups_already_completed if self.level_ups_already_completed else 0)
 
         s += f"Level-ups:\n" \
              f" - goal: " + ("none" if self.level_ups_goal is None else f"{self.level_ups_goal:,}") + "\n" \
-             f" - completed: {self.level_ups_completed:,}\n" \
+             f" - completed before: " + ("none" if self.level_ups_already_completed is None else f"{self.level_ups_already_completed:,}") + "\n" \
+             f" - completed total: {self.level_ups_completed:,} (+{new_level_ups:,})\n" \
 
         s += f"Tier and gems:\n" \
              f" - tier completed: {'none' if completion_tier is None else completion_tier}\n" \
@@ -192,9 +202,25 @@ class HighGrowthCalculation:
         return not self.has_level_ups_goal() or not self.satisfied_level_ups_goal()
 
     @staticmethod
-    def for_level_ups(strategy: HighGrowthStrategy, level_ups_goal: int) -> HighGrowthCalculation:
-        return HighGrowthCalculation(strategy=strategy, level_ups_goal=level_ups_goal).calculate()
+    def for_level_ups(
+            strategy: HighGrowthStrategy,
+            level_ups_goal: int,
+            level_ups_already_completed: Optional[int] = None
+    ) -> HighGrowthCalculation:
+        return HighGrowthCalculation(
+            strategy=strategy,
+            level_ups_already_completed=level_ups_already_completed,
+            level_ups_goal=level_ups_goal
+        ).calculate()
 
     @staticmethod
-    def with_gold_cap(strategy: HighGrowthStrategy, gold_cap: Optional[int]) -> HighGrowthCalculation:
-        return HighGrowthCalculation(strategy=strategy, gold_cap=gold_cap).calculate()
+    def with_gold_cap(
+            strategy: HighGrowthStrategy,
+            gold_cap: Optional[int],
+            level_ups_already_completed: Optional[int]
+    ) -> HighGrowthCalculation:
+        return HighGrowthCalculation(
+            strategy=strategy,
+            gold_cap=gold_cap,
+            level_ups_already_completed=level_ups_already_completed
+        ).calculate()

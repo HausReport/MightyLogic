@@ -97,7 +97,7 @@ class OwnedHero:
     def leveling_steps_to(self, target_level: Level) -> LevelingSteps:
         return self.hero.leveling_steps(self.level, target_level)
 
-    def level_up(self, with_gold: Optional[int], gold_discount: Optional[float]) -> LevelingSteps:
+    def level_up(self, with_gold: Optional[int] = None, gold_discount: Optional[float] = None) -> LevelingSteps:
         self.can_level_up(with_gold=with_gold, gold_discount=gold_discount, require=True)
 
         new_level = self.__next_level

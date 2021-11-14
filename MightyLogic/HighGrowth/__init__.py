@@ -5,7 +5,7 @@ class Discount:
     NONE: float = 0
     CRISIS: float = 0.18
     NIGHTMARE: float = 0.20
-    NIGHT_FALL: float = 0.14
+    NIGHT_FALL: float = 0.16
     NIGHT_MOON: float = 0.0
     NIGHT_TERROR: float = 0.16
     VIP8: float = 0.12

@@ -371,3 +371,6 @@ id,name,rarity,alignment,gender,shape,evolves_to
 371,Mosura Wind Breath,Legendary,Nature,Female,Melee,[]
 372,Imago,Epic,Nature,Female,Melee,[371]
 373,Moth,Rare,Nature,Female,Melee,[372]
+374,Gremory Night Child,Legendary,Chaos,Female,Ranged,[]
+375,Caster of Shadows,Epic,Chaos,Female,Ranged,[374]
+376,Warlock,Rare,Chaos,Female,Ranged,[375]
