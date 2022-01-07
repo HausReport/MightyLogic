@@ -8,10 +8,10 @@ from typing import Dict, Set, FrozenSet, Any, Callable, List, Iterable, Optional
 import pandas
 from pandas._typing import FrameOrSeries
 
-from Heroes import create_secondary_index, per_group, group_by, deserialize_lines
-from Heroes.Hero import Rarity, Hero
-from Heroes.HeroDirectory import HeroDirectory
-from Heroes.OwnedHero import OwnedHero
+from MightyLogic.Heroes import create_secondary_index, deserialize_lines
+from MightyLogic.Heroes.Hero import Rarity, Hero
+from MightyLogic.Heroes.HeroDirectory import HeroDirectory
+from MightyLogic.Heroes.OwnedHero import OwnedHero
 
 
 def stringify_heroes(heroes: Iterable[Hero]) -> str:

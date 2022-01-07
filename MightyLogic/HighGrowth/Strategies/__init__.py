@@ -2,9 +2,9 @@ from dataclasses import dataclass
 from typing import Optional
 from typing import Tuple
 
-from Heroes.Collection import Collection, HeroSelector
-from Heroes.Hero import LevelingSteps
-from Heroes.OwnedHero import OwnedHero
+from MightyLogic.Heroes.Collection import Collection, HeroSelector
+from MightyLogic.Heroes.Hero import LevelingSteps
+from MightyLogic.Heroes.OwnedHero import OwnedHero
 
 
 @dataclass

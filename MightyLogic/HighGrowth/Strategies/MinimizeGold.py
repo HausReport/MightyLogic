@@ -1,10 +1,10 @@
 from typing import Tuple, Optional
 
-from Heroes.Collection import Collection, HeroSelector
-from Heroes.Hero import LevelingSteps, Rarity
-from Heroes.OwnedHero import OwnedHero
-from HighGrowth.IndexedMinHeap import IndexedMinHeap
-from HighGrowth.Strategies import HighGrowthStrategy
+from MightyLogic.Heroes.Collection import Collection, HeroSelector
+from MightyLogic.Heroes.Hero import LevelingSteps, Rarity
+from MightyLogic.Heroes.OwnedHero import OwnedHero
+from MightyLogic.HighGrowth.IndexedMinHeap import IndexedMinHeap
+from MightyLogic.HighGrowth.Strategies import HighGrowthStrategy
 
 
 class MinimizeGold(HighGrowthStrategy):

@@ -5,9 +5,8 @@ import re
 from typing import Dict, Any
 from typing import Tuple, Optional
 
-from Heroes import Hero
-from Heroes.Hero import LevelingCost, Level, LevelingSteps
-from Heroes.HeroDirectory import HeroDirectory
+from MightyLogic.Heroes.Hero import Hero, Level, LevelingCost, LevelingSteps
+from MightyLogic.Heroes.HeroDirectory import HeroDirectory
 
 
 class OwnedHero:

@@ -1,6 +1,6 @@
 import pytest
 
-from HighGrowth import Discount
+from MightyLogic.HighGrowth import Discount
 from MightyLogic.HighGrowth.Calculator import CompletionTier
 
 # ======================================================================================================================

@@ -3,9 +3,9 @@ from __future__ import annotations
 from enum import unique, Enum
 from typing import Dict, Optional, Tuple
 
-from Heroes.Hero import LevelingSteps, Hero
-from Heroes.OwnedHero import OwnedHero
-from HighGrowth.Strategies import HighGrowthStrategy
+from MightyLogic.Heroes.Hero import LevelingSteps, Hero
+from MightyLogic.Heroes.OwnedHero import OwnedHero
+from MightyLogic.HighGrowth.Strategies import HighGrowthStrategy
 
 
 @unique
@@ -216,8 +216,8 @@ class HighGrowthCalculation:
     @staticmethod
     def with_gold_cap(
             strategy: HighGrowthStrategy,
-            gold_cap: Optional[int],
-            level_ups_already_completed: Optional[int]
+            gold_cap: Optional[int] = None,
+            level_ups_already_completed: Optional[int] = None
     ) -> HighGrowthCalculation:
         return HighGrowthCalculation(
             strategy=strategy,

@@ -32,7 +32,7 @@ def reborn_and_level(owned_heroes: Iterable[OwnedHero]):
 
 
 collection = Collection.from_squad_export_file(
-    Path("tests/HighGrowth/2021-10-29-1945_Bobo_squad_export.txt"),
+    Path("tests/HighGrowth/2021-11-29-1752_Souldead_squad_export.txt"),
     HeroDirectory.default()
 )
 

@@ -3,8 +3,8 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from Heroes.Hero import Rarity
 from MightyLogic.Heroes.Collection import Collection, HeroSelector
+from MightyLogic.Heroes.Hero import Rarity
 from MightyLogic.Heroes.HeroDirectory import HeroDirectory
 from MightyLogic.HighGrowth import Discount
 from MightyLogic.HighGrowth.Calculator import HighGrowthCalculation, CompletionTier
@@ -39,67 +39,72 @@ def pretty_format(thing: Any, indent: int = 0):
     return formatted
 
 
-collection = Collection.from_squad_export_file(
-    Path("tests/HighGrowth/2021-10-17-2138_Bobo_squad_export.txt"),
-    HeroDirectory.default()
-)
+file = Path("tests/HighGrowth/2022-01-07-0505_SirBrychee_squad_export.txt")
+
+logger.info(f"Squad file: {file}")
+
+logger.info("-" * 120)
+
+collection = Collection.from_squad_export_file(file, HeroDirectory.default())
 
 logger.info(f"Your heroes (before): {pretty_format(collection.all_owned_heroes())}")
 logger.info(f"Summary:\n{collection.summarize()}")
 
 logger.info("-" * 120)
 
-bobo_squad = {  # minimize evolutions to these heroes
+bobo_squad = {  # level/reborn these as much as possible | exclude their evolutions
     # melee
     "charon",
     "groot",
     "shaa",
+    "mosura",
 
     # ranged
     "blair",
     "eostre",
     "grace",
     "strik",
-    "yuri",
 }
-bobo_to_farm = {  # minimize these heroes + their evolutions
+bobo_to_farm = {  # level these heroes but never reborn them | exclude their evolutions
     # melee
-    "arioch",  # 15R2
-    "chuba",  # 12R2
-    "shao lin",  # 15R2
+    "diana",  # 21/3
+    "flap",  # 18/3
+    "freddy",  # 6/0
+    "ghosta",  # 6/0
+    "goliath",  # 8/0
+    "shao lin",  # 16/1
+    "sheer",  # 6/0
 
     # ranged
-    "alex",  # 14R2
-    "aphro",  # 14R2
-    "melia",  # 6R2
-    "mina",  # 11R2
+    "gremory",  # 19/3
+    "melia",  # 9/2
+    "mizu",  # 6/0
+    "necro",  # 6/1
+    "mina",  # 16/2
+    "yorik",  # 6/0
+    "yuri",  # 16/3
 }
-bobo_farming = {  # exclude these heroes + minimize evolutions to them
+bobo_farming = {  # exclude these heroes | exclude their evolutions
     # melee
-    "angelia",  # 1R2
-    "dead lord",  # locked
-    "diana",  # 1R0
+    "angelia",  # 1/2
+    "arthur",  # 1/1
+    "chuba",  # 1/3
+    "d'arc",  # 1/0
+    "dead lord",  # 1/2
     "dominus",  # locked
-    "flap",  # 1R0
-    "fury",  # 1R2
-    "legion",  # 1R2
-    "mi",  # 1R2
-    "mosura",  # 1R1
-    "scrap",  # locked
-    "super mary",  # locked
+    "fury",  # 1/2
+    "legion",  # 1/2
+    "mi",  # 1/3
+    "scrap",  # 1/1
 
     # ranged
-    "agony",  # 1R2
-    "draggara",  # 1R2
-    "flos",  # 1R1
-    "frost",  # 1R0
-    "ghosta",  # locked
-    "justia",  # locked
-    "necro",  # 2R0
-    "red woman",  # 1R2
-    "trix",  # 1R2
+    "agony",  # 1/2
+    "aphro",  # 1/3
+    "frost",  # 1/1
+    "justia",  # 1/0
+    "trix",  # 1/2
     "vixen",  # locked
-    "yorik",  # locked
+    "villano",  # 1/1
 }
 
 not_adam_farming = {  # exclude these heroes + all evolutions to them
@@ -117,18 +122,12 @@ seph_farming = {
 strategy = MinimizeGold(
     collection=collection,
 
+    # BabyBobo:
+    # none
+
     # Bobo:
-    exclude=exactly(bobo_farming),  #+ (
-    #         (
-    #                 all_evolutions_to(bobo_squad) +
-    #                 all_evolutions_to(bobo_farming) +
-    #                 all_evolutions_to(bobo_to_farm)
-    #         ) & has_rarity(Rarity.EPIC)
-    # ),
-    # minimize=all_evolutions_to(bobo_squad) +
-    #          all_evolutions_to(bobo_farming) +
-    #          all_evolutions_to(bobo_to_farm, inclusive=True),
-    never_reborn=exactly({"charon"}),
+    # exclude=all_evolutions_to(bobo_squad) + all_evolutions_to(bobo_farming, inclusive=True) + all_evolutions_to(bobo_to_farm),
+    # never_reborn=exactly({"charon"}) + exactly(bobo_to_farm),
 
     # Gravy:
     # none
@@ -151,8 +150,8 @@ strategy = MinimizeGold(
     # never_reborn=none(),
 
     # SirBrychee:
-    # exclude=exactly({"grace"}),
-    # never_reborn=has_rarity(Rarity.LEGENDARY),  # + has_rarity(Rarity.EPIC),
+    exclude=has_rarity(Rarity.LEGENDARY),
+    never_reborn=none(),  # + has_rarity(Rarity.EPIC),
 
     # SoulD3aD:
     # none
@@ -160,20 +159,20 @@ strategy = MinimizeGold(
     # Stalguard:
     # exclude=all_evolutions_to({"dominus", "mosura"}, inclusive=True) + all_evolutions_to({"grace"}),
 
-    gold_discount=Discount.combine(Discount.NIGHTMARE, Discount.VIP8, Discount.CRISIS),
+    gold_discount=Discount.combine(Discount.NIGHTMARE),  # , Discount.VIP8),
 )
 
-# calc = HighGrowthCalculation.with_gold_cap(
-#     strategy=strategy,
-#     gold_cap=1_000_000,
-#     level_ups_already_completed=CompletionTier.aggregate_to(CompletionTier.TIER_4)[0]
-# )
-
-calc = HighGrowthCalculation.for_level_ups(
+calc = HighGrowthCalculation.with_gold_cap(
     strategy=strategy,
-    level_ups_already_completed=CompletionTier.aggregate_to(CompletionTier.TIER_9)[0],
-    level_ups_goal=CompletionTier.aggregate_to(CompletionTier.TIER_10)[0]
+    gold_cap=3_000_000,
+    # level_ups_already_completed=CompletionTier.aggregate_to(CompletionTier.TIER_6)[0] + 21
 )
+
+# calc = HighGrowthCalculation.for_level_ups(
+#      strategy=strategy,
+#      level_ups_already_completed=CompletionTier.aggregate_to(CompletionTier.TIER_6)[0] + 21,
+#      level_ups_goal=CompletionTier.aggregate_to(CompletionTier.TIER_7)[0]
+# )
 
 logger.info(calc)
 
