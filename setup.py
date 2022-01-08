@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='MightyLogic',
-    version='0.2',
+    version='0.21',
     packages=[
         'MightyLogic',
         'MightyLogic.Heroes',
