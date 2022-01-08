@@ -7,6 +7,7 @@ setup(
         'MightyLogic',
         'MightyLogic.Heroes',
         'MightyLogic.HighGrowth',
+        'MightyLogic.HighGrowth.Erlaed',
         'MightyLogic.HighGrowth.Strategies',
         'MightyLogic.Player',
         'MightyLogic.Rewards',
