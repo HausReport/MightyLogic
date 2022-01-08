@@ -8,9 +8,9 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Dict, Set, FrozenSet, Optional, Any
 
-import Heroes
-from Heroes import create_secondary_indices, deserialize_lines
-from Heroes.Hero import Hero
+from MightyLogic import Heroes
+from MightyLogic.Heroes import create_secondary_indices, deserialize_lines
+from MightyLogic.Heroes.Hero import Hero
 
 
 class HeroDirectory:

@@ -5,10 +5,13 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Dict, Set, FrozenSet, Any, Callable, List, Iterable, Optional
 
-from Heroes import create_secondary_index, per_group, group_by, stats_for, deserialize_lines
-from Heroes.Hero import Rarity, Hero
-from Heroes.HeroDirectory import HeroDirectory
-from Heroes.OwnedHero import OwnedHero
+import pandas
+from pandas._typing import FrameOrSeries
+
+from MightyLogic.Heroes import create_secondary_index, deserialize_lines
+from MightyLogic.Heroes.Hero import Rarity, Hero
+from MightyLogic.Heroes.HeroDirectory import HeroDirectory
+from MightyLogic.Heroes.OwnedHero import OwnedHero
 
 
 def stringify_heroes(heroes: Iterable[Hero]) -> str:
@@ -57,13 +60,16 @@ class Collection:
     def find_by_num(self, num: int) -> OwnedHero:
         return self.__by_hero(self.hero_dir.find_by_num(num))
 
-    def summarize(self) -> Dict[str, Any]:
-        by_rarity: Dict[Rarity, Set[OwnedHero]] = group_by(self.all_owned_heroes(), lambda oh: oh.hero.rarity,
-                                                           include_all=True)
-        return {
-            "count_by_rarity": per_group(by_rarity, lambda heroes: len(heroes)),
-            "level_by_rarity": per_group(by_rarity, lambda heroes: stats_for(list(oh.level for oh in heroes))),
-        }
+    def summarize(self) -> FrameOrSeries:
+        data_frame = self.to_data_frame()
+        # TODO: def mymean(x):
+        #     return x.mean()
+        #  data_frame["A"].agg(["sum", mymean])
+        return data_frame.groupby("rarity")["level"].agg(["count", "min", "max"])
+
+    def to_data_frame(self) -> pandas.DataFrame:
+        records = [oh.to_data_frame_rec() for oh in self.owned_heroes]
+        return pandas.DataFrame.from_records(data=records, index="num")
 
     @staticmethod
     def __from_file(path_to_file: Path, hero_dir: HeroDirectory, deserializer: Callable[[str], OwnedHero])\

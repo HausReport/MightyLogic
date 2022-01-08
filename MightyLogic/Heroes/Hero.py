@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from copy import deepcopy
+from copy import deepcopy, copy
 from dataclasses import dataclass, field, InitVar
 from enum import Enum, auto, unique
 from functools import total_ordering
@@ -11,7 +11,7 @@ from typing import Any, Dict, List, Set, Tuple, Optional
 class LevelingCost:
     souls: int
     gold: int
-    discount: Optional[int] = field(default=None, compare=False)
+    discount: Optional[float] = field(default=None, compare=False)
     allow_zero: InitVar[bool] = False
 
     def __post_init__(self, allow_zero: bool = False):
@@ -24,12 +24,12 @@ class LevelingCost:
     def __str__(self):
         return f"{self.souls:,} souls + {self.gold:,} gold"
 
-    def with_discount(self, gold_discount: Optional[int] = None) -> LevelingCost:
+    def with_discount(self, gold_discount: Optional[float] = None) -> LevelingCost:
         if gold_discount is None:
             gold_after_discount = self.gold
             combined_discount = self.discount
         else:
-            gold_after_discount = round(float(self.gold) * ((100 - gold_discount) / 100))
+            gold_after_discount = round(float(self.gold) * (1.0 - gold_discount))
             combined_discount = gold_discount + (0 if self.discount is None else self.discount)
         return LevelingCost(souls=self.souls, gold=gold_after_discount, discount=combined_discount, allow_zero=True)
 
@@ -93,7 +93,7 @@ class LevelingSteps:
     def __add__(self, other: LevelingSteps) -> LevelingSteps:
         return LevelingSteps(self.steps + other.steps)
 
-    def aggregate_cost(self, gold_discount: Optional[int] = None) -> LevelingCost:
+    def aggregate_cost(self, gold_discount: Optional[float] = None) -> LevelingCost:
         souls = sum(cost.souls for __, cost in self.steps)
         gold = sum(cost.gold for __, cost in self.steps)
         return LevelingCost(souls, gold, allow_zero=True).with_discount(gold_discount)
@@ -105,7 +105,7 @@ class LevelingSteps:
     def level_up_count(self) -> int:
         return len(list(level for level, __ in self.steps if level.level_count > 1))
 
-    def with_discount(self, gold_discount: Optional[int] = None) -> LevelingSteps:
+    def with_discount(self, gold_discount: Optional[float] = None) -> LevelingSteps:
         return LevelingSteps([
             (level, cost.with_discount(gold_discount))
             for level, cost
@@ -251,7 +251,7 @@ class Rarity(Enum):
         self.reborn_milestones = reborn_milestones
 
     def __eq__(self, other: Rarity) -> bool:
-        return self.name == other.name
+        return other and self.name == other.name
 
     def __hash__(self) -> int:
         return self.leveling_costs[0].gold
@@ -466,8 +466,15 @@ class Hero:
     def to_csv(self) -> Dict[str, Any]:
         return self.to_rec()
 
+    def to_data_frame_rec(self) -> Dict[str, Any]:
+        d = self.to_dict()
+        for k in ["evolves_from", "evolves_to", "soulbinds"]:
+            if k in d.keys():
+                del d[k]
+        return d
+
     def to_dict(self) -> Dict[str, Any]:
-        return deepcopy(self.__dict__)
+        return copy(self.__dict__)
 
     # TODO: Move into Codec.Rec
     def to_rec(self) -> Dict[str, Any]:

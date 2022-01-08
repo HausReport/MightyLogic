@@ -5,9 +5,8 @@ import re
 from typing import Dict, Any
 from typing import Tuple, Optional
 
-from Heroes import Hero
-from Heroes.Hero import LevelingCost, Level, LevelingSteps
-from Heroes.HeroDirectory import HeroDirectory
+from MightyLogic.Heroes.Hero import Hero, Level, LevelingCost, LevelingSteps
+from MightyLogic.Heroes.HeroDirectory import HeroDirectory
 
 
 class OwnedHero:
@@ -64,8 +63,8 @@ class OwnedHero:
         )
         return steps_from_milestone.aggregate_cost().souls
 
-    def can_level_up(self, with_gold: Optional[int] = None, gold_discount: Optional[int] = None, require: bool = False)\
-            -> bool:
+    def can_level_up(self, with_gold: Optional[int] = None, gold_discount: Optional[float] = None,
+                     require: bool = False) -> bool:
         aggregate_cost = self.__steps_to_next_level.aggregate_cost(gold_discount)
         can_level_up = self.souls >= aggregate_cost.souls and (with_gold is None or with_gold >= aggregate_cost.gold)
         if require and not can_level_up:
@@ -74,7 +73,7 @@ class OwnedHero:
                                f" required: {aggregate_cost}")
         return can_level_up
 
-    def can_level_up_after_reborn(self, with_gold: Optional[int] = None, gold_discount: Optional[int] = None) -> bool:
+    def can_level_up_after_reborn(self, with_gold: Optional[int] = None, gold_discount: Optional[float] = None) -> bool:
         if self.can_reborn():
             return OwnedHero(self.hero, self.level.reborn(), self.souls).can_level_up(with_gold, gold_discount)
         else:
@@ -91,13 +90,13 @@ class OwnedHero:
     def completed_soulbinds(self):
         return None  # FIXME
 
-    def cost_to_next_level(self, gold_discount: Optional[int] = None) -> LevelingCost:
+    def cost_to_next_level(self, gold_discount: Optional[float] = None) -> LevelingCost:
         return self.__steps_to_next_level.aggregate_cost(gold_discount)
 
     def leveling_steps_to(self, target_level: Level) -> LevelingSteps:
         return self.hero.leveling_steps(self.level, target_level)
 
-    def level_up(self, with_gold: Optional[int], gold_discount: Optional[int]) -> LevelingSteps:
+    def level_up(self, with_gold: Optional[int] = None, gold_discount: Optional[float] = None) -> LevelingSteps:
         self.can_level_up(with_gold=with_gold, gold_discount=gold_discount, require=True)
 
         new_level = self.__next_level
@@ -120,8 +119,16 @@ class OwnedHero:
     def reborn_milestone(self) -> int:
         return self.hero.reborn_milestone(self.level)
 
+    def to_data_frame_rec(self) -> Dict[str, Any]:
+        d = self.hero.to_data_frame_rec()
+        d.update({
+            "level": self.level,
+            "souls": self.souls,
+        })
+        return d
+
     # TODO: Move into Codec.Rec
-    def to_rec(self):
+    def to_rec(self) -> str:
         return json.dumps({
             "id": self.hero.id,
             "level": self.level.level_count,
