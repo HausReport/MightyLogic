@@ -111,7 +111,7 @@ class Rarity(ABC):
         valG = df.loc[(df.Level == alev) & (df.Reborn == rb - 1), 'Cum Gold'].values[0]
         return (valS, valG)
 
-    def _has_reborn_1(df, rb=1, a=6, b=11, c=16, d=21, e=26):
+    def _has_reborn_1(self, df, rb=1, a=6, b=11, c=16, d=21, e=26):
         if rb == 1:
             return ((df['Level'] == a) & (df['Reborn'] == 0)).any()
         elif rb == 2:
