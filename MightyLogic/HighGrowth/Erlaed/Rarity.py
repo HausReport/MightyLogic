@@ -160,9 +160,9 @@ class Rarity(ABC):
         moves["Score"] = 10000 * (moves["Troop Gain"] / moves["Cum Gold"])
         return moves
 
-    def get_moves_by_name(self, all, name, avail_gold=-1):
-        if ((all['Name'] == name)).any():
-            loc = all.loc[all['Name'] == name]
+    def get_moves_by_name(self, collection_df, name, avail_gold=-1):
+        if ((collection_df['Name'] == name)).any():
+            loc = collection_df.loc[collection_df['Name'] == name]
             level = loc.Level.values[0]
             reborn = loc.Reborns.values[0]
             avail_souls = loc["Available Souls"].values[0]
