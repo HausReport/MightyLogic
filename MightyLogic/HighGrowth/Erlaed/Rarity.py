@@ -68,7 +68,7 @@ class Rarity(ABC):
             tmp = tmp[tmp['Cum Gold'] <= avail_gold]
         return tmp
 
-    def get_tmp_table(total_souls, avail_souls, avail_gold, rb):
+    def get_tmp_table(self, total_souls, avail_souls, avail_gold, rb):
         print("Hi")
         (cs, cg) = (0, 0)  # do rebate here
         tmp = leg.get_reborn_table(rb + 1).copy(deep=True)
