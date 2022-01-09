@@ -1,7 +1,7 @@
 from Rarity import Rarity
 
 
-class PurpleGold(Rarity):
+class WhiteBlue(Rarity):
     def la(self):
         return 1 + 1
 
