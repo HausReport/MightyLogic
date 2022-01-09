@@ -127,6 +127,14 @@ class OwnedHero:
         })
         return d
 
+    def to_dict(self) -> Dict[str, Any]:
+        d = self.hero.to_dict()
+        d.update(self.level.to_dict())
+        d.update({
+            "souls": self.souls,
+        })
+        return d
+
     # TODO: Move into Codec.Rec
     def to_rec(self) -> str:
         return json.dumps({
