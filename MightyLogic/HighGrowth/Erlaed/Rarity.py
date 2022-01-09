@@ -71,7 +71,7 @@ class Rarity(ABC):
     def get_tmp_table(self, total_souls, avail_souls, avail_gold, rb):
         print("Hi")
         (cs, cg) = (0, 0)  # do rebate here
-        tmp = leg.get_reborn_table(rb + 1).copy(deep=True)
+        tmp = self.get_reborn_table(rb + 1).copy(deep=True)
         tmp.loc[0, 'Gold'] = cg
         tmp.loc[0, 'Souls'] = -1 * (total_souls - avail_souls - sn(rb + 1))
 
