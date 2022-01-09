@@ -87,6 +87,20 @@ class Legendary(Rarity):
         elif rb == 5:
             return 27420 + 7820 + 2270 + 600 + 90
 
+    def reborn_level(rb=0):
+            if rb == 0:
+                return 0
+            elif rb == 1:
+                return 6
+            elif rb == 2:
+                return 11
+            elif rb == 3:
+                return 16
+            elif rb == 4:
+                return 21
+            elif rb == 5:
+                return 26
+
     def to_ordinal(self, reborn, level):
         ret = 0
         if reborn == 0:
