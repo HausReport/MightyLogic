@@ -64,3 +64,9 @@ class PurpleGold(Rarity):
             return level -1 + self.to_ordinal(3,21)
         elif reborn == 5:
             return level -1 + self.to_ordinal(4,26)
+
+    def get_reborn_1_point(self, df, rb=1):
+        return self._get_reborn_point(df, rb, 6, 11, 16, 21, 26)
+
+    def has_reborn_1(self, df, rb=1):
+        return self._has_reborn_1(df, rb, 6, 11, 16, 21, 26)
