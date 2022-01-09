@@ -18,6 +18,7 @@ MightyLogic/HighGrowth/Calculator.py
 MightyLogic/HighGrowth/IndexedMinHeap.py
 MightyLogic/HighGrowth/__init__.py
 MightyLogic/HighGrowth/Erlaed/Army.py
+MightyLogic/HighGrowth/Erlaed/Epic.py
 MightyLogic/HighGrowth/Erlaed/Flotsam.py
 MightyLogic/HighGrowth/Erlaed/Legendary.py
 MightyLogic/HighGrowth/Erlaed/PurpleGold.py
