@@ -9,10 +9,6 @@ class Rarity(ABC):
     gold_discount = guild_discount * vip_discount * crisis_discount  # .66 # with crisis + guild
 
     @abstractmethod
-    def sn(self, rb=0):
-        pass
-
-    @abstractmethod
     def get_r0_tab(self):
         pass
 
@@ -87,7 +83,7 @@ class Rarity(ABC):
         (cs, cg) = (0, 0)  # do rebate here
         tmp = self.get_reborn_table(rb + 1).copy(deep=True)
         tmp.loc[0, 'Gold'] = cg
-        tmp.loc[0, 'Souls'] = -1 * (total_souls - avail_souls - sn(rb + 1))
+        tmp.loc[0, 'Souls'] = -1 * (total_souls - avail_souls - self.sn(rb + 1))
 
         tmp['Cum Souls'] = tmp.Souls.cumsum()
         tmp['Cum Gold'] = tmp.Gold.cumsum()
