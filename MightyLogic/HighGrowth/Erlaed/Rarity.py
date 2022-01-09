@@ -50,12 +50,6 @@ class Rarity(ABC):
     def reborn_level(self, rb=0):
         pass
 
-
-
-    @abstractmethod
-    def to_ordinal2(self, reborn, level):
-        pass
-
     def level_dist(self, r0, l0, r1, l1):
         if r0 == r1:
             return l1 - l0
