@@ -1,10 +1,10 @@
 import pandas
 import pandas as pd
 
-from PurpleGold import PurpleGold
+import PurpleGold
 
 
-class Legendary(PurpleGold):
+class Legendary(PurpleGold.PurpleGold):
 
     def get_r0_tab(self) -> pandas.DataFrame:
         r0_tab = pd.DataFrame([[1, 350, 100, 0, 0],
