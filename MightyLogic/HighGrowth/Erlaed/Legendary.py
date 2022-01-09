@@ -1,10 +1,9 @@
 import pandas
 import pandas as pd
 
-import PurpleGold
+from MightyLogic.HighGrowth.Erlaed.PurpleGold import PurpleGold
 
-
-class Legendary(PurpleGold.PurpleGold):
+class Legendary(PurpleGold):
 
     def get_r0_tab(self) -> pandas.DataFrame:
         r0_tab = pd.DataFrame([[1, 350, 100, 0, 0],
