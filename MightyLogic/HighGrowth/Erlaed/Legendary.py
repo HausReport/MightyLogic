@@ -87,7 +87,7 @@ class Legendary(Rarity):
         elif rb == 5:
             return 27420 + 7820 + 2270 + 600 + 90
 
-    def reborn_level(rb=0):
+    def reborn_level(self, rb=0):
             if rb == 0:
                 return 0
             elif rb == 1:
