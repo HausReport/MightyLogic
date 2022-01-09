@@ -1,6 +1,9 @@
 from abc import ABC, abstractmethod
 
 
+
+
+
 class Rarity(ABC):
     guild_discount = .8
     vip_discount = .88
