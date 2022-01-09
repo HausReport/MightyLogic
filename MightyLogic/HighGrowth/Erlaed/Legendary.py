@@ -1,3 +1,4 @@
+import pandas
 import pandas as pd
 
 from MightyLogic.HighGrowth.Erlaed.Rarity import Rarity
@@ -8,7 +9,7 @@ class Legendary(Rarity):
     def la(self):
         return 1 + 1
 
-    def get_r0_tab(self):
+    def get_r0_tab(self) -> pandas.DataFrame:
         r0_tab = pd.DataFrame([[1, 350, 100, 0, 0],
                                [2, 390, 118, 5, 600],
                                [3, 430, 136, 10, 900],
