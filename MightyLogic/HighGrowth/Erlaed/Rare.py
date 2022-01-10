@@ -48,38 +48,38 @@ class Rare(WhiteBlue):
         elif reborn == 1:
             return 150
         elif reborn == 2:
-            return 200 + 150
+            return 250 + 150
         elif reborn == 3:
-            return 350 + 200 + 150
+            return 400 + 250 + 150
         elif reborn == 4:
-            return 600 + 350 + 200 + 150
+            return 700 + 400 + 250 + 150
         elif reborn == 5:
-            return 1000+ 600 + 350 + 200 + 150
+            return -1000
 
     def getTroopBonus(self, reborn):
         if reborn == 0:
             return 0
         elif reborn == 1:
-            return 60
+            return 42
         elif reborn == 2:
-            return 145 + 60
+            return 88 + 42
         elif reborn == 3:
-            return 360 + 145 + 60
+            return 168 + 88 + 42
         elif reborn == 4:
-            return 750 + 360 + 145 + 60
+            return 320 + 168 + 88 + 42
         elif reborn == 5:
-            return 1350 + 750 + 360 + 145 + 60
+            return -1000
 
     def sn(self, rb=0):
         if rb == 0:
             return 0
         elif rb == 1:
-            return 230
+            return 1530
         elif rb == 2:
-            return 230 + 950
+            return 4750 + 1530
         elif rb == 3:
-            return 230 + 950 + 3070
+            return 17150 + 4750 + 1530
         elif rb == 4:
-            return 230 + 950 + 3070 + 10520
+            return 55150 + 17150 + 4750 + 1530
         elif rb == 5:
-            return 230 + 950 + 3070 + 10520 + 36820
+            return 99999999
