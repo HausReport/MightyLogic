@@ -1,5 +1,3 @@
-from Rarity import Rarity
-
 from MightyLogic.HighGrowth.Erlaed.Rarity import Rarity
 
 class WhiteBlue(Rarity):
