@@ -1,9 +1,9 @@
 import pandas
 import pandas as pd
 
-from MightyLogic.HighGrowth.Erlaed.PurpleGold import PurpleGold
+from MightyLogic.HighGrowth.Erlaed.WhiteBlue import WhiteBlue
 
-class Epic(PurpleGold):
+class Rare(WhiteBlue):
 
     def get_r0_tab(self) -> pandas.DataFrame:
         r0_tab_epic = pd.DataFrame([[1, 120, 25, 0, 0],
