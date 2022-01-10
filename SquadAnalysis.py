@@ -31,8 +31,11 @@ def reborn_and_level(owned_heroes: Iterable[OwnedHero]):
                 oh.level_up()
 
 
+inp_file = "tests/HighGrowth/2022-01-09-1016_Bobo_squad_export.txt"
+print(f"Loading collection from: {inp_file}...")
+
 collection = Collection.from_squad_export_file(
-    Path("tests/HighGrowth/2021-11-29-1752_Souldead_squad_export.txt"),
+    Path(inp_file),
     HeroDirectory.default()
 )
 
@@ -41,13 +44,18 @@ print(*collection.all_owned_heroes(), sep="\n")
 print()
 print(collection.summarize())
 
-header("Legendaries (before)")
-legs = sort_by_level_desc(oh for oh in collection.all_owned_heroes() if oh.hero.rarity == Rarity.LEGENDARY)
-print_by_level(legs)
+# header("Legendaries (before)")
+# legs = sort_by_level_desc(oh for oh in collection.all_owned_heroes() if oh.hero.rarity == Rarity.LEGENDARY)
+# print_by_level(legs)
+#
+# # TODO: evolve
+#
+# header("Legendaries (after)")
+# reborn_and_level(legs)
+# legs = sort_by_level_desc(legs)
+# print_by_level(legs)
 
-# TODO: evolve
-
-header("Legendaries (after)")
-reborn_and_level(legs)
-legs = sort_by_level_desc(legs)
-print_by_level(legs)
+header("Export")
+exp_file = inp_file.replace(".txt", ".csv")
+collection.to_csv_file(Path(exp_file))
+print(f"Exported collection to: {exp_file}...")

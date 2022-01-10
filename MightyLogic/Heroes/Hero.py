@@ -85,6 +85,9 @@ class Level:
     def reborn(self) -> Level:
         return Level(1, self.reborn_count + 1)
 
+    def to_dict(self) -> Dict[str, Any]:
+        return copy(self.__dict__)
+
 
 @dataclass
 class LevelingSteps:

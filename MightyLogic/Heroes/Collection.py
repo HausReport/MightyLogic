@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import csv
 import json
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -70,6 +71,27 @@ class Collection:
     def to_data_frame(self) -> pandas.DataFrame:
         records = [oh.to_data_frame_rec() for oh in self.owned_heroes]
         return pandas.DataFrame.from_records(data=records, index="num")
+
+    def to_csv_file(self, path_to_csv_file: Path) -> None:
+        with path_to_csv_file.open("w", newline="") as csv_file:
+            writer = csv.DictWriter(csv_file, fieldnames=[
+                "num",
+                "name",
+                "rarity",
+                "alignment",
+                "gender",
+                "shape",
+                "evolves_to",
+                "level_count",
+                "reborn_count",
+                "souls"
+            ])
+            writer.writeheader()
+            for oh in self.owned_heroes:
+                d = oh.to_dict()
+                del d["evolves_from"]
+                del d["soulbinds"]
+                writer.writerow(d)
 
     @staticmethod
     def __from_file(path_to_file: Path, hero_dir: HeroDirectory, deserializer: Callable[[str], OwnedHero])\
