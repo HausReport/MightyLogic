@@ -22,6 +22,7 @@ MightyLogic/HighGrowth/Erlaed/Epic.py
 MightyLogic/HighGrowth/Erlaed/Flotsam.py
 MightyLogic/HighGrowth/Erlaed/Legendary.py
 MightyLogic/HighGrowth/Erlaed/PurpleGold.py
+MightyLogic/HighGrowth/Erlaed/Rare.py
 MightyLogic/HighGrowth/Erlaed/Rarity.py
 MightyLogic/HighGrowth/Erlaed/WhiteBlue.py
 MightyLogic/HighGrowth/Erlaed/__init__.py
