@@ -24,3 +24,11 @@ class HighestGrowth():
 
     def unsetRarity(self, rarity):
         self.rarities[rarity] = False
+
+    def _format_output(self, ret):
+        ret = ret[['Name', 'Cur Reborn', 'Cur Level', 'Reborn', 'Level', 'LevelUps', 'Cum Gold', 'Troop Gain', 'Score']]
+        ret = ret.rename(columns={"Cum Gold": "Gold"})
+        ret["Total Gold"] = ret.Gold.cumsum()
+        ret["Total Troop Gain"] = ret['Troop Gain'].cumsum()
+        ret["Total LevelUps"] = ret['LevelUps'].cumsum()
+        return ret
