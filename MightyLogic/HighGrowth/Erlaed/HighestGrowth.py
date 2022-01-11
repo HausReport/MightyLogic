@@ -8,11 +8,11 @@ class HighestGrowth():
         self.forced = set()
         self.rarities = [True, True, True, True]
 
-    def lockHero(self, *heroes):
+    def lockHeroes(self, heroes):
         for hero in heroes:
             self.locked.add(hero)
 
-    def forceHero(self, *heroes):
+    def forceHeroes(self, heroes):
         for hero in heroes:
             self.forced.add(hero)
 
