@@ -2,12 +2,13 @@ from setuptools import setup
 
 setup(
     name='MightyLogic',
-    version='0.45',
+    version='0.46',
     packages=[
         'MightyLogic',
         'MightyLogic.Heroes',
         'MightyLogic.HighGrowth',
         'MightyLogic.HighGrowth.Erlaed',
+        'MightyLogic.HighGrowth.Erlaed.Strategy',
         'MightyLogic.HighGrowth.Strategies',
         'MightyLogic.Player',
         'MightyLogic.Rewards',

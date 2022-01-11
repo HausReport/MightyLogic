@@ -1,15 +1,18 @@
 from abc import ABC, abstractmethod
 
-
-
-
-
 class Rarity(ABC):
     guild_discount = .8
     vip_discount = .88
     crisis_discount = .82
     # gold_discount = .8
     gold_discount = guild_discount * vip_discount # * crisis_discount  # .66 # with crisis + guild
+    COMMON = 0
+    RARE = 1
+    EPIC = 2
+    LEGENDARY = 3
+
+    TROOP_EFFICIENCY = 0
+    GOLD_EFFICIENCY = 1
 
     @abstractmethod
     def get_r0_tab(self):
@@ -134,7 +137,7 @@ class Rarity(ABC):
     def get_reborn_1_point(self, df, rb=1):
         pass
 
-    def get_moves(self, level, reborn, avail_souls, total_souls=-1, avail_gold=-1):
+    def get_moves(self, level, reborn, avail_souls, total_souls=-1, avail_gold=-1, score_mode=TROOP_EFFICIENCY):
         (curMight, curTroops) = self.lookup(reborn, level)
         moves = self.fancy_level(level, reborn, avail_souls, total_souls, avail_gold)
         moves["Cur Level"] = level
@@ -157,17 +160,21 @@ class Rarity(ABC):
 
         # moves['LevelUps'] = moves.apply(lambda x: level_dist(reborn, level, x['Reborn'], x['Level']), axis=1) #(reborn, level, rb1, l1)
 
-        moves["Score"] = 10000 * (moves["Troop Gain"] / moves["Cum Gold"])
+        if score_mode== Rarity.GOLD_EFFICIENCY:
+            moves["Score"] = 10000 * (moves["LevelUps"] / moves["Cum Gold"])
+        else:
+            moves["Score"] = 10000 * (moves["Troop Gain"] / moves["Cum Gold"])
+
         return moves
 
-    def get_moves_by_name(self, collection_df, name, avail_gold=-1):
+    def get_moves_by_name(self, collection_df, name, avail_gold=-1, score_mode=TROOP_EFFICIENCY):
         if ((collection_df['Name'] == name)).any():
             loc = collection_df.loc[collection_df['Name'] == name]
             level = loc.Level.values[0]
             reborn = loc.Reborns.values[0]
             avail_souls = loc["Available Souls"].values[0]
             total_souls = loc["Total Souls"].values[0]
-            return self.get_moves(level, reborn, avail_souls, total_souls, avail_gold)
+            return self.get_moves(level, reborn, avail_souls, total_souls, avail_gold, score_mode=score_mode)
         else:
             return None
 
