@@ -85,7 +85,7 @@ class Rarity(ABC):
         return tmp
 
     def get_tmp_table(self, total_souls, avail_souls, avail_gold, rb):
-        print("Hi")
+        #print("Hi")
         (cs, cg) = (0, 0)  # do rebate here
         tmp = self.get_reborn_table(rb + 1).copy(deep=True)
         tmp.loc[0, 'Gold'] = cg
@@ -219,6 +219,6 @@ class Rarity(ABC):
 
     def get_most_efficient_move_by_name(self, df, name, avail_gold=-1, score_mode=TROOP_EFFICIENCY):
         bleh = self.get_moves_by_name(df, name, avail_gold, score_mode=score_mode)
-        bleh = bleh[ bleh.Score == bleh.Score.max()]
         bleh["Name"] = name
+        bleh = bleh[ bleh.Score == bleh.Score.max()]
         return bleh
