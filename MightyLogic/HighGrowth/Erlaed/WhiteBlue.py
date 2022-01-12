@@ -1,22 +1,23 @@
 from MightyLogic.HighGrowth.Erlaed.Rarity import Rarity
 
+
 class WhiteBlue(Rarity):
     def la(self):
         return 1 + 1
 
     def reborn_level(self, rb=0):
-            if rb == 0:
-                return 0
-            elif rb == 1:
-                return 11
-            elif rb == 2:
-                return 16
-            elif rb == 3:
-                return 21
-            elif rb == 4:
-                return 26
-            elif rb == 5:
-                return 999
+        if rb == 0:
+            return 0
+        elif rb == 1:
+            return 11
+        elif rb == 2:
+            return 16
+        elif rb == 3:
+            return 21
+        elif rb == 4:
+            return 26
+        elif rb == 5:
+            return 999
 
     def to_ordinal(self, reborn, level):
         if reborn == 0:

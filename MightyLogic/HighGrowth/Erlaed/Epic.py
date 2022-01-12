@@ -3,6 +3,7 @@ import pandas as pd
 
 from MightyLogic.HighGrowth.Erlaed.PurpleGold import PurpleGold
 
+
 class Epic(PurpleGold):
 
     def get_r0_tab(self) -> pandas.DataFrame:
@@ -54,7 +55,7 @@ class Epic(PurpleGold):
         elif reborn == 4:
             return 600 + 350 + 200 + 150
         elif reborn == 5:
-            return 1000+ 600 + 350 + 200 + 150
+            return 1000 + 600 + 350 + 200 + 150
 
     def getTroopBonus(self, reborn):
         if reborn == 0:

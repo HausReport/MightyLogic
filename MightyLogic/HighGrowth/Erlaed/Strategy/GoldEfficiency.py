@@ -1,5 +1,6 @@
-from MightyLogic.HighGrowth.Erlaed.Strategy.Strategy import Strategy
 from MightyLogic.HighGrowth.Erlaed.Rarity import Rarity
+from MightyLogic.HighGrowth.Erlaed.Strategy.Strategy import Strategy
+
 
 class GoldEfficiency(Strategy):
 

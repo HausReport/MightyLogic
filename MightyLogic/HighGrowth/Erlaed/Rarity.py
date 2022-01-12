@@ -1,11 +1,12 @@
 from abc import ABC, abstractmethod
 
+
 class Rarity(ABC):
     guild_discount = .8
     vip_discount = .88
     crisis_discount = .82
     # gold_discount = .8
-    gold_discount = guild_discount * vip_discount # * crisis_discount  # .66 # with crisis + guild
+    gold_discount = guild_discount * vip_discount  # * crisis_discount  # .66 # with crisis + guild
     COMMON = 0
     RARE = 1
     EPIC = 2
@@ -85,7 +86,7 @@ class Rarity(ABC):
         return tmp
 
     def get_tmp_table(self, total_souls, avail_souls, avail_gold, rb):
-        #print("Hi")
+        # print("Hi")
         (cs, cg) = (0, 0)  # do rebate here
         tmp = self.get_reborn_table(rb + 1).copy(deep=True)
         tmp.loc[0, 'Gold'] = cg
@@ -160,7 +161,7 @@ class Rarity(ABC):
 
         # moves['LevelUps'] = moves.apply(lambda x: level_dist(reborn, level, x['Reborn'], x['Level']), axis=1) #(reborn, level, rb1, l1)
 
-        if score_mode== Rarity.GOLD_EFFICIENCY:
+        if score_mode == Rarity.GOLD_EFFICIENCY:
             moves["Score"] = 10000 * (moves["LevelUps"] / moves["Cum Gold"])
         else:
             moves["Score"] = 10000 * (moves["Troop Gain"] / moves["Cum Gold"])
@@ -220,5 +221,5 @@ class Rarity(ABC):
     def get_most_efficient_move_by_name(self, df, name, avail_gold=-1, score_mode=TROOP_EFFICIENCY):
         bleh = self.get_moves_by_name(df, name, avail_gold, score_mode=score_mode)
         bleh["Name"] = name
-        bleh = bleh[ bleh.Score == bleh.Score.max()]
+        bleh = bleh[bleh.Score == bleh.Score.max()]
         return bleh

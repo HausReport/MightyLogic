@@ -3,6 +3,7 @@ import pandas as pd
 
 from MightyLogic.HighGrowth.Erlaed.PurpleGold import PurpleGold
 
+
 class Legendary(PurpleGold):
 
     def get_r0_tab(self) -> pandas.DataFrame:

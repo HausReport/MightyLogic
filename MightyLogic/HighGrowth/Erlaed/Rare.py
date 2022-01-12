@@ -3,6 +3,7 @@ import pandas as pd
 
 from MightyLogic.HighGrowth.Erlaed.WhiteBlue import WhiteBlue
 
+
 class Rare(WhiteBlue):
 
     def get_r0_tab(self) -> pandas.DataFrame:
