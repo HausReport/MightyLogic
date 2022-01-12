@@ -33,7 +33,9 @@ class HighestGrowth():
         ret["Total LevelUps"] = ret['LevelUps'].cumsum()
         return ret
 
-    def _filter(self, aList, aFilter=None):
+    def _filter(self, df, aFilter=None):
+
+        aList = df.Name.tolist()
         if aFilter is None:
             return aList
         elif aFilter is "Working":
