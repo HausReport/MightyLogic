@@ -216,3 +216,9 @@ class Rarity(ABC):
                     tab = tab.append(tmp)
 
         return tab
+
+    def get_most_efficient_move_by_name(self, df, name, avail_gold=-1, score_mode=TROOP_EFFICIENCY):
+        bleh = self.get_moves_by_name(df, name, avail_gold, score_mode=score_mode)
+        bleh = bleh[ bleh.Score == bleh.Score.max()]
+        bleh["Name"] = name
+        return bleh
