@@ -32,3 +32,33 @@ class HighestGrowth():
         ret["Total Troop Gain"] = ret['Troop Gain'].cumsum()
         ret["Total LevelUps"] = ret['LevelUps'].cumsum()
         return ret
+
+    def _filter(self, aList, aFilter=None):
+        if aFilter is None:
+            return aList
+        elif aFilter is "Working":
+            working = [item for item in aList if item not in self.forced]
+            working = [item for item in working if item not in self.locked]
+            return working
+        elif aFilter is "Forced":
+            forced = [item for item in aList if item in self.forced]
+            return forced
+        elif aFilter is "Locked":
+            locked = [item for item in aList if item in self.locked]
+            return locked
+
+    def getLegendaries(self, aFilter=None):
+        tmp = self.army.getLegendaries()
+        return self._filter(tmp, aFilter)
+
+    def getEpics(self, aFilter=None):
+        tmp = self.army.getEpics()
+        return self._filter(tmp, aFilter)
+
+    def getRares(self, aFilter=None):
+        tmp = self.army.getRares()
+        return self._filter(tmp, aFilter)
+
+    def getCommons(self, aFilter=None):
+        tmp = self.army.getCommons()
+        return self._filter(tmp, aFilter)
