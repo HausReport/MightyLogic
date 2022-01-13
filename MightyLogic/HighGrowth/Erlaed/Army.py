@@ -5,28 +5,28 @@ import plotly.express as px
 class Army:
 
     def __init__(self):
-        self.all = None
+        self.data_frame = None
 
     def fromFile(self, file):
-        self.all = pd.read_csv(file)
+        self.data_frame = pd.read_csv(file)
 
     def fromDataframe(self, frame):
-        self.all = frame
+        self.data_frame = frame
 
     def getArmy(self):
-        return self.all
+        return self.data_frame
 
     def getLegendaries(self):
-        return self.all[self.all['Rarity'] == 'Legendary']
+        return self.data_frame[self.data_frame['Rarity'] == 'Legendary']
 
     def getEpics(self):
-        return self.all[self.all['Rarity'] == 'Epic']
+        return self.data_frame[self.data_frame['Rarity'] == 'Epic']
 
     def getRares(self):
-        return self.all[self.all['Rarity'] == 'Rare']
+        return self.data_frame[self.data_frame['Rarity'] == 'Rare']
 
     def getCommons(self):
-        return self.all[self.all['Rarity'] == 'Common']
+        return self.data_frame[self.data_frame['Rarity'] == 'Common']
 
     def getGutterLegendaries(self):
         legos = self.getLegendaries()
@@ -45,6 +45,6 @@ class Army:
         return legos[(legos['Level'] == 1)]
 
     def getHistogram(self, rarity="Legendary", nBins=20):
-        heroes = self.all[self.all['Rarity'] == rarity]
+        heroes = self.data_frame[self.data_frame['Rarity'] == rarity]
         fig = px.histogram(heroes, x="Level", nbins=nBins)
         return fig
