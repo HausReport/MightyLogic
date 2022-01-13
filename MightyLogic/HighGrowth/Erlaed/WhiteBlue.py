@@ -2,8 +2,7 @@ from MightyLogic.HighGrowth.Erlaed.Rarity import Rarity
 
 
 class WhiteBlue(Rarity):
-    def la(self):
-        return 1 + 1
+
 
     def reborn_level(self, rb=0):
         if rb == 0:

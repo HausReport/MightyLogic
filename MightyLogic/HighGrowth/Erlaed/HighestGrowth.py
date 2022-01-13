@@ -1,4 +1,4 @@
-class HighestGrowth():
+class HighestGrowth:
 
     def __init__(self, army):
         self.army = army

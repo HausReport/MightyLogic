@@ -3,7 +3,6 @@ import plotly.express as px
 
 
 class Army:
-
     data_frame: pd.DataFrame
 
     def __init__(self):

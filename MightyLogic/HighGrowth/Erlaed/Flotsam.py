@@ -1,34 +1,34 @@
 def nextLevel(reborn, lev):
     if reborn == 0:
         if lev < 6:
-            return (0, lev + 1)
+            return 0, lev + 1
         else:
             return 1, 1
     elif reborn == 1:
         if lev < 11:
-            return (1, lev + 1)
+            return 1, lev + 1
         else:
-            return (2, 1)
+            return 2, 1
     elif reborn == 2:
         if lev < 16:
-            return (2, lev + 1)
+            return 2, lev + 1
         else:
-            return (3, 1)
+            return 3, 1
     elif reborn == 3:
         if lev < 21:
-            return (3, lev + 1)
+            return 3, lev + 1
         else:
-            return (4, 1)
+            return 4, 1
     elif reborn == 4:
         if lev < 26:
-            return (4, lev + 1)
+            return 4, lev + 1
         else:
-            return (5, 1)
+            return 5, 1
     elif reborn == 5:
         if lev < 31:
-            return (5, lev + 1)
+            return 5, lev + 1
         else:
-            return (5, 31)
+            return 5, 31
 
 # df = r0_tab
 #

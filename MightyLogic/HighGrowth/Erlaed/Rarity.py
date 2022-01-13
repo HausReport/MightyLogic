@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod
 
+import pandas as pd
+
 
 class Rarity(ABC):
     guild_discount = .8
@@ -16,10 +18,10 @@ class Rarity(ABC):
     GOLD_EFFICIENCY = 1
 
     @abstractmethod
-    def get_r0_tab(self):
+    def get_r0_tab(self) -> pd.DataFrame:
         pass
 
-    def get_reborn_table(self, reborn):
+    def get_reborn_table(self, reborn: int) -> pd.DataFrame:
         r0_tab = self.get_r0_tab()
         r0_tab["Reborn"] = 0
 
@@ -33,37 +35,37 @@ class Rarity(ABC):
         tmp["Troops"] += self.getTroopBonus(reborn)
         return tmp  # .copy(deep=True)
 
-    def lookup(self, rb=0, level=1):
+    def lookup(self, rb: int = 0, level: int = 1) -> (int, int):
         df = self.get_reborn_table(rb)
         valS = df.loc[(df.Level == level) & (df.Reborn == rb), 'Might'].values[0]
         valG = df.loc[(df.Level == level) & (df.Reborn == rb), 'Troops'].values[0]
-        return (valS, valG)
+        return valS, valG
 
     @abstractmethod
-    def getMightBonus(self, reborn):
+    def getMightBonus(self, reborn: int) -> int:
         pass
 
     @abstractmethod
-    def getTroopBonus(self, reborn):
+    def getTroopBonus(self, reborn: int) -> int:
         pass
 
     @abstractmethod
-    def to_ordinal(self, reborn, level):
+    def to_ordinal(self, reborn: int, level: int) -> int:
         pass
 
     @abstractmethod
-    def to_ordinal2(self, reborn, level):
+    def to_ordinal2(self, reborn: int, level: int) -> int:
         pass
 
     @abstractmethod
-    def sn(self, rb=0):
+    def sn(self, rb: int = 0) -> int:
         pass
 
     @abstractmethod
-    def reborn_level(self, rb=0):
+    def reborn_level(self, rb: int = 0) -> int:
         pass
 
-    def level_dist(self, r0, l0, r1, l1):
+    def level_dist(self, r0: int, l0: int, r1: int, l1: int) -> int:
         if r0 == r1:
             return l1 - l0
 
@@ -71,7 +73,7 @@ class Rarity(ABC):
         o1 = self.to_ordinal2(r1, l1)
         return o1 - o0
 
-    def straight_level(self, level, reborn, avail_souls, avail_gold=-1):
+    def straight_level(self, level: int, reborn: int, avail_souls: int, avail_gold: int = -1) -> pd.DataFrame:
         tab = self.get_reborn_table(reborn)
         tmp = tab.copy(deep=True)
         tmp['Reborn'] = reborn
@@ -85,7 +87,7 @@ class Rarity(ABC):
             tmp = tmp[tmp['Cum Gold'] <= avail_gold]
         return tmp
 
-    def get_tmp_table(self, total_souls, avail_souls, avail_gold, rb):
+    def get_tmp_table(self, total_souls: int, avail_souls: int, avail_gold: int, rb: int) -> pd.DataFrame:
         # print("Hi")
         (cs, cg) = (0, 0)  # do rebate here
         tmp = self.get_reborn_table(rb + 1).copy(deep=True)
@@ -99,8 +101,8 @@ class Rarity(ABC):
             tmp = tmp[tmp['Cum Gold'] <= avail_gold]
         return tmp
 
-    def _get_reborn_point(self, df, rb=1, a=6, b=11, c=16, d=21, e=26):
-        alev = a
+    def _get_reborn_point(self, df: pd.DataFrame, rb: int = 1, a: int = 6, b: int = 11, c: int = 16, d: int = 21,
+                          e: int = 26) -> (int, int):
         if rb == 1:
             alev = a
         elif rb == 2:
@@ -112,13 +114,14 @@ class Rarity(ABC):
         elif rb == 5:
             alev = e
         else:
-            return (0, 0)
+            return 0, 0
 
         valS = df.loc[(df.Level == alev) & (df.Reborn == rb - 1), 'Cum Souls'].values[0]
         valG = df.loc[(df.Level == alev) & (df.Reborn == rb - 1), 'Cum Gold'].values[0]
-        return (valS, valG)
+        return valS, valG
 
-    def _has_reborn_1(self, df, rb=1, a=6, b=11, c=16, d=21, e=26):
+    def _has_reborn_1(self, df: pd.DataFrame, rb: int = 1, a: int = 6, b: int = 11, c: int = 16, d: int = 21,
+                      e: int = 26) -> bool:
         if rb == 1:
             return ((df['Level'] == a) & (df['Reborn'] == 0)).any()
         elif rb == 2:
@@ -131,14 +134,15 @@ class Rarity(ABC):
             return ((df['Level'] == e) & (df['Reborn'] == 4)).any()
 
     @abstractmethod
-    def has_reborn_1(self, df, rb=1):
+    def has_reborn_1(self, df: pd.DataFrame, rb: int = 1) -> bool:
         pass
 
     @abstractmethod
-    def get_reborn_1_point(self, df, rb=1):
+    def get_reborn_1_point(self, df: pd.DataFrame, rb: int = 1) -> int:
         pass
 
-    def get_moves(self, level, reborn, avail_souls, total_souls=-1, avail_gold=-1, score_mode=TROOP_EFFICIENCY):
+    def get_moves(self, level: int, reborn: int, avail_souls: int, total_souls: int = -1, avail_gold: int = -1,
+                  score_mode: int = TROOP_EFFICIENCY) -> pd.DataFrame:
         (curMight, curTroops) = self.lookup(reborn, level)
         moves = self.fancy_level(level, reborn, avail_souls, total_souls, avail_gold)
         moves["Cur Level"] = level
@@ -159,8 +163,6 @@ class Rarity(ABC):
         #  YO!  Pretty sure lamba chokes when result has 0 rows
         #
 
-        # moves['LevelUps'] = moves.apply(lambda x: level_dist(reborn, level, x['Reborn'], x['Level']), axis=1) #(reborn, level, rb1, l1)
-
         if score_mode == Rarity.GOLD_EFFICIENCY:
             moves["Score"] = 10000 * (moves["LevelUps"] / moves["Cum Gold"])
         else:
@@ -168,8 +170,9 @@ class Rarity(ABC):
 
         return moves
 
-    def get_moves_by_name(self, collection_df, name, avail_gold=-1, score_mode=TROOP_EFFICIENCY):
-        if ((collection_df['Name'] == name)).any():
+    def get_moves_by_name(self, collection_df: pd.DataFrame, name: str, avail_gold: int = -1,
+                          score_mode: int = TROOP_EFFICIENCY) -> pd.DataFrame:
+        if (collection_df['Name'] == name).any():
             loc = collection_df.loc[collection_df['Name'] == name]
             level = loc.Level.values[0]
             reborn = loc.Reborns.values[0]
@@ -179,7 +182,8 @@ class Rarity(ABC):
         else:
             return None
 
-    def fancy_level(self, level, reborn, avail_souls, total_souls=-1, avail_gold=-1):
+    def fancy_level(self, level: int, reborn: int, avail_souls: int, total_souls: int = -1,
+                    avail_gold: int = -1) -> pd.DataFrame:
         tab = self.straight_level(level, reborn, avail_souls, avail_gold)
 
         #
@@ -218,7 +222,8 @@ class Rarity(ABC):
 
         return tab
 
-    def get_most_efficient_move_by_name(self, df, name, avail_gold=-1, score_mode=TROOP_EFFICIENCY):
+    def get_most_efficient_move_by_name(self, df: pd.DataFrame, name: str, avail_gold: int = -1,
+                                        score_mode: int = TROOP_EFFICIENCY) -> pd.DataFrame:
         bleh = self.get_moves_by_name(df, name, avail_gold, score_mode=score_mode)
         bleh["Name"] = name
         bleh = bleh[bleh.Score == bleh.Score.max()]
