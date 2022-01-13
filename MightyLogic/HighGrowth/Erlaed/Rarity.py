@@ -146,6 +146,7 @@ class Rarity(ABC):
         (curMight, curTroops) = self.lookup(reborn, level)
         moves = self.fancy_level(level, reborn, avail_souls, total_souls, avail_gold)
         moves["Cur Level"] = level
+        moves = moves.copy(deep=True)
         moves["Cur Reborn"] = reborn
         moves["Troop Gain"] = moves["Troops"] - curTroops
         moves = moves[moves['Troop Gain'] > 0]

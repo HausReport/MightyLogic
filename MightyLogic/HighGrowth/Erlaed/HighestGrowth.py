@@ -1,6 +1,8 @@
+from MightyLogic.HighGrowth.Erlaed.Army import Army
+
 class HighestGrowth:
 
-    def __init__(self, army):
+    def __init__(self, army: Army):
         self.army = army
         self.locked = set()
         self.forced = set()
