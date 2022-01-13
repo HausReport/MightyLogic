@@ -21,6 +21,8 @@ class Army:
         return self.data_frame[self.data_frame['Rarity'] == 'Legendary']
 
     def getEpics(self) -> pd.DataFrame:
+        assert self.data_frame is not None, "DataFrame is None"
+        print(self.data_frame)
         return self.data_frame[self.data_frame['Rarity'] == 'Epic']
 
     def getRares(self) -> pd.DataFrame:
