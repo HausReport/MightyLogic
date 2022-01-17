@@ -8,9 +8,6 @@ from MightyLogic.HighGrowth.Erlaed import Legendary
 
 import pathlib
 
-from Rare import Rare
-
-
 class Army:
     data_frame: pd.DataFrame
 
