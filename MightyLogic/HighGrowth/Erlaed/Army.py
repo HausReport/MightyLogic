@@ -72,7 +72,7 @@ class Army:
             # print(x.name)
         return ret
 
-    def level_to_reborn(self, level, reborn, rarity):
+    def reborn_level(self, reborn, rarity):
         ra = None
         if rarity == "Legendary":
             ra = Legendary()
@@ -82,7 +82,5 @@ class Army:
             ra = Rare()
         if ra is None:
             return 999
-        else:
-            return ra.reborn_level(reborn)
-        #elif rarity == "Common":
-        #    ra = ()
+
+        return ra.reborn_level(reborn)

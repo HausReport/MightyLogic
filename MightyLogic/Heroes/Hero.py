@@ -6,6 +6,8 @@ from enum import Enum, auto, unique
 from functools import total_ordering
 from typing import Any, Dict, List, Set, Tuple, Optional
 
+import hashlib
+
 
 @dataclass(order=True, frozen=True)
 class LevelingCost:
@@ -124,82 +126,82 @@ class Rarity(Enum):
 
     COMMON = (
         (
-            LevelingCost(    25,     50),  # L2
-            LevelingCost(    50,     80),  # L3
-            LevelingCost(    75,    120),  # L4
-            LevelingCost(   100,    200),  # L5
-            LevelingCost(   150,    300),  # L6
-            LevelingCost(   200,    500),  # L7
-            LevelingCost(   250,  1_000),  # L8
-            LevelingCost(   300,  1_500),  # L9
-            LevelingCost(   350,  2_000),  # L10
-            LevelingCost(   450,  3_000),  # L11
-            LevelingCost(   600,  4_000),  # L12
-            LevelingCost(   750,  6_000),  # L13
-            LevelingCost(   900,  8_000),  # L14
-            LevelingCost( 1_100, 10_000),  # L15
-            LevelingCost( 1_400, 13_000),  # L16
-            LevelingCost( 2_000, 16_000),  # L17
-            LevelingCost( 2_700, 19_000),  # L18
-            LevelingCost( 3_500, 22_000),  # L19
-            LevelingCost( 4_500, 25_000),  # L20
-            LevelingCost( 6_000, 28_000),  # L21
-            LevelingCost( 7_500, 32_000),  # L22
-            LevelingCost( 9_500, 36_000),  # L23
+            LevelingCost(25, 50),  # L2
+            LevelingCost(50, 80),  # L3
+            LevelingCost(75, 120),  # L4
+            LevelingCost(100, 200),  # L5
+            LevelingCost(150, 300),  # L6
+            LevelingCost(200, 500),  # L7
+            LevelingCost(250, 1_000),  # L8
+            LevelingCost(300, 1_500),  # L9
+            LevelingCost(350, 2_000),  # L10
+            LevelingCost(450, 3_000),  # L11
+            LevelingCost(600, 4_000),  # L12
+            LevelingCost(750, 6_000),  # L13
+            LevelingCost(900, 8_000),  # L14
+            LevelingCost(1_100, 10_000),  # L15
+            LevelingCost(1_400, 13_000),  # L16
+            LevelingCost(2_000, 16_000),  # L17
+            LevelingCost(2_700, 19_000),  # L18
+            LevelingCost(3_500, 22_000),  # L19
+            LevelingCost(4_500, 25_000),  # L20
+            LevelingCost(6_000, 28_000),  # L21
+            LevelingCost(7_500, 32_000),  # L22
+            LevelingCost(9_500, 36_000),  # L23
             LevelingCost(12_000, 40_000),  # L24
             LevelingCost(15_000, 45_000),  # L25
-            LevelingCost(18_000, 50_000)   # L26
+            LevelingCost(18_000, 50_000)  # L26
         ),
         (11, 16, 21, 26)
     )
     RARE = (
         (
-            LevelingCost(    25,    100),  # L2
-            LevelingCost(    50,    300),  # L3
-            LevelingCost(    75,    600),  # L4
-            LevelingCost(   100,    900),  # L5
-            LevelingCost(   130,  1_400),  # L6
-            LevelingCost(   160,  2_000),  # L7
-            LevelingCost(   190,  3_500),  # L8
-            LevelingCost(   200,  4_000),  # L9
-            LevelingCost(   250,  5_000),  # L10
-            LevelingCost(   330,  6_000),  # L11
-            LevelingCost(   420,  8_000),  # L12
-            LevelingCost(   500, 10_000),  # L13
-            LevelingCost(   600, 12_000),  # L14
-            LevelingCost(   750, 14_000),  # L15
-            LevelingCost(   950, 16_000),  # L16
-            LevelingCost( 1_400, 19_000),  # L17
-            LevelingCost( 1_900, 22_000),  # L18
-            LevelingCost( 2_400, 25_000),  # L19
-            LevelingCost( 3_000, 28_000),  # L20
-            LevelingCost( 3_700, 32_000),  # L21
-            LevelingCost( 4_500, 36_000),  # L22
-            LevelingCost( 5_500, 40_000),  # L23
-            LevelingCost( 7_000, 45_000),  # L24
-            LevelingCost( 9_000, 50_000),  # L25
-            LevelingCost(12_000, 55_000)   # L26
+            LevelingCost(25, 100),  # L2
+            LevelingCost(50, 300),  # L3
+            LevelingCost(75, 600),  # L4
+            LevelingCost(100, 900),  # L5
+            LevelingCost(130, 1_400),  # L6
+            LevelingCost(160, 2_000),  # L7
+            LevelingCost(190, 3_500),  # L8
+            LevelingCost(200, 4_000),  # L9
+            LevelingCost(250, 5_000),  # L10
+            LevelingCost(330, 6_000),  # L11
+            LevelingCost(420, 8_000),  # L12
+            LevelingCost(500, 10_000),  # L13
+            LevelingCost(600, 12_000),  # L14
+            LevelingCost(750, 14_000),  # L15
+            LevelingCost(950, 16_000),  # L16
+            LevelingCost(1_400, 19_000),  # L17
+            LevelingCost(1_900, 22_000),  # L18
+            LevelingCost(2_400, 25_000),  # L19
+            LevelingCost(3_000, 28_000),  # L20
+            LevelingCost(3_700, 32_000),  # L21
+            LevelingCost(4_500, 36_000),  # L22
+            LevelingCost(5_500, 40_000),  # L23
+            LevelingCost(7_000, 45_000),  # L24
+            LevelingCost(9_000, 50_000),  # L25
+            LevelingCost(12_000, 55_000)  # L26
         ),
         (11, 16, 21, 26)
     )
     EPIC = (
         (
-            LevelingCost(   15,    300),  # L2
-            LevelingCost(   30,    600),  # L3
-            LevelingCost(   45,    900),  # L4
-            LevelingCost(   60,  1_400),  # L5
-            LevelingCost(   80,  1_900),  # L6
-            LevelingCost(  100,  2_500),  # L7
-            LevelingCost(  120,  4_000),  # L8
-            LevelingCost(  140,  5_000),  # L9
-            LevelingCost(  160,  6_000),  # L10
-            LevelingCost(  200,  7_000),  # L11
-            LevelingCost(  250,  9_000),  # L12
-            LevelingCost(  320, 11_000),  # L13
-            LevelingCost(  400, 13_000),  # L14
-            LevelingCost(  500, 16_000),  # L15
-            LevelingCost(  650, 19_000),  # L16
-            LevelingCost(  900, 22_000),  # L17
+            LevelingCost(15, 300),  # L2
+            LevelingCost(30, 600),  # L3
+            LevelingCost(45, 900),  # L4
+            LevelingCost(60, 1_400),  # L5
+            LevelingCost(80, 1_900),  # L6
+            LevelingCost(100, 2_500),  # L7
+            LevelingCost(120, 4_000),  # L8
+            LevelingCost(140, 5_000),  # L9
+            LevelingCost(160, 6_000),  # L10
+            LevelingCost(200, 7_000),  # L11
+            LevelingCost(250, 9_000),  # L12
+            LevelingCost(320, 11_000),  # L13
+            LevelingCost(400, 13_000),  # L14
+            LevelingCost(500, 16_000),  # L15
+            LevelingCost(650, 19_000),  # L16
+            LevelingCost(900, 22_000),  # L17
             LevelingCost(1_100, 26_000),  # L18
             LevelingCost(1_350, 30_000),  # L19
             LevelingCost(1_800, 34_000),  # L20
@@ -208,29 +210,29 @@ class Rarity(Enum):
             LevelingCost(4_000, 47_000),  # L23
             LevelingCost(5_000, 52_000),  # L24
             LevelingCost(6_300, 58_000),  # L25
-            LevelingCost(8_000, 65_000)   # L26
+            LevelingCost(8_000, 65_000)  # L26
         ),
         (6, 11, 16, 21, 26)
     )
     LEGENDARY = (
         (
-            LevelingCost(    5,    600),  # L2
-            LevelingCost(   10,    900),  # L3
-            LevelingCost(   15,  1_400),  # L4
-            LevelingCost(   20,  1_900),  # L5
-            LevelingCost(   40,  2_500),  # L6
-            LevelingCost(   60,  3_500),  # L7
-            LevelingCost(   80,  5_500),  # L8
-            LevelingCost(  100,  7_000),  # L9
-            LevelingCost(  120,  9_000),  # L10
-            LevelingCost(  150, 11_000),  # L11
-            LevelingCost(  200, 14_000),  # L12
-            LevelingCost(  250, 17_000),  # L13
-            LevelingCost(  320, 20_000),  # L14
-            LevelingCost(  400, 24_000),  # L15
-            LevelingCost(  500, 28_000),  # L16
-            LevelingCost(  700, 32_000),  # L17
-            LevelingCost(  850, 36_000),  # L18
+            LevelingCost(5, 600),  # L2
+            LevelingCost(10, 900),  # L3
+            LevelingCost(15, 1_400),  # L4
+            LevelingCost(20, 1_900),  # L5
+            LevelingCost(40, 2_500),  # L6
+            LevelingCost(60, 3_500),  # L7
+            LevelingCost(80, 5_500),  # L8
+            LevelingCost(100, 7_000),  # L9
+            LevelingCost(120, 9_000),  # L10
+            LevelingCost(150, 11_000),  # L11
+            LevelingCost(200, 14_000),  # L12
+            LevelingCost(250, 17_000),  # L13
+            LevelingCost(320, 20_000),  # L14
+            LevelingCost(400, 24_000),  # L15
+            LevelingCost(500, 28_000),  # L16
+            LevelingCost(700, 32_000),  # L17
+            LevelingCost(850, 36_000),  # L18
             LevelingCost(1_000, 40_000),  # L19
             LevelingCost(1_300, 44_000),  # L20
             LevelingCost(1_700, 48_000),  # L21
@@ -365,6 +367,7 @@ class SoulbindRequirements:
             for i, (target_rarity, target_hero_level) in enumerate(tuples)
         ]
 
+
 @dataclass(frozen=True)
 class Soulbind:
     for_hero: Hero
@@ -376,19 +379,19 @@ class Soulbind:
 
 
 SOULBIND_REQUIREMENTS_BY_RARITY = {
-    Rarity.COMMON: SoulbindRequirements.from_tuple(Rarity.COMMON, [
+    Rarity.COMMON   : SoulbindRequirements.from_tuple(Rarity.COMMON, [
         (Rarity.COMMON, 6),
         (Rarity.COMMON, 11),
         (Rarity.COMMON, 16),
         (Rarity.RARE, 11)
     ]),
-    Rarity.RARE: SoulbindRequirements.from_tuple(Rarity.RARE, [
+    Rarity.RARE     : SoulbindRequirements.from_tuple(Rarity.RARE, [
         (Rarity.RARE, 5),
         (Rarity.RARE, 9),
         (Rarity.RARE, 13),
         (Rarity.EPIC, 7)
     ]),
-    Rarity.EPIC: SoulbindRequirements.from_tuple(Rarity.EPIC, [
+    Rarity.EPIC     : SoulbindRequirements.from_tuple(Rarity.EPIC, [
         (Rarity.EPIC, 3),
         (Rarity.EPIC, 6),
         (Rarity.EPIC, 8),
@@ -445,7 +448,8 @@ class Hero:
         return evolutions_to
 
     def leveling_cost(self, to_level: Level) -> LevelingCost:
-        return LevelingCost.free() if to_level.level_count == 1 else self.rarity.leveling_costs[to_level.level_count-2]
+        return LevelingCost.free() if to_level.level_count == 1 else self.rarity.leveling_costs[
+            to_level.level_count - 2]
 
     def leveling_steps(self, from_level: Level, to_level: Level) -> LevelingSteps:
         if from_level >= to_level:
@@ -497,6 +501,19 @@ class Hero:
         del d["soulbinds"]
 
         return d
+
+    def icon_url(self, width=100) -> str:
+        aName = self.name.replace(' ', '_')  # need to replace spaces with underline
+        aName += '.png'
+        # print(aName)
+        m = hashlib.md5()
+        m.update(aName.encode('utf-8'))
+        d = m.hexdigest()
+        # print(d)
+        ret = "https://static.wikia.nocookie.net/mightyparty/images/"
+        ret += d[0] + '/' + d[ 0:2] + '/' + aName + '/revision/latest/scale-to-width-down/' + str(width)
+        # print(ret)
+        return ret
 
     @staticmethod
     def from_csv(row: Dict[str, Any]) -> Hero:
