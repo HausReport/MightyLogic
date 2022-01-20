@@ -18,6 +18,7 @@ class PurpleGold(Rarity):
         elif rb == 5:
             return 26
 
+    # Return (reborn, level) to ordinal, ignoring levels over reborn point
     def to_ordinal(self, reborn, level):
         if reborn == 0:
             if level > 6:
@@ -50,6 +51,7 @@ class PurpleGold(Rarity):
             else:
                 return level - 1 + self.to_ordinal(4, 26)
 
+    # Return (reborn, level) to ordinal, including levels over reborn point
     def to_ordinal2(self, reborn, level):
         if reborn == 0:
             return level - 1

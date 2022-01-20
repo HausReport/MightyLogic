@@ -35,6 +35,7 @@ class Rarity(ABC):
         tmp["Troops"] += self.getTroopBonus(reborn)
         return tmp  # .copy(deep=True)
 
+    # Return dataframe row for given level and reborn
     def lookup(self, rb: int = 0, level: int = 1) -> (int, int):
         df = self.get_reborn_table(rb)
         valS = df.loc[(df.Level == level) & (df.Reborn == rb), 'Might'].values[0]
@@ -49,22 +50,27 @@ class Rarity(ABC):
     def getTroopBonus(self, reborn: int) -> int:
         pass
 
+    # Return (reborn, level) to ordinal, ignoring levels over reborn point
     @abstractmethod
     def to_ordinal(self, reborn: int, level: int) -> int:
         pass
 
+    # Return (reborn, level) to ordinal, including levels over reborn point
     @abstractmethod
     def to_ordinal2(self, reborn: int, level: int) -> int:
         pass
 
+    #souls needed for given reborn point
     @abstractmethod
     def sn(self, rb: int = 0) -> int:
         pass
 
+    #level at which the given reborn can be done
     @abstractmethod
     def reborn_level(self, rb: int = 0) -> int:
         pass
 
+    # shortest distance between two levels
     def level_dist(self, r0: int, l0: int, r1: int, l1: int) -> int:
         if r0 == r1:
             return l1 - l0
@@ -73,6 +79,7 @@ class Rarity(ABC):
         o1 = self.to_ordinal2(r1, l1)
         return o1 - o0
 
+    # return dataframe of possible level-ups without any reborns
     def straight_level(self, level: int, reborn: int, avail_souls: int, avail_gold: int = -1) -> pd.DataFrame:
         tab = self.get_reborn_table(reborn)
         tmp = tab.copy(deep=True)
@@ -80,13 +87,14 @@ class Rarity(ABC):
 
         tmp = tmp[tmp.Level > level]
         tmp = tmp.copy(deep=True)
-        tmp['Cum Souls'] = tmp.Souls.cumsum()
-        tmp['Cum Gold'] = tmp.Gold.cumsum()
+        tmp['Cum Souls'] = tmp.Souls.cumsum()   # is this right? sum on Level>level or >=?
+        tmp['Cum Gold'] = tmp.Gold.cumsum()     # yes, level 2 shows requirements to go from level 1 to level 2...
         tmp = tmp[tmp['Cum Souls'] <= avail_souls]
         if avail_gold > 0:
             tmp = tmp[tmp['Cum Gold'] <= avail_gold]
         return tmp
 
+    # Return levelup dataframe for reborn with souls rebated from the reborn
     def get_tmp_table(self, total_souls: int, avail_souls: int, avail_gold: int, rb: int) -> pd.DataFrame:
         # print("Hi")
         (cs, cg) = (0, 0)  # do rebate here
@@ -101,6 +109,7 @@ class Rarity(ABC):
             tmp = tmp[tmp['Cum Gold'] <= avail_gold]
         return tmp
 
+    # get the gold and souls needed for the given reborn for the given rarity
     def _get_reborn_point(self, df: pd.DataFrame, rb: int = 1, a: int = 6, b: int = 11, c: int = 16, d: int = 21,
                           e: int = 26) -> (int, int):
         if rb == 1:
@@ -120,6 +129,7 @@ class Rarity(ABC):
         valG = df.loc[(df.Level == alev) & (df.Reborn == rb - 1), 'Cum Gold'].values[0]
         return valS, valG
 
+    # is it possible to do the given reborn?
     def _has_reborn_1(self, df: pd.DataFrame, rb: int = 1, a: int = 6, b: int = 11, c: int = 16, d: int = 21,
                       e: int = 26) -> bool:
         if rb == 1:
@@ -153,24 +163,20 @@ class Rarity(ABC):
         moves = moves[moves['Level'] > 10]
         moves['LevelUps'] = 0
 
+        # fixed problem with lambda freaking out with 0 moves
         if len(moves) > 0:
             moves['LevelUps'] = moves.apply(
                 lambda x: self.level_dist(x["Cur Reborn"], x["Cur Level"], x["Reborn"], x["Level"]),
-                axis=1)  # (reborn, level, rb1, l1)
-        # rb1 = moves['Reborn'].values[0]
-        # l1 = moves['Level'].values[0]
-
-        #
-        #  YO!  Pretty sure lamba chokes when result has 0 rows
-        #
+                axis=1)
 
         if score_mode == Rarity.GOLD_EFFICIENCY:
-            moves["Score"] = 10000 * (moves["LevelUps"] / moves["Cum Gold"])
+            moves["Score"] = 10000000 * (moves["LevelUps"] / moves["Cum Gold"])
         else:
             moves["Score"] = 10000 * (moves["Troop Gain"] / moves["Cum Gold"])
 
         return moves
 
+    # Get possible levelups for the named hero
     def get_moves_by_name(self, collection_df: pd.DataFrame, name: str, avail_gold: int = -1,
                           score_mode: int = TROOP_EFFICIENCY) -> pd.DataFrame:
         if (collection_df['Name'] == name).any():
@@ -183,22 +189,10 @@ class Rarity(ABC):
         else:
             return None
 
+    # Get possible levelups including reborns
     def fancy_level(self, level: int, reborn: int, avail_souls: int, total_souls: int = -1,
                     avail_gold: int = -1) -> pd.DataFrame:
         tab = self.straight_level(level, reborn, avail_souls, avail_gold)
-
-        #
-        # Have to add extra suppoort for over-levelled heroes
-        # i.e. R 0 L 10
-        # add a row for R 0 L 6
-        #   add parm total_souls
-        #   spent_souls = total_souls-avail_souls
-        #   figure required_souls
-        #
-        #   set cum_souls to show "rebate" spent_souls-required_souls
-        #   set cum_gold to 0
-        #
-
         #
         # Table of possible levelups
         #
@@ -229,3 +223,5 @@ class Rarity(ABC):
         bleh["Name"] = name
         bleh = bleh[bleh.Score == bleh.Score.max()]
         return bleh
+
+
