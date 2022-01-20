@@ -3,6 +3,7 @@ from setuptools import setup
 setup(
     name='MightyLogic',
     version='0.4997',
+    include_package_data=True,
     packages=[
         'MightyLogic',
         'MightyLogic.Heroes',
