@@ -171,13 +171,13 @@ class Rarity(ABC):
                 axis=1)
 
         if score_mode == Rarity.GOLD_EFFICIENCY:
-            moves["Score"] = 10000000 * (moves["LevelUps"] / moves["Cum Gold"])  * (51.0/1291.0)
+            moves["Score"] = 10000000.0 * (moves["LevelUps"] / moves["Cum Gold"])  * (51.0/1291.0)
         elif score_mode == Rarity.MIXED:
-            score_a = 10000000 * (moves["LevelUps"] / moves["Cum Gold"]) * (51.0 / 1291.0)
-            score_b = 10000 * (moves["Troop Gain"] / moves["Cum Gold"])
+            score_a = 10000000.0 * (moves["LevelUps"] / moves["Cum Gold"]) * (51.0 / 1291.0)
+            score_b = 10000.0 * (moves["Troop Gain"] / moves["Cum Gold"])
             moves["Score"] = max(score_a, score_b)
         else:
-            moves["Score"] = 10000 * (moves["Troop Gain"] / moves["Cum Gold"])
+            moves["Score"] = 10000.0 * (moves["Troop Gain"] / moves["Cum Gold"])
 
         return moves
 
@@ -227,6 +227,9 @@ class Rarity(ABC):
         bleh = self.get_moves_by_name(df, name, avail_gold, score_mode=score_mode)
         bleh["Name"] = name
         bleh = bleh[bleh.Score == bleh.Score.max()]
+        bleh = bleh[bleh.Levelups == bleh.Levelups.max()]
+        # it's possible to have ties for max score
+        # in case of a tie, return option with most levelups
         return bleh
 
 
