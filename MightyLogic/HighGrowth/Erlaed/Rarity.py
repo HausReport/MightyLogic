@@ -227,7 +227,7 @@ class Rarity(ABC):
         bleh = self.get_moves_by_name(df, name, avail_gold, score_mode=score_mode)
         bleh["Name"] = name
         bleh = bleh[bleh.Score == bleh.Score.max()]
-        bleh = bleh[bleh.Levelups == bleh.Levelups.max()]
+        bleh = bleh[bleh.LevelUps == bleh.LevelUps.max()]
         # it's possible to have ties for max score
         # in case of a tie, return option with most levelups
         return bleh
