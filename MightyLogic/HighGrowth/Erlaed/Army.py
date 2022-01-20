@@ -14,7 +14,7 @@ class Army:
     def __init__(self):
         self.data_frame = None
         p = pathlib.Path("HeroDirectory.csv")
-        self.directory = HeroDirectory.from_csv_file(p)
+        self.directory = HeroDirectory.default() # from_csv_file(p)
 
     def fromFile(self, file):
         self.data_frame = pd.read_csv(file)
