@@ -2,6 +2,7 @@ import pandas as pd
 import plotly.express as px
 
 from MightyLogic.Heroes.HeroDirectory import HeroDirectory
+from MightyLogic.HighGrowth.Erlaed.Common import Common
 from MightyLogic.HighGrowth.Erlaed.Epic import Epic
 from MightyLogic.HighGrowth.Erlaed.Rare import Rare
 from MightyLogic.HighGrowth.Erlaed.Legendary import Legendary
@@ -80,6 +81,8 @@ class Army:
             ra = Epic()
         elif rarity == "Rare":
             ra = Rare()
+        elif rarity == "Common":
+            ra = Common()
         if ra is None:
             return 999
 

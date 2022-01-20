@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='MightyLogic',
-    version='0.49992',
+    version='0.49993',
     include_package_data=True,
     packages=[
         'MightyLogic',
