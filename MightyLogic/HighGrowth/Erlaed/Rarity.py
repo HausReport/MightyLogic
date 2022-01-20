@@ -16,6 +16,7 @@ class Rarity(ABC):
 
     TROOP_EFFICIENCY = 0
     GOLD_EFFICIENCY = 1
+    MIXED = 2
 
     @abstractmethod
     def get_r0_tab(self) -> pd.DataFrame:
@@ -170,7 +171,11 @@ class Rarity(ABC):
                 axis=1)
 
         if score_mode == Rarity.GOLD_EFFICIENCY:
-            moves["Score"] = 10000000 * (moves["LevelUps"] / moves["Cum Gold"])
+            moves["Score"] = 10000000 * (moves["LevelUps"] / moves["Cum Gold"])  * (51.0/1291.0)
+        elif score_mode == Rarity.MIXED:
+            score_a = 10000000 * (moves["LevelUps"] / moves["Cum Gold"]) * (51.0 / 1291.0)
+            score_b = 10000 * (moves["Troop Gain"] / moves["Cum Gold"])
+            moves["Score"] = max(score_a, score_b)
         else:
             moves["Score"] = 10000 * (moves["Troop Gain"] / moves["Cum Gold"])
 
