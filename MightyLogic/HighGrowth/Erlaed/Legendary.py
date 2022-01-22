@@ -6,6 +6,9 @@ from MightyLogic.HighGrowth.Erlaed.PurpleGold import PurpleGold
 
 class Legendary(PurpleGold):
 
+    def getName(self) -> str:
+        return "Legendary"
+
     def get_r0_tab(self) -> pandas.DataFrame:
         r0_tab = pd.DataFrame([[1, 350, 100, 0, 0],
                                [2, 390, 118, 5, 600],

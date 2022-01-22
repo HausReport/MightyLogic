@@ -123,3 +123,7 @@ class RarityBase(ABC):
     @abstractmethod
     def get_reborn_1_point(self, df: pd.DataFrame, rb: int = 1) -> int:
         pass
+
+    @abstractmethod
+    def getName(self) -> str:
+        pass

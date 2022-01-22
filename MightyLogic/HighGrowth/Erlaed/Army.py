@@ -83,12 +83,25 @@ class Army:
     def souls_needed_to_reborn(self, cur_reborn, level, avail_souls, rarity) :
         target_reborn = cur_reborn+1
         ra = Rarity.get_rarity_by_name(rarity)
+        #print("Rarity: ", ra.getName())
+
         df = ra.get_reborn_table(cur_reborn)
         target_level = ra.reborn_level(target_reborn)
+        #print("Current reborn: ", cur_reborn)
+        #print("Current level: ", level)
+        #print("Target reborn: ", target_reborn)
+        #print("Target level: ", target_level)
         if target_level <= level:
             return 0
         else:
-            return df[(df['Level'] > level) & (df['Level'] <= target_level)].Souls.sum()
+            slice = df[(df['Level'] > level) & (df['Level'] <= target_level)]
+            #print( slice)
+            theSum = slice.Souls.sum()
+            if theSum<= avail_souls:
+                return 0
+            else:
+                #print("Required: ", theSum-avail_souls)
+                return theSum-avail_souls
 
 
     def patch(self, moves: pd.DataFrame):

@@ -6,6 +6,9 @@ from MightyLogic.HighGrowth.Erlaed.WhiteBlue import WhiteBlue
 
 class Common(WhiteBlue):
 
+    def getName(self) -> str:
+        return "Common"
+
     def get_r0_tab(self) -> pandas.DataFrame:
         r0_tab_epic = pd.DataFrame([[1, 100, 20, 0, 0],
                                     [2, 110, 22, 25, 50],

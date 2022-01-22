@@ -6,6 +6,9 @@ from MightyLogic.HighGrowth.Erlaed.WhiteBlue import WhiteBlue
 
 class Rare(WhiteBlue):
 
+    def getName(self) -> str:
+        return "Rare"
+
     def get_r0_tab(self) -> pandas.DataFrame:
         r0_tab_epic = pd.DataFrame([[1, 120, 25, 0, 0],
                                     [2, 135, 28, 25, 100],

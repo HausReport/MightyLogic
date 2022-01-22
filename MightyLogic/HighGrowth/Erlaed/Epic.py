@@ -6,6 +6,9 @@ from MightyLogic.HighGrowth.Erlaed.PurpleGold import PurpleGold
 
 class Epic(PurpleGold):
 
+    def getName(self) -> str:
+        return "Epic"
+
     def get_r0_tab(self) -> pandas.DataFrame:
         r0_tab_epic = pd.DataFrame([[1, 200, 60, 0, 0],
                                     [2, 230, 70, 15, 300],
