@@ -76,6 +76,21 @@ class Army:
             return 999
         return ra.reborn_level(reborn)
 
+    #
+    # Recently moved from notebook
+    #
+
+    def souls_needed_to_reborn(cur_reborn, level, avail_souls, rarity) :
+        target_reborn = cur_reborn+1
+        ra = Rarity.get_rarity_by_name(rarity)
+        df = ra.get_reborn_table(cur_reborn)
+        target_level = ra.reborn_level(target_reborn)
+        if target_level <= level:
+            return 0
+        else:
+            return df[(df['Level'] > level) & (df['Level'] <= target_level)].Souls.sum()
+
+
     def patch(self, moves: pd.DataFrame):
         """Returns the resulting army after the level-ups in the moves dataframe are executed"""
         army = self.data_frame
