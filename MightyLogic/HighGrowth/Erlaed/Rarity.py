@@ -4,11 +4,13 @@ import pandas as pd
 
 
 class Rarity(ABC):
+    # FIXME: move gold discount somewhere else
     guild_discount = .8
     vip_discount = .88
     crisis_discount = .82
     # gold_discount = .8
     gold_discount = guild_discount * vip_discount  # * crisis_discount  # .66 # with crisis + guild
+
     COMMON = 0
     RARE = 1
     EPIC = 2
