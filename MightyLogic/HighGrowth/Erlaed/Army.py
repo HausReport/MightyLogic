@@ -80,7 +80,7 @@ class Army:
     # Recently moved from notebook
     #
 
-    def souls_needed_to_reborn(cur_reborn, level, avail_souls, rarity) :
+    def souls_needed_to_reborn(self, cur_reborn, level, avail_souls, rarity) :
         target_reborn = cur_reborn+1
         ra = Rarity.get_rarity_by_name(rarity)
         df = ra.get_reborn_table(cur_reborn)

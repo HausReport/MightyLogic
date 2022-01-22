@@ -13,5 +13,5 @@ class TestRarity(TestCase):
         self.df = self.leg.get_moves_by_name(self.coll, "Villano Mad Genius")
 
     def test_level_dist(self):
-        assert self.leg.level_dist(0,6,1,1) == 0
-        assert self.leg.level_dist(0,6,1,2) == 1
+        assert self.leg.level_distance(0, 6, 1, 1) == 0
+        assert self.leg.level_distance(0, 6, 1, 2) == 1
