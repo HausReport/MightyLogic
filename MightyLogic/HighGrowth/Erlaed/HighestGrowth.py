@@ -1,5 +1,6 @@
 from MightyLogic.HighGrowth.Erlaed.Army import Army
 
+
 class HighestGrowth:
 
     def __init__(self, army: Army):
@@ -26,7 +27,8 @@ class HighestGrowth:
         self.rarities[rarity] = False
 
     def _format_output(self, ret):
-        ret = ret[['Name', 'Rarity', 'Cur Reborn', 'Cur Level', 'Reborn', 'Level', 'LevelUps', 'Cum Souls', 'Cum Gold', 'Troop Gain',
+        ret = ret[['Name', 'Rarity', 'Cur Reborn', 'Cur Level', 'Reborn', 'Level', 'LevelUps', 'Cum Souls', 'Cum Gold',
+                   'Troop Gain',
                    'Score']]
         ret = ret.rename(columns={"Cum Gold": "Gold"})
         ret["Total Gold"] = ret.Gold.cumsum()

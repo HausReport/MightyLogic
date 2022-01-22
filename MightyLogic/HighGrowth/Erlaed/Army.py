@@ -4,18 +4,17 @@ import plotly.express as px
 from MightyLogic.Heroes.HeroDirectory import HeroDirectory
 from MightyLogic.HighGrowth.Erlaed.Common import Common
 from MightyLogic.HighGrowth.Erlaed.Epic import Epic
-from MightyLogic.HighGrowth.Erlaed.Rare import Rare
 from MightyLogic.HighGrowth.Erlaed.Legendary import Legendary
+from MightyLogic.HighGrowth.Erlaed.Rare import Rare
 
-import pathlib
 
 class Army:
     data_frame: pd.DataFrame
 
     def __init__(self):
         self.data_frame = None
-        #p = pathlib.Path(hdPath)
-        self.directory = HeroDirectory.default() # from_csv_file(p)
+        # p = pathlib.Path(hdPath)
+        self.directory = HeroDirectory.default()  # from_csv_file(p)
 
     def fromFile(self, file):
         self.data_frame = pd.read_csv(file)

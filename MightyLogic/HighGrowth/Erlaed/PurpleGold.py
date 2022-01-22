@@ -3,7 +3,6 @@ from MightyLogic.HighGrowth.Erlaed.Rarity import Rarity
 
 class PurpleGold(Rarity):
 
-
     def reborn_level(self, rb=0):
         if rb == 0:
             return 0
