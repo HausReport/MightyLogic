@@ -5,6 +5,7 @@ import pandas as pd
 from MightyLogic.HighGrowth.Erlaed.RarityBase import RarityBase
 
 
+
 class Rarity(RarityBase, ABC):
     # FIXME: move gold discount somewhere else
     guild_discount = .8
@@ -117,3 +118,21 @@ class Rarity(RarityBase, ABC):
         # it's possible to have ties for max score
         # in case of a tie, return option with most level-ups
         return possibleMoves
+
+    @staticmethod
+    def get_rarity_by_name(aName:str):
+        from MightyLogic.HighGrowth.Erlaed.Common import Common
+        from MightyLogic.HighGrowth.Erlaed.Epic import Epic
+        from MightyLogic.HighGrowth.Erlaed.Legendary import Legendary
+        from MightyLogic.HighGrowth.Erlaed.Rare import Rare
+
+        if aName is None or len(aName)==0 or aName[0].lower() == 'l':
+            return Legendary()
+        elif aName[0].lower() == 'e':
+            return Epic()
+        elif aName[0].lower() == 'r':
+            return Rare()
+        elif aName[0].lower() == 'c':
+            return Common()
+        else:
+            return None

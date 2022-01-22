@@ -2,25 +2,21 @@ import pandas as pd
 import plotly.express as px
 
 from MightyLogic.Heroes.HeroDirectory import HeroDirectory
-from MightyLogic.HighGrowth.Erlaed.Common import Common
-from MightyLogic.HighGrowth.Erlaed.Epic import Epic
-from MightyLogic.HighGrowth.Erlaed.Legendary import Legendary
-from MightyLogic.HighGrowth.Erlaed.Rare import Rare
+from MightyLogic.HighGrowth.Erlaed.Rarity import Rarity
 
 
 class Army:
-    data_frame: pd.DataFrame
 
     def __init__(self):
-        self.data_frame = None
+        self.data_frame: pd.DataFrame = None
         # p = pathlib.Path(hdPath)
         self.directory = HeroDirectory.default()  # from_csv_file(p)
 
     def fromFile(self, file):
-        self.data_frame = pd.read_csv(file)
+        self.data_frame: pd.DataFrame = pd.read_csv(file)
 
     def fromDataframe(self, frame: pd.DataFrame):
-        self.data_frame = frame
+        self.data_frame: pd.DataFrame = frame
 
     def getArmy(self) -> pd.DataFrame:
         return self.data_frame
@@ -55,34 +51,51 @@ class Army:
         legos = self.getLegendaries()
         return legos[(legos['Level'] == 1)]
 
-    def getHistogram(self, rarity="Legendary", nBins=20):
+    def getHistogram(self, rarity: str = "Legendary", nBins: int = 20):
         heroes = self.data_frame[self.data_frame['Rarity'] == rarity]
         fig = px.histogram(heroes, x="Level", nbins=nBins)
         return fig
 
-    def findName(self, aName):
+    def findName(self, aName: str):
         return self.directory.find(aName).name
 
-    def get_evolve_froms(self, aName):
+    def get_evolve_froms(self, aName: str):
         ret = set()
         dude = self.directory.find_by_name(self.findName(aName))
-        for x in dude.evolves_from:
-            ret.add(x.name)
-            ret.update(self.get_evolve_froms(x.name))
-            # print(x.name)
+        if dude is not None:
+            for x in dude.evolves_from:
+                ret.add(x.name)
+                ret.update(self.get_evolve_froms(x.name))
+                # print(x.name)
+
         return ret
 
-    def reborn_level(self, reborn, rarity):
-        ra = None
-        if rarity == "Legendary":
-            ra = Legendary()
-        elif rarity == "Epic":
-            ra = Epic()
-        elif rarity == "Rare":
-            ra = Rare()
-        elif rarity == "Common":
-            ra = Common()
+    def reborn_level(self, reborn: int, rarity: str):
+        ra = Rarity.get_rarity_by_name(rarity)
         if ra is None:
             return 999
-
         return ra.reborn_level(reborn)
+
+    def patch(self, moves: pd.DataFrame):
+        """Returns the resulting army after the level-ups in the moves dataframe are executed"""
+        army = self.data_frame
+        ret = army.copy(deep=True)
+        for index, row in moves.iterrows():
+            aName = row['Name']
+            level = row['Level']
+            reborn = row['Reborn']
+            souls_spent = row['Cum Souls']
+            avail_souls = ret.loc[ret.Name == aName, ['Available Souls']]
+            ret.loc[ret.Name == aName, ['Level']] = level
+            ret.loc[ret.Name == aName, ['Reborn']] = reborn
+            #
+            # FIXME: Want this to decrement souls by amount used
+            # FIXME: returning negative numbers?!?
+            ret.loc[ret.Name == aName, ['Available Souls']] = avail_souls - souls_spent
+
+        # FIXME: carry filters from old to new army
+        retA = Army()
+        retA.data_frame = ret
+        # retA.working = anArmy.working
+        # retA.locked = anArmy.locked
+        return retA
