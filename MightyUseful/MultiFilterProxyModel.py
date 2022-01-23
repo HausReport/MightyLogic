@@ -21,7 +21,7 @@ class MultiFilterProxyModel(QSortFilterProxyModel):
             rint = int(str(source_right.data()).replace(',', ''))
             return lint < rint
         else:
-            return True
+            return source_left.data() < source_right.data()
 
     def setFilterByColumn(self, column, regex):
         if isinstance(regex, str):
