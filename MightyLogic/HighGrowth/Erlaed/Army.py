@@ -80,29 +80,31 @@ class Army:
     # Recently moved from notebook
     #
 
-    def souls_needed_to_reborn(self, cur_reborn, level, avail_souls, rarity) :
-        target_reborn = cur_reborn+1
+    def souls_needed_to_reborn(self, cur_reborn, level, avail_souls, rarity):
+        target_reborn = cur_reborn + 1
         ra = Rarity.get_rarity_by_name(rarity)
-        #print("Rarity: ", ra.getName())
+        # print("Rarity: ", ra.getName())
 
-        df = ra.get_reborn_table(cur_reborn)
+        df = ra.get_reborn_table(cur_reborn).copy(deep=True)
         target_level = ra.reborn_level(target_reborn)
-        #print("Current reborn: ", cur_reborn)
-        #print("Current level: ", level)
-        #print("Target reborn: ", target_reborn)
-        #print("Target level: ", target_level)
+        # print("Current reborn: ", cur_reborn)
+        # print("Current level: ", level)
+        # print("Target reborn: ", target_reborn)
+        # print("Target level: ", target_level)
         if target_level <= level:
             return 0
         else:
             slice = df[(df['Level'] > level) & (df['Level'] <= target_level)]
-            #print( slice)
+            # print( slice)
             theSum = slice.Souls.sum()
-            if theSum<= avail_souls:
+            if theSum <= avail_souls:
                 return 0
             else:
-                #print("Required: ", theSum-avail_souls)
-                return theSum-avail_souls
+                # print("Required: ", theSum-avail_souls)
+                return theSum - avail_souls
 
+    def lookup(self, aName):
+        return self.data_frame[self.data_frame['Name'] == aName]
 
     def patch(self, moves: pd.DataFrame):
         """Returns the resulting army after the level-ups in the moves dataframe are executed"""
@@ -115,7 +117,7 @@ class Army:
             souls_spent = row['Cum Souls']
             avail_souls = ret.loc[ret.Name == aName, ['Available Souls']]
             ret.loc[ret.Name == aName, ['Level']] = level
-            ret.loc[ret.Name == aName, ['Reborn']] = reborn
+            ret.loc[ret.Name == aName, ['Reborns']] = reborn
             #
             # FIXME: Want this to decrement souls by amount used
             # FIXME: returning negative numbers?!?
