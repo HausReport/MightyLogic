@@ -13,6 +13,8 @@ class TestHighestGrowth(TestCase):
         self.coll = self.army.data_frame
         self.leg = Legendary()
         self.moves = self.leg.get_moves_by_name(self.coll, "Ruthless Executioner")
+        df = self.army.lookup("Ruthless Executioner")
+        print(df.to_string(max_colwidth=None))
 
     def test_1(self):
         print(self.moves.to_string(max_colwidth=None))
@@ -26,3 +28,4 @@ class TestHighestGrowth(TestCase):
         arm2 = self.army.patch(self.move)
         df = arm2.lookup("Ruthless Executioner")
         print(df.to_string(max_colwidth=None))
+        assert df['Available Souls'].values[0] == 1396

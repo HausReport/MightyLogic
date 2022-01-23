@@ -67,3 +67,19 @@ class HighestGrowth:
     def getCommons(self, aFilter=None):
         tmp = self.army.getCommons()
         return self._filter(tmp, aFilter)
+
+    def hg_level(self, level_ups) -> int:
+        if level_ups < 0:
+            return 0
+        elif level_ups > 13150:
+            return 15
+        else:
+            tmp = [0, 10, 25, 50, 90, 160, 275, 450, 700, 1050, 1550, 2350, 3650, 5650, 8650, 13150, 999999]
+            for i in range(0, 15):
+                if tmp[i] <= level_ups < tmp[i + 1]:
+                    return i
+
+    def hg_gems(self, level_ups: int):
+        finished_round = self.hg_round_finished(level_ups)
+        tmp = [0, 50, 100, 200, 350, 650, 1100, 1800, 3000, 4500, 7500, 12000, 19500, 30000, 45000, 67500]
+        return sum(tmp[0:finished_round + 1])
