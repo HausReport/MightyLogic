@@ -1,6 +1,6 @@
 import os
 
-from PySide2.QtCore import QRegExp, Qt, QSortFilterProxyModel
+from PySide2.QtCore import QRegExp, Qt, QSortFilterProxyModel, QSize
 from PySide2.QtWidgets import QApplication, QMainWindow, QAction, QFormLayout, QLineEdit, QVBoxLayout
 import sys
 from PySide2.QtGui import QIcon
@@ -23,7 +23,8 @@ class Window(QMainWindow):
 
         self.create_menu()
         self.table = QtWidgets.QTableView()
-
+        vHead = self.table.verticalHeader()
+        vHead.setIconSize(QSize(100,100))
         army = Army()
         print("BLABLA" + str(os.getcwd()))
         army.fromFile('../tests/Erlaed/test.csv')

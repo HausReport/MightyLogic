@@ -503,7 +503,11 @@ class Hero:
         return d
 
     def icon_url(self, width=100) -> str:
-        aName = self.name.replace(' ', '_')  # need to replace spaces with underline
+        return Hero._icon_url(self.name)
+
+    @staticmethod
+    def _icon_url(bName: str) -> str:
+        aName = bName.replace(' ', '_')  # need to replace spaces with underline
         aName += '.png'
         # print(aName)
         m = hashlib.md5()
@@ -511,7 +515,7 @@ class Hero:
         d = m.hexdigest()
         # print(d)
         ret = "https://static.wikia.nocookie.net/mightyparty/images/"
-        ret += d[0] + '/' + d[ 0:2] + '/' + aName + '/revision/latest/scale-to-width-down/' + str(width)
+        ret += d[0] + '/' + d[ 0:2] + '/' + aName #+ '/revision/latest/scale-to-width-down/' + str(width)
         # print(ret)
         return ret
 
