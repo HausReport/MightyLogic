@@ -1,7 +1,8 @@
 import os
 
 from PySide2.QtCore import QRegExp, Qt, QSortFilterProxyModel, QSize
-from PySide2.QtWidgets import QApplication, QMainWindow, QAction, QFormLayout, QLineEdit, QVBoxLayout
+from PySide2.QtWidgets import QApplication, QMainWindow, QAction, QFormLayout, QLineEdit, QVBoxLayout, QWidget, \
+    QCheckBox, QGroupBox, QHBoxLayout
 import sys
 from PySide2.QtGui import QIcon
 from PySide2 import QtWidgets
@@ -38,7 +39,84 @@ class Window(QMainWindow):
         self.table.setModel(self.proxy)
         self.table.setSortingEnabled(True)
 
-        self.setCentralWidget(self.table)
+        thang = QWidget()
+        vbox = QVBoxLayout()
+        hbox = QHBoxLayout()
+        horiz = QWidget()
+        form = QWidget()
+        formLayout = QFormLayout()
+
+        nameLineEdit = QLineEdit()
+        emailLineEdit = QLineEdit()
+        ageSpinBox = QLineEdit()
+
+        alignmentBox = QGroupBox("Alignment")
+        box1 = QVBoxLayout()
+        self.showChaos = QCheckBox("Chaos")
+        self.showChaos.stateChanged.connect(self.checkBoxChange)
+        box1.addWidget(self.showChaos)
+        self.showOrder = QCheckBox("Order")
+        self.showOrder.stateChanged.connect(self.checkBoxChange)
+        box1.addWidget(self.showOrder)
+        self.showNature = QCheckBox("Nature")
+        self.showNature.stateChanged.connect(self.checkBoxChange)
+        box1.addWidget(self.showNature)
+        alignmentBox.setLayout(box1)
+        hbox.addWidget(alignmentBox)
+
+        genderBox = QGroupBox("Gender")
+        box2 = QVBoxLayout()
+        self.showMale = QCheckBox("Male")
+        self.showMale.stateChanged.connect(self.checkBoxChange)
+        box2.addWidget(self.showMale)
+        self.showFemale = QCheckBox("Female")
+        self.showFemale.stateChanged.connect(self.checkBoxChange)
+        box2.addWidget(self.showFemale)
+        self.showNeuter = QCheckBox("Neuter")
+        self.showNeuter.stateChanged.connect(self.checkBoxChange)
+        box2.addWidget(self.showNeuter)
+        genderBox.setLayout(box2)
+        hbox.addWidget(genderBox)
+
+        typeBox = QGroupBox("Type")
+        box3 = QVBoxLayout()
+        self.showMelee = QCheckBox("Melee")
+        self.showMelee.stateChanged.connect(self.checkBoxChange)
+        box3.addWidget(self.showMelee)
+        self.showRanged = QCheckBox("Ranged")
+        self.showRanged.stateChanged.connect(self.checkBoxChange)
+        box3.addWidget(self.showRanged)
+        self.showBuilding = QCheckBox("Building")
+        self.showBuilding.stateChanged.connect(self.checkBoxChange)
+        box3.addWidget(self.showBuilding)
+        typeBox.setLayout(box3)
+        hbox.addWidget(typeBox)
+
+        rarityBox = QGroupBox("Rarity")
+        box4 = QVBoxLayout()
+        self.showCommon = QCheckBox("Common")
+        self.showCommon.stateChanged.connect(self.checkBoxChange)
+        box4.addWidget(self.showCommon)
+        self.showRare = QCheckBox("Rare")
+        self.showRare.stateChanged.connect(self.checkBoxChange)
+        box4.addWidget(self.showRare)
+        self.showEpic = QCheckBox("Epic")
+        self.showEpic.stateChanged.connect(self.checkBoxChange)
+        box4.addWidget(self.showEpic)
+        self.showLegendary = QCheckBox("Legendary")
+        self.showLegendary.stateChanged.connect(self.checkBoxChange)
+        box4.addWidget(self.showLegendary)
+        rarityBox.setLayout(box4)
+        hbox.addWidget(rarityBox)
+
+        form.setLayout(formLayout)
+
+        horiz.setLayout(hbox)
+        vbox.addWidget(horiz)
+        vbox.addWidget(form)
+        vbox.addWidget(self.table)
+        thang.setLayout(vbox)
+        self.setCentralWidget(thang)
         # flayout = QFormLayout()
         # self.layout().addChildLayout(flayout)   # addLayout(flayout)
         # for i in range(self.model.columnCount()):
@@ -49,6 +127,49 @@ class Window(QMainWindow):
         #                                                    col))
         #self.layout().addWidget(self.table)
         self.show()
+
+    def checkBoxChange(self, state):
+        aList = [ ]
+        if self.showChaos.isChecked():
+            aList.append("Chaos")
+        if self.showOrder.isChecked():
+            aList.append("Order")
+        if self.showNature.isChecked():
+            aList.append("Nature")
+        reg = '(' + '|'.join(aList) + ')'
+        self.proxy.setFilterByColumn(7,reg)
+
+        aList = []
+        if self.showMale.isChecked():
+            aList.append("Male")
+        if self.showFemale.isChecked():
+            aList.append("Female")
+        if self.showNeuter.isChecked():
+            aList.append("Middle_Gender")
+        reg = '(' + '|'.join(aList) + ')'
+        self.proxy.setFilterByColumn(6, reg)
+
+        aList = []
+        if self.showMelee.isChecked():
+            aList.append("Melee")
+        if self.showRanged.isChecked():
+            aList.append("Ranged")
+        if self.showBuilding.isChecked():
+            aList.append("Building")
+        reg = '(' + '|'.join(aList) + ')'
+        self.proxy.setFilterByColumn(8, reg)
+
+        aList = []
+        if self.showCommon.isChecked():
+            aList.append("Common")
+        if self.showRare.isChecked():
+            aList.append("Rare")
+        if self.showEpic.isChecked():
+            aList.append("Epic")
+        if self.showLegendary.isChecked():
+            aList.append("Legendary")
+        reg = '(' + '|'.join(aList) + ')'
+        self.proxy.setFilterByColumn(5, reg)
 
     def create_menu(self):
         mainMenu = self.menuBar()

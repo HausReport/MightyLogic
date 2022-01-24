@@ -40,18 +40,13 @@ class PandasModel(QtCore.QAbstractTableModel):
                         aName = "J%3Ftunn"
                     aName += '.png'
                     path = Path.cwd() / ".." / "MightyLogic" / "image" / aName
-                    print(path)
-                    print(path.exists())
-
-                    print("role = " + str(role))
-                    #icon = QIcon(str(path.absolute()))
+                    #print(path)
+                    #print(path.exists())
+                    #print("role = " + str(role))
                     image = QImage(str(path.absolute()))
                     pixmap = QPixmap.fromImage(image)
                     return pixmap.scaled(100, 100, QtCore.Qt.KeepAspectRatio)
-                    #return pixmap
-                    #button = QPushButton(icon,"")
-                    #button.setIconSize(QtCore.QSize(100, 100))
-                    #return icon
+
             elif role == QtCore.Qt.DisplayRole:
                 return self._data.iloc[index.row(), index.column()]
         return None
@@ -61,7 +56,10 @@ class PandasModel(QtCore.QAbstractTableModel):
         #print(str(orientation))
         #print(str(role))
         if orientation == QtCore.Qt.Horizontal and role == QtCore.Qt.DisplayRole:
-            return self._data.columns[col]
+            if col == 0:
+                return "Image"
+            else:
+                return self._data.columns[col]
         return None
 
     def sort(self, column, order):
