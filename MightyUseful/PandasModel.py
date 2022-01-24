@@ -1,10 +1,9 @@
-import PySide2.QtCore as QtCore
-from PySide2.QtGui import QIcon, QImage, QPixmap
-from PySide2.QtWidgets import QPushButton
-from natsort import natsorted, index_natsorted, order_by_index
 from pathlib import Path
 
-import pandas as pd
+import PySide2.QtCore as QtCore
+from PySide2.QtGui import QImage, QPixmap
+
+
 class PandasModel(QtCore.QAbstractTableModel):
 
     def __init__(self, data):
@@ -62,13 +61,13 @@ class PandasModel(QtCore.QAbstractTableModel):
                 return self._data.columns[col]
         return None
 
-    def sort(self, column, order):
-        if order == 0:
-            self._dataframe = self._dataframe.reindex(
-                index=order_by_index(self._dataframe.index, index_natsorted(self._dataframe[column])))
-        else:
-            self._dataframe = self._dataframe.reindex(
-                index=order_by_index(self._dataframe.index, reversed(index_natsorted(self._dataframe[column]))))
-
-        self._dataframe.reset_index(inplace=True, drop=True)
-        self.setDataFrame(self._dataframe)
+    # def sort(self, column, order):
+    #     if order == 0:
+    #         self._dataframe = self._dataframe.reindex(
+    #             index=order_by_index(self._dataframe.index, index_natsorted(self._dataframe[column])))
+    #     else:
+    #         self._dataframe = self._dataframe.reindex(
+    #             index=order_by_index(self._dataframe.index, reversed(index_natsorted(self._dataframe[column]))))
+    #
+    #     self._dataframe.reset_index(inplace=True, drop=True)
+    #     self.setDataFrame(self._dataframe)

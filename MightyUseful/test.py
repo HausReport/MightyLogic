@@ -1,12 +1,10 @@
-import os
-
-from PySide2.QtCore import QRegExp, Qt, QSortFilterProxyModel, QSize
-from PySide2.QtWidgets import QApplication, QMainWindow, QAction, QFormLayout, QLineEdit, QVBoxLayout, QWidget, \
-    QCheckBox, QGroupBox, QHBoxLayout
 import sys
-from PySide2.QtGui import QIcon
-from PySide2 import QtWidgets
 
+from PySide2 import QtWidgets
+from PySide2.QtCore import Qt, QSize
+from PySide2.QtGui import QIcon
+from PySide2.QtWidgets import QApplication, QMainWindow, QAction, QFormLayout, QVBoxLayout, QWidget, \
+    QCheckBox, QGroupBox, QHBoxLayout
 
 from MightyLogic.HighGrowth.Erlaed.Army import Army
 from MightyLogic.HighGrowth.Erlaed.HighestGrowth import HighestGrowth
@@ -25,19 +23,19 @@ class Window(QMainWindow):
         self.create_menu()
         self.table = QtWidgets.QTableView()
         vHead = self.table.verticalHeader()
-        vHead.setIconSize(QSize(100,100))
+        vHead.setIconSize(QSize(100, 100))
         army = Army()
-        print("BLABLA" + str(os.getcwd()))
         army.fromFile('../tests/Erlaed/test.csv')
-        foo = army.getArmy()  # pd.read_csv('all.csv')
+        # foo = army.getArmy()  # pd.read_csv('all.csv')
         hg = HighestGrowth(army)
 
         self.model = PandasModel(army.data_frame)
         self.proxy = MultiFilterProxyModel(self)
-        #self.proxy = QSortFilterProxyModel(self)
+        # self.proxy = QSortFilterProxyModel(self)
         self.proxy.setSourceModel(self.model)
         self.table.setModel(self.proxy)
         self.table.setSortingEnabled(True)
+        self.table.clicked.connect(self.func_test)
 
         thang = QWidget()
         vbox = QVBoxLayout()
@@ -46,9 +44,9 @@ class Window(QMainWindow):
         form = QWidget()
         formLayout = QFormLayout()
 
-        nameLineEdit = QLineEdit()
-        emailLineEdit = QLineEdit()
-        ageSpinBox = QLineEdit()
+        # nameLineEdit = QLineEdit()
+        # emailLineEdit = QLineEdit()
+        # ageSpinBox = QLineEdit()
 
         alignmentBox = QGroupBox("Alignment")
         box1 = QVBoxLayout()
@@ -117,19 +115,23 @@ class Window(QMainWindow):
         vbox.addWidget(self.table)
         thang.setLayout(vbox)
         self.setCentralWidget(thang)
-        # flayout = QFormLayout()
-        # self.layout().addChildLayout(flayout)   # addLayout(flayout)
-        # for i in range(self.model.columnCount()):
-        #     le = QLineEdit(self)
-        #     flayout.addRow("column: {}".format(i), le)
-        #     le.textChanged.connect(lambda text, col=i:
-        #                            self.proxy.setFilterByColumn(QRegExp(text, Qt.CaseSensitive, QRegExp.FixedString),
-        #                                                    col))
-        #self.layout().addWidget(self.table)
         self.show()
 
+    def func_test(self, item):
+        sf = "You clicked on {0}x{1}".format(item.column(), item.row())
+        print(sf)
+        print(type(item))
+        # mod: QAbstractItemModel = item.model()
+        foo = self.proxy.index(item.row(), 1, item)
+        bar = self.proxy.data(foo, Qt.DisplayRole)
+        print(bar)
+        # idx = QModelIndex(1, item.row())
+        # print(idx)
+        # print(mod.data())I
+        # print(mod.data(1, item.row()))
+
     def checkBoxChange(self, state):
-        aList = [ ]
+        aList = []
         if self.showChaos.isChecked():
             aList.append("Chaos")
         if self.showOrder.isChecked():
@@ -137,7 +139,7 @@ class Window(QMainWindow):
         if self.showNature.isChecked():
             aList.append("Nature")
         reg = '(' + '|'.join(aList) + ')'
-        self.proxy.setFilterByColumn(7,reg)
+        self.proxy.setFilterByColumn(7, reg)
 
         aList = []
         if self.showMale.isChecked():

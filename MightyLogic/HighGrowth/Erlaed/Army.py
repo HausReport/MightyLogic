@@ -94,9 +94,9 @@ class Army:
         if target_level <= level:
             return 0
         else:
-            slice = df[(df['Level'] > level) & (df['Level'] <= target_level)]
+            theSlice = df[(df['Level'] > level) & (df['Level'] <= target_level)]
             # print( slice)
-            theSum = slice.Souls.sum()
+            theSum = theSlice.Souls.sum()
             if theSum <= avail_souls:
                 return 0
             else:

@@ -11,14 +11,14 @@ objs = hd.values()
 heroes = []
 for obj in objs:
     heroes.append(obj.name)
-#heroes = ['Charon, Soul Catcher']
+# heroes = ['Charon, Soul Catcher']
 print("BLABLA" + str(os.getcwd()))
 for hero in heroes:
 
     aName = hero
     aName = aName.replace(' ', '_')  # need to replace spaces with underline
     aName = aName.replace('"', '')  # need to replace spaces with underline
-    #aName += '.png'
+    # aName += '.png'
     if aName.endswith('rmun_Grand'):
         aName = "J%3Frmun_Grand"
     if aName.endswith('tunn'):
@@ -31,7 +31,7 @@ for hero in heroes:
     path = Path.cwd() / ".." / ".." / "image" / bName
     print(path)
 
-    if path.exists() == False:
+    if not path.exists():
         #
         # get the image
         #
@@ -43,7 +43,6 @@ for hero in heroes:
         # save it locally
         #
 
-
-        file = open(path,'wb')
+        file = open(path, 'wb')
         file.write(img)
         file.close()

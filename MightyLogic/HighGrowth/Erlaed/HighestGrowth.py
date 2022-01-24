@@ -80,6 +80,6 @@ class HighestGrowth:
                     return i
 
     def hg_gems(self, level_ups: int):
-        finished_round = self.hg_round_finished(level_ups)
+        finished_round = self.hg_level(level_ups)
         tmp = [0, 50, 100, 200, 350, 650, 1100, 1800, 3000, 4500, 7500, 12000, 19500, 30000, 45000, 67500]
         return sum(tmp[0:finished_round + 1])
