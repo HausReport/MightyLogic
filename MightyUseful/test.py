@@ -4,7 +4,7 @@ from PySide2 import QtWidgets
 from PySide2.QtCore import Qt, QSize
 from PySide2.QtGui import QIcon
 from PySide2.QtWidgets import QApplication, QMainWindow, QAction, QFormLayout, QVBoxLayout, QWidget, \
-    QCheckBox, QGroupBox, QHBoxLayout, QFileDialog, QSplitter, QPushButton
+    QCheckBox, QGroupBox, QHBoxLayout, QFileDialog, QSplitter, QPushButton, QSizePolicy
 
 from MightyLogic.HighGrowth.Erlaed.Army import Army
 from MightyLogic.HighGrowth.Erlaed.HighestGrowth import HighestGrowth
@@ -12,8 +12,7 @@ from MightyUseful.Datafile import get_data_file
 from MightyUseful.FileIo import getArmy
 from MightyUseful.MultiFilterProxyModel import MultiFilterProxyModel
 from MightyUseful.PandasModel import PandasModel
-
-
+from TestHeroInfo import MplCanvas
 
 
 class Window(QMainWindow):
@@ -31,8 +30,6 @@ class Window(QMainWindow):
         vHead.setIconSize(QSize(100, 100))
         self.army = Army()
         getArmy(self, self.army)
-#'../tests/Erlaed/test.csv')
-        # foo = army.getArmy()  # pd.read_csv('all.csv')
         hg = HighestGrowth(self.army)
 
         self.model = PandasModel(self.army.data_frame)
@@ -42,13 +39,14 @@ class Window(QMainWindow):
         self.table.setModel(self.proxy)
         self.table.setSortingEnabled(True)
         self.table.clicked.connect(self.func_test)
+        self.table.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
 
-        thang = QWidget()
-        vbox = QVBoxLayout()
-        hbox = QHBoxLayout()
-        horiz = QWidget()
-        form = QWidget()
-        formLayout = QFormLayout()
+        wholeUiWidget = QWidget()
+        wholeUiWidgetLayout = QVBoxLayout()
+        horizontalFilterBoxLayout = QHBoxLayout()
+        horizontalFilterBox = QWidget()
+        # form = QWidget()
+        # formLayout = QFormLayout()
 
         # nameLineEdit = QLineEdit()
         # emailLineEdit = QLineEdit()
@@ -66,7 +64,7 @@ class Window(QMainWindow):
         self.showNature.stateChanged.connect(self.checkBoxChange)
         box1.addWidget(self.showNature)
         alignmentBox.setLayout(box1)
-        hbox.addWidget(alignmentBox)
+        horizontalFilterBoxLayout.addWidget(alignmentBox)
 
         genderBox = QGroupBox("Gender")
         box2 = QVBoxLayout()
@@ -80,7 +78,7 @@ class Window(QMainWindow):
         self.showNeuter.stateChanged.connect(self.checkBoxChange)
         box2.addWidget(self.showNeuter)
         genderBox.setLayout(box2)
-        hbox.addWidget(genderBox)
+        horizontalFilterBoxLayout.addWidget(genderBox)
 
         typeBox = QGroupBox("Type")
         box3 = QVBoxLayout()
@@ -94,7 +92,7 @@ class Window(QMainWindow):
         self.showBuilding.stateChanged.connect(self.checkBoxChange)
         box3.addWidget(self.showBuilding)
         typeBox.setLayout(box3)
-        hbox.addWidget(typeBox)
+        horizontalFilterBoxLayout.addWidget(typeBox)
 
         rarityBox = QGroupBox("Rarity")
         box4 = QVBoxLayout()
@@ -111,23 +109,57 @@ class Window(QMainWindow):
         self.showLegendary.stateChanged.connect(self.checkBoxChange)
         box4.addWidget(self.showLegendary)
         rarityBox.setLayout(box4)
-        hbox.addWidget(rarityBox)
+        horizontalFilterBoxLayout.addWidget(rarityBox)
 
-        form.setLayout(formLayout)
+        rebornBox = QGroupBox("Rarity")
+        box4 = QVBoxLayout()
+        self.showReborn0 = QCheckBox("Reborn 0")
+        self.showReborn0.stateChanged.connect(self.checkBoxChange)
+        box4.addWidget(self.showReborn0)
+        self.showReborn1 = QCheckBox("Reborn 1")
+        self.showReborn1.stateChanged.connect(self.checkBoxChange)
+        box4.addWidget(self.showReborn1)
+        self.showReborn2 = QCheckBox("Reborn 2")
+        self.showReborn2.stateChanged.connect(self.checkBoxChange)
+        box4.addWidget(self.showReborn2)
+        self.showReborn3 = QCheckBox("Reborn 3")
+        self.showReborn3.stateChanged.connect(self.checkBoxChange)
+        box4.addWidget(self.showReborn3)
+        self.showReborn4 = QCheckBox("Reborn 4")
+        self.showReborn4.stateChanged.connect(self.checkBoxChange)
+        box4.addWidget(self.showReborn4)
+        self.showReborn5 = QCheckBox("Reborn 5")
+        self.showReborn5.stateChanged.connect(self.checkBoxChange)
+        box4.addWidget(self.showReborn5)
+        rebornBox.setLayout(box4)
+        horizontalFilterBoxLayout.addWidget(rebornBox)
 
-        horiz.setLayout(hbox)
-        vbox.addWidget(horiz)
-        vbox.addWidget(form)
+        # form.setLayout(formLayout)
+        leftWidget = QWidget()
+        leftWidgetLayout = QVBoxLayout()
 
-        splitter = QSplitter(self, Qt.Horizontal)
-        splitter.addWidget(self.table)
-        self.btn = QPushButton("Hi")
-        self.btn.setMinimumHeight(1000)
-        splitter.addWidget(self.btn)
-        vbox.addWidget(splitter)
-        thang.setLayout(vbox)
-        self.setCentralWidget(thang)
+        horizontalFilterBox.setLayout(horizontalFilterBoxLayout)
+        leftWidgetLayout.addWidget(horizontalFilterBox)
+        leftWidgetLayout.addWidget(self.table)
+        leftWidget.setLayout(leftWidgetLayout)
+        # vbox.addWidget(form)
+
+        self.splitter = QSplitter(self, Qt.Horizontal)
+        self.splitter.addWidget(leftWidget)
+
+        # self.btn = QPushButton("Hi")
+        # self.btn.setMinimumHeight(1000)
+        # splitter.addWidget(self.btn)
+        self.heroInfo = MplCanvas()
+        self.heroInfo.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
+        self.splitter.addWidget(self.heroInfo)
+
+        self.splitter.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        wholeUiWidgetLayout.addWidget(self.splitter)
+        wholeUiWidget.setLayout(wholeUiWidgetLayout)
+        self.setCentralWidget(wholeUiWidget)
         self.show()
+        self.setHeroByName("Charon, Soul Catcher")
 
     def func_test(self, item):
         sf = "You clicked on {0}x{1}".format(item.column(), item.row())
@@ -136,12 +168,28 @@ class Window(QMainWindow):
         # mod: QAbstractItemModel = item.model()
         foo = self.proxy.index(item.row(), 1, item)
         bar = self.proxy.data(foo, Qt.DisplayRole)
-        self.btn.setText(bar)
-        print(self.army.lookup(bar))
-        # idx = QModelIndex(1, item.row())
-        # print(idx)
-        # print(mod.data())I
-        # print(mod.data(1, item.row()))
+        self.setHeroByName(bar)
+        # self.btn.setText(bar)
+
+    def setHeroByName(self, aName):
+        hero = self.army.lookup(aName)
+        if hero is None:
+            print("Bad hero name: " + aName)
+        else:
+            newHeroInfo = MplCanvas()
+            newHeroInfo.setHero(hero, self.army)
+            self.splitter.replaceWidget(1, newHeroInfo)
+            self.heroInfo = newHeroInfo
+            print(hero)
+        hero = self.army.lookup(aName)
+        if hero is None:
+            print("Bad hero name: " + aName)
+        else:
+            newHeroInfo = MplCanvas()
+            newHeroInfo.setHero(hero, self.army)
+            self.splitter.replaceWidget(1, newHeroInfo)
+            self.heroInfo = newHeroInfo
+            print(hero)
 
     def checkBoxChange(self, state):
         aList = []
@@ -186,6 +234,22 @@ class Window(QMainWindow):
         reg = '(' + '|'.join(aList) + ')'
         self.proxy.setFilterByColumn(5, reg)
 
+        aList = []
+        if self.showReborn0.isChecked():
+            aList.append("0")
+        if self.showReborn1.isChecked():
+            aList.append("1")
+        if self.showReborn2.isChecked():
+            aList.append("2")
+        if self.showReborn3.isChecked():
+            aList.append("3")
+        if self.showReborn4.isChecked():
+            aList.append("4")
+        if self.showReborn5.isChecked():
+            aList.append("5")
+        reg = '(' + '|'.join(aList) + ')'
+        self.proxy.setFilterByColumn(3, reg)
+
     def create_menu(self):
         mainMenu = self.menuBar()
         fileMenu = mainMenu.addMenu("File")
@@ -217,3 +281,17 @@ myApp = QApplication(sys.argv)
 window = Window()
 myApp.exec_()
 sys.exit(0)
+
+
+# TODO:
+# 1) add tabs
+# 2) add avail souls to hero info
+# 3) add "can level up"
+# 4) add "can reborn"
+# 5) tab for army analysis
+# 6) tab for high growth
+# 7) gold discount class, refactor
+# 8) gold discount ui
+# 9) army column for hg strategy
+# 10) edit hg strategy
+# 11) save/load hg strategy

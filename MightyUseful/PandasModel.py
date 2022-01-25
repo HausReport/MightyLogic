@@ -3,6 +3,8 @@ from pathlib import Path
 import PySide2.QtCore as QtCore
 from PySide2.QtGui import QImage, QPixmap
 
+from MightyUseful.FileIo import nameToPixmap
+
 
 class PandasModel(QtCore.QAbstractTableModel):
 
@@ -31,20 +33,22 @@ class PandasModel(QtCore.QAbstractTableModel):
             elif index.column() == 0:
                 if role == QtCore.Qt.DecorationRole: # or role == QtCore.Qt.ToolTipRole:
                     aName = self._data.iloc[index.row(),1]
-                    aName = aName.replace(' ', '_')  # need to replace spaces with underline
-                    aName = aName.replace('"', '')  # need to replace spaces with underline
-                    if aName.endswith('rmun_Grand'):
-                        aName = "J%3Frmun_Grand"
-                    if aName.endswith('tunn'):
-                        aName = "J%3Ftunn"
-                    aName += '.png'
-                    path = Path.cwd() / ".." / "MightyLogic" / "image" / aName
-                    #print(path)
-                    #print(path.exists())
-                    #print("role = " + str(role))
-                    image = QImage(str(path.absolute()))
-                    pixmap = QPixmap.fromImage(image)
-                    return pixmap.scaled(100, 100, QtCore.Qt.KeepAspectRatio)
+                    pixmap = nameToPixmap(aName,100,100)
+                    return pixmap
+                    # aName = aName.replace(' ', '_')  # need to replace spaces with underline
+                    # aName = aName.replace('"', '')  # need to replace spaces with underline
+                    # if aName.endswith('rmun_Grand'):
+                    #     aName = "J%3Frmun_Grand"
+                    # if aName.endswith('tunn'):
+                    #     aName = "J%3Ftunn"
+                    # aName += '.png'
+                    # path = Path.cwd() / ".." / "MightyLogic" / "image" / aName
+                    # #print(path)
+                    # #print(path.exists())
+                    # #print("role = " + str(role))
+                    # image = QImage(str(path.absolute()))
+                    # pixmap = QPixmap.fromImage(image)
+                    # return pixmap.scaled(100, 100, QtCore.Qt.KeepAspectRatio)
 
             elif role == QtCore.Qt.DisplayRole:
                 return self._data.iloc[index.row(), index.column()]

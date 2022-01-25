@@ -45,44 +45,26 @@ class Legendary(PurpleGold):
         r0_tab['Gold'] = (r0_tab['Gold'] * self.gold_discount)
         return r0_tab
 
-    def getMightBonus(self, reborn):
-        if reborn == 0:
+    def getMightBonus(self, reborn: int = 0):
+        if reborn < 0:
             return 0
-        elif reborn == 1:
-            return 200
-        elif reborn == 2:
-            return 200 + 350
-        elif reborn == 3:
-            return 200 + 350 + 600
-        elif reborn == 4:
-            return 200 + 350 + 600 + 1200
-        elif reborn == 5:
-            return 200 + 350 + 600 + 1200 + 1700
+        elif reborn > 5:
+            return 0
+        tmp = [0, 200, 350, 600, 1200, 1700]
+        return sum(tmp[:reborn + 1])
 
-    def getTroopBonus(self, reborn):
-        if reborn == 0:
+    def getTroopBonus(self, reborn: int = 0):
+        if reborn < 0:
             return 0
-        elif reborn == 1:
-            return 102
-        elif reborn == 2:
-            return 102 + 268
-        elif reborn == 3:
-            return 102 + 268 + 751
-        elif reborn == 4:
-            return 102 + 268 + 751 + 1583
-        elif reborn == 5:
-            return 102 + 268 + 751 + 1583 + 2957
+        elif reborn > 5:
+            return 0
+        tmp = [0, 102, 268, 751, 1583, 2957]
+        return sum(tmp[:reborn + 1])
 
-    def sn(self, rb=0):
-        if rb == 0:
+    def sn(self, reborn: int = 0):
+        if reborn < 0:
             return 0
-        elif rb == 1:
-            return 90
-        elif rb == 2:
-            return 600 + 90
-        elif rb == 3:
-            return 2270 + 600 + 90
-        elif rb == 4:
-            return 7820 + 2270 + 600 + 90
-        elif rb == 5:
-            return 27420 + 7820 + 2270 + 600 + 90
+        elif reborn > 5:
+            return 0
+        tmp = [0, 90, 600, 2770, 7820, 27420]
+        return sum(tmp[:reborn + 1])
