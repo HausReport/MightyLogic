@@ -41,14 +41,14 @@ class HighestGrowth:
         aList = df.Name.tolist()
         if aFilter is None:
             return aList
-        elif aFilter is "Working":
+        elif aFilter == "Working":
             working = [item for item in aList if item not in self.forced]
             working = [item for item in working if item not in self.locked]
             return working
-        elif aFilter is "Forced":
+        elif aFilter == "Forced":
             forced = [item for item in aList if item in self.forced]
             return forced
-        elif aFilter is "Locked":
+        elif aFilter == "Locked":
             locked = [item for item in aList if item in self.locked]
             return locked
 

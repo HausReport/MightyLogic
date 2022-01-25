@@ -4,15 +4,20 @@ from PySide2 import QtWidgets
 from PySide2.QtCore import Qt, QSize
 from PySide2.QtGui import QIcon
 from PySide2.QtWidgets import QApplication, QMainWindow, QAction, QFormLayout, QVBoxLayout, QWidget, \
-    QCheckBox, QGroupBox, QHBoxLayout
+    QCheckBox, QGroupBox, QHBoxLayout, QFileDialog, QSplitter, QPushButton
 
 from MightyLogic.HighGrowth.Erlaed.Army import Army
 from MightyLogic.HighGrowth.Erlaed.HighestGrowth import HighestGrowth
+from MightyUseful.Datafile import get_data_file
+from MightyUseful.FileIo import getArmy
 from MightyUseful.MultiFilterProxyModel import MultiFilterProxyModel
 from MightyUseful.PandasModel import PandasModel
 
 
+
+
 class Window(QMainWindow):
+
     def __init__(self):
         super().__init__()
         self.setLayout(QVBoxLayout())
@@ -24,12 +29,13 @@ class Window(QMainWindow):
         self.table = QtWidgets.QTableView()
         vHead = self.table.verticalHeader()
         vHead.setIconSize(QSize(100, 100))
-        army = Army()
-        army.fromFile('../tests/Erlaed/test.csv')
+        self.army = Army()
+        getArmy(self, self.army)
+#'../tests/Erlaed/test.csv')
         # foo = army.getArmy()  # pd.read_csv('all.csv')
-        hg = HighestGrowth(army)
+        hg = HighestGrowth(self.army)
 
-        self.model = PandasModel(army.data_frame)
+        self.model = PandasModel(self.army.data_frame)
         self.proxy = MultiFilterProxyModel(self)
         # self.proxy = QSortFilterProxyModel(self)
         self.proxy.setSourceModel(self.model)
@@ -112,7 +118,13 @@ class Window(QMainWindow):
         horiz.setLayout(hbox)
         vbox.addWidget(horiz)
         vbox.addWidget(form)
-        vbox.addWidget(self.table)
+
+        splitter = QSplitter(self, Qt.Horizontal)
+        splitter.addWidget(self.table)
+        self.btn = QPushButton("Hi")
+        self.btn.setMinimumHeight(1000)
+        splitter.addWidget(self.btn)
+        vbox.addWidget(splitter)
         thang.setLayout(vbox)
         self.setCentralWidget(thang)
         self.show()
@@ -124,7 +136,8 @@ class Window(QMainWindow):
         # mod: QAbstractItemModel = item.model()
         foo = self.proxy.index(item.row(), 1, item)
         bar = self.proxy.data(foo, Qt.DisplayRole)
-        print(bar)
+        self.btn.setText(bar)
+        print(self.army.lookup(bar))
         # idx = QModelIndex(1, item.row())
         # print(idx)
         # print(mod.data())I
