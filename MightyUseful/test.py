@@ -38,7 +38,7 @@ class Window(QMainWindow):
         self.proxy.setSourceModel(self.model)
         self.table.setModel(self.proxy)
         self.table.setSortingEnabled(True)
-        self.table.clicked.connect(self.func_test)
+        self.table.clicked.connect(self.set_hero_drilldown)
         self.table.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
 
         wholeUiWidget = QWidget()
@@ -161,7 +161,12 @@ class Window(QMainWindow):
         self.show()
         self.setHeroByName("Charon, Soul Catcher")
 
-    def func_test(self, item):
+    def set_hero_drilldown(self, item):
+        """
+        User clicked on a row, set drilldown display on right to display that hero.
+        :param item:
+        :return:
+        """
         sf = "You clicked on {0}x{1}".format(item.column(), item.row())
         print(sf)
         print(type(item))
@@ -172,9 +177,15 @@ class Window(QMainWindow):
         # self.btn.setText(bar)
 
     def setHeroByName(self, aName):
+        """
+       Sets the current hero to the named hero.
+        :param aName: name of hero
+        :return:
+        """
         hero = self.army.lookup(aName)
         if hero is None:
             print("Bad hero name: " + aName)
+            # FIXME: handle case when hero is none
         else:
             newHeroInfo = MplCanvas()
             newHeroInfo.setHero(hero, self.army)
@@ -192,6 +203,11 @@ class Window(QMainWindow):
             print(hero)
 
     def checkBoxChange(self, state):
+        """
+        Handle when user clicks a filter checkbox.
+        :param state:
+        :return:
+        """
         aList = []
         if self.showChaos.isChecked():
             aList.append("Chaos")
@@ -251,6 +267,10 @@ class Window(QMainWindow):
         self.proxy.setFilterByColumn(3, reg)
 
     def create_menu(self):
+        """
+        Creates the menuing system
+        :return:
+        """
         mainMenu = self.menuBar()
         fileMenu = mainMenu.addMenu("File")
         viewMenu = mainMenu.addMenu("View")
@@ -292,8 +312,14 @@ sys.exit(0)
 # 8) gold discount ui
 # 12) load discounts
 # 13) Score - see Hanzo Sama case, lots of levels similar score to 1 level.  See also spreadsheet
+# 15) Filters for strategy
+# 16) Add RebornLater strategy - is it the same as NoReborn?  Stop right at reborn point & save souls?
+# 17) Help system
+# 18) Show evolves to
+# 19) Show evolves from
 
 
+# 14) ~~RebornAndFreeze strategy~~
 # 10) ~~edit hg strategy~~
 # 11B) ~~save hg strategy~~
 # 10A) ~~edit widget for hg strategy~~

@@ -47,7 +47,7 @@ class MplCanvas(QWidget):
         if might > 0:
             nice['Might'] -= might
             nice.rename(columns={'Might': 'Might ∆'}, inplace=True)
-        return nice.to_html(index=False)
+        return nice.to_html(index=False, classes="mystyle")
 
     def setHero(self, row, army):
         self.row = row
@@ -108,7 +108,7 @@ class MplCanvas(QWidget):
         vbox.addWidget(tLabel, 6, 1, 1, 1)
 
         self.shapeCombo = QComboBox(self)
-        labelList = ["Freeze", "Troops", "HighGrowth", "Might","NoReborn"]
+        labelList = ["Freeze", "Troops", "HighGrowth", "Might","NoReborn","RebornToLevel1","EventReady"]
         l = sorted(labelList)
         self.shapeCombo.addItems(l)
         self.shapeCombo.currentTextChanged.connect(self.stratChanged)
@@ -132,9 +132,39 @@ class MplCanvas(QWidget):
         vbox.addWidget(self.shapeCombo, 6, 3, 1, 1)
 
         some_html = self.nice_levelup_table(army, aName, rarity, might, troops)
-        text_browser = QTextBrowser()
-        text_browser.setText("<h2>Recommended Level-Ups</h2>" + some_html)
-        vbox.addWidget(text_browser, 7, 0, 15, 4)
+        self.text_browser = QTextBrowser()
+        css = """
+<html>
+<head>
+<style>     
+/* includes alternating gray and white with on-hover color */
+
+.mystyle {
+    font-size: 12pt; 
+    font-family: Arial Narrow;
+    border-collapse: collapse; 
+    border: 0px solid silver;
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+}
+
+.mystyle td, th {
+    padding: 0px;
+    font-size: 12pt; 
+    text-align: right;
+}
+
+.mystyle tr:nth-child(even) {
+    background: #E0E0E0;
+}
+
+.mystyle tr:hover {
+    background: silver;
+    cursor: pointer;
+}</style></head><body>
+        """
+        self.text_browser.setText("<h2>Recommended Level-Ups</h2>" + css + some_html)
+        vbox.addWidget(self.text_browser, 7, 0, 15, 4)
         # text_browser.show()
         # text_browser.raise_()
 
@@ -151,6 +181,7 @@ class MplCanvas(QWidget):
         aName = self.row['Name'].values[0]
         print("Name = " + aName)
         self.army.updateStrategy(aName, newStrat)
+        #self.setHero(self.row, self.army) causes loop
 
 class MainWindow(QMainWindow):
 

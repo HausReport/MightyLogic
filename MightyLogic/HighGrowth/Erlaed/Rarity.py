@@ -24,9 +24,18 @@ class Rarity(RarityBase, ABC):
     GOLD_EFFICIENCY = 1
     MIXED = 2
     MIGHT_EFFICIENCY = 3
+    REBORN_TO_ONE = 4
+    EVENT_READY = 5
 
     def straight_level(self, level: int, reborn: int, avail_souls: int) -> pd.DataFrame:
-        """Return dataframe of possible level-ups without any reborns"""
+        """
+        Return dataframe of possible level-ups without any reborns
+
+        :param level: hero's current level
+        :param reborn: hero's current reborn
+        :param avail_souls: how many souls are available
+        :return: dataframe of moves in the current reborn
+        """
         tab = self.get_reborn_table(reborn)
         tmp = tab.copy(deep=True)
         tmp['Reborn'] = reborn
@@ -40,6 +49,16 @@ class Rarity(RarityBase, ABC):
 
     def get_moves(self, level: int, reborn: int, avail_souls: int, total_souls: int = -1,
                   score_mode: int = TROOP_EFFICIENCY, straight_level: bool= False) -> pd.DataFrame:
+        """
+        Low-level function to provide possible moves
+        :param level: hero's current level
+        :param reborn: hero's current reborn
+        :param avail_souls: available souls
+        :param total_souls: total souls
+        :param score_mode: how to reckon a good move
+        :param straight_level: If True, don't consider reborns.
+        :return: dataframe of moves
+        """
         (curMight, curTroops) = self.getMightAndTroops(reborn, level)
         if straight_level:
             moves = self.straight_level(level, reborn, avail_souls)
@@ -52,7 +71,12 @@ class Rarity(RarityBase, ABC):
         moves["Troop Gain"] = moves["Troops"] - curTroops
         moves["Might Gain"] = moves["Might"] - curMight
         moves = moves[moves['Troop Gain'] > 0]
-        moves = moves[moves['Level'] > self.FENCE]
+        if score_mode == Rarity.REBORN_TO_ONE:
+            moves = moves[moves['Level'] == 1]
+        elif score_mode == Rarity.EVENT_READY:
+            moves = moves[moves['Level'] >= 16]
+        else:
+            moves = moves[moves['Level'] > self.FENCE]
         moves['LevelUps'] = 0
 
         # fixed problem with lambda freaking out with 0 moves
@@ -62,11 +86,13 @@ class Rarity(RarityBase, ABC):
                 axis=1)
         if score_mode == Rarity.GOLD_EFFICIENCY:
             moves["Score"] = 10000000.0 * (moves["LevelUps"] / moves["Cum Gold"]) * (51.0 / 1291.0)
+        elif score_mode == Rarity.REBORN_TO_ONE:
+            moves["Score"] = 200.0
         elif score_mode == Rarity.MIXED:
             score_a = 10000000.0 * (moves["LevelUps"] / moves["Cum Gold"]) * (51.0 / 1291.0)
             score_b = 10000.0 * (moves["Troop Gain"] / moves["Cum Gold"])
             moves["Score"] = max(score_a, score_b)
-        elif score_mode == Rarity.TROOP_EFFICIENCY:
+        elif score_mode == Rarity.TROOP_EFFICIENCY or score_mode == Rarity.EVENT_READY:
             moves["Score"] = 10000.0 * (moves["Troop Gain"] / moves["Cum Gold"])
         elif score_mode == Rarity.MIGHT_EFFICIENCY:
             moves["Score"] = moves["Might Gain"]
@@ -77,7 +103,14 @@ class Rarity(RarityBase, ABC):
 
     def get_moves_by_name(self, collection_df: pd.DataFrame, name: str,
                           score_mode: int = TROOP_EFFICIENCY) -> pd.DataFrame:
-        """Get dataframe of possible level-ups for the named hero"""
+        """
+        Get dataframe of possible level-ups for the named hero
+
+        :param collection_df: collection dataframe
+        :param name: hero to work on
+        :param score_mode: how to reckon a good move
+        :return: (Possibly empty) dataframe of possible moves if name exists, None otherwise.
+        """
         if (collection_df['Name'] == name).any():
             loc = collection_df.loc[collection_df['Name'] == name]
             level = loc.Level.values[0]
@@ -93,8 +126,10 @@ class Rarity(RarityBase, ABC):
                 score_mode = Rarity.GOLD_EFFICIENCY
             elif strategy == "NoReborn":
                 straight_level = True
+            elif strategy == "RebornToLevel1":
+                score_mode = Rarity.REBORN_TO_ONE
             elif strategy == "Might":
-                score_mode = Rarity.MIGHT_EFFICIENCY  #FIXME: KLUDGE - IMPLEMENT THIS
+                score_mode = Rarity.MIGHT_EFFICIENCY
             else:
                 return None
 
@@ -103,7 +138,14 @@ class Rarity(RarityBase, ABC):
             return None
 
     def fancy_level(self, level: int, reborn: int, avail_souls: int, total_souls: int = -1) -> pd.DataFrame:
-        """Get dataframe of possible level-ups including reborns"""
+        """Get dataframe of possible level-ups including reborns
+
+        :param level: hero's current level
+        :param reborn: hero's current reborn
+        :param avail_souls: hero's available souls
+        :param total_souls:  hero's total souls (some may be refunded)
+        :return:  dataframe of possible level-ups
+        """
         tab = self.straight_level(level, reborn, avail_souls)
         #
         # Table of possible level-ups
@@ -143,6 +185,11 @@ class Rarity(RarityBase, ABC):
 
     @staticmethod
     def get_rarity_by_name(aName: str):
+        """
+        Returns rarity with name closest to given string
+        :param aName: name for rarity
+        :return: A rarity if possible, None otherwise.
+        """
         from MightyLogic.HighGrowth.Erlaed.Common import Common
         from MightyLogic.HighGrowth.Erlaed.Epic import Epic
         from MightyLogic.HighGrowth.Erlaed.Legendary import Legendary
