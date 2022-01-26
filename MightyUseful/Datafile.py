@@ -1,9 +1,10 @@
 import appdirs
 from pathlib import Path
 
+
 def get_data_directory():
-    appname="Mighty Useful"
-    appauthor="Nightmare"
+    appname = "Mighty Useful"
+    appauthor = "Nightmare"
     data_dir = appdirs.user_data_dir(appname, appauthor)
     print(data_dir)
 
@@ -15,6 +16,7 @@ def get_data_directory():
     if not dir_path.exists():
         dir_path.mkdir(exist_ok=True)
     return dir_path
+
 
 # if default file exists, return it.  if not return directory
 def get_data_file():
@@ -28,3 +30,17 @@ def get_data_file():
     else:
         print("File Nexists")
         return dir_path
+
+
+# if default file exists, return it.  if not return None
+def get_strategies_file():
+    dir_path = get_data_directory()
+    file_name = "strategies.csv"
+    file_path = dir_path / file_name
+
+    if file_path.exists():
+        print("Config File Exists")
+        return file_path
+    else:
+        print("Config File Nexists")
+        return None

@@ -28,7 +28,7 @@ class MplCanvas(QWidget):
     def nice_levelup_table(self, army, aName, rarity, might, troops):
         ra = Rarity.get_rarity_by_name(rarity)
         nice = ra.get_moves_by_name(army.data_frame, aName)
-        if len(nice)==0:
+        if nice is None or len(nice)==0:
             return "<i>None available.</i>"
         nice = nice.copy(deep=True)
         nice = nice[['Reborn', 'Level', 'Cum Souls', 'Cum Gold', 'Troops', 'Might', 'LevelUps', 'Score']]
@@ -54,12 +54,11 @@ class MplCanvas(QWidget):
         aName = row['Name'].values[0]
         self.btn = QLabel(aName)
         self.btn.setStyleSheet("color: white; background-color: black; font-size: 24pt; text-align: center;")
-        #self.btn.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         self.btn.setSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.MinimumExpanding)
-        self.btn.setMaximumWidth(350)
-        self.btn.setMinimumWidth(350)
-        self.setMaximumWidth(350)
-        self.setMinimumWidth(350)
+        self.btn.setMaximumWidth(375)
+        self.btn.setMinimumWidth(375)
+        self.setMaximumWidth(375)
+        self.setMinimumWidth(375)
         vbox = QGridLayout()
         vbox.setContentsMargins(0,0,0,0)
         vbox.addWidget(self.btn, 0, 0, 1, 4,alignment=Qt.AlignCenter )

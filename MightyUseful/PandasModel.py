@@ -28,7 +28,12 @@ class PandasModel(QtCore.QAbstractTableModel):
 
     def data(self, index, role=QtCore.Qt.DisplayRole):
         if index.isValid():
-            if index.column() in [2, 3, 4, 9, 10]:
+            if role == QtCore.Qt.TextAlignmentRole:
+                if index.column() in [1,5,6,7,8,11]:
+                    return QtCore.Qt.AlignLeft;
+                else:
+                    return QtCore.Qt.AlignRight;
+            elif index.column() in [2, 3, 4, 9, 10]:
                 return self.data_int(index, role)
             elif index.column() == 0:
                 if role == QtCore.Qt.DecorationRole: # or role == QtCore.Qt.ToolTipRole:
@@ -55,10 +60,12 @@ class PandasModel(QtCore.QAbstractTableModel):
         return None
 
     def headerData(self, col, orientation, role):
-
-        #print(str(orientation))
-        #print(str(role))
-        if orientation == QtCore.Qt.Horizontal and role == QtCore.Qt.DisplayRole:
+        if role == QtCore.Qt.TextAlignmentRole:
+            if col in [1, 5, 6, 7, 8, 11]:
+                return QtCore.Qt.AlignLeft;
+            else:
+                return QtCore.Qt.AlignRight;
+        elif orientation == QtCore.Qt.Horizontal and role == QtCore.Qt.DisplayRole:
             if col == 0:
                 return "Image"
             else:

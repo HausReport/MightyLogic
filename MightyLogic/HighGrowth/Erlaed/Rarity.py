@@ -13,6 +13,7 @@ class Rarity(RarityBase, ABC):
     # crisis_discount = .82
     # # gold_discount = .8
     # gold_discount = guild_discount * vip_discount  # * crisis_discount  # .66 # with crisis + guild
+    FENCE = 10 # FIXME - change to average level for that rarity?
 
     COMMON = 0
     RARE = 1
@@ -23,7 +24,7 @@ class Rarity(RarityBase, ABC):
     GOLD_EFFICIENCY = 1
     MIXED = 2
 
-    def straight_level(self, level: int, reborn: int, avail_souls: int, avail_gold: int = -1) -> pd.DataFrame:
+    def straight_level(self, level: int, reborn: int, avail_souls: int) -> pd.DataFrame:
         """Return dataframe of possible level-ups without any reborns"""
         tab = self.get_reborn_table(reborn)
         tmp = tab.copy(deep=True)
@@ -34,20 +35,22 @@ class Rarity(RarityBase, ABC):
         tmp['Cum Souls'] = tmp.Souls.cumsum()  # is this right? sum on Level>level or >=?
         tmp['Cum Gold'] = tmp.Gold.cumsum()  # yes, level 2 shows requirements to go from level 1 to level 2...
         tmp = tmp[tmp['Cum Souls'] <= avail_souls]
-        if avail_gold > 0:
-            tmp = tmp[tmp['Cum Gold'] <= avail_gold]
         return tmp
 
-    def get_moves(self, level: int, reborn: int, avail_souls: int, total_souls: int = -1, avail_gold: int = -1,
-                  score_mode: int = TROOP_EFFICIENCY) -> pd.DataFrame:
+    def get_moves(self, level: int, reborn: int, avail_souls: int, total_souls: int = -1,
+                  score_mode: int = TROOP_EFFICIENCY, straight_level: bool= False) -> pd.DataFrame:
         (curMight, curTroops) = self.getMightAndTroops(reborn, level)
-        moves = self.fancy_level(level, reborn, avail_souls, total_souls, avail_gold)
+        if straight_level:
+            moves = self.straight_level(level, reborn, avail_souls)
+        else:
+            moves = self.fancy_level(level, reborn, avail_souls, total_souls)
+
         moves["Cur Level"] = level
         moves = moves.copy(deep=True)
         moves["Cur Reborn"] = reborn
         moves["Troop Gain"] = moves["Troops"] - curTroops
         moves = moves[moves['Troop Gain'] > 0]
-        moves = moves[moves['Level'] > 10]
+        moves = moves[moves['Level'] > self.FENCE]
         moves['LevelUps'] = 0
 
         # fixed problem with lambda freaking out with 0 moves
@@ -67,7 +70,7 @@ class Rarity(RarityBase, ABC):
 
         return moves
 
-    def get_moves_by_name(self, collection_df: pd.DataFrame, name: str, avail_gold: int = -1,
+    def get_moves_by_name(self, collection_df: pd.DataFrame, name: str,
                           score_mode: int = TROOP_EFFICIENCY) -> pd.DataFrame:
         """Get dataframe of possible level-ups for the named hero"""
         if (collection_df['Name'] == name).any():
@@ -76,14 +79,27 @@ class Rarity(RarityBase, ABC):
             reborn = loc.Reborns.values[0]
             avail_souls = loc["Available Souls"].values[0]
             total_souls = loc["Total Souls"].values[0]
-            return self.get_moves(level, reborn, avail_souls, total_souls, avail_gold, score_mode=score_mode)
+            strategy = loc["Strategy"].values[0]
+            straight_level = False
+            score_mode = Rarity.TROOP_EFFICIENCY
+            if strategy == "Troops":
+                score_mode = Rarity.TROOP_EFFICIENCY
+            elif strategy == "HighGrowth":
+                score_mode = Rarity.GOLD_EFFICIENCY
+            elif strategy == "NoReborn":
+                straight_level = True
+            elif strategy == "Might":
+                score_mode = Rarity.TROOP_EFFICIENCY  #FIXME: KLUDGE - IMPLEMENT THIS
+            else:
+                return None
+
+            return self.get_moves(level, reborn, avail_souls, total_souls, score_mode=score_mode, straight_level=straight_level)
         else:
             return None
 
-    def fancy_level(self, level: int, reborn: int, avail_souls: int, total_souls: int = -1,
-                    avail_gold: int = -1) -> pd.DataFrame:
+    def fancy_level(self, level: int, reborn: int, avail_souls: int, total_souls: int = -1) -> pd.DataFrame:
         """Get dataframe of possible level-ups including reborns"""
-        tab = self.straight_level(level, reborn, avail_souls, avail_gold)
+        tab = self.straight_level(level, reborn, avail_souls)
         #
         # Table of possible level-ups
         #
@@ -98,20 +114,21 @@ class Rarity(RarityBase, ABC):
                 tmp['Cum Souls'] = tmp.Souls.cumsum()
                 tmp['Cum Gold'] = tmp.Gold.cumsum()
                 tmp = tmp[tmp['Cum Souls'] <= avail_souls]
-                if avail_gold > 0:
-                    tmp = tmp[tmp['Cum Gold'] <= avail_gold]
                 tab = tab.append(tmp)
             elif reborn == rb:
                 if level >= self.reborn_level(rb + 1):
-                    tmp = self.get_tmp_table(total_souls, avail_souls, avail_gold, rb)
+                    tmp = self.get_tmp_table(total_souls, avail_souls, rb)
                     tab = tab.append(tmp)
 
         return tab
 
-    def get_most_efficient_move_by_name(self, df: pd.DataFrame, name: str, avail_gold: int = -1,
+    def get_most_efficient_move_by_name(self, df: pd.DataFrame, name: str,
                                         score_mode: int = TROOP_EFFICIENCY) -> pd.DataFrame:
         """Get level-up with highest score.  In case of tie, one with maximum level-ups wins."""
-        possibleMoves = self.get_moves_by_name(df, name, avail_gold, score_mode=score_mode)
+        possibleMoves = self.get_moves_by_name(df, name, score_mode=score_mode)
+        if possibleMoves is None:
+            return None
+
         possibleMoves["Name"] = name
         possibleMoves = possibleMoves[possibleMoves.Score == possibleMoves.Score.max()]
         possibleMoves = possibleMoves[possibleMoves.LevelUps == possibleMoves.LevelUps.max()]

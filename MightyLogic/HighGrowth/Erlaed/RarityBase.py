@@ -67,7 +67,7 @@ class RarityBase(ABC):
         o1 = self.to_ordinal2(r1, l1)
         return o1 - o0
 
-    def get_tmp_table(self, total_souls: int, avail_souls: int, avail_gold: int, rb: int) -> pd.DataFrame:
+    def get_tmp_table(self, total_souls: int, avail_souls: int, rb: int) -> pd.DataFrame:
         """Return level-up dataframe for reborn with souls rebated from the reborn"""
         # print("Hi")
         (cs, cg) = (0, 0)  # do rebate here
@@ -78,8 +78,6 @@ class RarityBase(ABC):
         tmp['Cum Souls'] = tmp.Souls.cumsum()
         tmp['Cum Gold'] = tmp.Gold.cumsum()
         tmp = tmp[tmp['Cum Souls'] <= avail_souls]
-        if avail_gold > 0:
-            tmp = tmp[tmp['Cum Gold'] <= avail_gold]
         return tmp
 
     def _get_reborn_point(self, df: pd.DataFrame, rb: int = 1, a: int = 6, b: int = 11, c: int = 16, d: int = 21,
