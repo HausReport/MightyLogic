@@ -42,7 +42,7 @@ class Legendary(PurpleGold):
                                [30, 4742, 4424, 6650, 101000],
                                [31, 4990, 4655, 6900, 110000]], columns=['Level', 'Might', 'Troops', 'Souls', 'Gold'])
 
-        r0_tab['Gold'] = (r0_tab['Gold'] * self.gold_discount)
+        r0_tab['Gold'] = (r0_tab['Gold'] * self.discounts.get_gold_discount())
         return r0_tab
 
     def getMightBonus(self, reborn: int = 0):

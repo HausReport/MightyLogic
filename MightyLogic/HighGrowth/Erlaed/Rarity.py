@@ -3,16 +3,16 @@ from abc import ABC
 import pandas as pd
 
 from MightyLogic.HighGrowth.Erlaed.RarityBase import RarityBase
-
-
+from MightyLogic.HighGrowth.Erlaed.Discounts import Discounts
 
 class Rarity(RarityBase, ABC):
+    discounts = Discounts(guild=20, vip=12, crisis=18)
     # FIXME: move gold discount somewhere else
-    guild_discount = .8
-    vip_discount = .88
-    crisis_discount = .82
-    # gold_discount = .8
-    gold_discount = guild_discount * vip_discount  # * crisis_discount  # .66 # with crisis + guild
+    # guild_discount = .8
+    # vip_discount = .88
+    # crisis_discount = .82
+    # # gold_discount = .8
+    # gold_discount = guild_discount * vip_discount  # * crisis_discount  # .66 # with crisis + guild
 
     COMMON = 0
     RARE = 1
@@ -120,13 +120,13 @@ class Rarity(RarityBase, ABC):
         return possibleMoves
 
     @staticmethod
-    def get_rarity_by_name(aName:str):
+    def get_rarity_by_name(aName: str):
         from MightyLogic.HighGrowth.Erlaed.Common import Common
         from MightyLogic.HighGrowth.Erlaed.Epic import Epic
         from MightyLogic.HighGrowth.Erlaed.Legendary import Legendary
         from MightyLogic.HighGrowth.Erlaed.Rare import Rare
 
-        if aName is None or len(aName)==0 or aName[0].lower() == 'l':
+        if aName is None or len(aName) == 0 or aName[0].lower() == 'l':
             return Legendary()
         elif aName[0].lower() == 'e':
             return Epic()

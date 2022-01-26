@@ -43,7 +43,7 @@ class Epic(PurpleGold):
                                     [31, 3325, 1995, 9300, 82000]],
                                    columns=['Level', 'Might', 'Troops', 'Souls', 'Gold'])
 
-        r0_tab_epic['Gold'] = (r0_tab_epic['Gold'] * self.gold_discount)
+        r0_tab_epic['Gold'] = (r0_tab_epic['Gold'] * self.discounts.get_gold_discount())
         return r0_tab_epic
 
     def getMightBonus(self, reborn):

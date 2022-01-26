@@ -43,7 +43,7 @@ class Rare(WhiteBlue):
                                     [31, 2260, 530, 13100, 70000]],
                                    columns=['Level', 'Might', 'Troops', 'Souls', 'Gold'])
 
-        r0_tab_epic['Gold'] = (r0_tab_epic['Gold'] * self.gold_discount)
+        r0_tab_epic['Gold'] = (r0_tab_epic['Gold'] * self.discounts.get_gold_discount())
         return r0_tab_epic
 
     def getMightBonus(self, reborn):

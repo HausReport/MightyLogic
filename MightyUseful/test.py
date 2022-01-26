@@ -111,7 +111,7 @@ class Window(QMainWindow):
         rarityBox.setLayout(box4)
         horizontalFilterBoxLayout.addWidget(rarityBox)
 
-        rebornBox = QGroupBox("Rarity")
+        rebornBox = QGroupBox("Reborn")
         box4 = QVBoxLayout()
         self.showReborn0 = QCheckBox("Reborn 0")
         self.showReborn0.stateChanged.connect(self.checkBoxChange)
@@ -285,13 +285,16 @@ sys.exit(0)
 
 # TODO:
 # 1) add tabs
-# 2) add avail souls to hero info
 # 3) add "can level up"
 # 4) add "can reborn"
 # 5) tab for army analysis
 # 6) tab for high growth
-# 7) gold discount class, refactor
 # 8) gold discount ui
-# 9) army column for hg strategy
 # 10) edit hg strategy
-# 11) save/load hg strategy
+# 11A) load hg strategy
+# 11B) save hg strategy
+# 12) load discounts
+
+# 7) ~~gold discount class, refactor~~
+# 9) ~~army column for hg strategy~~
+# 2) ~~add available souls to hero info~~

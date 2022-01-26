@@ -53,14 +53,15 @@ class MplCanvas(QWidget):
         self.row = row
         aName = row['Name'].values[0]
         self.btn = QLabel(aName)
-        self.btn.setStyleSheet("color: white; background-color: black; font-size: 24pt")
-        self.btn.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        self.btn.setStyleSheet("color: white; background-color: black; font-size: 24pt; text-align: center;")
+        #self.btn.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         self.btn.setSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.MinimumExpanding)
         self.btn.setMaximumWidth(350)
         self.btn.setMinimumWidth(350)
         self.setMaximumWidth(350)
         self.setMinimumWidth(350)
         vbox = QGridLayout()
+        vbox.setContentsMargins(0,0,0,0)
         vbox.addWidget(self.btn, 0, 0, 1, 4,alignment=Qt.AlignCenter )
 
         pixmap = nameToPixmap(aName, 300, 300)
@@ -101,10 +102,19 @@ class MplCanvas(QWidget):
         mLabel = QLabel(str(might))
         vbox.addWidget(mLabel, 5, 3, 1, 1)
 
+        avail_souls = self.row['Available Souls'].values[0]
+        vbox.addWidget(QLabel("Available Souls:"), 6, 0, 1, 1, Qt.AlignRight)
+        tLabel = QLabel(str(avail_souls))
+        vbox.addWidget(tLabel, 6, 1, 1, 1)
+
+        vbox.addWidget(QLabel("Might:"), 6, 2, 1, 1, Qt.AlignRight)
+        mLabel = QLabel(str(might))
+        vbox.addWidget(mLabel, 6, 3, 1, 1)
+
         some_html = self.nice_levelup_table(army, aName, rarity, might, troops)
         text_browser = QTextBrowser()
         text_browser.setText("<h2>Recommended Level-Ups</h2>" + some_html)
-        vbox.addWidget(text_browser, 6, 0, 15, 4)
+        vbox.addWidget(text_browser, 7, 0, 15, 4)
         # text_browser.show()
         # text_browser.raise_()
 
