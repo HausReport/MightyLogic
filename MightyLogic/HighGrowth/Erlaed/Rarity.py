@@ -23,6 +23,7 @@ class Rarity(RarityBase, ABC):
     TROOP_EFFICIENCY = 0
     GOLD_EFFICIENCY = 1
     MIXED = 2
+    MIGHT_EFFICIENCY = 3
 
     def straight_level(self, level: int, reborn: int, avail_souls: int) -> pd.DataFrame:
         """Return dataframe of possible level-ups without any reborns"""
@@ -49,6 +50,7 @@ class Rarity(RarityBase, ABC):
         moves = moves.copy(deep=True)
         moves["Cur Reborn"] = reborn
         moves["Troop Gain"] = moves["Troops"] - curTroops
+        moves["Might Gain"] = moves["Might"] - curMight
         moves = moves[moves['Troop Gain'] > 0]
         moves = moves[moves['Level'] > self.FENCE]
         moves['LevelUps'] = 0
@@ -58,15 +60,18 @@ class Rarity(RarityBase, ABC):
             moves['LevelUps'] = moves.apply(
                 lambda x: self.level_distance(x["Cur Reborn"], x["Cur Level"], x["Reborn"], x["Level"]),
                 axis=1)
-
         if score_mode == Rarity.GOLD_EFFICIENCY:
             moves["Score"] = 10000000.0 * (moves["LevelUps"] / moves["Cum Gold"]) * (51.0 / 1291.0)
         elif score_mode == Rarity.MIXED:
             score_a = 10000000.0 * (moves["LevelUps"] / moves["Cum Gold"]) * (51.0 / 1291.0)
             score_b = 10000.0 * (moves["Troop Gain"] / moves["Cum Gold"])
             moves["Score"] = max(score_a, score_b)
-        else:
+        elif score_mode == Rarity.TROOP_EFFICIENCY:
             moves["Score"] = 10000.0 * (moves["Troop Gain"] / moves["Cum Gold"])
+        elif score_mode == Rarity.MIGHT_EFFICIENCY:
+            moves["Score"] = moves["Might Gain"]
+        else:
+            moves["Score"] = 10000.0 * (moves["Troop Gain"] / moves["Cum Gold"])  #FIXME: KLUDGE
 
         return moves
 
@@ -89,7 +94,7 @@ class Rarity(RarityBase, ABC):
             elif strategy == "NoReborn":
                 straight_level = True
             elif strategy == "Might":
-                score_mode = Rarity.TROOP_EFFICIENCY  #FIXME: KLUDGE - IMPLEMENT THIS
+                score_mode = Rarity.MIGHT_EFFICIENCY  #FIXME: KLUDGE - IMPLEMENT THIS
             else:
                 return None
 

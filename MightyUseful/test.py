@@ -290,11 +290,14 @@ sys.exit(0)
 # 5) tab for army analysis
 # 6) tab for high growth
 # 8) gold discount ui
-# 10) edit hg strategy
-# 11A) load hg strategy
-# 11B) save hg strategy
 # 12) load discounts
+# 13) Score - see Hanzo Sama case, lots of levels similar score to 1 level.  See also spreadsheet
 
+
+# 10) ~~edit hg strategy~~
+# 11B) ~~save hg strategy~~
+# 10A) ~~edit widget for hg strategy~~
 # 7) ~~gold discount class, refactor~~
 # 9) ~~army column for hg strategy~~
 # 2) ~~add available souls to hero info~~
+# 11A) ~~load hg strategy~~

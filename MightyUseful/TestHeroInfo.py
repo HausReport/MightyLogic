@@ -7,7 +7,7 @@ from MightyUseful.FileIo import getArmy, nameToPixmap
 matplotlib.use('Qt5Agg')
 
 from PySide2.QtWidgets import QMainWindow, QApplication, QWidget, QVBoxLayout, QPushButton, QGridLayout, QLabel, \
-    QTextBrowser, QSizePolicy
+    QTextBrowser, QSizePolicy, QComboBox
 from MightyLogic.HighGrowth.Erlaed.Army import Army
 from MightyLogic.HighGrowth.Erlaed.Rarity import Rarity
 from MightyLogic.HighGrowth.Erlaed.HighestGrowth import HighestGrowth
@@ -51,6 +51,7 @@ class MplCanvas(QWidget):
 
     def setHero(self, row, army):
         self.row = row
+        self.army = army
         aName = row['Name'].values[0]
         self.btn = QLabel(aName)
         self.btn.setStyleSheet("color: white; background-color: black; font-size: 24pt; text-align: center;")
@@ -106,9 +107,29 @@ class MplCanvas(QWidget):
         tLabel = QLabel(str(avail_souls))
         vbox.addWidget(tLabel, 6, 1, 1, 1)
 
-        vbox.addWidget(QLabel("Might:"), 6, 2, 1, 1, Qt.AlignRight)
-        mLabel = QLabel(str(might))
-        vbox.addWidget(mLabel, 6, 3, 1, 1)
+        self.shapeCombo = QComboBox(self)
+        labelList = ["Freeze", "Troops", "HighGrowth", "Might","NoReborn"]
+        l = sorted(labelList)
+        self.shapeCombo.addItems(l)
+        self.shapeCombo.currentTextChanged.connect(self.stratChanged)
+        #self.shapeCombo.setEditable(False)
+
+        strat = str(self.row['Strategy'].values[0])
+        index = self.shapeCombo.findText(strat)
+        if index != -1:  # -1 for not found
+            print("Found: " + strat)
+            self.shapeCombo.setCurrentIndex(index)
+        else:
+            print("Couldn't find: [" + strat +"]")
+            index = self.shapeCombo.findText("Freeze")
+            if index != -1:  # -1 for not found
+                print("Found: " + strat)
+                self.shapeCombo.setCurrentIndex(index)
+
+        self.army.updateStrategy(aName, strat)
+
+        vbox.addWidget(QLabel("Strategy:"), 6, 2, 1, 1, Qt.AlignRight)
+        vbox.addWidget(self.shapeCombo, 6, 3, 1, 1)
 
         some_html = self.nice_levelup_table(army, aName, rarity, might, troops)
         text_browser = QTextBrowser()
@@ -125,6 +146,11 @@ class MplCanvas(QWidget):
 
         self.setLayout(vbox)
 
+    def stratChanged(self):
+        newStrat = self.shapeCombo.currentText()
+        aName = self.row['Name'].values[0]
+        print("Name = " + aName)
+        self.army.updateStrategy(aName, newStrat)
 
 class MainWindow(QMainWindow):
 

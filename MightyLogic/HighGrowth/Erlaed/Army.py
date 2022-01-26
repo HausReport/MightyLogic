@@ -23,6 +23,30 @@ class Army:
             tmp = self.data_frame.join(strats.set_index('Name'), on='Name')
             self.data_frame = tmp
 
+    def updateStrategy(self, aName, aStrat):
+        if aStrat is None or len(aStrat)<1:
+            return
+        hero = self.lookup(aName)
+        # update self.data_frame
+        # FIXME: check if row exists, as below
+        self.data_frame.loc[(self.data_frame['Name'] == aName), "Strategy"] = aStrat
+
+        # load strats file
+        strat_file = get_strategies_file()
+        if strat_file is None:
+            pass # FIXME: what if strat_file isn't there
+        else:
+            strats: pd.DataFrame = pd.read_csv(strat_file)
+            if (strats['Name'] == aName).any():
+                strats.loc[(strats['Name'] == aName), "Strategy"] = aStrat
+            else:
+                df2 = {'Name': aName, 'Strategy': aStrat}
+                strats = strats.append(df2, ignore_index=True)
+            strats.to_csv(strat_file, encoding='utf-8', index=False)
+        # if name exists, update entry
+        # if name nexists, add entry
+        # save strats file
+
     def fromDataframe(self, frame: pd.DataFrame):
         self.data_frame: pd.DataFrame = frame
 
