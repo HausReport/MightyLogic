@@ -21,13 +21,16 @@ MightyLogic/HighGrowth/IndexedMinHeap.py
 MightyLogic/HighGrowth/__init__.py
 MightyLogic/HighGrowth/Erlaed/Army.py
 MightyLogic/HighGrowth/Erlaed/Common.py
+MightyLogic/HighGrowth/Erlaed/Discounts.py
+MightyLogic/HighGrowth/Erlaed/DownloadImages.py
 MightyLogic/HighGrowth/Erlaed/Epic.py
-MightyLogic/HighGrowth/Erlaed/Flotsam.py
+MightyLogic/HighGrowth/Erlaed/FileIo.py
 MightyLogic/HighGrowth/Erlaed/HighestGrowth.py
 MightyLogic/HighGrowth/Erlaed/Legendary.py
 MightyLogic/HighGrowth/Erlaed/PurpleGold.py
 MightyLogic/HighGrowth/Erlaed/Rare.py
 MightyLogic/HighGrowth/Erlaed/Rarity.py
+MightyLogic/HighGrowth/Erlaed/RarityBase.py
 MightyLogic/HighGrowth/Erlaed/WhiteBlue.py
 MightyLogic/HighGrowth/Erlaed/__init__.py
 MightyLogic/HighGrowth/Erlaed/Strategy/AbsoluteMight.py
