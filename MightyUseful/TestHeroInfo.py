@@ -1,12 +1,11 @@
-import sys
 import matplotlib
 import pandas as pd
 
-from MightyUseful.FileIo import getArmy, nameToPixmap
+from MightyLogic.HighGrowth.Erlaed.FileIo import FileIO
 
 matplotlib.use('Qt5Agg')
 
-from PySide2.QtWidgets import QMainWindow, QApplication, QWidget, QVBoxLayout, QPushButton, QGridLayout, QLabel, \
+from PySide2.QtWidgets import QMainWindow, QWidget, QGridLayout, QLabel, \
     QTextBrowser, QSizePolicy, QComboBox
 from MightyLogic.HighGrowth.Erlaed.Army import Army
 from MightyLogic.HighGrowth.Erlaed.Rarity import Rarity
@@ -189,7 +188,7 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__(*args, **kwargs)
 
         self.army = Army()
-        getArmy(self, self.army)
+        FileIO.getArmy(self, self.army)
         hg = HighestGrowth(self.army)
 
         row = self.army.lookup("Villano Mad Genius")

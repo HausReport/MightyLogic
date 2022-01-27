@@ -1,6 +1,6 @@
 import os
-from PySide2 import QtCore, QtGui, QtWidgets, QtHelp
 
+from PySide2 import QtCore, QtGui, QtWidgets, QtHelp
 
 CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))
 

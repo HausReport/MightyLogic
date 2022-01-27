@@ -3,12 +3,12 @@ import sys
 from PySide2 import QtWidgets
 from PySide2.QtCore import Qt, QSize
 from PySide2.QtGui import QIcon
-from PySide2.QtWidgets import QApplication, QMainWindow, QAction, QFormLayout, QVBoxLayout, QWidget, \
-    QCheckBox, QGroupBox, QHBoxLayout, QFileDialog, QSplitter, QPushButton, QSizePolicy, QLabel, QSpinBox
+from PySide2.QtWidgets import QApplication, QMainWindow, QAction, QVBoxLayout, QWidget, \
+    QCheckBox, QGroupBox, QHBoxLayout, QSplitter, QSizePolicy, QLabel, QSpinBox
 
 from MightyLogic.HighGrowth.Erlaed.Army import Army
+from MightyLogic.HighGrowth.Erlaed.FileIo import FileIO
 from MightyLogic.HighGrowth.Erlaed.HighestGrowth import HighestGrowth
-from MightyUseful.FileIo import getArmy, get_data_file
 from MightyUseful.MultiFilterProxyModel import MultiFilterProxyModel
 from MightyUseful.PandasModel import PandasModel
 from TestHeroInfo import MplCanvas
@@ -28,7 +28,7 @@ class Window(QMainWindow):
         vHead = self.table.verticalHeader()
         vHead.setIconSize(QSize(100, 100))
         self.army = Army()
-        getArmy(self, self.army)
+        FileIO.getArmy(self, self.army)
         hg = HighestGrowth(self.army)
 
         self.model = PandasModel(self.army.data_frame)

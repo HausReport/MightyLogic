@@ -1,9 +1,6 @@
-from pathlib import Path
-
 import PySide2.QtCore as QtCore
-from PySide2.QtGui import QImage, QPixmap
 
-from MightyUseful.FileIo import nameToPixmap
+from MightyLogic.HighGrowth.Erlaed.FileIo import FileIO
 
 
 class PandasModel(QtCore.QAbstractTableModel):
@@ -19,26 +16,26 @@ class PandasModel(QtCore.QAbstractTableModel):
         return self._data.shape[1]
 
     def data_int(self, index, role):
-       if role == QtCore.Qt.DisplayRole:
-           val: int = self._data.iloc[index.row(), index.column()]
-           numbers = "{:,}".format(val)
-           return numbers
-       elif role == QtCore.Qt.TextAlignmentRole:
-           return QtCore.Qt.AlignRight
+        if role == QtCore.Qt.DisplayRole:
+            val: int = self._data.iloc[index.row(), index.column()]
+            numbers = "{:,}".format(val)
+            return numbers
+        elif role == QtCore.Qt.TextAlignmentRole:
+            return QtCore.Qt.AlignRight
 
     def data(self, index, role=QtCore.Qt.DisplayRole):
         if index.isValid():
             if role == QtCore.Qt.TextAlignmentRole:
-                if index.column() in [1,5,6,7,8,11]:
-                    return QtCore.Qt.AlignLeft;
+                if index.column() in [1, 5, 6, 7, 8, 11]:
+                    return QtCore.Qt.AlignLeft
                 else:
-                    return QtCore.Qt.AlignRight;
+                    return QtCore.Qt.AlignRight
             elif index.column() in [2, 3, 4, 9, 10]:
                 return self.data_int(index, role)
             elif index.column() == 0:
-                if role == QtCore.Qt.DecorationRole: # or role == QtCore.Qt.ToolTipRole:
-                    aName = self._data.iloc[index.row(),1]
-                    pixmap = nameToPixmap(aName,100,100)
+                if role == QtCore.Qt.DecorationRole:  # or role == QtCore.Qt.ToolTipRole:
+                    aName = self._data.iloc[index.row(), 1]
+                    pixmap = FileIO.nameToPixmap(aName, 100, 100)
                     return pixmap
                     # aName = aName.replace(' ', '_')  # need to replace spaces with underline
                     # aName = aName.replace('"', '')  # need to replace spaces with underline
@@ -62,9 +59,9 @@ class PandasModel(QtCore.QAbstractTableModel):
     def headerData(self, col, orientation, role):
         if role == QtCore.Qt.TextAlignmentRole:
             if col in [1, 5, 6, 7, 8, 11]:
-                return QtCore.Qt.AlignLeft;
+                return QtCore.Qt.AlignLeft
             else:
-                return QtCore.Qt.AlignRight;
+                return QtCore.Qt.AlignRight
         elif orientation == QtCore.Qt.Horizontal and role == QtCore.Qt.DisplayRole:
             if col == 0:
                 return "Image"
