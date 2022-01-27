@@ -3,7 +3,7 @@ import plotly.express as px
 
 from MightyLogic.Heroes.HeroDirectory import HeroDirectory
 from MightyLogic.HighGrowth.Erlaed.Rarity import Rarity
-from tests.Erlaed.FileIo import get_strategies_file
+from MightyLogic.HighGrowth.Erlaed.FileIo import get_strategies_file
 
 
 class Army:
