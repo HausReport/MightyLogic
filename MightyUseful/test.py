@@ -9,6 +9,7 @@ from PySide2.QtWidgets import QApplication, QMainWindow, QAction, QVBoxLayout, Q
 from MightyLogic.HighGrowth.Erlaed.Army import Army
 from MightyLogic.HighGrowth.Erlaed.FileIo import FileIO
 from MightyLogic.HighGrowth.Erlaed.HighestGrowth import HighestGrowth
+from MightyUseful.IoGui import IoGui
 from MightyUseful.MultiFilterProxyModel import MultiFilterProxyModel
 from MightyUseful.PandasModel import PandasModel
 from TestHeroInfo import MplCanvas
@@ -28,7 +29,7 @@ class Window(QMainWindow):
         vHead = self.table.verticalHeader()
         vHead.setIconSize(QSize(100, 100))
         self.army = Army()
-        FileIO.getArmy(self, self.army)
+        IoGui.getArmy(self, self.army)
         hg = HighestGrowth(self.army)
 
         self.model = PandasModel(self.army.data_frame)
@@ -136,11 +137,11 @@ class Window(QMainWindow):
         horizontalFilterBox2 = QWidget()
         horizontalFilterBoxLayout2 = QHBoxLayout()
         fromSpin = QSpinBox()
-        fromSpin.setRange(1,31)
+        fromSpin.setRange(1, 31)
         fromSpin.setValue(1)
-        #fromSpin.setReadOnly(True)
+        # fromSpin.setReadOnly(True)
         toSpin = QSpinBox()
-        toSpin.setRange(1,31)
+        toSpin.setRange(1, 31)
         toSpin.setValue(31)
         horizontalFilterBoxLayout2.addWidget(QLabel("From level"))
         horizontalFilterBoxLayout2.addWidget(fromSpin)
@@ -315,7 +316,6 @@ myApp = QApplication(sys.argv)
 window = Window()
 myApp.exec_()
 sys.exit(0)
-
 
 # TODO:
 # 1) add tabs

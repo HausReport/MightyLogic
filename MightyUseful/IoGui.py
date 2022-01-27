@@ -1,18 +1,19 @@
 from pathlib import Path
-import PySide2.QtCore as QtCore
-import appdirs
 
+import PySide2.QtCore as QtCore
 from PySide2.QtGui import QPixmap, QImage
 from PySide2.QtWidgets import QWidget, QFileDialog
 
 from MightyLogic.HighGrowth.Erlaed.FileIo import FileIO
 
+
 class IoGui:
     @staticmethod
     def getArmy(parent: QWidget, army):
-        data_file = FileIO.get_data_file()
+        data_file = IoGui.get_data_file()
         if data_file.is_dir():
-            data_file = QFileDialog.getOpenFileName(parent, "Open Collection File", str(data_file.absolute()), "CSV Files (*.csv)")
+            data_file = QFileDialog.getOpenFileName(parent, "Open Collection File", str(data_file.absolute()),
+                                                    "CSV Files (*.csv)")
         army.fromFile(data_file)
 
     @staticmethod

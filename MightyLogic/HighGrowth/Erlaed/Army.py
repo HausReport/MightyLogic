@@ -1,9 +1,10 @@
 import pandas as pd
 import plotly.express as px
 
+import FileIo
 from MightyLogic.Heroes.HeroDirectory import HeroDirectory
 from MightyLogic.HighGrowth.Erlaed.Rarity import Rarity
-from MightyLogic.HighGrowth.Erlaed.FileIo import get_strategies_file
+from MightyUseful.IoGui import IoGui
 
 
 class Army:
@@ -18,7 +19,7 @@ class Army:
         if jupyter:
             strat_file = "/strategies.csv"
         else:
-            strat_file = get_strategies_file()
+            strat_file = IoGui.get_strategies_file()
         if strat_file is None:
             self.data_frame['Strategy'] = "HighGrowth"
         else:
@@ -35,7 +36,7 @@ class Army:
         self.data_frame.loc[(self.data_frame['Name'] == aName), "Strategy"] = aStrat
 
         # load strats file
-        strat_file = get_strategies_file()
+        strat_file = IoGui.get_strategies_file()
         if strat_file is None:
             pass # FIXME: what if strat_file isn't there
         else:

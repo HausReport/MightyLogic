@@ -2,6 +2,7 @@ import matplotlib
 import pandas as pd
 
 from MightyLogic.HighGrowth.Erlaed.FileIo import FileIO
+from MightyUseful.IoGui import IoGui
 
 matplotlib.use('Qt5Agg')
 
@@ -27,7 +28,7 @@ class MplCanvas(QWidget):
     def nice_levelup_table(self, army, aName, rarity, might, troops):
         ra = Rarity.get_rarity_by_name(rarity)
         nice = ra.get_moves_by_name(army.data_frame, aName)
-        if nice is None or len(nice)==0:
+        if nice is None or len(nice) == 0:
             return "<i>None available.</i>"
         nice = nice.copy(deep=True)
         nice = nice[['Reborn', 'Level', 'Cum Souls', 'Cum Gold', 'Troops', 'Might', 'LevelUps', 'Score']]
@@ -60,10 +61,10 @@ class MplCanvas(QWidget):
         self.setMaximumWidth(375)
         self.setMinimumWidth(375)
         vbox = QGridLayout()
-        vbox.setContentsMargins(0,0,0,0)
-        vbox.addWidget(self.btn, 0, 0, 1, 4,alignment=Qt.AlignCenter )
+        vbox.setContentsMargins(0, 0, 0, 0)
+        vbox.addWidget(self.btn, 0, 0, 1, 4, alignment=Qt.AlignCenter)
 
-        pixmap = nameToPixmap(aName, 300, 300)
+        pixmap = IoGui.nameToPixmap(aName, 300, 300)
         picLabel = QLabel()
         picLabel.setPixmap(pixmap)
         vbox.addWidget(picLabel, 1, 0, 1, 4, alignment=Qt.AlignCenter)
@@ -107,11 +108,11 @@ class MplCanvas(QWidget):
         vbox.addWidget(tLabel, 6, 1, 1, 1)
 
         self.shapeCombo = QComboBox(self)
-        labelList = ["Freeze", "Troops", "HighGrowth", "Might","NoReborn","RebornToLevel1","EventReady"]
+        labelList = ["Freeze", "Troops", "HighGrowth", "Might", "NoReborn", "RebornToLevel1", "EventReady"]
         l = sorted(labelList)
         self.shapeCombo.addItems(l)
         self.shapeCombo.currentTextChanged.connect(self.stratChanged)
-        #self.shapeCombo.setEditable(False)
+        # self.shapeCombo.setEditable(False)
 
         strat = str(self.row['Strategy'].values[0])
         index = self.shapeCombo.findText(strat)
@@ -119,7 +120,7 @@ class MplCanvas(QWidget):
             print("Found: " + strat)
             self.shapeCombo.setCurrentIndex(index)
         else:
-            print("Couldn't find: [" + strat +"]")
+            print("Couldn't find: [" + strat + "]")
             index = self.shapeCombo.findText("Freeze")
             if index != -1:  # -1 for not found
                 print("Found: " + strat)
@@ -180,7 +181,8 @@ class MplCanvas(QWidget):
         aName = self.row['Name'].values[0]
         print("Name = " + aName)
         self.army.updateStrategy(aName, newStrat)
-        #self.setHero(self.row, self.army) causes loop
+        # self.setHero(self.row, self.army) causes loop
+
 
 class MainWindow(QMainWindow):
 
@@ -196,7 +198,6 @@ class MainWindow(QMainWindow):
         sc.setHero(row, self.army)  # width=5, height=4, dpi=100)
         self.setCentralWidget(sc)
         self.show()
-
 
 # app = QApplication(sys.argv)
 # w = MainWindow()

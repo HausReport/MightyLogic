@@ -1,6 +1,7 @@
 import PySide2.QtCore as QtCore
 
 from MightyLogic.HighGrowth.Erlaed.FileIo import FileIO
+from MightyUseful.IoGui import IoGui
 
 
 class PandasModel(QtCore.QAbstractTableModel):
@@ -35,7 +36,7 @@ class PandasModel(QtCore.QAbstractTableModel):
             elif index.column() == 0:
                 if role == QtCore.Qt.DecorationRole:  # or role == QtCore.Qt.ToolTipRole:
                     aName = self._data.iloc[index.row(), 1]
-                    pixmap = FileIO.nameToPixmap(aName, 100, 100)
+                    pixmap = IoGui.nameToPixmap(aName, 100, 100)
                     return pixmap
                     # aName = aName.replace(' ', '_')  # need to replace spaces with underline
                     # aName = aName.replace('"', '')  # need to replace spaces with underline

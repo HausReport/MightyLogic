@@ -16,7 +16,7 @@ class MultiFilterProxyModel(QSortFilterProxyModel):
 
     def lessThan(self, source_left: QModelIndex, source_right: QModelIndex) -> bool:
         col = source_left.column()
-        if col in [ 2, 3, 4, 9, 10]:
+        if col in [2, 3, 4, 9, 10]:
             lint = int(str(source_left.data()).replace(',', ''))
             rint = int(str(source_right.data()).replace(',', ''))
             return lint < rint
