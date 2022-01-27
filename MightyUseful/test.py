@@ -4,12 +4,11 @@ from PySide2 import QtWidgets
 from PySide2.QtCore import Qt, QSize
 from PySide2.QtGui import QIcon
 from PySide2.QtWidgets import QApplication, QMainWindow, QAction, QFormLayout, QVBoxLayout, QWidget, \
-    QCheckBox, QGroupBox, QHBoxLayout, QFileDialog, QSplitter, QPushButton, QSizePolicy
+    QCheckBox, QGroupBox, QHBoxLayout, QFileDialog, QSplitter, QPushButton, QSizePolicy, QLabel, QSpinBox
 
 from MightyLogic.HighGrowth.Erlaed.Army import Army
 from MightyLogic.HighGrowth.Erlaed.HighestGrowth import HighestGrowth
-from MightyUseful.Datafile import get_data_file
-from MightyUseful.FileIo import getArmy
+from MightyUseful.FileIo import getArmy, get_data_file
 from MightyUseful.MultiFilterProxyModel import MultiFilterProxyModel
 from MightyUseful.PandasModel import PandasModel
 from TestHeroInfo import MplCanvas
@@ -134,12 +133,27 @@ class Window(QMainWindow):
         rebornBox.setLayout(box4)
         horizontalFilterBoxLayout.addWidget(rebornBox)
 
+        horizontalFilterBox2 = QWidget()
+        horizontalFilterBoxLayout2 = QHBoxLayout()
+        fromSpin = QSpinBox()
+        fromSpin.setRange(1,31)
+        fromSpin.setValue(1)
+        #fromSpin.setReadOnly(True)
+        toSpin = QSpinBox()
+        toSpin.setRange(1,31)
+        toSpin.setValue(31)
+        horizontalFilterBoxLayout2.addWidget(QLabel("From level"))
+        horizontalFilterBoxLayout2.addWidget(fromSpin)
+        horizontalFilterBoxLayout2.addWidget(QLabel("to level"))
+        horizontalFilterBoxLayout2.addWidget(toSpin)
         # form.setLayout(formLayout)
         leftWidget = QWidget()
         leftWidgetLayout = QVBoxLayout()
 
         horizontalFilterBox.setLayout(horizontalFilterBoxLayout)
         leftWidgetLayout.addWidget(horizontalFilterBox)
+        horizontalFilterBox2.setLayout(horizontalFilterBoxLayout2)
+        leftWidgetLayout.addWidget(horizontalFilterBox2)
         leftWidgetLayout.addWidget(self.table)
         leftWidget.setLayout(leftWidgetLayout)
         # vbox.addWidget(form)
@@ -317,7 +331,7 @@ sys.exit(0)
 # 17) Help system
 # 18) Show evolves to
 # 19) Show evolves from
-
+# 20) Support for from leve to level filter
 
 # 14) ~~RebornAndFreeze strategy~~
 # 10) ~~edit hg strategy~~

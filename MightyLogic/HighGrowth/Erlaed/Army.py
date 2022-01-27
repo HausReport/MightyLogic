@@ -3,7 +3,7 @@ import plotly.express as px
 
 from MightyLogic.Heroes.HeroDirectory import HeroDirectory
 from MightyLogic.HighGrowth.Erlaed.Rarity import Rarity
-from MightyUseful.Datafile import get_strategies_file
+from MightyUseful.FileIo import get_strategies_file
 
 
 class Army:
@@ -13,9 +13,12 @@ class Army:
         # p = pathlib.Path(hdPath)
         self.directory = HeroDirectory.default()  # from_csv_file(p)
 
-    def fromFile(self, file):
+    def fromFile(self, file, jupyter=False):
         self.data_frame: pd.DataFrame = pd.read_csv(file)
-        strat_file = get_strategies_file()
+        if jupyter:
+            strat_file = "/strategies.csv"
+        else:
+            strat_file = get_strategies_file()
         if strat_file is None:
             self.data_frame['Strategy'] = "HighGrowth"
         else:
