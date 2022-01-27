@@ -3,7 +3,7 @@ import plotly.express as px
 
 from MightyLogic.Heroes.HeroDirectory import HeroDirectory
 from MightyLogic.HighGrowth.Erlaed.Rarity import Rarity
-from MightyUseful.IoGui import IoGui
+#from MightyUseful.IoGui import IoGui
 
 
 class Army:
@@ -13,12 +13,9 @@ class Army:
         # p = pathlib.Path(hdPath)
         self.directory = HeroDirectory.default()  # from_csv_file(p)
 
-    def fromFile(self, file, jupyter=False):
+    def fromFile(self, file, strat_file="/strategies.csv"):
         self.data_frame: pd.DataFrame = pd.read_csv(file)
-        if jupyter:
-            strat_file = "/strategies.csv"
-        else:
-            strat_file = IoGui.get_strategies_file()
+        self.strat_file = strat_file
         if strat_file is None:
             self.data_frame['Strategy'] = "HighGrowth"
         else:
@@ -35,17 +32,17 @@ class Army:
         self.data_frame.loc[(self.data_frame['Name'] == aName), "Strategy"] = aStrat
 
         # load strats file
-        strat_file = IoGui.get_strategies_file()
-        if strat_file is None:
+        #strat_file = IoGui.get_strategies_file()
+        if self.strat_file is None:
             pass # FIXME: what if strat_file isn't there
         else:
-            strats: pd.DataFrame = pd.read_csv(strat_file)
+            strats: pd.DataFrame = pd.read_csv(self.strat_file)
             if (strats['Name'] == aName).any():
                 strats.loc[(strats['Name'] == aName), "Strategy"] = aStrat
             else:
                 df2 = {'Name': aName, 'Strategy': aStrat}
                 strats = strats.append(df2, ignore_index=True)
-            strats.to_csv(strat_file, encoding='utf-8', index=False)
+            strats.to_csv(self.strat_file, encoding='utf-8', index=False)
         # if name exists, update entry
         # if name nexists, add entry
         # save strats file
