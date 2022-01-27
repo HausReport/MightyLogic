@@ -20,11 +20,11 @@ class TestHighestGrowth(TestCase):
         print(self.moves.to_string(max_colwidth=None))
 
     def test_2(self):
-        self.move = self.leg.get_most_efficient_move_by_name(self.army.getArmy(), "Ruthless Executioner", -1, score_mode=Rarity.TROOP_EFFICIENCY)
+        self.move = self.leg.get_most_efficient_move_by_name(self.army.getArmy(), "Ruthless Executioner", score_mode=Rarity.TROOP_EFFICIENCY)
         print(self.move.to_string(max_colwidth=None))
 
     def test_3(self):
-        self.move = self.leg.get_most_efficient_move_by_name(self.army.getArmy(), "Ruthless Executioner", -1, score_mode=Rarity.TROOP_EFFICIENCY)
+        self.move = self.leg.get_most_efficient_move_by_name(self.army.getArmy(), "Ruthless Executioner", score_mode=Rarity.TROOP_EFFICIENCY)
         arm2 = self.army.patch(self.move)
         df = arm2.lookup("Ruthless Executioner")
         print(df.to_string(max_colwidth=None))
