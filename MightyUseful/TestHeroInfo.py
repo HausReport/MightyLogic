@@ -15,6 +15,7 @@ from PySide2.QtCore import Qt
 
 
 class MplCanvas(QWidget):
+    strategyList = ["Freeze", "Troops", "HighGrowth", "Might", "NoReborn", "RebornToLevel1", "EventReady"]
 
     def getInt(self, field):
         return str(self.row[field].values[0])
@@ -108,8 +109,7 @@ class MplCanvas(QWidget):
         vbox.addWidget(tLabel, 6, 1, 1, 1)
 
         self.shapeCombo = QComboBox(self)
-        labelList = ["Freeze", "Troops", "HighGrowth", "Might", "NoReborn", "RebornToLevel1", "EventReady"]
-        l = sorted(labelList)
+        l = sorted(MplCanvas.strategyList)
         self.shapeCombo.addItems(l)
         self.shapeCombo.currentTextChanged.connect(self.stratChanged)
         # self.shapeCombo.setEditable(False)

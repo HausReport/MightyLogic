@@ -19,9 +19,13 @@ class Army:
         if strat_file is None:
             self.data_frame['Strategy'] = "HighGrowth"
         else:
-            strats: pd.DataFrame = pd.read_csv(strat_file)
-            tmp = self.data_frame.join(strats.set_index('Name'), on='Name')
-            self.data_frame = tmp
+            try:
+                strats: pd.DataFrame = pd.read_csv(strat_file)
+                tmp = self.data_frame.join(strats.set_index('Name'), on='Name')
+                self.data_frame = tmp
+            except OSError as e:
+                self.data_frame['Strategy'] = "HighGrowth"
+                print(e.errno)
 
     def updateStrategy(self, aName, aStrat):
         if aStrat is None or len(aStrat)<1:

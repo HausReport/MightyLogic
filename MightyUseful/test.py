@@ -4,7 +4,7 @@ from PySide2 import QtWidgets
 from PySide2.QtCore import Qt, QSize
 from PySide2.QtGui import QIcon
 from PySide2.QtWidgets import QApplication, QMainWindow, QAction, QVBoxLayout, QWidget, \
-    QCheckBox, QGroupBox, QHBoxLayout, QSplitter, QSizePolicy, QLabel, QSpinBox
+    QCheckBox, QGroupBox, QHBoxLayout, QSplitter, QSizePolicy, QLabel, QSpinBox, QTabWidget, QPushButton
 
 from MightyLogic.HighGrowth.Erlaed.Army import Army
 from MightyLogic.HighGrowth.Erlaed.FileIo import FileIO
@@ -41,6 +41,7 @@ class Window(QMainWindow):
         self.table.clicked.connect(self.set_hero_drilldown)
         self.table.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
 
+        tabs = QTabWidget()
         wholeUiWidget = QWidget()
         wholeUiWidgetLayout = QVBoxLayout()
         horizontalFilterBoxLayout = QHBoxLayout()
@@ -134,6 +135,35 @@ class Window(QMainWindow):
         rebornBox.setLayout(box4)
         horizontalFilterBoxLayout.addWidget(rebornBox)
 
+
+        strategyBox = QGroupBox("Levelling Strategy")
+        box5 = QVBoxLayout()
+
+        self.showEventReady = QCheckBox("Event Ready")
+        self.showEventReady.stateChanged.connect(self.checkBoxChange)
+        box5.addWidget(self.showEventReady)
+        self.showFreeze = QCheckBox("Freeze")
+        self.showFreeze.stateChanged.connect(self.checkBoxChange)
+        box5.addWidget(self.showFreeze)
+        self.showHighGrowth = QCheckBox("HighGrowth")
+        self.showHighGrowth.stateChanged.connect(self.checkBoxChange)
+        box5.addWidget(self.showHighGrowth)
+        self.showMight = QCheckBox("Might")
+        self.showMight.stateChanged.connect(self.checkBoxChange)
+        box5.addWidget(self.showMight)
+        self.showNoReborn = QCheckBox("NoReborn")
+        self.showNoReborn.stateChanged.connect(self.checkBoxChange)
+        box5.addWidget(self.showNoReborn)
+        self.showRebornToLevel1 = QCheckBox("RebornToLevel1")
+        self.showRebornToLevel1.stateChanged.connect(self.checkBoxChange)
+        box5.addWidget(self.showRebornToLevel1)
+        self.showTroops = QCheckBox("Troops")
+        self.showTroops.stateChanged.connect(self.checkBoxChange)
+        box5.addWidget(self.showTroops)
+
+        strategyBox.setLayout(box5)
+        horizontalFilterBoxLayout.addWidget(strategyBox)
+
         horizontalFilterBox2 = QWidget()
         horizontalFilterBoxLayout2 = QHBoxLayout()
         fromSpin = QSpinBox()
@@ -172,7 +202,13 @@ class Window(QMainWindow):
         self.splitter.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         wholeUiWidgetLayout.addWidget(self.splitter)
         wholeUiWidget.setLayout(wholeUiWidgetLayout)
-        self.setCentralWidget(wholeUiWidget)
+
+        tabs.addTab(wholeUiWidget,"Army Explorer")
+        tabs.addTab(QPushButton("Hi"),"Army Analyzer")
+        tabs.addTab(QPushButton("Hi"),"High Growth")
+        self.setCentralWidget(tabs)
+        #self.showMaximized()
+        self.showFullScreen()
         self.show()
         self.setHeroByName("Charon, Soul Catcher")
 
@@ -281,6 +317,27 @@ class Window(QMainWindow):
         reg = '(' + '|'.join(aList) + ')'
         self.proxy.setFilterByColumn(3, reg)
 
+        aList = []
+        if self.showEventReady.isChecked():
+            aList.append("EventReady")
+        if self.showFreeze.isChecked():
+            aList.append("Freeze")
+        if self.showHighGrowth.isChecked():
+            aList.append("HighGrowth")
+        if self.showMight.isChecked():
+            aList.append("Might")
+        if self.showNoReborn.isChecked():
+            aList.append("NoReborn")
+        if self.showRebornToLevel1.isChecked():
+            aList.append("RebornToLevel1")
+        if self.showTroops.isChecked():
+            aList.append("Troops")
+        reg = '(' + '|'.join(aList) + ')'
+        self.proxy.setFilterByColumn(11, reg)
+
+
+        strategyList = ["EventReady", "Freeze", "HighGrowth", "Might", "NoReborn", "RebornToLevel1","Troops"]
+
     def create_menu(self):
         """
         Creates the menuing system
@@ -318,21 +375,22 @@ myApp.exec_()
 sys.exit(0)
 
 # TODO:
-# 1) add tabs
 # 3) add "can level up"
 # 4) add "can reborn"
-# 5) tab for army analysis
-# 6) tab for high growth
 # 8) gold discount ui
 # 12) load discounts
 # 13) Score - see Hanzo Sama case, lots of levels similar score to 1 level.  See also spreadsheet
-# 15) Filters for strategy
-# 16) Add RebornLater strategy - is it the same as NoReborn?  Stop right at reborn point & save souls?
 # 17) Help system
 # 18) Show evolves to
 # 19) Show evolves from
-# 20) Support for from leve to level filter
+# 20) Support for from level to level filter
 
+# 1) ~~add tabs~~
+# 5) ~~tab for army analysis~~
+# 6) ~~tab for high growth~~
+# 21) ~~Start in full screen mode ~~
+# 15) ~~Filters for strategy~~
+# 16) Not necessary: ~~Add RebornLater strategy - is it the same as NoReborn?  Stop right at reborn point & save souls?~~
 # 14) ~~RebornAndFreeze strategy~~
 # 10) ~~edit hg strategy~~
 # 11B) ~~save hg strategy~~
