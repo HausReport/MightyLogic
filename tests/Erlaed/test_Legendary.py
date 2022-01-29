@@ -2,6 +2,7 @@ from unittest import TestCase
 
 from MightyLogic.HighGrowth.Erlaed.Army import Army
 from MightyLogic.HighGrowth.Erlaed.Legendary import Legendary
+from MightyLogic.HighGrowth.Erlaed.HighestGrowth import HighestGrowth
 import pandas as pd
 
 class TestLegendary(TestCase):
@@ -10,7 +11,7 @@ class TestLegendary(TestCase):
         self.army.fromFile("test.csv")
         self.coll = self.army.data_frame
         self.leg = Legendary()
-        self.df = self.leg.get_moves_by_name(self.coll, "Villano Mad Genius")
+        self.df = HighestGrowth.get_moves_by_name("Villano Mad Genius", self.army)
 
     def test_sn(self):
         assert self.leg.sn(1) == 90
@@ -21,7 +22,7 @@ class TestLegendary(TestCase):
     def test_gold(self):
         valS = self.df.loc[(self.df.Level == 15) & (self.df.Reborn == 3), 'Cum Gold'].values[0]
         print(str(valS))
-        assert abs(valS-216762) <2
+        assert abs(valS-177744) <2
 
     def test_souls(self):
         valS = self.df.loc[(self.df.Level == 15) & (self.df.Reborn == 3), 'Cum Souls'].values[0]

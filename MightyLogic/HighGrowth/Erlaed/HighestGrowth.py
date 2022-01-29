@@ -142,3 +142,16 @@ class HighestGrowth:
             return HighestGrowth.common
         else:
             return None
+
+    @staticmethod
+    def get_most_efficient_move_by_name(heroName: str, army: Army):
+        possibleMoves = HighestGrowth.get_moves_by_name(heroName, army)
+        if possibleMoves is None:
+            return None
+
+        possibleMoves["Name"] = heroName
+        possibleMoves = possibleMoves[possibleMoves.Score == possibleMoves.Score.max()]
+        possibleMoves = possibleMoves[possibleMoves.LevelUps == possibleMoves.LevelUps.max()]
+        # it's possible to have ties for max score
+        # in case of a tie, return option with most level-ups
+        return possibleMoves
