@@ -380,6 +380,6 @@ id,name,rarity,alignment,gender,shape,evolves_to
 380,Villano Mad Genius,Legendary,Chaos,Male,Ranged,[]
 381,Apothecary,Epic,Chaos,Male,Ranged,[380]
 382,Alchemist,Rare,Chaos,Male,Ranged,[381]
-383,Tai Ling Dragon Dance,Legendary,Order,Feale,Ranged,[]
+383,Tai Ling Dragon Dance,Legendary,Order,Female,Ranged,[]
 384,Wu Dan,Epic,Order,Female,Ranged,[383]
 385,Novice,Rare,Order,Female,Ranged,[384]

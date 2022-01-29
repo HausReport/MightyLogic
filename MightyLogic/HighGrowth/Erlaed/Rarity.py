@@ -200,7 +200,10 @@ class Rarity(RarityBase, ABC):
         from MightyLogic.HighGrowth.Erlaed.Legendary import Legendary
         from MightyLogic.HighGrowth.Erlaed.Rare import Rare
 
-        if aName is None or len(aName) == 0 or aName[0].lower() == 'l':
+        if aName is None or len(aName) == 0:
+            return None
+        aName = aName.strip()
+        if aName[0].lower() == 'l':
             return Legendary()
         elif aName[0].lower() == 'e':
             return Epic()
