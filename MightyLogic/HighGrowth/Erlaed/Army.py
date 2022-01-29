@@ -107,7 +107,8 @@ class Army:
 
     @staticmethod
     def reborn_level(reborn: int, rarity: str):
-        ra = Rarity.get_rarity_by_name(rarity)
+        from HighestGrowth import HighestGrowth
+        ra = HighestGrowth.get_rarity_by_name(rarity)
         if ra is None:
             return 999
         return ra.reborn_level(reborn)
@@ -118,7 +119,8 @@ class Army:
     @staticmethod
     def souls_needed_to_reborn(cur_reborn, level, avail_souls, rarity):
         target_reborn = cur_reborn + 1
-        ra = Rarity.get_rarity_by_name(rarity)
+        from HighestGrowth import HighestGrowth
+        ra = HighestGrowth.get_rarity_by_name(rarity)
         # print("Rarity: ", ra.getName())
 
         df = ra.get_reborn_table(cur_reborn).copy(deep=True)

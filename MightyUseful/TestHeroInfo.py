@@ -27,8 +27,8 @@ class MplCanvas(QWidget):
 
     @staticmethod
     def nice_levelup_table(army, aName, rarity, might, troops):
-        ra = Rarity.get_rarity_by_name(rarity)
-        nice = ra.get_moves_by_name(army.data_frame, aName)
+        #ra = HighestGrowth.get_rarity_by_name(rarity)
+        nice = HighestGrowth.get_moves_by_name(aName, army)
         if nice is None or len(nice) == 0:
             return "<i>None available.</i>"
         nice = nice.copy(deep=True)
@@ -90,7 +90,7 @@ class MplCanvas(QWidget):
         vbox.addWidget(QLabel("Type:"), 4, 2, 1, 1, Qt.AlignRight)
         vbox.addWidget(self.getStringLabel('Type'), 4, 3, 1, 1)
 
-        ra = Rarity.get_rarity_by_name(rarity)
+        ra = HighestGrowth.get_rarity_by_name(rarity)
         reborn = self.row['Reborns'].values[0]
         level = self.row['Level'].values[0]
         might, troops = ra.getMightAndTroops(reborn, level)

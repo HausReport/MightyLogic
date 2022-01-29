@@ -102,41 +102,6 @@ class Rarity(RarityBase, ABC):
 
         return moves
 
-    def get_moves_by_name(self, collection_df: pd.DataFrame, name: str) -> pd.DataFrame:
-        """
-        Get dataframe of possible level-ups for the named hero
-
-        :param collection_df: collection dataframe
-        :param name: hero to work on
-        :return: (Possibly empty) dataframe of possible moves if name exists, None otherwise.
-        """
-        if (collection_df['Name'] == name).any():
-            loc = collection_df.loc[collection_df['Name'] == name]
-            level = loc.Level.values[0]
-            reborn = loc.Reborns.values[0]
-            avail_souls = loc["Available Souls"].values[0]
-            total_souls = loc["Total Souls"].values[0]
-            strategy = loc["Strategy"].values[0]
-            straight_level = False
-            score_mode = Rarity.TROOP_EFFICIENCY
-            if strategy == "Troops":
-                score_mode = Rarity.TROOP_EFFICIENCY
-            elif strategy == "HighGrowth":
-                score_mode = Rarity.GOLD_EFFICIENCY
-            elif strategy == "NoReborn":
-                straight_level = True
-            elif strategy == "RebornToLevel1":
-                score_mode = Rarity.REBORN_TO_ONE
-            elif strategy == "Might":
-                score_mode = Rarity.MIGHT_EFFICIENCY
-            else:
-                return None
-
-            return self.get_moves(level, reborn, avail_souls, total_souls, score_mode=score_mode,
-                                  straight_level=straight_level)
-        else:
-            return None
-
     def fancy_level(self, level: int, reborn: int, avail_souls: int, total_souls: int = -1) -> pd.DataFrame:
         """Get dataframe of possible level-ups including reborns
 
@@ -169,47 +134,84 @@ class Rarity(RarityBase, ABC):
 
         return tab
 
-    def get_most_efficient_move_by_name(self, collection_df: pd.DataFrame, heroName: str) -> pd.DataFrame:
-        """
-        Get level-up with highest score.  In case of tie, one with maximum level-ups wins.
+    # def get_moves_by_name(self, collection_df: pd.DataFrame, name: str) -> pd.DataFrame:
+    #     """
+    #     Get dataframe of possible level-ups for the named hero
+    #
+    #     :param collection_df: collection dataframe
+    #     :param name: hero to work on
+    #     :return: (Possibly empty) dataframe of possible moves if name exists, None otherwise.
+    #     """
+    #     if (collection_df['Name'] == name).any():
+    #         loc = collection_df.loc[collection_df['Name'] == name]
+    #         level = loc.Level.values[0]
+    #         reborn = loc.Reborns.values[0]
+    #         avail_souls = loc["Available Souls"].values[0]
+    #         total_souls = loc["Total Souls"].values[0]
+    #         strategy = loc["Strategy"].values[0]
+    #         straight_level = False
+    #         score_mode = Rarity.TROOP_EFFICIENCY
+    #         if strategy == "Troops":
+    #             score_mode = Rarity.TROOP_EFFICIENCY
+    #         elif strategy == "HighGrowth":
+    #             score_mode = Rarity.GOLD_EFFICIENCY
+    #         elif strategy == "NoReborn":
+    #             straight_level = True
+    #         elif strategy == "RebornToLevel1":
+    #             score_mode = Rarity.REBORN_TO_ONE
+    #         elif strategy == "Might":
+    #             score_mode = Rarity.MIGHT_EFFICIENCY
+    #         else:
+    #             return None
+    #
+    #         return self.get_moves(level, reborn, avail_souls, total_souls, score_mode=score_mode,
+    #                               straight_level=straight_level)
+    #     else:
+    #         return None
 
-        :param collection_df:
-        :param heroName:
-        :return: dataframe containing best move
-        """
-        possibleMoves = self.get_moves_by_name(collection_df, heroName)
-        if possibleMoves is None:
-            return None
 
-        possibleMoves["Name"] = heroName
-        possibleMoves = possibleMoves[possibleMoves.Score == possibleMoves.Score.max()]
-        possibleMoves = possibleMoves[possibleMoves.LevelUps == possibleMoves.LevelUps.max()]
-        # it's possible to have ties for max score
-        # in case of a tie, return option with most level-ups
-        return possibleMoves
 
-    @staticmethod
-    def get_rarity_by_name(aName: str):
-        """
-        Returns rarity with name closest to given string
-        :param aName: name for rarity
-        :return: A rarity if possible, None otherwise.
-        """
-        from MightyLogic.HighGrowth.Erlaed.Common import Common
-        from MightyLogic.HighGrowth.Erlaed.Epic import Epic
-        from MightyLogic.HighGrowth.Erlaed.Legendary import Legendary
-        from MightyLogic.HighGrowth.Erlaed.Rare import Rare
+    # def get_most_efficient_move_by_name(self, collection_df: pd.DataFrame, heroName: str) -> pd.DataFrame:
+    #     """
+    #     Get level-up with highest score.  In case of tie, one with maximum level-ups wins.
+    #
+    #     :param collection_df:
+    #     :param heroName:
+    #     :return: dataframe containing best move
+    #     """
+    #     possibleMoves = self.get_moves_by_name(collection_df, heroName)
+    #     if possibleMoves is None:
+    #         return None
+    #
+    #     possibleMoves["Name"] = heroName
+    #     possibleMoves = possibleMoves[possibleMoves.Score == possibleMoves.Score.max()]
+    #     possibleMoves = possibleMoves[possibleMoves.LevelUps == possibleMoves.LevelUps.max()]
+    #     # it's possible to have ties for max score
+    #     # in case of a tie, return option with most level-ups
+    #     return possibleMoves
 
-        if aName is None or len(aName) == 0:
-            return None
-        aName = aName.strip()
-        if aName[0].lower() == 'l':
-            return Legendary()
-        elif aName[0].lower() == 'e':
-            return Epic()
-        elif aName[0].lower() == 'r':
-            return Rare()
-        elif aName[0].lower() == 'c':
-            return Common()
-        else:
-            return None
+    # @staticmethod
+    # def get_rarity_by_name(aName: str):
+    #     """
+    #     Returns rarity with name closest to given string
+    #     :param aName: name for rarity
+    #     :return: A rarity if possible, None otherwise.
+    #     """
+    #     from MightyLogic.HighGrowth.Erlaed.Common import Common
+    #     from MightyLogic.HighGrowth.Erlaed.Epic import Epic
+    #     from MightyLogic.HighGrowth.Erlaed.Legendary import Legendary
+    #     from MightyLogic.HighGrowth.Erlaed.Rare import Rare
+    #
+    #     if aName is None or len(aName) == 0:
+    #         return None
+    #     aName = aName.strip()
+    #     if aName[0].lower() == 'l':
+    #         return Legendary()
+    #     elif aName[0].lower() == 'e':
+    #         return Epic()
+    #     elif aName[0].lower() == 'r':
+    #         return Rare()
+    #     elif aName[0].lower() == 'c':
+    #         return Common()
+    #     else:
+    #         return None

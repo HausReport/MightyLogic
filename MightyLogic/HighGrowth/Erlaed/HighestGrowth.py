@@ -1,32 +1,21 @@
 import pandas as pd
 
+from Common import Common
+from Epic import Epic
+from Legendary import Legendary
+from Rarity import Rarity
 from MightyLogic.HighGrowth.Erlaed.Army import Army
+from Rare import Rare
 
 
 class HighestGrowth:
+    legendary: Legendary = Legendary()
+    epic: Epic = Epic()
+    rare: Rare = Rare()
+    common: Common = Common()
 
     def __init__(self, army: Army):
         self.army = army
-        self.locked = set()
-        self.forced = set()
-        self.rarities = [True, True, True, True]
-
-    def lockHeroes(self, heroes):
-        for hero in heroes:
-            self.locked.add(hero)
-
-    def forceHeroes(self, heroes):
-        for hero in heroes:
-            self.forced.add(hero)
-
-    def toggleRarity(self, rarity):
-        self.rarities[rarity] = not self.rarities[rarity]
-
-    def setRarity(self, rarity):
-        self.rarities[rarity] = True
-
-    def unsetRarity(self, rarity):
-        self.rarities[rarity] = False
 
     @staticmethod
     def _format_output(ret: pd.DataFrame):
@@ -39,37 +28,17 @@ class HighestGrowth:
         ret["Total LevelUps"] = ret['LevelUps'].cumsum()
         return ret
 
-    def _filter(self, df, aFilter=None):
+    def getLegendaries(self):
+        return self.army.getLegendaries()
 
-        aList = df.Name.tolist()
-        if aFilter is None:
-            return aList
-        elif aFilter == "Working":
-            working = [item for item in aList if item not in self.forced]
-            working = [item for item in working if item not in self.locked]
-            return working
-        elif aFilter == "Forced":
-            forced = [item for item in aList if item in self.forced]
-            return forced
-        elif aFilter == "Locked":
-            locked = [item for item in aList if item in self.locked]
-            return locked
+    def getEpics(self):
+        return self.army.getEpics()
 
-    def getLegendaries(self, aFilter=None):
-        tmp = self.army.getLegendaries()
-        return self._filter(tmp, aFilter)
+    def getRares(self):
+        return self.army.getRares()
 
-    def getEpics(self, aFilter=None):
-        tmp = self.army.getEpics()
-        return self._filter(tmp, aFilter)
-
-    def getRares(self, aFilter=None):
-        tmp = self.army.getRares()
-        return self._filter(tmp, aFilter)
-
-    def getCommons(self, aFilter=None):
-        tmp = self.army.getCommons()
-        return self._filter(tmp, aFilter)
+    def getCommons(self):
+        return self.army.getCommons()
 
     @staticmethod
     def hg_level(level_ups: int) -> int:
@@ -83,7 +52,93 @@ class HighestGrowth:
                 if tmp[i] <= level_ups < tmp[i + 1]:
                     return i
 
-    def hg_gems(self, level_ups: int):
-        finished_round = self.hg_level(level_ups)
+    @staticmethod
+    def hg_gems(level_ups: int):
+        finished_round: int = HighestGrowth.hg_level(level_ups)
         tmp = [0, 50, 100, 200, 350, 650, 1100, 1800, 3000, 4500, 7500, 12000, 19500, 30000, 45000, 67500]
         return sum(tmp[0:finished_round + 1])
+
+    @staticmethod
+    def get_moves_by_name(aName: str, anArmy: Army) -> pd.DataFrame:
+        aHero = anArmy.lookup(aName)
+        if aHero is None or len(aHero) == 0:
+            return None
+        else:
+            return HighestGrowth.get_moves(aHero)
+
+    @staticmethod
+    def get_moves(aHero: pd.DataFrame) -> pd.DataFrame:
+        """
+        Get dataframe of possible level-ups for the given hero
+
+        :param aHero: A dataframe containing the hero to consider
+        :return: (Possibly empty) dataframe of possible moves.  None otherwise.
+        """
+        # aName = aHero['Name'].values[0]
+        # collection_df = self.army.getArmy()
+        level = aHero.Level.values[0]
+        reborn = aHero.Reborns.values[0]
+        avail_souls = aHero["Available Souls"].values[0]
+        total_souls = aHero["Total Souls"].values[0]
+        strategy = aHero["Strategy"].values[0]
+        rarity = aHero['Rarity'].values[0]
+
+        straight_level = False
+        score_mode = Rarity.TROOP_EFFICIENCY
+
+        if strategy == "Troops":
+            score_mode = Rarity.TROOP_EFFICIENCY
+        elif strategy == "HighGrowth":
+            score_mode = Rarity.GOLD_EFFICIENCY
+        elif strategy == "NoReborn":
+            straight_level = True
+        elif strategy == "RebornToLevel1":
+            score_mode = Rarity.REBORN_TO_ONE
+        elif strategy == "Might":
+            score_mode = Rarity.MIGHT_EFFICIENCY
+        else:
+            return None
+
+        rarity_obj = HighestGrowth.get_rarity_by_name(rarity)
+        return rarity_obj.get_moves(level, reborn, avail_souls, total_souls, score_mode=score_mode,
+                                    straight_level=straight_level)
+
+    def get_most_efficient_move(self, aHero: pd.DataFrame) -> pd.DataFrame:
+        """
+        Get level-up with highest score.  In case of tie, one with maximum level-ups wins.
+
+        :param collection_df:
+        :param heroName:
+        :return: dataframe containing best move
+        """
+        possibleMoves = self.get_moves(aHero)
+        if possibleMoves is None:
+            return None
+
+        possibleMoves["Name"] = aHero['Name'].values[0]
+        possibleMoves = possibleMoves[possibleMoves.Score == possibleMoves.Score.max()]
+        possibleMoves = possibleMoves[possibleMoves.LevelUps == possibleMoves.LevelUps.max()]
+        # it's possible to have ties for max score
+        # in case of a tie, return option with most level-ups
+        return possibleMoves
+
+    @staticmethod
+    def get_rarity_by_name(aName: str):
+        """
+        Returns rarity with name closest to given string
+        :param aName: name for rarity
+        :return: A rarity if possible, None otherwise.
+        """
+        if aName is None or len(aName) == 0:
+            return None
+        xName = aName.strip()
+        if xName[0].lower() == 'l':
+            return HighestGrowth.legendary
+        elif xName[0].lower() == 'e':
+            return HighestGrowth.epic
+        elif xName[0].lower() == 'r':
+            return HighestGrowth.rare
+        elif xName[0].lower() == 'c':
+            return HighestGrowth.common
+        else:
+            return None
