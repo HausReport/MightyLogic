@@ -383,6 +383,8 @@ sys.exit(0)
 # 20) Support for from level to level filter
 # 21) Move default strategies from notebook to API
 
+
+
 # 1) ~~add tabs~~
 # 5) ~~tab for army analysis~~
 # 6) ~~tab for high growth~~
