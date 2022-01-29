@@ -1,3 +1,5 @@
+import pandas as pd
+
 from MightyLogic.HighGrowth.Erlaed.Army import Army
 
 
@@ -26,7 +28,8 @@ class HighestGrowth:
     def unsetRarity(self, rarity):
         self.rarities[rarity] = False
 
-    def _format_output(self, ret):
+    @staticmethod
+    def _format_output(ret: pd.DataFrame):
         ret = ret[['Name', 'Rarity', 'Cur Reborn', 'Cur Level', 'Reborn', 'Level', 'LevelUps', 'Cum Souls', 'Cum Gold',
                    'Troop Gain',
                    'Score']]
@@ -68,7 +71,8 @@ class HighestGrowth:
         tmp = self.army.getCommons()
         return self._filter(tmp, aFilter)
 
-    def hg_level(self, level_ups) -> int:
+    @staticmethod
+    def hg_level(level_ups: int) -> int:
         if level_ups < 0:
             return 0
         elif level_ups > 13150:

@@ -2,8 +2,9 @@ from abc import ABC
 
 import pandas as pd
 
-from MightyLogic.HighGrowth.Erlaed.RarityBase import RarityBase
 from MightyLogic.HighGrowth.Erlaed.Discounts import Discounts
+from MightyLogic.HighGrowth.Erlaed.RarityBase import RarityBase
+
 
 class Rarity(RarityBase, ABC):
     discounts = Discounts(guild=20, vip=12, crisis=18)
@@ -13,7 +14,7 @@ class Rarity(RarityBase, ABC):
     # crisis_discount = .82
     # # gold_discount = .8
     # gold_discount = guild_discount * vip_discount  # * crisis_discount  # .66 # with crisis + guild
-    FENCE = 10 # FIXME - change to average level for that rarity?
+    FENCE = 10  # FIXME - change to average level for that rarity?
 
     COMMON = 0
     RARE = 1
@@ -48,7 +49,7 @@ class Rarity(RarityBase, ABC):
         return tmp
 
     def get_moves(self, level: int, reborn: int, avail_souls: int, total_souls: int = -1,
-                  score_mode: int = TROOP_EFFICIENCY, straight_level: bool= False) -> pd.DataFrame:
+                  score_mode: int = TROOP_EFFICIENCY, straight_level: bool = False) -> pd.DataFrame:
         """
         Low-level function to provide possible moves
         :param level: hero's current level
@@ -97,18 +98,16 @@ class Rarity(RarityBase, ABC):
         elif score_mode == Rarity.MIGHT_EFFICIENCY:
             moves["Score"] = moves["Might Gain"]
         else:
-            moves["Score"] = 10000.0 * (moves["Troop Gain"] / moves["Cum Gold"])  #FIXME: KLUDGE
+            moves["Score"] = 10000.0 * (moves["Troop Gain"] / moves["Cum Gold"])  # FIXME: KLUDGE
 
         return moves
 
-    def get_moves_by_name(self, collection_df: pd.DataFrame, name: str,
-                          score_mode: int = TROOP_EFFICIENCY) -> pd.DataFrame:
+    def get_moves_by_name(self, collection_df: pd.DataFrame, name: str) -> pd.DataFrame:
         """
         Get dataframe of possible level-ups for the named hero
 
         :param collection_df: collection dataframe
         :param name: hero to work on
-        :param score_mode: how to reckon a good move
         :return: (Possibly empty) dataframe of possible moves if name exists, None otherwise.
         """
         if (collection_df['Name'] == name).any():
@@ -133,7 +132,8 @@ class Rarity(RarityBase, ABC):
             else:
                 return None
 
-            return self.get_moves(level, reborn, avail_souls, total_souls, score_mode=score_mode, straight_level=straight_level)
+            return self.get_moves(level, reborn, avail_souls, total_souls, score_mode=score_mode,
+                                  straight_level=straight_level)
         else:
             return None
 
@@ -169,14 +169,13 @@ class Rarity(RarityBase, ABC):
 
         return tab
 
-    def get_most_efficient_move_by_name(self, df: pd.DataFrame, name: str,
-                                        score_mode: int = TROOP_EFFICIENCY) -> pd.DataFrame:
+    def get_most_efficient_move_by_name(self, collection_df: pd.DataFrame, heroName: str) -> pd.DataFrame:
         """Get level-up with highest score.  In case of tie, one with maximum level-ups wins."""
-        possibleMoves = self.get_moves_by_name(df, name, score_mode=score_mode)
+        possibleMoves = self.get_moves_by_name(collection_df, heroName)
         if possibleMoves is None:
             return None
 
-        possibleMoves["Name"] = name
+        possibleMoves["Name"] = heroName
         possibleMoves = possibleMoves[possibleMoves.Score == possibleMoves.Score.max()]
         possibleMoves = possibleMoves[possibleMoves.LevelUps == possibleMoves.LevelUps.max()]
         # it's possible to have ties for max score

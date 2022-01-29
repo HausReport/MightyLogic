@@ -11,7 +11,8 @@ class Discounts:
         c = 1 - self.crisis_discount
         return a * b * c
 
-    def _to_percentage(self, percent: int) -> float:
+    @staticmethod
+    def _to_percentage(percent: int) -> float:
         if percent < 0:
             percent = 0
         if percent > 100:

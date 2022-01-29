@@ -3,15 +3,13 @@ import pandas as pd
 
 from MightyLogic.HighGrowth.Erlaed.FileIo import FileIO
 from MightyUseful.IoGui import IoGui
-
-matplotlib.use('Qt5Agg')
-
 from PySide2.QtWidgets import QMainWindow, QWidget, QGridLayout, QLabel, \
     QTextBrowser, QSizePolicy, QComboBox
 from MightyLogic.HighGrowth.Erlaed.Army import Army
 from MightyLogic.HighGrowth.Erlaed.Rarity import Rarity
 from MightyLogic.HighGrowth.Erlaed.HighestGrowth import HighestGrowth
 from PySide2.QtCore import Qt
+matplotlib.use('Qt5Agg')
 
 
 class MplCanvas(QWidget):
@@ -26,7 +24,8 @@ class MplCanvas(QWidget):
     def getStringLabel(self, field) -> QLabel:
         return QLabel(str(self.row[field].values[0]))
 
-    def nice_levelup_table(self, army, aName, rarity, might, troops):
+    @staticmethod
+    def nice_levelup_table(army, aName, rarity, might, troops):
         ra = Rarity.get_rarity_by_name(rarity)
         nice = ra.get_moves_by_name(army.data_frame, aName)
         if nice is None or len(nice) == 0:
@@ -109,8 +108,8 @@ class MplCanvas(QWidget):
         vbox.addWidget(tLabel, 6, 1, 1, 1)
 
         self.shapeCombo = QComboBox(self)
-        l = sorted(MplCanvas.strategyList)
-        self.shapeCombo.addItems(l)
+        optionList = sorted(MplCanvas.strategyList)
+        self.shapeCombo.addItems(optionList)
         self.shapeCombo.currentTextChanged.connect(self.stratChanged)
         # self.shapeCombo.setEditable(False)
 

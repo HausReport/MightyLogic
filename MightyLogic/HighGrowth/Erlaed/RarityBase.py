@@ -80,7 +80,9 @@ class RarityBase(ABC):
         tmp = tmp[tmp['Cum Souls'] <= avail_souls]
         return tmp
 
-    def _get_reborn_point(self, df: pd.DataFrame, rb: int = 1, a: int = 6, b: int = 11, c: int = 16, d: int = 21,
+    # FIXME: rework as list-based
+    @staticmethod
+    def _get_reborn_point(df: pd.DataFrame, rb: int = 1, a: int = 6, b: int = 11, c: int = 16, d: int = 21,
                           e: int = 26) -> (int, int):
         """get the gold and souls needed for the given reborn for the given rarity"""
         if rb == 1:
@@ -100,7 +102,8 @@ class RarityBase(ABC):
         valG = df.loc[(df.Level == theLevel) & (df.Reborn == rb - 1), 'Cum Gold'].values[0]
         return valS, valG
 
-    def _has_reborn_1(self, df: pd.DataFrame, rb: int = 1, a: int = 6, b: int = 11, c: int = 16, d: int = 21,
+    @staticmethod
+    def _has_reborn_1(df: pd.DataFrame, rb: int = 1, a: int = 6, b: int = 11, c: int = 16, d: int = 21,
                       e: int = 26) -> bool:
         """is it possible to do the given reborn?"""
         if rb == 1:

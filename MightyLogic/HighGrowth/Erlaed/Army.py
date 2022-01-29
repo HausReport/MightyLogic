@@ -3,7 +3,6 @@ import plotly.express as px
 
 from MightyLogic.Heroes.HeroDirectory import HeroDirectory
 from MightyLogic.HighGrowth.Erlaed.Rarity import Rarity
-#from MightyUseful.IoGui import IoGui
 
 
 class Army:
@@ -28,17 +27,17 @@ class Army:
                 print(e.errno)
 
     def updateStrategy(self, aName, aStrat):
-        if aStrat is None or len(aStrat)<1:
+        if aStrat is None or len(aStrat) < 1:
             return
-        hero = self.lookup(aName)
+        # hero = self.lookup(aName)
         # update self.data_frame
         # FIXME: check if row exists, as below
         self.data_frame.loc[(self.data_frame['Name'] == aName), "Strategy"] = aStrat
 
         # load strats file
-        #strat_file = IoGui.get_strategies_file()
+        # strat_file = IoGui.get_strategies_file()
         if self.strat_file is None:
-            pass # FIXME: what if strat_file isn't there
+            pass  # FIXME: what if strat_file isn't there
         else:
             strats: pd.DataFrame = pd.read_csv(self.strat_file)
             if (strats['Name'] == aName).any():
@@ -106,7 +105,8 @@ class Army:
 
         return ret
 
-    def reborn_level(self, reborn: int, rarity: str):
+    @staticmethod
+    def reborn_level(reborn: int, rarity: str):
         ra = Rarity.get_rarity_by_name(rarity)
         if ra is None:
             return 999
@@ -115,8 +115,8 @@ class Army:
     #
     # Recently moved from notebook
     #
-
-    def souls_needed_to_reborn(self, cur_reborn, level, avail_souls, rarity):
+    @staticmethod
+    def souls_needed_to_reborn(cur_reborn, level, avail_souls, rarity):
         target_reborn = cur_reborn + 1
         ra = Rarity.get_rarity_by_name(rarity)
         # print("Rarity: ", ra.getName())

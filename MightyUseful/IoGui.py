@@ -15,8 +15,6 @@ class IoGui:
             data_file = QFileDialog.getOpenFileName(parent, "Open Collection File", str(data_file.absolute()),
                                                     "CSV Files (*.csv)")
         strat_file = IoGui.get_strategies_file()
-
-        strat_file = IoGui.get_strategies_file()
         army.fromFile(data_file, strat_file)
 
     @staticmethod

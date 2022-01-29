@@ -7,7 +7,6 @@ from PySide2.QtWidgets import QApplication, QMainWindow, QAction, QVBoxLayout, Q
     QCheckBox, QGroupBox, QHBoxLayout, QSplitter, QSizePolicy, QLabel, QSpinBox, QTabWidget, QPushButton
 
 from MightyLogic.HighGrowth.Erlaed.Army import Army
-from MightyLogic.HighGrowth.Erlaed.FileIo import FileIO
 from MightyLogic.HighGrowth.Erlaed.HighestGrowth import HighestGrowth
 from MightyUseful.IoGui import IoGui
 from MightyUseful.MultiFilterProxyModel import MultiFilterProxyModel
@@ -135,7 +134,6 @@ class Window(QMainWindow):
         rebornBox.setLayout(box4)
         horizontalFilterBoxLayout.addWidget(rebornBox)
 
-
         strategyBox = QGroupBox("Levelling Strategy")
         box5 = QVBoxLayout()
 
@@ -203,11 +201,11 @@ class Window(QMainWindow):
         wholeUiWidgetLayout.addWidget(self.splitter)
         wholeUiWidget.setLayout(wholeUiWidgetLayout)
 
-        tabs.addTab(wholeUiWidget,"Army Explorer")
-        tabs.addTab(QPushButton("Hi"),"Army Analyzer")
-        tabs.addTab(QPushButton("Hi"),"High Growth")
+        tabs.addTab(wholeUiWidget, "Army Explorer")
+        tabs.addTab(QPushButton("Hi"), "Army Analyzer")
+        tabs.addTab(QPushButton("Hi"), "High Growth")
         self.setCentralWidget(tabs)
-        #self.showMaximized()
+        # self.showMaximized()
         self.showFullScreen()
         self.show()
         self.setHeroByName("Charon, Soul Catcher")
@@ -335,8 +333,7 @@ class Window(QMainWindow):
         reg = '(' + '|'.join(aList) + ')'
         self.proxy.setFilterByColumn(11, reg)
 
-
-        strategyList = ["EventReady", "Freeze", "HighGrowth", "Might", "NoReborn", "RebornToLevel1","Troops"]
+        strategyList = ["EventReady", "Freeze", "HighGrowth", "Might", "NoReborn", "RebornToLevel1", "Troops"]
 
     def create_menu(self):
         """
@@ -376,7 +373,7 @@ sys.exit(0)
 
 # TODO:
 # 3) add "can level up"
-# 4) add "can reborn"
+# 4) add "can reborn"/reborn level
 # 8) gold discount ui
 # 12) load discounts
 # 13) Score - see Hanzo Sama case, lots of levels similar score to 1 level.  See also spreadsheet
@@ -384,6 +381,7 @@ sys.exit(0)
 # 18) Show evolves to
 # 19) Show evolves from
 # 20) Support for from level to level filter
+# 21) Move default strategies from notebook to API
 
 # 1) ~~add tabs~~
 # 5) ~~tab for army analysis~~
