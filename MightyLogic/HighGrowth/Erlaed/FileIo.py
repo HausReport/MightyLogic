@@ -1,5 +1,7 @@
 from pathlib import Path
+
 import appdirs
+
 
 class FileIO:
 
@@ -18,5 +20,3 @@ class FileIO:
         if not dir_path.exists():
             dir_path.mkdir(exist_ok=True)
         return dir_path
-
-

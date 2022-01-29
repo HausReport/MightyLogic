@@ -170,7 +170,13 @@ class Rarity(RarityBase, ABC):
         return tab
 
     def get_most_efficient_move_by_name(self, collection_df: pd.DataFrame, heroName: str) -> pd.DataFrame:
-        """Get level-up with highest score.  In case of tie, one with maximum level-ups wins."""
+        """
+        Get level-up with highest score.  In case of tie, one with maximum level-ups wins.
+
+        :param collection_df:
+        :param heroName:
+        :return: dataframe containing best move
+        """
         possibleMoves = self.get_moves_by_name(collection_df, heroName)
         if possibleMoves is None:
             return None

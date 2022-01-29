@@ -1,14 +1,15 @@
 import matplotlib
 import pandas as pd
-
-from MightyLogic.HighGrowth.Erlaed.FileIo import FileIO
-from MightyUseful.IoGui import IoGui
+from PySide2.QtCore import Qt
 from PySide2.QtWidgets import QMainWindow, QWidget, QGridLayout, QLabel, \
     QTextBrowser, QSizePolicy, QComboBox
+
 from MightyLogic.HighGrowth.Erlaed.Army import Army
-from MightyLogic.HighGrowth.Erlaed.Rarity import Rarity
+from MightyLogic.HighGrowth.Erlaed.FileIo import FileIO
 from MightyLogic.HighGrowth.Erlaed.HighestGrowth import HighestGrowth
-from PySide2.QtCore import Qt
+from MightyLogic.HighGrowth.Erlaed.Rarity import Rarity
+from MightyUseful.IoGui import IoGui
+
 matplotlib.use('Qt5Agg')
 
 
@@ -189,7 +190,7 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__(*args, **kwargs)
 
         self.army = Army()
-        FileIO.getArmy(self, self.army)
+        FileIO.getArmy(self, self.army)  # FIXME: bugged after moving shit around?
         hg = HighestGrowth(self.army)
 
         row = self.army.lookup("Villano Mad Genius")

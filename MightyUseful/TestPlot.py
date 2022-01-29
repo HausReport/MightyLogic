@@ -1,10 +1,12 @@
 import sys
+
 import matplotlib
 from PySide2.QtWidgets import QMainWindow, QApplication
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
 
 matplotlib.use('Qt5Agg')
+
 
 class MplCanvas(FigureCanvasQTAgg):
 
