@@ -42,7 +42,7 @@ class Window(QMainWindow):
                 print("Floor is " + str(floor))
                 holder = pd.DataFrame()
                 for index, row in army2.data_frame.iterrows():
-                    aMove = hg.get_most_efficient_move(row)
+                    aMove = hg.get_most_efficient_move(row)     # HERE row is a series
                     if aMove is not None and len(aMove)> 0:
                         if (aMove.Score.values[0]) > floor:
                             holder = holder.append(aMove)

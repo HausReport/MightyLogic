@@ -68,21 +68,55 @@ class HighestGrowth:
             return HighestGrowth.get_moves(aHero)
 
     @staticmethod
-    def get_moves(aHero: pd.DataFrame) -> pd.DataFrame:
+    def get_moves_series(aHero: pd.Series) -> pd.DataFrame:
         """
         Get dataframe of possible level-ups for the given hero
 
         :param aHero: A dataframe containing the hero to consider
         :return: (Possibly empty) dataframe of possible moves.  None otherwise.
         """
-        # aName = aHero['Name'].values[0]
+
+        #print("get_moves Hero type:" + str(type(aHero)))
+
+
+        # aName = aHero['Name']
         # collection_df = self.army.getArmy()
-        level = aHero.Level.values[0]
-        reborn = aHero.Reborns.values[0]
-        avail_souls = aHero["Available Souls"].values[0]
-        total_souls = aHero["Total Souls"].values[0]
-        strategy = aHero["Strategy"].values[0]
-        rarity = aHero['Rarity'].values[0]
+        level = aHero.Level
+        reborn = aHero.Reborns
+        avail_souls = aHero["Available Souls"]
+        total_souls = aHero["Total Souls"]
+        strategy = aHero["Strategy"]
+        rarity = aHero['Rarity']
+        return HighestGrowth._get_moves(level, reborn, avail_souls, total_souls, strategy, rarity)
+        #
+        # straight_level = False
+        # score_mode = Rarity.TROOP_EFFICIENCY
+        #
+        # if strategy == "Troops":
+        #     score_mode = Rarity.TROOP_EFFICIENCY
+        # elif strategy == "HighGrowth":
+        #     score_mode = Rarity.GOLD_EFFICIENCY
+        # elif strategy == "NoReborn":
+        #     straight_level = True
+        # elif strategy == "RebornToLevel1":
+        #     score_mode = Rarity.REBORN_TO_ONE
+        # elif strategy == "Might":
+        #     score_mode = Rarity.MIGHT_EFFICIENCY
+        # else:
+        #     return None
+        #
+        # rarity_obj = HighestGrowth.get_rarity_by_name(rarity)
+        # return rarity_obj.get_moves(level, reborn, avail_souls, total_souls, score_mode=score_mode,
+        #                             straight_level=straight_level)
+
+    @staticmethod
+    def _get_moves(level:int, reborn:int, avail_souls:int, total_souls:int, strategy:str, rarity:str) -> pd.DataFrame:
+        """
+        Get dataframe of possible level-ups for the given hero
+
+        :param aHero: A dataframe containing the hero to consider
+        :return: (Possibly empty) dataframe of possible moves.  None otherwise.
+        """
 
         straight_level = False
         score_mode = Rarity.TROOP_EFFICIENCY
@@ -104,6 +138,48 @@ class HighestGrowth:
         return rarity_obj.get_moves(level, reborn, avail_souls, total_souls, score_mode=score_mode,
                                     straight_level=straight_level)
 
+    @staticmethod
+    def get_moves(aHero: pd.DataFrame) -> pd.DataFrame:
+        """
+        Get dataframe of possible level-ups for the given hero
+
+        :param aHero: A dataframe containing the hero to consider
+        :return: (Possibly empty) dataframe of possible moves.  None otherwise.
+        """
+
+        #print("get_moves Hero type:" + str(type(aHero)))
+
+
+        # aName = aHero['Name'].values[0]
+        # collection_df = self.army.getArmy()
+        level = aHero.Level.values[0]
+        reborn = aHero.Reborns.values[0]
+        avail_souls = aHero["Available Souls"].values[0]
+        total_souls = aHero["Total Souls"].values[0]
+        strategy = aHero["Strategy"].values[0]
+        rarity = aHero['Rarity'].values[0]
+
+        return HighestGrowth._get_moves(level, reborn, avail_souls, total_souls, strategy, rarity)
+        # straight_level = False
+        # score_mode = Rarity.TROOP_EFFICIENCY
+        #
+        # if strategy == "Troops":
+        #     score_mode = Rarity.TROOP_EFFICIENCY
+        # elif strategy == "HighGrowth":
+        #     score_mode = Rarity.GOLD_EFFICIENCY
+        # elif strategy == "NoReborn":
+        #     straight_level = True
+        # elif strategy == "RebornToLevel1":
+        #     score_mode = Rarity.REBORN_TO_ONE
+        # elif strategy == "Might":
+        #     score_mode = Rarity.MIGHT_EFFICIENCY
+        # else:
+        #     return None
+        #
+        # rarity_obj = HighestGrowth.get_rarity_by_name(rarity)
+        # return rarity_obj.get_moves(level, reborn, avail_souls, total_souls, score_mode=score_mode,
+        #                             straight_level=straight_level)
+
     def get_most_efficient_move(self, aHero: pd.DataFrame) -> pd.DataFrame:
         """
         Get level-up with highest score.  In case of tie, one with maximum level-ups wins.
@@ -112,7 +188,9 @@ class HighestGrowth:
         :param heroName:
         :return: dataframe containing best move
         """
-        possibleMoves = self.get_moves(aHero)
+
+        #print("get_most_efficient_move Hero type:" + str(type(aHero)))
+        possibleMoves = self.get_moves_series(aHero)
         if possibleMoves is None:
             return None
 
