@@ -13,7 +13,7 @@ from MightyUseful.IoGui import IoGui
 matplotlib.use('Qt5Agg')
 
 
-class MplCanvas(QWidget):
+class HeroInfoPanel(QWidget):
     strategyList = ["Freeze", "Troops", "HighGrowth", "Might", "NoReborn", "RebornToLevel1", "EventReady"]
 
     def getInt(self, field):
@@ -30,7 +30,7 @@ class MplCanvas(QWidget):
         #ra = HighestGrowth.get_rarity_by_name(rarity)
         nice = HighestGrowth.get_moves_by_name(aName, army)
         if nice is None or len(nice) == 0:
-            return "<i>None available.</i>"
+            return None
         nice = nice.copy(deep=True)
         nice = nice[['Reborn', 'Level', 'Cum Souls', 'Cum Gold', 'Troops', 'Might', 'LevelUps', 'Score']]
         nice = nice.reindex()
@@ -109,7 +109,7 @@ class MplCanvas(QWidget):
         vbox.addWidget(tLabel, 6, 1, 1, 1)
 
         self.shapeCombo = QComboBox(self)
-        optionList = sorted(MplCanvas.strategyList)
+        optionList = sorted(HeroInfoPanel.strategyList)
         self.shapeCombo.addItems(optionList)
         self.shapeCombo.currentTextChanged.connect(self.stratChanged)
         # self.shapeCombo.setEditable(False)
@@ -131,9 +131,25 @@ class MplCanvas(QWidget):
         vbox.addWidget(QLabel("Strategy:"), 6, 2, 1, 1, Qt.AlignRight)
         vbox.addWidget(self.shapeCombo, 6, 3, 1, 1)
 
+        box_row = 7
+        evolves_from = self.army.get_evolve_froms(aName)
+        evolves_to = self.army.get_evolve_tos(aName)
+        if len(evolves_from)> 0:
+            myLab = ",".join(evolves_from)
+            vbox.addWidget(QLabel("Evolves from:"), box_row, 0, 1, 1, Qt.AlignRight)
+            vbox.addWidget(QLabel(myLab), box_row, 1, 1, 3)
+            box_row = box_row + 1
+
+        if len(evolves_to)> 0:
+            myLab = ",".join(evolves_to)
+            vbox.addWidget(QLabel("Evolves to:"), box_row, 0, 1, 1, Qt.AlignRight)
+            vbox.addWidget(QLabel(myLab), box_row, 1, 1, 3)
+            box_row = box_row + 1
+
         some_html = self.nice_levelup_table(army, aName, rarity, might, troops)
-        self.text_browser = QTextBrowser()
-        css = """
+        if some_html is not None:
+            self.text_browser = QTextBrowser()
+            css = """
 <html>
 <head>
 <style>     
@@ -163,10 +179,14 @@ class MplCanvas(QWidget):
     cursor: pointer;
 }</style></head><body>
         """
-        self.text_browser.setText("<h2>Recommended Level-Ups</h2>" + css + some_html)
-        vbox.addWidget(self.text_browser, 7, 0, 15, 4)
-        # text_browser.show()
-        # text_browser.raise_()
+            self.text_browser.setText("<h2>Recommended Level-Ups</h2>" + css + some_html)
+            vbox.addWidget(self.text_browser, box_row, 0, 15, 4)
+            box_row = box_row + 1
+            # text_browser.show()
+            # text_browser.raise_()
+
+
+        #vbox.addWidget(QLabel("Evolves from:" + str(evolves_from)))
 
         # TODO:
         # Evolves to
@@ -194,7 +214,7 @@ class MainWindow(QMainWindow):
         hg = HighestGrowth(self.army)
 
         row = self.army.lookup("Villano Mad Genius")
-        sc = MplCanvas()
+        sc = HeroInfoPanel()
         sc.setHero(row, self.army)  # width=5, height=4, dpi=100)
         self.setCentralWidget(sc)
         self.show()

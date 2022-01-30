@@ -60,7 +60,10 @@ class HeroDirectory:
         return maybe_hero
 
     def find_by_name(self, name: str) -> Optional[Hero]:
-        return self.by_name[name] if name in self.by_name.keys() else None
+        foo = name
+        # if foo.startswith("Eostre"):
+        #     foo = "Eostre, the Dawn Glow"
+        return self.by_name[foo] if foo in self.by_name.keys() else None
 
     def find_by_num(self, num: int) -> Optional[Hero]:
         return self.by_num[num] if num in self.by_num.keys() else None

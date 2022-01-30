@@ -358,7 +358,7 @@ id,name,rarity,alignment,gender,shape,evolves_to
 358,"Vixen, the Storm Lord",Legendary,Nature,Male,Ranged,[]
 359,Warden of the North,Epic,Nature,Male,Ranged,[358]
 360,Frozen Moor Guard,Rare,Nature,Male,Ranged,[359]
-361,"Eostre, the Dawn Glow",Legendary,Order,Female,Ranged,[]
+361,Eostre the Dawn Glow,Legendary,Order,Female,Ranged,[]
 362,Sunrise Maiden,Epic,Order,Female,Ranged,[361]
 363,Herald of Spring,Rare,Order,Female,Ranged,[362]
 364,"Arioch, Nemesis Weapon",Legendary,Chaos,Male,Melee,[]

@@ -11,10 +11,10 @@ from MightyLogic.HighGrowth.Erlaed.HighestGrowth import HighestGrowth
 from MightyUseful.IoGui import IoGui
 from MightyUseful.MultiFilterProxyModel import MultiFilterProxyModel
 from MightyUseful.PandasModel import PandasModel
-from TestHeroInfo import MplCanvas
+from HeroInfoPanel import HeroInfoPanel
 
 
-class Window(QMainWindow):
+class MightyUsefulApp(QMainWindow):
 
     def __init__(self):
         super().__init__()
@@ -193,7 +193,7 @@ class Window(QMainWindow):
         # self.btn = QPushButton("Hi")
         # self.btn.setMinimumHeight(1000)
         # splitter.addWidget(self.btn)
-        self.heroInfo = MplCanvas()
+        self.heroInfo = HeroInfoPanel()
         self.heroInfo.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
         self.splitter.addWidget(self.heroInfo)
 
@@ -236,7 +236,7 @@ class Window(QMainWindow):
             print("Bad hero name: " + aName)
             # FIXME: handle case when hero is none
         else:
-            newHeroInfo = MplCanvas()
+            newHeroInfo = HeroInfoPanel()
             newHeroInfo.setHero(hero, self.army)
             self.splitter.replaceWidget(1, newHeroInfo)
             self.heroInfo = newHeroInfo
@@ -245,7 +245,7 @@ class Window(QMainWindow):
         if hero is None:
             print("Bad hero name: " + aName)
         else:
-            newHeroInfo = MplCanvas()
+            newHeroInfo = HeroInfoPanel()
             newHeroInfo.setHero(hero, self.army)
             self.splitter.replaceWidget(1, newHeroInfo)
             self.heroInfo = newHeroInfo
@@ -367,7 +367,7 @@ class Window(QMainWindow):
 
 
 myApp = QApplication(sys.argv)
-window = Window()
+window = MightyUsefulApp()
 myApp.exec_()
 sys.exit(0)
 
@@ -378,13 +378,14 @@ sys.exit(0)
 # 12) load discounts
 # 13) Score - see Hanzo Sama case, lots of levels similar score to 1 level.  See also spreadsheet
 # 17) Help system
-# 18) Show evolves to
-# 19) Show evolves from
 # 20) Support for from level to level filter
-# 21) Move default strategies from notebook to API
+# 23) Implement high-growth functionality
 
 
-
+# 18) ~~Show evolves to~~
+# 19) ~~Show evolves from~~
+# 22) ~~Refactor bulk of hg stuff from Rarity to HighestGrowth~~
+# ~~21) Move default strategies from notebook to API~~
 # 1) ~~add tabs~~
 # 5) ~~tab for army analysis~~
 # 6) ~~tab for high growth~~

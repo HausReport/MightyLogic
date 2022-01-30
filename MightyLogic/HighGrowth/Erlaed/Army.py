@@ -6,13 +6,13 @@ from MightyLogic.HighGrowth.Erlaed.Rarity import Rarity
 
 
 class Army:
+    directory = HeroDirectory.default()  # from_csv_file(p)
 
     def __init__(self):
         self.data_frame: pd.DataFrame = None
         # p = pathlib.Path(hdPath)
-        self.directory = HeroDirectory.default()  # from_csv_file(p)
 
-    def fromFile(self, file, strat_file="/strategies.csv"):
+    def fromFile(self, file, strat_file="strategies.csv"):
         self.data_frame: pd.DataFrame = pd.read_csv(file)
         self.strat_file = strat_file
         if strat_file is None:
@@ -91,16 +91,30 @@ class Army:
         fig = px.histogram(heroes, x="Level", nbins=nBins)
         return fig
 
-    def findName(self, aName: str):
-        return self.directory.find(aName).name
+    @staticmethod
+    def findName(aName: str):
+        return Army.directory.find(aName).name
 
-    def get_evolve_froms(self, aName: str):
+    @staticmethod
+    def get_evolve_froms(aName: str):
         ret = set()
-        dude = self.directory.find_by_name(self.findName(aName))
+        dude = Army.directory.find_by_name(Army.findName(aName))
         if dude is not None:
             for x in dude.evolves_from:
                 ret.add(x.name)
-                ret.update(self.get_evolve_froms(x.name))
+                ret.update(Army.get_evolve_froms(x.name))
+                # print(x.name)
+
+        return ret
+
+    @staticmethod
+    def get_evolve_tos(aName: str):
+        ret = set()
+        dude = Army.directory.find_by_name(Army.findName(aName))
+        if dude is not None:
+            for x in dude.evolves_to:
+                ret.add(x.name)
+                ret.update(Army.get_evolve_tos(x.name))
                 # print(x.name)
 
         return ret
