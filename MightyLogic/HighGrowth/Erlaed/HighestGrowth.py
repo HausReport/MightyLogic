@@ -1,11 +1,11 @@
 import pandas as pd
 
-from Common import Common
-from Epic import Epic
-from Legendary import Legendary
-from Rarity import Rarity
+from MightyLogic.HighGrowth.Erlaed.Common import Common
+from MightyLogic.HighGrowth.Erlaed.Epic import Epic
+from MightyLogic.HighGrowth.Erlaed.Legendary import Legendary
+from MightyLogic.HighGrowth.Erlaed.Rare import Rare
+from MightyLogic.HighGrowth.Erlaed.Rarity import Rarity
 from MightyLogic.HighGrowth.Erlaed.Army import Army
-from Rare import Rare
 
 
 class HighestGrowth:
@@ -19,7 +19,8 @@ class HighestGrowth:
 
     @staticmethod
     def _format_output(ret: pd.DataFrame):
-        ret = ret[['Name', 'Rarity', 'Cur Reborn', 'Cur Level', 'Reborn', 'Level', 'LevelUps', 'Cum Souls', 'Cum Gold',
+        # Fixme, had to remove 'Rarity'
+        ret = ret[['Name', 'Cur Reborn', 'Cur Level', 'Reborn', 'Level', 'LevelUps', 'Cum Souls', 'Cum Gold',
                    'Troop Gain',
                    'Score']]
         ret = ret.rename(columns={"Cum Gold": "Gold"})
@@ -115,12 +116,15 @@ class HighestGrowth:
         if possibleMoves is None:
             return None
 
-        possibleMoves["Name"] = aHero['Name'].values[0]
+        possibleMoves["Name"] = aHero['Name']
         possibleMoves = possibleMoves[possibleMoves.Score == possibleMoves.Score.max()]
         possibleMoves = possibleMoves[possibleMoves.LevelUps == possibleMoves.LevelUps.max()]
+
+        if len(possibleMoves)<1:
+            return None
         # it's possible to have ties for max score
         # in case of a tie, return option with most level-ups
-        return possibleMoves
+        return possibleMoves.iloc[[0]] # maximum 1 row
 
     @staticmethod
     def get_rarity_by_name(aName: str):

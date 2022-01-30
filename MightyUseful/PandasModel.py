@@ -5,8 +5,10 @@ from MightyUseful.IoGui import IoGui
 
 class PandasModel(QtCore.QAbstractTableModel):
 
-    def __init__(self, data):
+    def __init__(self, data, alignLeft=[1, 5, 6, 7, 8, 11], intColumns=[2, 3, 4, 9, 10]):
         QtCore.QAbstractTableModel.__init__(self)
+        self.alignLeft=alignLeft
+        self.intColumns = intColumns
         self._data = data
 
     def rowCount(self, parent=None):
@@ -26,11 +28,11 @@ class PandasModel(QtCore.QAbstractTableModel):
     def data(self, index, role=QtCore.Qt.DisplayRole):
         if index.isValid():
             if role == QtCore.Qt.TextAlignmentRole:
-                if index.column() in [1, 5, 6, 7, 8, 11]:
+                if index.column() in self.alignLeft:
                     return QtCore.Qt.AlignLeft
                 else:
                     return QtCore.Qt.AlignRight
-            elif index.column() in [2, 3, 4, 9, 10]:
+            elif index.column() in self.intColumns:
                 return self.data_int(index, role)
             elif index.column() == 0:
                 if role == QtCore.Qt.DecorationRole:  # or role == QtCore.Qt.ToolTipRole:
@@ -58,7 +60,7 @@ class PandasModel(QtCore.QAbstractTableModel):
 
     def headerData(self, col, orientation, role):
         if role == QtCore.Qt.TextAlignmentRole:
-            if col in [1, 5, 6, 7, 8, 11]:
+            if col in self.alignLeft:
                 return QtCore.Qt.AlignLeft
             else:
                 return QtCore.Qt.AlignRight

@@ -8,10 +8,12 @@ from PySide2.QtWidgets import QApplication, QMainWindow, QAction, QVBoxLayout, Q
 
 from MightyLogic.HighGrowth.Erlaed.Army import Army
 from MightyLogic.HighGrowth.Erlaed.HighestGrowth import HighestGrowth
+from MightyUseful.IntRangeFilter import IntRangeFilter
+from MightyUseful.RegExFilter import RegExFilter
 from MightyUseful.IoGui import IoGui
 from MightyUseful.MultiFilterProxyModel import MultiFilterProxyModel
 from MightyUseful.PandasModel import PandasModel
-from HeroInfoPanel import HeroInfoPanel
+from MightyUseful.HeroInfoPanel import HeroInfoPanel
 
 
 class MightyUsefulApp(QMainWindow):
@@ -164,17 +166,20 @@ class MightyUsefulApp(QMainWindow):
 
         horizontalFilterBox2 = QWidget()
         horizontalFilterBoxLayout2 = QHBoxLayout()
-        fromSpin = QSpinBox()
-        fromSpin.setRange(1, 31)
-        fromSpin.setValue(1)
+        self.fromSpin = QSpinBox()
+        self.fromSpin.setRange(1, 31)
+        self.fromSpin.setValue(1)
         # fromSpin.setReadOnly(True)
-        toSpin = QSpinBox()
-        toSpin.setRange(1, 31)
-        toSpin.setValue(31)
+        self.toSpin = QSpinBox()
+        self.toSpin.setRange(1, 31)
+        self.toSpin.setValue(31)
+
+        self.fromSpin.valueChanged.connect(self.spinChanged)
+        self.toSpin.valueChanged.connect(self.spinChanged)
         horizontalFilterBoxLayout2.addWidget(QLabel("From level"))
-        horizontalFilterBoxLayout2.addWidget(fromSpin)
+        horizontalFilterBoxLayout2.addWidget(self.fromSpin)
         horizontalFilterBoxLayout2.addWidget(QLabel("to level"))
-        horizontalFilterBoxLayout2.addWidget(toSpin)
+        horizontalFilterBoxLayout2.addWidget(self.toSpin)
         # form.setLayout(formLayout)
         leftWidget = QWidget()
         leftWidgetLayout = QVBoxLayout()
@@ -250,6 +255,12 @@ class MightyUsefulApp(QMainWindow):
             self.splitter.replaceWidget(1, newHeroInfo)
             self.heroInfo = newHeroInfo
             print(hero)
+
+    def spinChanged(self, value):
+        print(str(self.fromSpin.value()))
+        print(str(self.toSpin.value()))
+        reg = IntRangeFilter(self.fromSpin.value(), self.toSpin.value())
+        self.proxy.setFilterByColumn(2, reg)
 
     def checkBoxChange(self, state):
         """
@@ -331,7 +342,7 @@ class MightyUsefulApp(QMainWindow):
         if self.showTroops.isChecked():
             aList.append("Troops")
         reg = '(' + '|'.join(aList) + ')'
-        self.proxy.setFilterByColumn(11, reg)
+        self.proxy.setFilterByColumn(11, RegExFilter(reg))
 
         strategyList = ["EventReady", "Freeze", "HighGrowth", "Might", "NoReborn", "RebornToLevel1", "Troops"]
 
@@ -378,10 +389,10 @@ sys.exit(0)
 # 12) load discounts
 # 13) Score - see Hanzo Sama case, lots of levels similar score to 1 level.  See also spreadsheet
 # 17) Help system
-# 20) Support for from level to level filter
 # 23) Implement high-growth functionality
 
-
+# 24) ~~Hide levelup table if empty~~
+# 20) ~~Support for from level to level filter~~
 # 18) ~~Show evolves to~~
 # 19) ~~Show evolves from~~
 # 22) ~~Refactor bulk of hg stuff from Rarity to HighestGrowth~~

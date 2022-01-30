@@ -86,7 +86,7 @@ class Rarity(RarityBase, ABC):
                 lambda x: self.level_distance(x["Cur Reborn"], x["Cur Level"], x["Reborn"], x["Level"]),
                 axis=1)
         if score_mode == Rarity.GOLD_EFFICIENCY:
-            moves["Score"] = 10000000.0 * (moves["LevelUps"] / moves["Cum Gold"]) * (51.0 / 1291.0)
+            moves["Score"] = 5000000.0 * (moves["LevelUps"] / moves["Cum Gold"]) * (51.0 / 1291.0)
         elif score_mode == Rarity.REBORN_TO_ONE:
             moves["Score"] = 200.0
         elif score_mode == Rarity.MIXED:
