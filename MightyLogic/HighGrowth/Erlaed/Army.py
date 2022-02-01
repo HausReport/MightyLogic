@@ -12,6 +12,9 @@ class Army:
         self.data_frame: pd.DataFrame = None
         # p = pathlib.Path(hdPath)
 
+    def icon_url(self, aName: str) -> str:
+        return self.directory.icon_url(aName)
+
     def fromFile(self, file, strat_file="strategies.csv"):
         self.data_frame: pd.DataFrame = pd.read_csv(file)
         self.strat_file = strat_file
@@ -19,8 +22,8 @@ class Army:
             self.data_frame['Strategy'] = "HighGrowth"
         else:
             try:
-                strats: pd.DataFrame = pd.read_csv(strat_file)
-                tmp = self.data_frame.join(strats.set_index('Name'), on='Name')
+                self.strats: pd.DataFrame = pd.read_csv(strat_file)
+                tmp = self.data_frame.join(self.strats.set_index('Name'), on='Name')
                 self.data_frame = tmp
             except OSError as e:
                 self.data_frame['Strategy'] = "HighGrowth"

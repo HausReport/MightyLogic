@@ -393,10 +393,12 @@ sys.exit(0)
 # 25) dialogue input might, click rarity, get level, reborn, soulbinds
 # 25) dialogue input fame, get league and completion back
 # 26) Show change in HG stage in table
-# 27) Hero image in table
 # 28) Limit table results by gold, HG stage, troops
+# 29) Consider HG previous levels - warlords, etc...
 
 
+# 29) ~~Show strategy in table, join with strats on Name~~
+# 27) ~~Hero image in table~~
 # 24) ~~Hide levelup table if empty~~
 # 20) ~~Support for from level to level filter~~
 # 18) ~~Show evolves to~~

@@ -65,6 +65,13 @@ class HeroDirectory:
         #     foo = "Eostre, the Dawn Glow"
         return self.by_name[foo] if foo in self.by_name.keys() else None
 
+    def icon_url(self, aName: str, width: int =100) -> str:
+        aHero = self.find_by_name(aName)
+        if aHero is None:
+            return "https://static.wikia.nocookie.net/mightyparty/images/4/4d/Adam_Soccer.png"
+        else:
+            return aHero.icon_url(aName)
+
     def find_by_num(self, num: int) -> Optional[Hero]:
         return self.by_num[num] if num in self.by_num.keys() else None
 

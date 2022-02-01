@@ -33,7 +33,7 @@ class Window(QMainWindow):
             self.army = Army()
             IoGui.getArmy(self, self.army)
 
-            hg = HighestGrowth(army=self.army)
+            self.hg = HighestGrowth(army=self.army)
             gremory = self.army.lookup("Gremory Night Child")
             # leg: Rarity = Rarity.get_rarity_by_name("Legendary")
             #moves = hg.get_moves(gremory)
@@ -51,7 +51,7 @@ class Window(QMainWindow):
                     print("Floor is " + str(floor))
                     holder = pd.DataFrame()
                     for index, row in army2.data_frame.iterrows():
-                        aMove = hg.get_most_efficient_move(row)     # HERE row is a series
+                        aMove = self.hg.get_most_efficient_move(row)     # HERE row is a series
                         if aMove is not None and len(aMove)> 0:
                             if (aMove.Score.values[0]) > floor:
                                 holder = holder.append(aMove)
@@ -70,7 +70,7 @@ class Window(QMainWindow):
                 allMoves.sort_values(by='Score', ascending=False, inplace=True)
                 allMoves = allMoves[allMoves['Score'] > 50.0].copy(deep=True)
                 allMoves = allMoves.copy(deep=True)
-                ret = hg._format_output(allMoves)
+                ret = self.hg._format_output(allMoves)
                 #ret = allMoves
 
                 hg_file = IoGui.get_high_growth_file(create=True)
@@ -86,6 +86,9 @@ class Window(QMainWindow):
             ret['GPT'] = ret['Gold'] / ret['Troop Gain']
             ret['GPL'] = ret['Gold'] / ret['LevelUps']
             ret['GPL'] = ret['GPL'].fillna(0)
+            ret = ret.join(self.army.strats.set_index('Name'), on='Name')
+
+            # ret['icon'] =
 
             ret[['LevelUps']] = ret[['LevelUps']].astype('int')
             ret[['Gold']] = ret[['Gold']].astype('int')
@@ -107,6 +110,7 @@ class Window(QMainWindow):
                 **{"Total LevelUps": lambda x: x['Total LevelUps'].map(add_comma)},
                 **{"Total Troop Gain": lambda x: x['Total Troop Gain'].map(add_comma)},
                 **{"Cum Souls": lambda x: x['Cum Souls'].map(add_comma)},
+                **{"Icon": lambda x: x['Name'].map(self.army.icon_url)},
                 #Total_Gold=lambda x: x['Total Gold'].map(add_comma),
             )
             formatted_df = formatted_df.reindex()
