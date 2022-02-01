@@ -390,6 +390,12 @@ sys.exit(0)
 # 13) Score - see Hanzo Sama case, lots of levels similar score to 1 level.  See also spreadsheet
 # 17) Help system
 # 23) Implement high-growth functionality
+# 25) dialogue input might, click rarity, get level, reborn, soulbinds
+# 25) dialogue input fame, get league and completion back
+# 26) Show change in HG stage in table
+# 27) Hero image in table
+# 28) Limit table results by gold, HG stage, troops
+
 
 # 24) ~~Hide levelup table if empty~~
 # 20) ~~Support for from level to level filter~~

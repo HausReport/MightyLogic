@@ -59,3 +59,16 @@ class IoGui:
         else:
             print("Config File Nexists")
             return None
+
+    @staticmethod
+    def get_high_growth_file(create=False):
+        dir_path = FileIO.get_data_directory()
+        file_name = "high-growth.csv"
+        file_path = dir_path / file_name
+
+        if create or file_path.exists():
+            print("High Growth File Exists")
+            return file_path
+        else:
+            print("High Growth File Nexists")
+            return None

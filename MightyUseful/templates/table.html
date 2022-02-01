@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+table.example {
+  border: thin solid lightgray;
+}
+
+table.example th,
+table.example td {
+  border: thin solid lightgray;
+  min-width: 75px;
+  text-align: center;
+  padding: 5px;
+}
+
+table.example .red-circle {
+  border: thin solid red;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  text-align: center;
+  margin: auto;
+}
+</style>
+</head>
+<body>
+<table class="example collapse">
+  <thead>
+    <tr>
+      {% for c in columns %}
+      <th>{{ c }}</th>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+     {% for row in rows %}
+     <tr>
+     {% for k, v in row.items() %}
+     {% if v == 'a' %}
+     <td><div class="red-circle">{{ row.letter }}</div></td>
+     {% else %}
+     <td><div>{{ v }}</div></td>
+     {% endif %}
+     {% endfor %}
+     </tr>
+     {% endfor %}
+   </tr>
+  </tbody>
+</table>
+</body>
+</html>
