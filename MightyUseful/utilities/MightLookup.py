@@ -32,9 +32,9 @@ class LevelRebornSoulbindMight:
         if self.sb4:
             aList.append("4")
         if len(aList) > 0:
-            if len(aList) > 1:
+            if len(aList) > 0:
                 aStr += " Soulbind"
-            if len(aList) > 2:
+            if len(aList) > 1:
                 aStr += "s"
             aStr += ": "
             aStr += ",".join(aList)
@@ -49,17 +49,14 @@ mightDict = defaultdict(list)
 lego = Legendary()
 for reborn in range(1, 6):
     for level in range(1, 32):
-        for sb in range(0, 16):
-            baseMight, troops = lego.getMightAndTroops(reborn, level)
-            soulbits = "{0:b}".format(sb)
-            soulbits = soulbits.zfill(4)
-            sb1: bool = soulbits[0] == '1'
-            sb2: bool = soulbits[1] == '1'
-            sb3: bool = soulbits[2] == '1'
-            sb4: bool = soulbits[3] == '1'
-            foo = LevelRebornSoulbindMight(level, reborn, sb1, sb2, sb3, sb4)
-            #print( str(foo.might) + " <-" + str(foo))
-            mightDict[foo.might].append(foo)
+        for sb1 in [True, False]:
+            for sb2 in [True, False]:
+                for sb3 in [True, False]:
+                    for sb4 in [True, False]:
+                        baseMight, troops = lego.getMightAndTroops(reborn, level)
+                        foo = LevelRebornSoulbindMight(level, reborn, sb1, sb2, sb3, sb4)
+                        #print( str(foo.might) + " <-" + str(foo))
+                        mightDict[foo.might].append(foo)
 
 aList = mightDict[2390]
 for item in aList:

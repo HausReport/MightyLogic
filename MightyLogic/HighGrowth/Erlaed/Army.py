@@ -12,8 +12,11 @@ class Army:
         self.data_frame: pd.DataFrame = None
         # p = pathlib.Path(hdPath)
 
-    def icon_url(self, aName: str) -> str:
-        return self.directory.icon_url(aName)
+    def local_icon_url(self, aName: str) -> str:
+        return self.directory.icon_url(aName, True)
+
+    def icon_url(self, aName: str, local=True) -> str:
+        return self.directory.icon_url(aName, local)
 
     def fromFile(self, file, strat_file="strategies.csv"):
         self.data_frame: pd.DataFrame = pd.read_csv(file)

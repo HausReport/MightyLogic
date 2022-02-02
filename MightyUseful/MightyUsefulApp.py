@@ -8,6 +8,7 @@ from PySide2.QtWidgets import QApplication, QMainWindow, QAction, QVBoxLayout, Q
 
 from MightyLogic.HighGrowth.Erlaed.Army import Army
 from MightyLogic.HighGrowth.Erlaed.HighestGrowth import HighestGrowth
+from MightyUseful.HighGrowthTab import HighGrowthTab
 from MightyUseful.IntRangeFilter import IntRangeFilter
 from MightyUseful.RegExFilter import RegExFilter
 from MightyUseful.IoGui import IoGui
@@ -208,7 +209,8 @@ class MightyUsefulApp(QMainWindow):
 
         tabs.addTab(wholeUiWidget, "Army Explorer")
         tabs.addTab(QPushButton("Hi"), "Army Analyzer")
-        tabs.addTab(QPushButton("Hi"), "High Growth")
+        hgt = HighGrowthTab()
+        tabs.addTab(hgt, "High Growth")
         self.setCentralWidget(tabs)
         # self.showMaximized()
         self.showFullScreen()
@@ -392,11 +394,11 @@ sys.exit(0)
 # 23) Implement high-growth functionality
 # 25) dialogue input might, click rarity, get level, reborn, soulbinds
 # 25) dialogue input fame, get league and completion back
-# 26) Show change in HG stage in table
 # 28) Limit table results by gold, HG stage, troops
 # 29) Consider HG previous levels - warlords, etc...
 
 
+# 26) ~~Show change in HG stage in table~~
 # 29) ~~Show strategy in table, join with strats on Name~~
 # 27) ~~Hero image in table~~
 # 24) ~~Hide levelup table if empty~~

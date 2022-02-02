@@ -502,8 +502,17 @@ class Hero:
 
         return d
 
-    def icon_url(self, width=100) -> str:
-        return Hero._icon_url(self.name)
+    def icon_url(self, width=100, local=True) -> str:
+        if local:
+            return Hero._local_icon_url(self.name)
+        else:
+            return Hero._icon_url(self.name)
+
+    @staticmethod
+    def _local_icon_url(bName: str) -> str:
+        aName = bName.replace(' ', '_')  # need to replace spaces with underline
+        aName += '.png'
+        return aName
 
     @staticmethod
     def _icon_url(bName: str) -> str:
