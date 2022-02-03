@@ -58,7 +58,7 @@ for reborn in range(1, 6):
                         #print( str(foo.might) + " <-" + str(foo))
                         mightDict[foo.might].append(foo)
 
-aList = mightDict[2390]
+aList = mightDict[2795]
 for item in aList:
     print(item)
 #print( mightDict[3455].__str__())

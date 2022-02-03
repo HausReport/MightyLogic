@@ -90,6 +90,33 @@ td {
     max-width: 100px;
     text-align: center;
 }
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
 </style>
 </head>
 <body>
@@ -98,16 +125,12 @@ td {
     <tr>
       <th rowspan="2" style="top: 0;"></th>
       <th rowspan="2" style="text-align: left; top: 0;"></th>
-      <th colspan="3" style="top: 0;">Score</th>
       <th colspan="3" style="top: 0;">Running Totals</th>
     </tr>
     <tr>
-        <th class="header" style="text-align: right;">G/Troop</th>
-        <th class="header" style="text-align: right;">G/Level</th>
-        <th class="header" style="text-align: right;">Meta</th>
+        <th class="header" style="text-align: right;">Level-Ups</th>
         <th class="header" style="text-align: right;">Gold</th>
         <th class="header" style="text-align: right;">Troops</th>
-        <th class="header" style="text-align: right;">Level-Ups</th>
     </tr>
   </thead>
   <tbody>
@@ -115,45 +138,34 @@ td {
      {% for row in rows %}
      <tr>
          <td style="background: black;"> <div class="block">
-             <font color="gold">
-                 {{row.no}}.  {{row.Name}}</div>
+             <font color=  {% if row.Rarity == "Legendary" %}"gold"{% endif %}
+                           {% if row.Rarity == "Epic" %}"magenta"{% endif %}
+                           {% if row.Rarity == "Rare" %}"lightblue"{% endif %}
+                           {% if row.Rarity == "Common" %}"white"{% endif %}
+             > {{row.no}}.  {{row.Name}}</div>
              </font>
              <br> <img src="{{row.Icon}}" width="100"></td>
          <td style="text-align: left;"> From: Level {{'%-2d' % row['Cur Level'] }} Reborn {{'%-2d' % row['Cur Reborn']}} <br>
               &nbsp;&nbsp;To: Level {{'%-2d' % row.Level }} Reborn {{'%-2d' % row.Reborn}} <br>
               {{'%-2d' % row.LevelUps}} level{% if row.LevelUps != 1 %}s{%endif%} for {{row.Gold}} gold and {{row['Cum Souls']}} souls.<br>
              Gain {{row['Troop Gain']}} troops.<br>
-             Strategy: {{row.Strategy}}<br>
+             Strategy: {{row.Strategy}}.
+             Score: {{row['Letter Grade']}} ({{row.Score}}). <br>
+             Gold/Level: {{row['GPL']}}.  Gold/Troop {{row.GPT}}. <br>
              {% if ns.hgLev != row.HighGrowthStage %}
-             <b>High Growth Level: {{row.HighGrowthStage}}, collect {{row.HighGrowthGems}} gems.</b>
+             <b>High Growth Level: {{row.HighGrowthStage}}, {{row.HighGrowthGems}} gems total.</b>
              {%endif%}
              {% set ns.hgLev = row['HighGrowthStage'] %}
          </td>
-         <td style="text-align: right;">
-             {% if row.Strategy == "Troops" or row.Strategy == "NoReborn" %}<u>{%endif%}
-             {{row['GPT']}}
-             {% if row.Strategy == "Troops"or row.Strategy == "NoReborn"   %}</u>{%endif%}
-         </td>
-         <td style="text-align: right;">
-             {% if row.Strategy == "HighGrowth" %}<u>{%endif%}
-             {{row['GPL']}}
-             {% if row.Strategy == "HighGrowth" %}</u>{%endif%}
-         </td>
-         <td style="text-align: right;">
-             {% if row.Strategy == "RebornToLevel1" %}<u>{%endif%}
-             {{row['Score']}}
-             {% if row.Strategy == "RebornToLevel1" %}</u>{%endif%}
-         </td>
-         <td style="text-align: right;">
-             {{row['Total Gold']}}
-         </td>
-         <td style="text-align: right;">
-             {{row['Total Troop Gain']}}
-         </td>
-         <td style="text-align: right;">
+         <td style="text-align: right; cell-padding: 30px;">
              {{row['Total LevelUps']}}
          </td>
-
+         <td style="text-align: right; cell-padding: 30px;">
+             {{row['Total Gold']}}
+         </td>
+         <td style="text-align: right; cell-padding: 30px;">
+             {{row['Total Troop Gain']}}
+         </td>
      </tr>
      {% endfor %}
    </tr>

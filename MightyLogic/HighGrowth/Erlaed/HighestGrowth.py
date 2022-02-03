@@ -21,8 +21,7 @@ class HighestGrowth:
     def _format_output(ret: pd.DataFrame):
         # Fixme, had to remove 'Rarity'
         ret = ret[['Name', 'Cur Reborn', 'Cur Level', 'Reborn', 'Level', 'LevelUps', 'Cum Souls', 'Cum Gold',
-                   'Troop Gain',
-                   'Score']]
+                   'Troop Gain', 'Score', 'Rarity']]
         ret = ret.rename(columns={"Cum Gold": "Gold"})
         ret["Total Gold"] = ret.Gold.cumsum()
         ret["Total Troop Gain"] = ret['Troop Gain'].cumsum()

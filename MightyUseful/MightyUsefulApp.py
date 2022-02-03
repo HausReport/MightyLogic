@@ -9,6 +9,7 @@ from PySide2.QtWidgets import QApplication, QMainWindow, QAction, QVBoxLayout, Q
 from MightyLogic.HighGrowth.Erlaed.Army import Army
 from MightyLogic.HighGrowth.Erlaed.HighestGrowth import HighestGrowth
 from MightyUseful.HighGrowthTab import HighGrowthTab
+from MightyUseful.HighGrowthTable import HighGrowthTable
 from MightyUseful.IntRangeFilter import IntRangeFilter
 from MightyUseful.RegExFilter import RegExFilter
 from MightyUseful.IoGui import IoGui
@@ -395,7 +396,9 @@ sys.exit(0)
 # 25) dialogue input might, click rarity, get level, reborn, soulbinds
 # 25) dialogue input fame, get league and completion back
 # 28) Limit table results by gold, HG stage, troops
-# 29) Consider HG previous levels - warlords, etc...
+# 29) Point out highest might lev/reb for reboosts
+# 30) EventReady isn't getting the moves NoReborn gets
+# 31) Add top widget for HG tab
 
 
 # 26) ~~Show change in HG stage in table~~

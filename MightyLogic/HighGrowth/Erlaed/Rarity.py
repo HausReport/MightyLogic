@@ -7,7 +7,7 @@ from MightyLogic.HighGrowth.Erlaed.RarityBase import RarityBase
 
 
 class Rarity(RarityBase, ABC):
-    discounts = Discounts(guild=20, vip=12, crisis=18)
+    discounts = Discounts(guild=20, vip=12, crisis=0) # crisis 18
     # FIXME: move gold discount somewhere else
     # guild_discount = .8
     # vip_discount = .88
@@ -79,6 +79,8 @@ class Rarity(RarityBase, ABC):
         else:
             moves = moves[moves['Level'] > self.FENCE]
         moves['LevelUps'] = 0
+        moves['Rarity'] = self.getName()
+
 
         # fixed problem with lambda freaking out with 0 moves
         if len(moves) < 1:
@@ -103,6 +105,13 @@ class Rarity(RarityBase, ABC):
             moves["Score"] = SCALE * (TROOP_SCALE * moves["Troop Gain"] + moves["LevelUps"]) / ( moves["Cum Gold"])
         else:
             moves["Score"] = SCALE * (TROOP_SCALE * moves["Troop Gain"] + moves["LevelUps"]) / ( moves["Cum Gold"])
+
+        # moves[moves['Level']==11].Score *= 1.1
+        # moves[moves['Level']==16].Score *= 1.1
+        # moves[moves['Level']==21].Score *= 1.1
+        # moves[moves['Level']==26].Score *= 1.1
+        # moves[moves['Level']==31].Score *= 1.1
+        # if moves['Level'] in [11,16,21,26,31]:
 
         return moves
 
