@@ -1,0 +1,361 @@
+num,name,rarity,alignment,gender,shape,evolves_to,level_count,reborn_count,souls
+2,Servant,Common,Order,Male,Melee,"frozenset({3: Prophet (Rare / Melee / Order / Female), 30: First Aid (Rare / Building / Order / Sexless), 111: Squire (Rare / Melee / Order / Male)})",16,2,30730
+3,Prophet,Rare,Order,Female,Melee,frozenset({43: Lady Clair (Epic / Melee / Order / Female)}),1,2,100
+4,Warrioress,Common,Order,Female,Melee,"frozenset({185: Valkyrie (Rare / Melee / Order / Female), 67: Pharaon (Rare / Building / Order / Sexless), 6: Priestess (Rare / Ranged / Order / Female)})",16,2,31772
+5,Shinobi,Common,Order,Male,Melee,"frozenset({67: Pharaon (Rare / Building / Order / Sexless), 92: Untouchable (Rare / Melee / Order / Male), 79: Soulblade (Rare / Melee / Order / Male)})",16,2,39705
+6,Priestess,Rare,Order,Female,Ranged,"frozenset({58: Scarlet Warrior (Epic / Melee / Order / Female), 215: Battle Angel (Epic / Ranged / Order / Female)})",13,2,18714
+7,Archer,Common,Order,Female,Ranged,"frozenset({80: Minstrel (Rare / Ranged / Order / Female), 85: Bowmaster (Rare / Ranged / Order / Female), 30: First Aid (Rare / Building / Order / Sexless)})",16,2,33739
+8,Mr. Toad,Rare,Nature,Male,Melee,frozenset({52: Lord Toad (Epic / Melee / Nature / Male)}),13,2,233
+9,Totem,Rare,Nature,Sexless,Building,frozenset({51: Luck Idol (Epic / Building / Nature / Sexless)}),13,1,5980
+10,Cat Lady,Common,Nature,Female,Melee,"frozenset({8: Mr. Toad (Rare / Melee / Nature / Male), 9: Totem (Rare / Building / Nature / Sexless), 244: Scratchy (Rare / Melee / Nature / Female)})",16,2,32009
+11,Viking,Rare,Nature,Male,Melee,frozenset({57: Olaf the Red (Epic / Melee / Nature / Male)}),13,2,1329
+12,Wood Spirit,Rare,Nature,Female,Ranged,frozenset({245: Song of Forest (Epic / Ranged / Nature / Female)}),13,1,10839
+13,Dryad,Common,Nature,Female,Ranged,"frozenset({9: Totem (Rare / Building / Nature / Sexless), 66: Leaf Child (Rare / Ranged / Nature / Female), 107: Bully (Rare / Melee / Nature / Male)})",16,2,41400
+14,Gargoyle,Rare,Chaos,Male,Melee,frozenset({56: Gargantos (Epic / Melee / Chaos / Male)}),13,2,22552
+15,Chiropteran,Rare,Chaos,Male,Melee,frozenset({45: Blood Lord (Epic / Melee / Chaos / Male)}),13,2,3685
+16,Red Orc,Common,Chaos,Male,Melee,"frozenset({84: Bone Hunter (Rare / Melee / Chaos / Male), 78: Orc Master (Rare / Melee / Chaos / Male), 14: Gargoyle (Rare / Melee / Chaos / Male)})",16,2,20315
+17,Undead,Rare,Chaos,Male,Melee,"frozenset({98: Hell Gate (Epic / Building / Chaos / Sexless), 119: Living Dead (Epic / Melee / Chaos / Male)})",13,2,88466
+18,Child of Chaos,Rare,Chaos,Male,Ranged,frozenset({90: Dark Mage (Epic / Ranged / Chaos / Male)}),13,2,11128
+19,Blood Cult Adept,Common,Chaos,Female,Ranged,"frozenset({312: Dark Acolyte (Rare / Ranged / Chaos / Female), 14: Gargoyle (Rare / Melee / Chaos / Male), 15: Chiropteran (Rare / Melee / Chaos / Male)})",16,2,28779
+20,Mr. Devil,Legendary,Chaos,Male,Melee,frozenset(),13,2,21
+21,Prince,Legendary,Order,Male,Melee,frozenset(),13,2,743
+22,Mother Owl,Legendary,Nature,Female,Ranged,frozenset(),9,3,2950
+23,Bard,Epic,Order,Female,Ranged,frozenset({229: Apollo (Legendary / Ranged / Order / Male)}),11,3,894
+24,Karas,Epic,Nature,Male,Ranged,"frozenset({156: Tengu, Ravencrest (Legendary / Ranged / Nature / Male)})",12,3,1229
+25,Void Juggler,Epic,Chaos,Female,Ranged,frozenset({225: Discordia (Legendary / Ranged / Chaos / Female)}),11,3,875
+26,Wild Tamer,Epic,Nature,Female,Ranged,frozenset({122: Draggara (Legendary / Ranged / Nature / Female)}),11,2,370
+27,Tesla Tower,Epic,Order,Sexless,Building,frozenset({118: Tesla X (Legendary / Building / Order / Sexless)}),11,3,1251
+28,Soul Hunter,Epic,Chaos,Male,Melee,frozenset({115: Stormrage (Legendary / Melee / Chaos / Male)}),11,2,4
+29,Idol,Common,Order,Sexless,Building,"frozenset({81: Crafter (Rare / Melee / Order / Male), 67: Pharaon (Rare / Building / Order / Sexless), 79: Soulblade (Rare / Melee / Order / Male)})",16,2,27903
+30,First Aid,Rare,Order,Sexless,Building,frozenset({60: Tent of Life (Epic / Building / Order / Sexless)}),13,2,13687
+31,Tree,Common,Chaos,Sexless,Building,"frozenset({17: Undead (Rare / Melee / Chaos / Male), 18: Child of Chaos (Rare / Ranged / Chaos / Male), 77: Dark Tree (Rare / Building / Chaos / Sexless)})",16,2,27537
+32,Dead Lord,Legendary,Chaos,Male,Melee,frozenset(),1,2,7712
+33,Erik the Grey,Legendary,Nature,Male,Melee,frozenset(),9,2,564
+34,Sir Lancelot,Legendary,Order,Male,Melee,frozenset(),9,2,1892
+35,Count Vlad,Legendary,Chaos,Male,Melee,frozenset(),13,2,36
+36,Bastet,Legendary,Nature,Female,Melee,frozenset(),10,2,2
+37,Athena,Legendary,Order,Female,Ranged,frozenset(),9,0,77
+38,Goliath,Legendary,Chaos,Male,Melee,frozenset(),9,0,2125
+39,Prince Nod,Legendary,Nature,Male,Melee,frozenset(),8,2,54
+40,Life Palace,Legendary,Order,Sexless,Building,frozenset(),13,2,880
+42,Axe,Legendary,Chaos,Male,Melee,frozenset(),11,1,1866
+43,Lady Clair,Epic,Order,Female,Melee,"frozenset({214: D'Arc, Iron Maiden (Legendary / Melee / Order / Female)})",1,3,8
+44,Caesar's Head,Epic,Order,Sexless,Building,frozenset(),1,2,20063
+45,Blood Lord,Epic,Chaos,Male,Melee,frozenset({35: Count Vlad (Legendary / Melee / Chaos / Male)}),12,2,4705
+46,Lady Wild,Epic,Nature,Female,Ranged,"frozenset({230: Melia, Forest's Daughter (Legendary / Ranged / Nature / Female)})",11,2,771
+47,Cursed Oak,Epic,Chaos,Sexless,Building,frozenset(),12,2,8220
+48,Soul Monger,Epic,Chaos,Male,Melee,frozenset({20: Mr. Devil (Legendary / Melee / Chaos / Male)}),12,2,692
+49,Swordmaster,Epic,Order,Male,Melee,frozenset({21: Prince (Legendary / Melee / Order / Male)}),11,2,13
+50,Archwitch,Epic,Chaos,Female,Ranged,frozenset({120: Red Woman (Legendary / Ranged / Chaos / Female)}),8,3,14
+51,Luck Idol,Epic,Nature,Sexless,Building,frozenset({41: Vanakauri (Legendary / Building / Nature / Sexless)}),12,2,3195
+52,Lord Toad,Epic,Nature,Male,Melee,frozenset({39: Prince Nod (Legendary / Melee / Nature / Male)}),12,2,3733
+53,Engineer,Epic,Order,Male,Melee,frozenset({175: High Tinker Gear (Legendary / Melee / Order / Male)}),12,2,3572
+54,Ronin,Epic,Order,Male,Melee,frozenset({112: Hanzo Sama (Legendary / Melee / Order / Male)}),12,2,6070
+55,Wise Owl,Epic,Nature,Female,Ranged,frozenset({22: Mother Owl (Legendary / Ranged / Nature / Female)}),11,2,3737
+56,Gargantos,Epic,Chaos,Male,Melee,frozenset({38: Goliath (Legendary / Melee / Chaos / Male)}),12,2,5774
+57,Olaf the Red,Epic,Nature,Male,Melee,frozenset({33: Erik the Grey (Legendary / Melee / Nature / Male)}),13,2,3659
+58,Scarlet Warrior,Epic,Order,Female,Melee,frozenset({114: Titania (Legendary / Melee / Order / Female)}),11,2,4547
+59,Ayfe the Arrow,Epic,Order,Female,Ranged,frozenset({37: Athena (Legendary / Ranged / Order / Female)}),12,2,6018
+60,Tent of Life,Epic,Order,Sexless,Building,frozenset({40: Life Palace (Legendary / Building / Order / Sexless)}),18,3,2592
+61,Void Rock,Epic,Chaos,Sexless,Building,frozenset({62: Void Jewel (Legendary / Building / Chaos / Sexless)}),12,2,3247
+62,Void Jewel,Legendary,Chaos,Sexless,Building,frozenset(),13,2,183
+63,Argios,Epic,Nature,Male,Melee,frozenset({102: Marquis de Sat (Legendary / Melee / Nature / Male)}),12,2,3277
+64,Big Toad,Common,Nature,Male,Melee,"frozenset({8: Mr. Toad (Rare / Melee / Nature / Male), 66: Leaf Child (Rare / Ranged / Nature / Female), 11: Viking (Rare / Melee / Nature / Male)})",16,2,45422
+65,Gnome,Common,Order,Male,Melee,"frozenset({80: Minstrel (Rare / Ranged / Order / Female), 81: Crafter (Rare / Melee / Order / Male), 85: Bowmaster (Rare / Ranged / Order / Female)})",16,2,43017
+66,Leaf Child,Rare,Nature,Female,Ranged,frozenset({46: Lady Wild (Epic / Ranged / Nature / Female)}),13,1,28139
+67,Pharaon,Rare,Order,Sexless,Building,frozenset({44: Caesar's Head (Epic / Building / Order / Sexless)}),13,1,1599
+68,Vampire,Common,Chaos,Male,Melee,"frozenset({17: Undead (Rare / Melee / Chaos / Male), 18: Child of Chaos (Rare / Ranged / Chaos / Male), 15: Chiropteran (Rare / Melee / Chaos / Male)})",16,2,43696
+69,Void Stone,Rare,Chaos,Sexless,Building,frozenset({61: Void Rock (Epic / Building / Chaos / Sexless)}),13,1,9223
+70,Satyr,Rare,Nature,Male,Melee,frozenset({63: Argios (Epic / Melee / Nature / Male)}),13,1,7416
+71,Pilgrim,Common,Order,Female,Ranged,"frozenset({88: Love Mage (Rare / Ranged / Order / Female), 3: Prophet (Rare / Melee / Order / Female), 92: Untouchable (Rare / Melee / Order / Male)})",16,2,28449
+72,Shaman,Common,Nature,Female,Ranged,"frozenset({8: Mr. Toad (Rare / Melee / Nature / Male), 12: Wood Spirit (Rare / Ranged / Nature / Female), 76: Forest Mage (Rare / Ranged / Nature / Male)})",16,2,32054
+73,Dark Witch,Rare,Chaos,Female,Ranged,frozenset({25: Void Juggler (Epic / Ranged / Chaos / Female)}),13,1,10435
+74,Raven,Common,Nature,Male,Ranged,"frozenset({9: Totem (Rare / Building / Nature / Sexless), 66: Leaf Child (Rare / Ranged / Nature / Female), 76: Forest Mage (Rare / Ranged / Nature / Male)})",16,2,25922
+75,Warrior,Common,Order,Male,Melee,"frozenset({97: Bunny (Rare / Ranged / Order / Female), 92: Untouchable (Rare / Melee / Order / Male), 79: Soulblade (Rare / Melee / Order / Male)})",16,2,5045
+76,Forest Mage,Rare,Nature,Male,Ranged,frozenset({24: Karas (Epic / Ranged / Nature / Male)}),13,1,12390
+77,Dark Tree,Rare,Chaos,Sexless,Building,frozenset({47: Cursed Oak (Epic / Building / Chaos / Sexless)}),14,1,4192
+78,Orc Master,Rare,Chaos,Male,Melee,frozenset({195: Chieftain Orc (Epic / Melee / Chaos / Male)}),13,2,13524
+79,Soulblade,Rare,Order,Male,Melee,frozenset({49: Swordmaster (Epic / Melee / Order / Male)}),13,1,33
+80,Minstrel,Rare,Order,Female,Ranged,frozenset({23: Bard (Epic / Ranged / Order / Female)}),13,1,9909
+81,Crafter,Rare,Order,Male,Melee,frozenset({53: Engineer (Epic / Melee / Order / Male)}),13,1,10724
+82,Lumberjack,Common,Nature,Male,Melee,"frozenset({66: Leaf Child (Rare / Ranged / Nature / Female), 11: Viking (Rare / Melee / Nature / Male), 76: Forest Mage (Rare / Ranged / Nature / Male)})",16,2,27633
+83,Witch,Common,Chaos,Female,Ranged,"frozenset({73: Dark Witch (Rare / Ranged / Chaos / Female), 69: Void Stone (Rare / Building / Chaos / Sexless), 78: Orc Master (Rare / Melee / Chaos / Male)})",16,2,49330
+84,Bone Hunter,Rare,Chaos,Male,Melee,frozenset({28: Soul Hunter (Epic / Melee / Chaos / Male)}),13,2,806
+85,Bowmaster,Rare,Order,Female,Ranged,frozenset({59: Ayfe the Arrow (Epic / Ranged / Order / Female)}),13,1,15900
+86,Aphrodite,Legendary,Order,Female,Ranged,frozenset(),1,3,2141
+87,Love Goddess,Epic,Order,Female,Ranged,frozenset({86: Aphrodite (Legendary / Ranged / Order / Female)}),1,3,7150
+88,Love Mage,Rare,Order,Female,Ranged,frozenset({87: Love Goddess (Epic / Ranged / Order / Female)}),15,1,53
+89,Love Lady,Common,Order,Female,Ranged,"frozenset({88: Love Mage (Rare / Ranged / Order / Female), 97: Bunny (Rare / Ranged / Order / Female), 85: Bowmaster (Rare / Ranged / Order / Female)})",16,2,37258
+90,Dark Mage,Epic,Chaos,Male,Ranged,frozenset({104: Regardus Diplius (Legendary / Ranged / Chaos / Male)}),11,3,7972
+91,Angry Imp,Rare,Chaos,Male,Melee,frozenset({48: Soul Monger (Epic / Melee / Chaos / Male)}),13,2,13531
+92,Untouchable,Rare,Order,Male,Melee,frozenset({54: Ronin (Epic / Melee / Order / Male)}),13,1,14015
+93,Apprentice,Common,Order,Female,Ranged,"frozenset({88: Love Mage (Rare / Ranged / Order / Female), 97: Bunny (Rare / Ranged / Order / Female), 6: Priestess (Rare / Ranged / Order / Female)})",16,2,30476
+94,Predator,Epic,Nature,Female,Melee,frozenset({36: Bastet (Legendary / Melee / Nature / Female)}),8,3,13
+95,Miss Lapin,Legendary,Order,Female,Ranged,frozenset(),9,2,66
+96,Lucky Rabbit,Epic,Order,Female,Ranged,frozenset({95: Miss Lapin (Legendary / Ranged / Order / Female)}),11,2,3057
+97,Bunny,Rare,Order,Female,Ranged,frozenset({96: Lucky Rabbit (Epic / Ranged / Order / Female)}),13,1,11230
+98,Hell Gate,Epic,Chaos,Sexless,Building,frozenset(),11,3,5385
+99,El Mariachi,Legendary,Nature,Male,Melee,frozenset(),9,0,2100
+100,El Cactus,Epic,Nature,Male,Melee,frozenset({99: El Mariachi (Legendary / Melee / Nature / Male)}),11,2,4952
+101,Cactusito,Rare,Nature,Male,Melee,frozenset({100: El Cactus (Epic / Melee / Nature / Male)}),13,1,3026
+102,Marquis de Sat,Legendary,Nature,Male,Melee,frozenset(),13,2,2297
+103,Maeve,Legendary,Nature,Female,Ranged,frozenset(),9,1,65
+104,Regardus Diplius,Legendary,Chaos,Male,Ranged,frozenset(),9,0,6949
+105,King Taurus,Legendary,Nature,Male,Melee,frozenset(),9,2,49
+106,Minotaur,Epic,Nature,Male,Melee,frozenset({105: King Taurus (Legendary / Melee / Nature / Male)}),17,3,633
+107,Bully,Rare,Nature,Male,Melee,frozenset({106: Minotaur (Epic / Melee / Nature / Male)}),13,1,11138
+108,Queen Ananta,Legendary,Nature,Female,Melee,frozenset(),13,2,412
+109,High Naga,Epic,Nature,Female,Melee,frozenset({108: Queen Ananta (Legendary / Melee / Nature / Female)}),11,2,2450
+110,Naga,Rare,Nature,Female,Melee,frozenset({109: High Naga (Epic / Melee / Nature / Female)}),13,1,11881
+111,Squire,Rare,Order,Male,Melee,frozenset({237: Knight (Epic / Melee / Order / Male)}),13,1,7017
+112,Hanzo Sama,Legendary,Order,Male,Melee,frozenset(),11,3,1805
+113,Alexandria,Legendary,Order,Female,Ranged,frozenset(),16,2,490
+114,Titania,Legendary,Order,Female,Melee,frozenset(),11,2,139
+115,Stormrage,Legendary,Chaos,Male,Melee,frozenset(),11,1,589
+116,Singer,Common,Order,Female,Ranged,"frozenset({80: Minstrel (Rare / Ranged / Order / Female), 117: Voltage Tower (Rare / Building / Order / Sexless), 111: Squire (Rare / Melee / Order / Male)})",16,2,41208
+117,Voltage Tower,Rare,Order,Sexless,Building,frozenset({27: Tesla Tower (Epic / Building / Order / Sexless)}),13,1,14208
+118,Tesla X,Legendary,Order,Sexless,Building,frozenset(),9,2,73
+119,Living Dead,Epic,Chaos,Male,Melee,frozenset({32: Dead Lord (Legendary / Melee / Chaos / Male)}),11,3,6529
+120,Red Woman,Legendary,Chaos,Female,Ranged,frozenset(),15,2,76
+121,Lady of the Warriors,Rare,Nature,Female,Ranged,frozenset({26: Wild Tamer (Epic / Ranged / Nature / Female)}),13,1,9966
+122,Draggara,Legendary,Nature,Female,Ranged,frozenset(),9,2,1497
+123,Blair,Legendary,Order,Female,Ranged,frozenset(),17,3,73
+124,Adherent,Epic,Order,Female,Ranged,frozenset({123: Blair (Legendary / Ranged / Order / Female)}),1,3,3
+125,Follower,Rare,Order,Female,Ranged,frozenset({124: Adherent (Epic / Ranged / Order / Female)}),13,1,17
+126,"Fury, the Great Warrior",Legendary,Order,Male,Melee,frozenset(),1,2,6285
+127,Cruel Gladiator,Epic,Order,Male,Melee,"frozenset({126: Fury, the Great Warrior (Legendary / Melee / Order / Male)})",11,3,9
+128,Berserk,Rare,Order,Male,Melee,frozenset({127: Cruel Gladiator (Epic / Melee / Order / Male)}),13,1,3
+129,Chernomor,Legendary,Chaos,Male,Melee,frozenset(),9,2,2977
+130,Dark Knight,Epic,Chaos,Male,Melee,frozenset({129: Chernomor (Legendary / Melee / Chaos / Male)}),17,3,1200
+131,Dark Warrior,Rare,Chaos,Male,Melee,frozenset({130: Dark Knight (Epic / Melee / Chaos / Male)}),13,1,3238
+132,Leader Nilen,Legendary,Chaos,Male,Ranged,frozenset(),10,3,83
+133,Embalmed Priest,Epic,Chaos,Male,Ranged,frozenset({132: Leader Nilen (Legendary / Ranged / Chaos / Male)}),11,3,2487
+134,Mummy,Rare,Chaos,Male,Ranged,frozenset({133: Embalmed Priest (Epic / Ranged / Chaos / Male)}),13,1,10234
+135,Koschei the Immortal,Legendary,Chaos,Male,Melee,frozenset(),15,2,47
+136,Bone Warrior,Epic,Chaos,Male,Melee,frozenset({135: Koschei the Immortal (Legendary / Melee / Chaos / Male)}),11,2,2363
+137,Skeleton,Rare,Chaos,Male,Melee,frozenset({136: Bone Warrior (Epic / Melee / Chaos / Male)}),13,2,9132
+138,"Anak, Princess Dragon",Legendary,Nature,Female,Ranged,frozenset(),13,2,690
+139,Wyvern,Epic,Nature,Female,Ranged,"frozenset({138: Anak, Princess Dragon (Legendary / Ranged / Nature / Female)})",11,2,3450
+140,Wind Snake,Rare,Nature,Female,Ranged,frozenset({139: Wyvern (Epic / Ranged / Nature / Female)}),13,1,8109
+141,Matriarch Eona,Legendary,Nature,Female,Melee,frozenset(),8,2,68
+142,Emerald Dragon,Epic,Nature,Female,Melee,frozenset({141: Matriarch Eona (Legendary / Melee / Nature / Female)}),11,3,367
+143,Dream Whelpling,Rare,Nature,Female,Melee,frozenset({142: Emerald Dragon (Epic / Melee / Nature / Female)}),13,1,4357
+144,"Enlil, Wind of Change",Legendary,Nature,Female,Melee,frozenset(),11,2,59
+145,Wind Warrior,Epic,Nature,Female,Melee,"frozenset({144: Enlil, Wind of Change (Legendary / Melee / Nature / Female)})",11,2,3744
+146,Harpy,Rare,Nature,Female,Melee,frozenset({145: Wind Warrior (Epic / Melee / Nature / Female)}),13,1,1610
+147,Iceberg,Legendary,Order,Male,Melee,frozenset(),9,0,850
+149,Piece of Ice,Rare,Order,Male,Melee,frozenset({148: Ice Clod (Epic / Melee / Order / Male)}),13,1,10241
+150,"Evil ""Santa""",Legendary,Order,Male,Ranged,frozenset(),9,0,266
+151,Evil's Helper,Epic,Order,Male,Ranged,"frozenset({150: Evil ""Santa"" (Legendary / Ranged / Order / Male)})",11,2,9
+152,Ding Viesel,Rare,Order,Male,Ranged,frozenset({151: Evil's Helper (Epic / Ranged / Order / Male)}),13,1,1383
+153,Ghosta,Legendary,Order,Female,Ranged,frozenset(),9,0,1806
+154,Dark Huntress,Epic,Order,Female,Ranged,frozenset({153: Ghosta (Legendary / Ranged / Order / Female)}),1,2,13
+155,Drow,Rare,Order,Female,Ranged,frozenset({154: Dark Huntress (Epic / Ranged / Order / Female)}),13,1,10
+156,"Tengu, Ravencrest",Legendary,Nature,Male,Ranged,frozenset(),13,2,128
+157,"Groot, Silent Guardian",Legendary,Nature,Male,Melee,frozenset(),20,3,1222
+158,Treebeard,Epic,Nature,Male,Melee,"frozenset({157: Groot, Silent Guardian (Legendary / Melee / Nature / Male)})",8,2,1514
+159,Treant,Rare,Nature,Male,Melee,frozenset({158: Treebeard (Epic / Melee / Nature / Male)}),1,2,20
+160,"Loath, Spore Loser",Legendary,Nature,Male,Melee,frozenset(),9,0,1459
+161,Sporelok,Epic,Nature,Male,Melee,"frozenset({160: Loath, Spore Loser (Legendary / Melee / Nature / Male)})",11,2,6
+162,Shroomkin,Rare,Nature,Male,Melee,frozenset({161: Sporelok (Epic / Melee / Nature / Male)}),13,1,297
+163,Mi the Ten-Tailed Fox,Legendary,Nature,Female,Melee,frozenset(),1,3,2546
+164,Lolli Pop,Epic,Nature,Female,Melee,frozenset({163: Mi the Ten-Tailed Fox (Legendary / Melee / Nature / Female)}),1,2,10
+165,Baby Rattle,Rare,Nature,Female,Melee,frozenset({164: Lolli Pop (Epic / Melee / Nature / Female)}),1,2,6
+166,"Grand Ma, Reaper",Legendary,Chaos,Female,Ranged,frozenset(),14,2,392
+167,Harbinger of Death,Epic,Chaos,Female,Ranged,"frozenset({166: Grand Ma, Reaper (Legendary / Ranged / Chaos / Female)})",11,2,1205
+168,Old Bones,Rare,Chaos,Female,Ranged,frozenset({167: Harbinger of Death (Epic / Ranged / Chaos / Female)}),13,2,4203
+169,Super Mary,Legendary,Order,Female,Melee,frozenset(),9,0,3990
+170,Lady Curl,Epic,Order,Female,Melee,frozenset({169: Super Mary (Legendary / Melee / Order / Female)}),11,2,6915
+171,Wonder Girl,Rare,Order,Female,Melee,frozenset({170: Lady Curl (Epic / Melee / Order / Female)}),13,1,5751
+172,"Strik, the Fiery Heart",Legendary,Order,Male,Ranged,frozenset(),18,3,601
+173,Flame Juggler,Epic,Order,Male,Ranged,"frozenset({172: Strik, the Fiery Heart (Legendary / Ranged / Order / Male)})",1,3,7
+174,Pyromancer,Rare,Order,Male,Ranged,frozenset({173: Flame Juggler (Epic / Ranged / Order / Male)}),1,2,18
+175,High Tinker Gear,Legendary,Order,Male,Melee,frozenset(),9,2,2715
+176,"TNT, Crazy Demolitionist",Legendary,Chaos,Male,Ranged,frozenset(),14,2,147
+177,Mr. Boom,Epic,Chaos,Male,Ranged,"frozenset({176: TNT, Crazy Demolitionist (Legendary / Ranged / Chaos / Male)})",11,3,4975
+178,Fireworker,Rare,Chaos,Male,Ranged,frozenset({177: Mr. Boom (Epic / Ranged / Chaos / Male)}),13,1,2928
+179,General Zor'Ma,Legendary,Chaos,Male,Melee,frozenset(),9,0,260
+180,Old God's Servant,Epic,Chaos,Male,Melee,frozenset({179: General Zor'Ma (Legendary / Melee / Chaos / Male)}),11,2,914
+181,Faceless,Rare,Chaos,Male,Melee,frozenset({180: Old God's Servant (Epic / Melee / Chaos / Male)}),13,1,4105
+182,"Ysh'tmala, the Old God",Legendary,Chaos,Male,Melee,frozenset(),12,2,30
+183,Terror From Below,Epic,Chaos,Male,Melee,"frozenset({182: Ysh'tmala, the Old God (Legendary / Melee / Chaos / Male)})",11,2,1612
+184,Flesh Spawn,Rare,Chaos,Male,Melee,frozenset({183: Terror From Below (Epic / Melee / Chaos / Male)}),13,2,2902
+185,Valkyrie,Rare,Order,Female,Melee,frozenset({58: Scarlet Warrior (Epic / Melee / Order / Female)}),13,2,12097
+186,Tani Windrunner,Legendary,Nature,Female,Ranged,frozenset(),9,1,99
+187,Windsong,Epic,Nature,Female,Ranged,frozenset({186: Tani Windrunner (Legendary / Ranged / Nature / Female)}),11,2,2020
+188,Wood Elf,Rare,Nature,Female,Ranged,frozenset({187: Windsong (Epic / Ranged / Nature / Female)}),13,1,1276
+191,Rock,Rare,Nature,Male,Melee,frozenset({190: Stone Guardian (Epic / Melee / Nature / Male)}),13,1,9804
+192,Hoodoo,Legendary,Nature,Male,Ranged,frozenset(),9,2,2310
+193,Cursed Shaman,Epic,Nature,Male,Ranged,frozenset({192: Hoodoo (Legendary / Ranged / Nature / Male)}),11,2,4787
+194,Cultist,Rare,Nature,Male,Ranged,frozenset({193: Cursed Shaman (Epic / Ranged / Nature / Male)}),13,1,19128
+195,Chieftain Orc,Epic,Chaos,Male,Melee,frozenset({42: Axe (Legendary / Melee / Chaos / Male)}),13,2,1244
+196,"Bravi, Deadly Blade",Legendary,Order,Male,Melee,frozenset(),11,2,47
+197,Crazy Harlequin,Epic,Order,Male,Melee,"frozenset({196: Bravi, Deadly Blade (Legendary / Melee / Order / Male)})",11,2,3375
+198,Jester-Killer,Rare,Order,Male,Melee,frozenset({197: Crazy Harlequin (Epic / Melee / Order / Male)}),13,1,2655
+199,"Mjolnir, Lightning God",Legendary,Order,Male,Ranged,frozenset(),14,2,80
+200,Keeper of Storm,Epic,Order,Male,Ranged,"frozenset({199: Mjolnir, Lightning God (Legendary / Ranged / Order / Male)})",12,2,639
+201,Thunder,Rare,Order,Male,Ranged,frozenset({200: Keeper of Storm (Epic / Ranged / Order / Male)}),13,1,7944
+202,"Diana, Amazonian Queen",Legendary,Order,Female,Melee,frozenset(),15,4,56
+203,Defender of Tribe,Epic,Order,Female,Melee,"frozenset({202: Diana, Amazonian Queen (Legendary / Melee / Order / Female)})",11,2,6
+204,Wild Huntress,Rare,Order,Female,Melee,frozenset({203: Defender of Tribe (Epic / Melee / Order / Female)}),13,1,20
+205,"Apep, Aspect of Chaos",Legendary,Chaos,Male,Melee,frozenset(),13,2,277
+206,Bone Dragon,Epic,Chaos,Male,Melee,"frozenset({205: Apep, Aspect of Chaos (Legendary / Melee / Chaos / Male)})",11,2,3046
+207,Death Whelpling,Rare,Chaos,Male,Melee,frozenset({206: Bone Dragon (Epic / Melee / Chaos / Male)}),13,2,24
+208,"Yorik, the Risen One",Legendary,Chaos,Male,Ranged,frozenset(),9,0,8741
+209,Dead Bowman,Epic,Chaos,Male,Ranged,"frozenset({208: Yorik, the Risen One (Legendary / Ranged / Chaos / Male)})",1,2,1190
+210,Talking Skull,Rare,Chaos,Male,Ranged,frozenset({209: Dead Bowman (Epic / Ranged / Chaos / Male)}),13,1,33
+211,Hanako Lady Banshee,Legendary,Chaos,Female,Ranged,frozenset(),12,2,1298
+212,Moody Ghost,Epic,Chaos,Female,Ranged,frozenset({211: Hanako Lady Banshee (Legendary / Ranged / Chaos / Female)}),11,3,3943
+213,Friendly Spirit,Rare,Chaos,Female,Ranged,frozenset({212: Moody Ghost (Epic / Ranged / Chaos / Female)}),13,1,4430
+214,"D'Arc, Iron Maiden",Legendary,Order,Female,Melee,frozenset(),1,0,7162
+215,Battle Angel,Epic,Order,Female,Ranged,frozenset({113: Alexandria (Legendary / Ranged / Order / Female)}),11,2,1620
+216,"Mizu, the Sea Foam",Legendary,Nature,Female,Ranged,frozenset(),9,0,9495
+217,Lake Pixy,Epic,Nature,Female,Ranged,"frozenset({216: Mizu, the Sea Foam (Legendary / Ranged / Nature / Female)})",1,1,0
+218,The Aqua Spirit,Rare,Nature,Female,Ranged,frozenset({217: Lake Pixy (Epic / Ranged / Nature / Female)}),13,1,18
+219,"Morgan, the Sea Tusk",Legendary,Nature,Male,Melee,frozenset(),13,3,388
+220,Sharp Fin,Epic,Nature,Male,Melee,"frozenset({219: Morgan, the Sea Tusk (Legendary / Melee / Nature / Male)})",11,2,4158
+221,Shark,Rare,Nature,Male,Melee,frozenset({220: Sharp Fin (Epic / Melee / Nature / Male)}),13,1,4255
+224,Sea Guardian,Rare,Nature,Male,Melee,frozenset({223: Trident Master (Epic / Melee / Nature / Male)}),13,1,3912
+225,Discordia,Legendary,Chaos,Female,Ranged,frozenset(),10,3,827
+226,Angelia the Lightbringer,Legendary,Order,Female,Melee,frozenset(),1,2,4266
+227,Winged Knight,Epic,Order,Female,Melee,frozenset({226: Angelia the Lightbringer (Legendary / Melee / Order / Female)}),1,2,2
+228,Celestial Maiden,Rare,Order,Female,Melee,frozenset({227: Winged Knight (Epic / Melee / Order / Female)}),13,1,5
+229,Apollo,Legendary,Order,Male,Ranged,frozenset(),12,2,629
+230,"Melia, Forest's Daughter",Legendary,Nature,Female,Ranged,frozenset(),9,2,2093
+231,"Cernun, Archdruid",Legendary,Nature,Male,Melee,frozenset(),12,2,807
+233,Druid,Rare,Nature,Male,Melee,frozenset({232: Keeper of the Grove (Epic / Melee / Nature / Male)}),13,1,26081
+234,Lady Medusa,Legendary,Chaos,Female,Ranged,frozenset(),10,2,68
+235,Insidious Gorgon,Epic,Chaos,Female,Ranged,frozenset({234: Lady Medusa (Legendary / Ranged / Chaos / Female)}),11,2,708
+236,Clever Viper,Rare,Chaos,Female,Ranged,frozenset({235: Insidious Gorgon (Epic / Ranged / Chaos / Female)}),13,1,11530
+237,Knight,Epic,Order,Male,Melee,frozenset({34: Sir Lancelot (Legendary / Melee / Order / Male)}),11,2,1603
+238,Shao Lin,Legendary,Order,Male,Melee,frozenset(),16,2,615
+239,Drunk Master,Epic,Order,Male,Melee,frozenset({238: Shao Lin (Legendary / Melee / Order / Male)}),11,2,2325
+240,Monk,Rare,Order,Male,Melee,frozenset({239: Drunk Master (Epic / Melee / Order / Male)}),13,1,5840
+241,Poison Flos,Legendary,Nature,Male,Ranged,frozenset(),11,1,4939
+242,Ogre Plant,Epic,Nature,Male,Ranged,frozenset({241: Poison Flos (Legendary / Ranged / Nature / Male)}),11,2,3078
+243,Planty,Rare,Nature,Male,Ranged,frozenset({242: Ogre Plant (Epic / Ranged / Nature / Male)}),13,1,17484
+244,Scratchy,Rare,Nature,Female,Melee,frozenset({94: Predator (Epic / Melee / Nature / Female)}),13,1,13399
+245,Song of Forest,Epic,Nature,Female,Ranged,frozenset({103: Maeve (Legendary / Ranged / Nature / Female)}),11,2,3947
+246,"Necro, Master Lich",Legendary,Chaos,Male,Ranged,frozenset(),11,1,1543
+247,Lord of the Undead,Epic,Chaos,Male,Ranged,"frozenset({246: Necro, Master Lich (Legendary / Ranged / Chaos / Male)})",11,2,4165
+248,Necromancer,Rare,Chaos,Male,Ranged,frozenset({247: Lord of the Undead (Epic / Ranged / Chaos / Male)}),13,1,2788
+249,"Jaxy, the Thunderfist",Legendary,Order,Female,Melee,frozenset(),13,2,1421
+250,Champion of the Arena,Epic,Order,Female,Melee,"frozenset({249: Jaxy, the Thunderfist (Legendary / Melee / Order / Female)})",11,2,3725
+251,The Undisputed,Rare,Order,Female,Melee,frozenset({250: Champion of the Arena (Epic / Melee / Order / Female)}),13,1,3019
+252,"Snake, the Lizard Prince",Legendary,Nature,Male,Melee,frozenset(),9,0,205
+253,The Killer Serpent,Epic,Nature,Male,Melee,"frozenset({252: Snake, the Lizard Prince (Legendary / Melee / Nature / Male)})",11,2,5391
+254,Lizardfolk,Rare,Nature,Male,Melee,frozenset({253: The Killer Serpent (Epic / Melee / Nature / Male)}),13,1,6557
+255,Mr. Flap,Legendary,Chaos,Male,Melee,frozenset(),18,3,542
+256,Demon the Ripper,Epic,Chaos,Male,Melee,frozenset({255: Mr. Flap (Legendary / Melee / Chaos / Male)}),8,1,95
+257,Butcher,Rare,Chaos,Male,Melee,frozenset({256: Demon the Ripper (Epic / Melee / Chaos / Male)}),13,2,36
+258,"Frost, the Snow Queen",Legendary,Order,Female,Ranged,frozenset(),1,1,14973
+259,Lady Snow,Epic,Order,Female,Ranged,"frozenset({258: Frost, the Snow Queen (Legendary / Ranged / Order / Female)})",1,3,6
+260,Snow Maiden,Rare,Order,Female,Ranged,frozenset({259: Lady Snow (Epic / Ranged / Order / Female)}),1,2,1
+261,Madam Agony,Legendary,Chaos,Female,Ranged,frozenset(),1,2,5674
+262,Flamy Helly,Epic,Chaos,Female,Ranged,frozenset({261: Madam Agony (Legendary / Ranged / Chaos / Female)}),1,3,11
+263,Igneous Girl,Rare,Chaos,Female,Ranged,frozenset({262: Flamy Helly (Epic / Ranged / Chaos / Female)}),1,2,3
+264,Kung Fucius,Legendary,Nature,Male,Melee,frozenset(),13,2,119
+265,Bamboo Master,Epic,Nature,Male,Melee,frozenset({264: Kung Fucius (Legendary / Melee / Nature / Male)}),11,2,2493
+266,Panda Warrior,Rare,Nature,Male,Melee,frozenset({265: Bamboo Master (Epic / Melee / Nature / Male)}),13,1,4312
+267,"Griffius, the Celestial",Legendary,Order,Male,Melee,frozenset(),9,0,635
+268,Winged Protector,Epic,Order,Male,Melee,"frozenset({267: Griffius, the Celestial (Legendary / Melee / Order / Male)})",11,2,5100
+269,Young Griffin,Rare,Order,Male,Melee,frozenset({268: Winged Protector (Epic / Melee / Order / Male)}),13,1,1552
+270,"Ogrok, the Leader",Legendary,Chaos,Male,Melee,frozenset(),12,2,262
+271,One-Eyed Ogre,Epic,Chaos,Male,Melee,"frozenset({270: Ogrok, the Leader (Legendary / Melee / Chaos / Male)})",11,2,12
+272,Cyclop,Rare,Chaos,Male,Melee,frozenset({271: One-Eyed Ogre (Epic / Melee / Chaos / Male)}),13,1,287
+273,Tsukumogami,Legendary,Nature,Male,Melee,frozenset(),8,2,80
+275,Samurai Dog,Rare,Nature,Male,Melee,"frozenset({274: Gnoll, the Blade Master (Epic / Melee / Nature / Male)})",13,1,1461
+276,Mina Hellsing,Legendary,Order,Female,Ranged,frozenset(),16,2,280
+277,Evil Slayer,Epic,Order,Female,Ranged,frozenset({276: Mina Hellsing (Legendary / Ranged / Order / Female)}),11,2,1200
+278,Demon Huntress,Rare,Order,Female,Ranged,frozenset({277: Evil Slayer (Epic / Ranged / Order / Female)}),13,1,6605
+279,"Ball'zt, the Warden",Legendary,Chaos,Male,Melee,frozenset(),9,0,2193
+280,Beholder,Epic,Chaos,Male,Melee,"frozenset({279: Ball'zt, the Warden (Legendary / Melee / Chaos / Male)})",13,2,2715
+281,Demon Orb,Rare,Chaos,Male,Melee,frozenset({280: Beholder (Epic / Melee / Chaos / Male)}),13,1,5256
+282,"Tortulus, the Wise One",Legendary,Nature,Male,Ranged,frozenset(),10,2,2061
+283,Turtle Teacher,Epic,Nature,Male,Ranged,"frozenset({282: Tortulus, the Wise One (Legendary / Ranged / Nature / Male)})",11,2,3001
+284,Sage Disciple,Rare,Nature,Male,Ranged,frozenset({283: Turtle Teacher (Epic / Ranged / Nature / Male)}),13,1,4745
+285,"All, Prince of Sands",Legendary,Order,Male,Melee,frozenset(),6,2,58
+286,Free-folk Leader,Epic,Order,Male,Melee,"frozenset({285: All, Prince of Sands (Legendary / Melee / Order / Male)})",11,2,5632
+287,Nomad,Rare,Order,Male,Melee,frozenset({286: Free-folk Leader (Epic / Melee / Order / Male)}),13,1,3961
+288,"Kong, Monkey King",Legendary,Nature,Male,Melee,frozenset(),13,2,1885
+289,Ape Warlord,Epic,Nature,Male,Melee,"frozenset({288: Kong, Monkey King (Legendary / Melee / Nature / Male)})",11,2,5761
+290,Young Primate,Rare,Nature,Male,Melee,frozenset({289: Ape Warlord (Epic / Melee / Nature / Male)}),14,1,2936
+291,"Freddy, Lord of Terror",Legendary,Chaos,Male,Melee,frozenset(),9,0,702
+292,Doctor Fear,Epic,Chaos,Male,Melee,"frozenset({291: Freddy, Lord of Terror (Legendary / Melee / Chaos / Male)})",11,2,6170
+293,Scarecrow,Rare,Chaos,Male,Melee,frozenset({292: Doctor Fear (Epic / Melee / Chaos / Male)}),13,2,10
+294,"Scrap, the King of Garbage",Legendary,Nature,Male,Melee,frozenset(),1,1,14825
+295,Angler Vole,Epic,Nature,Male,Melee,"frozenset({294: Scrap, the King of Garbage (Legendary / Melee / Nature / Male)})",1,1,11
+296,Junk Rat,Rare,Nature,Male,Melee,frozenset({295: Angler Vole (Epic / Melee / Nature / Male)}),1,1,10
+297,"Charon, Soul Catcher",Legendary,Order,Male,Melee,frozenset(),21,2,1192
+298,Grim Warden,Epic,Order,Male,Melee,"frozenset({297: Charon, Soul Catcher (Legendary / Melee / Order / Male)})",1,0,9
+299,Gravekeeper,Rare,Order,Male,Melee,frozenset({298: Grim Warden (Epic / Melee / Order / Male)}),1,2,10
+300,Shadow Shaa-Moona,Legendary,Chaos,Female,Melee,frozenset(),19,3,787
+301,Half Moon Priestess,Epic,Chaos,Female,Melee,frozenset({300: Shadow Shaa-Moona (Legendary / Melee / Chaos / Female)}),1,2,2
+302,Moon Child,Rare,Chaos,Female,Melee,frozenset({301: Half Moon Priestess (Epic / Melee / Chaos / Female)}),1,2,6
+304,Thug Hunter,Epic,Nature,Male,Melee,frozenset({303: Dandy Croc (Legendary / Melee / Nature / Male)}),13,2,9859
+305,Toothy Thuggie,Rare,Nature,Male,Melee,frozenset({304: Thug Hunter (Epic / Melee / Nature / Male)}),13,1,3428
+306,"Legion, God of War",Legendary,Order,Male,Melee,frozenset(),1,2,9193
+307,Harbringer of War,Epic,Order,Male,Melee,"frozenset({306: Legion, God of War (Legendary / Melee / Order / Male)})",1,2,14
+308,Immortal Warrior,Rare,Order,Male,Melee,frozenset({307: Harbringer of War (Epic / Melee / Order / Male)}),1,1,8
+309,Serket Sen Scorp,Legendary,Nature,Female,Melee,frozenset(),11,2,120
+310,The Scorpion Queen,Epic,Nature,Female,Melee,frozenset({309: Serket Sen Scorp (Legendary / Melee / Nature / Female)}),11,2,5720
+311,Ancient Scorpid,Rare,Nature,Female,Melee,frozenset({310: The Scorpion Queen (Epic / Melee / Nature / Female)}),13,1,4274
+312,Dark Acolyte,Rare,Chaos,Female,Ranged,frozenset({50: Archwitch (Epic / Ranged / Chaos / Female)}),13,1,12710
+313,Madam Lo'Trix,Legendary,Chaos,Female,Ranged,frozenset(),1,2,4008
+314,Shadow Manipulator,Epic,Chaos,Female,Ranged,frozenset({313: Madam Lo'Trix (Legendary / Ranged / Chaos / Female)}),7,3,13
+315,Puppet Mistress,Rare,Chaos,Female,Ranged,frozenset({314: Shadow Manipulator (Epic / Ranged / Chaos / Female)}),13,1,0
+316,"Yuri, Shadow Dagger",Legendary,Order,Female,Ranged,frozenset(),16,3,177
+317,Kunai Master,Epic,Order,Female,Ranged,"frozenset({316: Yuri, Shadow Dagger (Legendary / Ranged / Order / Female)})",1,3,3
+318,Kunoichi,Rare,Order,Female,Ranged,frozenset({317: Kunai Master (Epic / Ranged / Order / Female)}),13,1,36
+319,Sheer-Shah,Legendary,Nature,Male,Melee,frozenset(),9,0,720
+320,Fierce Rakshesh,Epic,Nature,Male,Melee,frozenset({319: Sheer-Shah (Legendary / Melee / Nature / Male)}),11,2,9762
+321,Furious Sabertooth,Rare,Nature,Male,Melee,frozenset({320: Fierce Rakshesh (Epic / Melee / Nature / Male)}),13,2,1
+322,Chuba Cabras,Legendary,Chaos,Male,Melee,frozenset(),1,3,1985
+324,Insatiable Beast,Rare,Chaos,Male,Melee,frozenset({323: Flesh Eater (Epic / Melee / Chaos / Male)}),13,2,37500
+325,"Justia, Law Goddess",Legendary,Order,Female,Ranged,frozenset(),1,0,3920
+326,Justice Inquisitor,Epic,Order,Female,Ranged,"frozenset({325: Justia, Law Goddess (Legendary / Ranged / Order / Female)})",1,2,11
+327,Priestess of Equilibrium,Rare,Order,Female,Ranged,frozenset({326: Justice Inquisitor (Epic / Ranged / Order / Female)}),1,1,34
+330,Wild Stalker,Rare,Nature,Male,Melee,frozenset({329: Desert Sentry (Epic / Melee / Nature / Male)}),13,1,31998
+333,Visitor,Rare,Chaos,Male,Melee,frozenset({332: The Colonist Invader (Epic / Melee / Chaos / Male)}),13,2,29661
+335,Ice Big,Epic,Nature,Male,Melee,frozenset({334: Jörmun Grand (Legendary / Melee / Nature / Male)}),11,2,2696
+336,Jötunn,Rare,Nature,Male,Melee,frozenset({335: Ice Big (Epic / Melee / Nature / Male)}),13,1,17561
+337,"Amaterasu, Eternal Sun",Legendary,Order,Female,Melee,frozenset(),7,1,35
+338,Sayuki,Epic,Order,Female,Melee,"frozenset({337: Amaterasu, Eternal Sun (Legendary / Melee / Order / Female)})",11,2,2976
+339,Fan Dancer,Rare,Order,Female,Melee,frozenset({338: Sayuki (Epic / Melee / Order / Female)}),13,2,4377
+341,Elwin Fierce,Epic,Chaos,Male,Melee,frozenset({340: Taeral Kelhorn (Legendary / Melee / Chaos / Male)}),11,2,5202
+342,Elf Slayer,Rare,Chaos,Male,Melee,frozenset({341: Elwin Fierce (Epic / Melee / Chaos / Male)}),13,2,7621
+343,Toxic Mantas,Legendary,Nature,Male,Melee,frozenset(),13,2,588
+344,Kamacuras,Epic,Nature,Male,Melee,frozenset({343: Toxic Mantas (Legendary / Melee / Nature / Male)}),12,2,7842
+345,Mantis,Rare,Nature,Male,Melee,frozenset({344: Kamacuras (Epic / Melee / Nature / Male)}),13,1,1616
+346,Morgen Von Stern,Legendary,Order,Male,Melee,frozenset(),11,2,119
+347,Lord Punisher,Epic,Order,Male,Melee,frozenset({346: Morgen Von Stern (Legendary / Melee / Order / Male)}),12,2,6948
+348,Crusader,Rare,Order,Male,Melee,frozenset({347: Lord Punisher (Epic / Melee / Order / Male)}),13,1,1470
+350,Muddy Trog,Epic,Chaos,Male,Melee,frozenset({349: Deep Maw (Legendary / Melee / Chaos / Male)}),12,2,6633
+351,Mor Lock,Rare,Chaos,Male,Melee,frozenset({350: Muddy Trog (Epic / Melee / Chaos / Male)}),13,1,123
+354,Woodland Hermit,Rare,Nature,Male,Ranged,frozenset({353: Lord of the Forest (Epic / Ranged / Nature / Male)}),13,1,2925
+355,Onmoraki,Legendary,Chaos,Male,Ranged,frozenset(),13,2,835
+356,Demonic Shadow,Epic,Chaos,Male,Ranged,frozenset({355: Onmoraki (Legendary / Ranged / Chaos / Male)}),15,2,251
+357,Grim Harvester,Rare,Chaos,Male,Ranged,frozenset({356: Demonic Shadow (Epic / Ranged / Chaos / Male)}),13,1,4210
+360,Frozen Moor Guard,Rare,Nature,Male,Ranged,frozenset({359: Warden of the North (Epic / Ranged / Nature / Male)}),13,1,24482
+361,"Eostre, the Dawn Glow",Legendary,Order,Female,Ranged,frozenset(),23,4,66
+362,Sunrise Maiden,Epic,Order,Female,Ranged,"frozenset({361: Eostre, the Dawn Glow (Legendary / Ranged / Order / Female)})",1,3,10
+363,Herald of Spring,Rare,Order,Female,Ranged,frozenset({362: Sunrise Maiden (Epic / Ranged / Order / Female)}),1,2,11
+364,"Arioch, Nemesis Weapon",Legendary,Chaos,Male,Melee,frozenset(),9,3,327
+365,Ruthless Executioner,Epic,Chaos,Male,Melee,"frozenset({364: Arioch, Nemesis Weapon (Legendary / Melee / Chaos / Male)})",12,2,1219
+366,Splintered Soul,Rare,Chaos,Male,Melee,frozenset({365: Ruthless Executioner (Epic / Melee / Chaos / Male)}),13,2,13739
+367,Owl,Rare,Nature,Female,Ranged,frozenset({55: Wise Owl (Epic / Ranged / Nature / Female)}),13,1,10791
+368,Grace of Rockfleet,Legendary,Order,Female,Ranged,frozenset(),16,4,182
+369,Red-haired Beast,Epic,Order,Female,Ranged,frozenset({368: Grace of Rockfleet (Legendary / Ranged / Order / Female)}),1,1,12
+370,Pirate,Rare,Order,Female,Ranged,frozenset({369: Red-haired Beast (Epic / Ranged / Order / Female)}),1,0,31
+371,Mosura Wind Breath,Legendary,Nature,Female,Melee,frozenset(),21,3,2251
+372,Imago,Epic,Nature,Female,Melee,frozenset({371: Mosura Wind Breath (Legendary / Melee / Nature / Female)}),1,1,4
+373,Moth,Rare,Nature,Female,Melee,frozenset({372: Imago (Epic / Melee / Nature / Female)}),1,1,29
+374,Gremory Night Child,Legendary,Chaos,Female,Ranged,frozenset(),19,3,402
+375,Caster of Shadows,Epic,Chaos,Female,Ranged,frozenset({374: Gremory Night Child (Legendary / Ranged / Chaos / Female)}),1,2,3
+376,Warlock,Rare,Chaos,Female,Ranged,frozenset({375: Caster of Shadows (Epic / Ranged / Chaos / Female)}),1,1,23
+377,Arthur Frost Blade,Legendary,Order,Male,Melee,frozenset(),1,1,6523
+378,Formidable Conqueror,Epic,Order,Male,Melee,frozenset({377: Arthur Frost Blade (Legendary / Melee / Order / Male)}),1,1,7
+379,Paladin,Rare,Order,Male,Melee,frozenset({378: Formidable Conqueror (Epic / Melee / Order / Male)}),1,0,33
+380,Villano Mad Genius,Legendary,Chaos,Male,Ranged,frozenset(),1,1,8970
+381,Apothecary,Epic,Chaos,Male,Ranged,frozenset({380: Villano Mad Genius (Legendary / Ranged / Chaos / Male)}),1,1,15
+382,Alchemist,Rare,Chaos,Male,Ranged,frozenset({381: Apothecary (Epic / Ranged / Chaos / Male)}),1,0,21

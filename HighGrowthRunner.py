@@ -39,7 +39,7 @@ def pretty_format(thing: Any, indent: int = 0):
     return formatted
 
 
-file = Path("tests/HighGrowth/2022-01-07-0505_SirBrychee_squad_export.txt")
+file = Path("tests/HighGrowth/2022-01-09-1521_Bobo_squad_export.txt")
 
 logger.info(f"Squad file: {file}")
 
@@ -105,6 +105,9 @@ bobo_farming = {  # exclude these heroes | exclude their evolutions
     "trix",  # 1/2
     "vixen",  # locked
     "villano",  # 1/1
+
+    # building
+    "caesar",  # 1/1
 }
 
 not_adam_farming = {  # exclude these heroes + all evolutions to them
@@ -126,8 +129,8 @@ strategy = MinimizeGold(
     # none
 
     # Bobo:
-    # exclude=all_evolutions_to(bobo_squad) + all_evolutions_to(bobo_farming, inclusive=True) + all_evolutions_to(bobo_to_farm),
-    # never_reborn=exactly({"charon"}) + exactly(bobo_to_farm),
+    exclude=all_evolutions_to(bobo_squad) + all_evolutions_to(bobo_farming, inclusive=True) + all_evolutions_to(bobo_to_farm),
+    never_reborn=exactly({"charon"}) + exactly(bobo_to_farm),
 
     # Gravy:
     # none
@@ -150,8 +153,8 @@ strategy = MinimizeGold(
     # never_reborn=none(),
 
     # SirBrychee:
-    exclude=has_rarity(Rarity.LEGENDARY),
-    never_reborn=none(),  # + has_rarity(Rarity.EPIC),
+    # exclude=has_rarity(Rarity.LEGENDARY),
+    # never_reborn=none(),  # + has_rarity(Rarity.EPIC),
 
     # SoulD3aD:
     # none
@@ -159,20 +162,20 @@ strategy = MinimizeGold(
     # Stalguard:
     # exclude=all_evolutions_to({"dominus", "mosura"}, inclusive=True) + all_evolutions_to({"grace"}),
 
-    gold_discount=Discount.combine(Discount.NIGHTMARE),  # , Discount.VIP8),
+    gold_discount=Discount.combine(Discount.NIGHTMARE, Discount.VIP8),
 )
 
-calc = HighGrowthCalculation.with_gold_cap(
-    strategy=strategy,
-    gold_cap=3_000_000,
-    # level_ups_already_completed=CompletionTier.aggregate_to(CompletionTier.TIER_6)[0] + 21
-)
-
-# calc = HighGrowthCalculation.for_level_ups(
-#      strategy=strategy,
-#      level_ups_already_completed=CompletionTier.aggregate_to(CompletionTier.TIER_6)[0] + 21,
-#      level_ups_goal=CompletionTier.aggregate_to(CompletionTier.TIER_7)[0]
+# calc = HighGrowthCalculation.with_gold_cap(
+#     strategy=strategy,
+#     gold_cap=3_000_000,
+#     # level_ups_already_completed=CompletionTier.aggregate_to(CompletionTier.TIER_6)[0] + 21
 # )
+
+calc = HighGrowthCalculation.for_level_ups(
+     strategy=strategy,
+     level_ups_already_completed=CompletionTier.aggregate_to(CompletionTier.TIER_7)[0],
+     level_ups_goal=CompletionTier.aggregate_to(CompletionTier.TIER_8)[0]
+)
 
 logger.info(calc)
 
