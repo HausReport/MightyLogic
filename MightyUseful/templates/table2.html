@@ -145,8 +145,13 @@ td {
              > {{row.no}}.  {{row.Name}}</div>
              </font>
              <br> <img src="{{row.Icon}}" width="100"></td>
-         <td style="text-align: left;"> From: Level {{'%-2d' % row['Cur Level'] }} Reborn {{'%-2d' % row['Cur Reborn']}} <br>
-              &nbsp;&nbsp;To: Level {{'%-2d' % row.Level }} Reborn {{'%-2d' % row.Reborn}} <br>
+         <td style="text-align: left;">
+             From: Level {{'%-2d' % row['Cur Level'] }} Reborn {{'%-2d' % row['Cur Reborn']}}
+              &nbsp;&nbsp;To: Level {{'%-2d' % row.Level }}
+             {% if row['Cur Reborn'] != row['Reborn'] %}
+             Reborn {{'%-2d' % row.Reborn}}
+             {% endif %}
+             <br>
               {{'%-2d' % row.LevelUps}} level{% if row.LevelUps != 1 %}s{%endif%} for {{row.Gold}} gold and {{row['Cum Souls']}} souls.<br>
              Gain {{row['Troop Gain']}} troops.<br>
              Strategy: {{row.Strategy}}.

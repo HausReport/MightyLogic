@@ -398,9 +398,10 @@ sys.exit(0)
 # 28) Limit table results by gold, HG stage, troops
 # 29) Point out highest might lev/reb for reboosts
 # 30) EventReady isn't getting the moves NoReborn gets
-# 31) Add top widget for HG tab
+# 31) ~~Add top widget for HG tab~~
 
 
+# 32) ~~Install NSIS installer system~~
 # 26) ~~Show change in HG stage in table~~
 # 29) ~~Show strategy in table, join with strats on Name~~
 # 27) ~~Hero image in table~~
