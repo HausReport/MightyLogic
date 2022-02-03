@@ -49,7 +49,7 @@ class Level:
     MAX_REBORN_COUNT = 4
 
     MIN_LEVEL_COUNT = 1
-    MAX_LEVEL_COUNT = 26
+    MAX_LEVEL_COUNT = 31
 
     def __post_init__(self):
         if self.level_count < Level.MIN_LEVEL_COUNT or self.level_count > Level.MAX_LEVEL_COUNT:
@@ -152,7 +152,7 @@ class Rarity(Enum):
             LevelingCost(15_000, 45_000),  # L25
             LevelingCost(18_000, 50_000)  # L26
         ),
-        (11, 16, 21, 26)
+        (11, 16, 21, 26, 32, 32)
     )
     RARE = (
         (
@@ -180,9 +180,14 @@ class Rarity(Enum):
             LevelingCost(5_500, 40_000),  # L23
             LevelingCost(7_000, 45_000),  # L24
             LevelingCost(9_000, 50_000),  # L25
-            LevelingCost(12_000, 55_000)  # L26
+            LevelingCost(12_000, 55_000),  # L26
+            LevelingCost(12_150, 57_000),  # L27
+            LevelingCost(12_350, 60_000),  # L28
+            LevelingCost(12_550, 92_180),  # L29
+            LevelingCost(12_800, 66_000),  # L30
+            LevelingCost(13_100, 70_000)  # L31
         ),
-        (11, 16, 21, 26)
+        (11, 16, 21, 26, 32, 32)
     )
     EPIC = (
         (
@@ -210,9 +215,14 @@ class Rarity(Enum):
             LevelingCost(4_000, 47_000),  # L23
             LevelingCost(5_000, 52_000),  # L24
             LevelingCost(6_300, 58_000),  # L25
-            LevelingCost(8_000, 65_000)  # L26
+            LevelingCost(8_000, 65_000),  # L26
+            LevelingCost(8_200, 67_000),  # L27
+            LevelingCost(8_400, 70_000),  # L28
+            LevelingCost(8_650, 73_000),  # L29
+            LevelingCost(8_950, 77_000),  # L30
+            LevelingCost(9_300, 82_000)  # L31
         ),
-        (6, 11, 16, 21, 26)
+        (6, 11, 16, 21, 26, 32)
     )
     LEGENDARY = (
         (
@@ -241,8 +251,13 @@ class Rarity(Enum):
             LevelingCost(3_700, 62_000),  # L24
             LevelingCost(4_800, 68_000),  # L25
             LevelingCost(6_000, 75_000),  # L26
+            LevelingCost(6_150, 80_000),  # L27
+            LevelingCost(6_300, 86_000),  # L28
+            LevelingCost(6_450, 93_000),  # L29
+            LevelingCost(6_650, 101_000),  # L30
+            LevelingCost(6_900, 110_000)  # L31
         ),
-        (6, 11, 16, 21, 26)
+        (6, 11, 16, 21, 26, 32)
     )
 
     def __new__(cls, *args, **kwds):
@@ -468,6 +483,7 @@ class Hero:
         return LevelingSteps(steps)
 
     def reborn_milestone(self, for_level: Level) -> int:
+        # TODO: Support the upper bound
         return self.rarity.reborn_milestones[for_level.reborn_count]
 
     def to_csv(self) -> Dict[str, Any]:
