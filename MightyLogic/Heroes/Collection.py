@@ -166,6 +166,10 @@ class HeroSelector:
         return ExactlySelector(frozenset(hero_identifiers))
 
     @staticmethod
+    def has_level(level_count: int, reborn_count: Optional[int] = None) -> HeroSelector:
+        return LevelSelector(level_count, reborn_count)
+
+    @staticmethod
     def has_rarity(rarity: Rarity) -> HeroSelector:
         return RaritySelector(rarity)
 
@@ -288,6 +292,31 @@ class EvolutionsSelector(HeroSelector):
                 for from_hero in to_hero.all_evolutions_to(include_self=self.inclusive)
             )
         return self.__heroes
+
+
+@dataclass
+class LevelSelector(HeroSelector):
+    level_count: int
+    reborn_count: Optional[int] = None
+    __heroes: FrozenSet[Hero] = field(default=None)
+
+    def describe(self, collection: Collection) -> str:
+        return f"all level {self.level_count} @ reborn {'ANY' if self.reborn_count is None else self.reborn_count}" \
+               f" heroes, i.e. {stringify_heroes(self.select(collection))}"
+
+    def select(self, collection: Collection) -> FrozenSet[Hero]:
+        if not self.__heroes:
+            self.__heroes = frozenset(
+                oh.hero
+                for oh in collection.all_owned_heroes()
+                if self.__test(oh)
+            )
+        return self.__heroes
+
+    def __test(self, oh: OwnedHero):
+        right_level = oh.level.level_count == self.level_count
+        right_reborn = self.reborn_count is None or oh.level.reborn_count == self.reborn_count
+        return right_level and right_reborn
 
 
 @dataclass
