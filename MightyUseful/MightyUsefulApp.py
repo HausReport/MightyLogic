@@ -200,7 +200,7 @@ class MightyUsefulApp(QMainWindow):
         # self.btn = QPushButton("Hi")
         # self.btn.setMinimumHeight(1000)
         # splitter.addWidget(self.btn)
-        self.heroInfo = HeroInfoPanel()
+        self.heroInfo = HeroInfoPanel(self)
         self.heroInfo.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
         self.splitter.addWidget(self.heroInfo)
 
@@ -217,6 +217,9 @@ class MightyUsefulApp(QMainWindow):
         self.showFullScreen()
         self.show()
         self.setHeroByName("Charon, Soul Catcher")
+
+    def invalidate_filters(self):
+        self.proxy.invalidateFilter()
 
     def set_hero_drilldown(self, item):
         """
@@ -244,7 +247,7 @@ class MightyUsefulApp(QMainWindow):
             print("Bad hero name: " + aName)
             # FIXME: handle case when hero is none
         else:
-            newHeroInfo = HeroInfoPanel()
+            newHeroInfo = HeroInfoPanel(self)
             newHeroInfo.setHero(hero, self.army)
             self.splitter.replaceWidget(1, newHeroInfo)
             self.heroInfo = newHeroInfo
@@ -253,7 +256,7 @@ class MightyUsefulApp(QMainWindow):
         if hero is None:
             print("Bad hero name: " + aName)
         else:
-            newHeroInfo = HeroInfoPanel()
+            newHeroInfo = HeroInfoPanel(self)
             newHeroInfo.setHero(hero, self.army)
             self.splitter.replaceWidget(1, newHeroInfo)
             self.heroInfo = newHeroInfo
@@ -398,9 +401,11 @@ sys.exit(0)
 # 28) Limit table results by gold, HG stage, troops
 # 29) Point out highest might lev/reb for reboosts
 # 30) EventReady isn't getting the moves NoReborn gets
+# 34) Get a pynsist hello world running
+# 35) Progress bar for HG calculation
+
+# 33) ~~Install pynsist installer system~~
 # 31) ~~Add top widget for HG tab~~
-
-
 # 32) ~~Install NSIS installer system~~
 # 26) ~~Show change in HG stage in table~~
 # 29) ~~Show strategy in table, join with strats on Name~~

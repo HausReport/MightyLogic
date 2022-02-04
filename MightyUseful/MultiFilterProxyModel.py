@@ -53,11 +53,11 @@ class MultiFilterProxyModel(QSortFilterProxyModel):
                 text = self.sourceModel().data(index, Qt.DisplayRole)
                 if text is None:
                     text = ''
-            if isinstance(regex, AbstractFilter):
-                print("Is filter")
-                results.append(regex.matches(text))
-            else:
-                results.append(regex.match(text))
+                if isinstance(regex, AbstractFilter):
+                    #print("Is filter")
+                    results.append(regex.matches(text))
+                else:
+                    results.append(regex.match(text))
 
         if self.multi_filter_mode == MultiFilterMode.OR:
             return any(results)

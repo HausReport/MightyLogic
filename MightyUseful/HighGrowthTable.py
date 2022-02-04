@@ -104,6 +104,7 @@ class HighGrowthTable(QWidget):
         if self.SCORE_LIMIT > 0:
             allMoves = allMoves[allMoves['Score'] > self.SCORE_LIMIT]
         allMoves = allMoves.copy(deep=True)
+        allMoves = allMoves.reset_index()
         ret = self.hg._format_output(allMoves)
 
         hg_file = IoGui.get_high_growth_file(create=True)

@@ -61,7 +61,7 @@ class Rarity(RarityBase, ABC):
         :return: dataframe of moves
         """
         (curMight, curTroops) = self.getMightAndTroops(reborn, level)
-        if straight_level:
+        if straight_level or level < self.FENCE:
             moves = self.straight_level(level, reborn, avail_souls)
         else:
             moves = self.fancy_level(level, reborn, avail_souls, total_souls)
@@ -75,7 +75,19 @@ class Rarity(RarityBase, ABC):
         if score_mode == Rarity.REBORN_TO_ONE:
             moves = moves[moves['Level'] == 1]
         elif score_mode == Rarity.EVENT_READY:
-            moves = moves[moves['Level'] >= 16]
+            tmp = moves[moves['Level'] > 15]
+            if len(tmp) > 0:
+                moves = tmp
+            else:
+                maxLev = moves['Level'].max()
+                moves = moves[moves['Level'] == maxLev]
+        elif level < self.FENCE:
+            tmp = moves[moves['Level'] > self.FENCE]
+            if len(tmp) > 0:
+                moves = tmp
+            else:
+                maxLev = moves['Level'].max()
+                moves = moves[moves['Level'] == maxLev]
         else:
             moves = moves[moves['Level'] > self.FENCE]
         moves['LevelUps'] = 0

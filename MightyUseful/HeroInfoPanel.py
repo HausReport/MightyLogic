@@ -9,12 +9,17 @@ from MightyLogic.HighGrowth.Erlaed.FileIo import FileIO
 from MightyLogic.HighGrowth.Erlaed.HighestGrowth import HighestGrowth
 from MightyLogic.HighGrowth.Erlaed.Rarity import Rarity
 from MightyUseful.IoGui import IoGui
+#from MightyUseful.MightyUsefulApp import MightyUsefulApp
 
 matplotlib.use('Qt5Agg')
 
 
 class HeroInfoPanel(QWidget):
     strategyList = ["Freeze", "Troops", "HighGrowth", "Might", "NoReborn", "RebornToLevel1", "EventReady"]
+
+    def __init__(self, aParent): # MightyUsefulApp):
+        super().__init__()
+        self.mua = aParent
 
     def getInt(self, field):
         return str(self.row[field].values[0])
@@ -37,7 +42,7 @@ class HeroInfoPanel(QWidget):
 
     @staticmethod
     def nice_levelup_table(army, aName, rarity, might, troops):
-        #ra = HighestGrowth.get_rarity_by_name(rarity)
+        # ra = HighestGrowth.get_rarity_by_name(rarity)
         nice = HighestGrowth.get_moves_by_name(aName, army)
         if nice is None or len(nice) == 0:
             return None
@@ -144,13 +149,13 @@ class HeroInfoPanel(QWidget):
         box_row = 7
         evolves_from = self.army.get_evolve_froms(aName)
         evolves_to = self.army.get_evolve_tos(aName)
-        if len(evolves_from)> 0:
+        if len(evolves_from) > 0:
             myLab = ",".join(evolves_from)
             vbox.addWidget(self.getStringLabel("Evolves from:"), box_row, 0, 1, 1, Qt.AlignRight)
             vbox.addWidget(self.getStringLabel(myLab), box_row, 1, 1, 3)
             box_row = box_row + 1
 
-        if len(evolves_to)> 0:
+        if len(evolves_to) > 0:
             myLab = ",".join(evolves_to)
             vbox.addWidget(self.getStringLabel("Evolves to:"), box_row, 0, 1, 1, Qt.AlignRight)
             vbox.addWidget(self.getStringLabel(myLab), box_row, 1, 1, 3)
@@ -195,8 +200,7 @@ class HeroInfoPanel(QWidget):
             # text_browser.show()
             # text_browser.raise_()
 
-
-        #vbox.addWidget(QLabel("Evolves from:" + str(evolves_from)))
+        # vbox.addWidget(QLabel("Evolves from:" + str(evolves_from)))
 
         # TODO:
         # Evolves to
@@ -211,6 +215,7 @@ class HeroInfoPanel(QWidget):
         aName = self.row['Name'].values[0]
         print("Name = " + aName)
         self.army.updateStrategy(aName, newStrat)
+        self.mua.invalidate_filters()
         # self.setHero(self.row, self.army) causes loop
 
 
