@@ -50,7 +50,7 @@ class Legendary(PurpleGold):
             return 0
         elif reborn > 5:
             return 0
-        tmp = [0, 200, 350, 600, 1200, 1700]
+        tmp = [0, 200, 400, 600, 1200, 1700]
         return sum(tmp[:reborn + 1])
 
     def getTroopBonus(self, reborn: int = 0):

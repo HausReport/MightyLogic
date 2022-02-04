@@ -26,9 +26,9 @@ class RarityBase(ABC):
     def getMightAndTroops(self, rb: int = 0, level: int = 1) -> (int, int):
         """Return might and troops for given level and reborn"""
         df = self.get_reborn_table(rb)
-        valS = df.loc[(df.Level == level) & (df.Reborn == rb), 'Might'].values[0]
-        valG = df.loc[(df.Level == level) & (df.Reborn == rb), 'Troops'].values[0]
-        return valS, valG
+        might = df.loc[(df.Level == level) & (df.Reborn == rb), 'Might'].values[0]
+        troops = df.loc[(df.Level == level) & (df.Reborn == rb), 'Troops'].values[0]
+        return might, troops
 
     @abstractmethod
     def getMightBonus(self, reborn: int) -> int:
