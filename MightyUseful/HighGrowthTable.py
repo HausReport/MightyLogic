@@ -1,6 +1,8 @@
 import sys
 import warnings
 
+from PySide2.QtCore import Slot
+
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 import pandas as pd
@@ -38,13 +40,14 @@ def meta_score_to_letter_grade(meta_score):
 
 class HighGrowthTable(QWidget):
 
-    def __init__(self):
+    def __init__(self, aParent):
         #
         # UI stuff
         #
         super().__init__()
         self.myLayout = QVBoxLayout()
         self.setLayout(self.myLayout)
+        self.hgt = aParent
 
         #
         # Get Army/HG Classes
@@ -53,7 +56,7 @@ class HighGrowthTable(QWidget):
         IoGui.getArmy(self, self.army)
         self.hg = HighestGrowth(army=self.army)
 
-        self.TROOP_LIMIT = 14_050
+        self.TROOP_LIMIT = -1 # 14_050
         self.GOLD_LIMIT  = 3_000_000
         self.SCORE_LIMIT = 50
 
@@ -76,11 +79,18 @@ class HighGrowthTable(QWidget):
         self.myLayout.addWidget(self.text_browser)
         # print(ret.to_string(max_cols=None))
 
+    def rerun_high_growth(self):
+        ret: pd.DataFrame = self.run_high_growth()  # note: saves to file also
+        ret = self.bells_and_whistles(ret)
+        html = self.df_to_html(ret)
+        self.text_browser.setText(html)
+
     def run_high_growth(self):
         army2 = Army()
         army2.data_frame = self.army.data_frame.copy(deep=True)
         allMoves = pd.DataFrame()
 
+        self.hgt.percent_done(0)
         floor = 90
         while floor >= 50:
             print("Floor is " + str(floor))
@@ -99,6 +109,7 @@ class HighGrowthTable(QWidget):
                 if 0 < self.GOLD_LIMIT < allMoves['Cum Gold'].sum():
                     break
                 floor = floor - 10  # * 0.8
+                self.hgt.percentDone(90 - ((9.0/4.0) * (floor - 50)) )
 
         allMoves.sort_values(by='Score', ascending=False, inplace=True)
         if self.SCORE_LIMIT > 0:
@@ -106,6 +117,7 @@ class HighGrowthTable(QWidget):
         allMoves = allMoves.copy(deep=True)
         allMoves = allMoves.reset_index()
         ret = self.hg._format_output(allMoves)
+        self.hgt.table_changed(ret)
 
         hg_file = IoGui.get_high_growth_file(create=True)
         if hg_file is not None:
