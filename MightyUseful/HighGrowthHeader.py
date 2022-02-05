@@ -52,7 +52,23 @@ class HighGrowthHeader(QWidget):
 
     def do_analysis(self, frame: pd.DataFrame):
         html = ""
-        html += "Number of moves: " + str(len(frame)) + "<br>"
+        nMoves = len(frame)
+        html += f"Number of moves: {nMoves} <br>"
+        nHeroes = frame.Name.nunique()
+        html += f"Number of unique heroes: {nHeroes} <br>"
+        totGold = frame['Total Gold'].max()
+        html += f"Total Gold: {totGold:,} <br>"
+
+        totLU = frame['Total LevelUps'].max()
+        html += f"Total Level-Ups: {totLU:,} <br>"
+        totTroopGain = frame['Total Troop Gain'].max()
+        html += f"Total Troop Gain: {totTroopGain:,} <br>"
+
+        GPL = int(totGold/totLU)
+        html += f"Gold per Level-Up: {GPL:,} <br>"
+        GPT = int(totGold/totTroopGain)
+        html += f"Gold per Troop: {GPT:,} <br>"
+
         self.text_browser.setText(html)
 
     def table_changed(self, frame: pd.DataFrame):

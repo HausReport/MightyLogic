@@ -7,13 +7,8 @@ from MightyLogic.HighGrowth.Erlaed.RarityBase import RarityBase
 
 
 class Rarity(RarityBase, ABC):
-    discounts = Discounts(guild=20, vip=12, crisis=0) # crisis 18
+    discounts = Discounts(guild=20, vip=15, crisis=0) # crisis 18
     # FIXME: move gold discount somewhere else
-    # guild_discount = .8
-    # vip_discount = .88
-    # crisis_discount = .82
-    # # gold_discount = .8
-    # gold_discount = guild_discount * vip_discount  # * crisis_discount  # .66 # with crisis + guild
     FENCE = 10  # FIXME - change to average level for that rarity?
 
     COMMON = 0
@@ -114,7 +109,8 @@ class Rarity(RarityBase, ABC):
         elif score_mode == Rarity.TROOP_EFFICIENCY or score_mode == Rarity.EVENT_READY:
             moves["Score"] = SCALE * (TROOP_SCALE * moves["Troop Gain"] + moves["LevelUps"]) / ( moves["Cum Gold"])
         elif score_mode == Rarity.MIGHT_EFFICIENCY:
-            moves["Score"] = SCALE * (TROOP_SCALE * moves["Troop Gain"] + moves["LevelUps"]) / ( moves["Cum Gold"])
+            moves["Score"] = 32000 * moves["Might Gain"]/moves["Cum Gold"]
+                #SCALE * (TROOP_SCALE * moves["Troop Gain"] + moves["LevelUps"]) / ( moves["Cum Gold"])
         else:
             moves["Score"] = SCALE * (TROOP_SCALE * moves["Troop Gain"] + moves["LevelUps"]) / ( moves["Cum Gold"])
 
@@ -158,29 +154,3 @@ class Rarity(RarityBase, ABC):
                     tab = tab.append(tmp)
 
         return tab
-
-    # @staticmethod
-    # def get_rarity_by_name(aName: str):
-    #     """
-    #     Returns rarity with name closest to given string
-    #     :param aName: name for rarity
-    #     :return: A rarity if possible, None otherwise.
-    #     """
-    #     from MightyLogic.HighGrowth.Erlaed.Common import Common
-    #     from MightyLogic.HighGrowth.Erlaed.Epic import Epic
-    #     from MightyLogic.HighGrowth.Erlaed.Legendary import Legendary
-    #     from MightyLogic.HighGrowth.Erlaed.Rare import Rare
-    #
-    #     if aName is None or len(aName) == 0:
-    #         return None
-    #     aName = aName.strip()
-    #     if aName[0].lower() == 'l':
-    #         return Legendary()
-    #     elif aName[0].lower() == 'e':
-    #         return Epic()
-    #     elif aName[0].lower() == 'r':
-    #         return Rare()
-    #     elif aName[0].lower() == 'c':
-    #         return Common()
-    #     else:
-    #         return None

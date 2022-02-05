@@ -58,9 +58,9 @@ class HighGrowthTable(QWidget):
         self.hg = HighestGrowth(army=self.army)
 
         self.TROOP_LIMIT = 14_050
-        self.GOLD_LIMIT  = 3_000_000
+        self.GOLD_LIMIT  = -1 # 2_700_000
         self.SCORE_LIMIT = 50
-        self.STOP_HG_AT  = 600
+        self.STOP_HG_AT  = 950
 
         #
         # Get base HG dataframe
@@ -116,7 +116,7 @@ class HighGrowthTable(QWidget):
                 if 0 < self.GOLD_LIMIT < allMoves['Cum Gold'].sum():
                     break
                 floor = floor - 10  # * 0.8
-                self.hgt.percentDone(90 - ((9.0/4.0) * (floor - 50)) )
+                self.hgt.percent_done(90 - ((9.0/4.0) * (floor - 50)) )
 
         allMoves.sort_values(by='Score', ascending=False, inplace=True)
         if self.SCORE_LIMIT > 0:
@@ -136,7 +136,6 @@ class HighGrowthTable(QWidget):
         #
         #
         ret = self.hg._format_output(allMoves)
-        self.hgt.table_changed(ret)
 
         hg_file = IoGui.get_high_growth_file(create=True)
         if hg_file is not None:
@@ -160,15 +159,16 @@ class HighGrowthTable(QWidget):
         ret[['Total Troop Gain']] = ret[['Total Troop Gain']].astype('int')
         ret[['GPT']] = ret[['GPT']].astype('int')
         ret[['GPL']] = ret[['GPL']].astype('int')
+        if self.TROOP_LIMIT > 0:
+            firstHit =ret[ret['Total Troop Gain']> self.TROOP_LIMIT]
+            firstHit = firstHit['Total Troop Gain'].min()
+            ret = ret[ret['Total Troop Gain']<= firstHit]
+        if self.GOLD_LIMIT > 0:
+            ret = ret[ret['Total Gold']< self.GOLD_LIMIT]
+        self.hgt.table_changed(ret)
         return ret
 
     def df_to_html(self, ret) -> str:
-
-
-        if self.TROOP_LIMIT > 0:
-            ret = ret[ret['Total Troop Gain']< self.TROOP_LIMIT]
-        if self.GOLD_LIMIT > 0:
-            ret = ret[ret['Total Gold']< self.GOLD_LIMIT]
         #
         # Convert dataframe to HTML
         #

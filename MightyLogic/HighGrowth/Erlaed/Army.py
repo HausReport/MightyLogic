@@ -181,7 +181,8 @@ class Army:
             # FIXME: returning negative numbers?!?
             ret.loc[ret.Name == aName, ['Available Souls']] = avail_souls - souls_spent
 
-        # FIXME: carry filters from old to new army
+        # FIXED: carry filters from old to new army - they're in the frame now
+        # FIXED: carry strategies from old to new army - they're in the frame now
         retA = Army()
         retA.data_frame = ret
         # retA.working = anArmy.working

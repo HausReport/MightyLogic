@@ -388,47 +388,4 @@ window = MightyUsefulApp()
 myApp.exec_()
 sys.exit(0)
 
-# TODO:
-# 3) add "can level up"
-# 4) add "can reborn"/reborn level
-# 8) gold discount ui
-# 12) load discounts
-# 13) Score - see Hanzo Sama case, lots of levels similar score to 1 level.  See also spreadsheet
-# 17) Help system
-# 25) dialogue input might, click rarity, get level, reborn, soulbinds
-# 25) dialogue input fame, get league and completion back
-# 28) Limit table results by ~~gold~~, HG stage, ~~troops~~
-# 29) Point out highest might lev/reb for reboosts
-# 30) EventReady isn't getting the moves NoReborn gets (maybe fixed?)
-# 34) Get a pynsist hello world running
-# 35) Progress bar for HG calculation
-# 37) Spruce up find widget for HG tab
 
-# 36) ~~Implement find widget for HG tab~~
-# 23) ~~Implement high-growth functionality~~
-# 33) ~~Install pynsist installer system~~
-# 31) ~~Add top widget for HG tab~~
-# 32) ~~Install NSIS installer system~~
-# 26) ~~Show change in HG stage in table~~
-# 29) ~~Show strategy in table, join with strats on Name~~
-# 27) ~~Hero image in table~~
-# 24) ~~Hide levelup table if empty~~
-# 20) ~~Support for from level to level filter~~
-# 18) ~~Show evolves to~~
-# 19) ~~Show evolves from~~
-# 22) ~~Refactor bulk of hg stuff from Rarity to HighestGrowth~~
-# ~~21) Move default strategies from notebook to API~~
-# 1) ~~add tabs~~
-# 5) ~~tab for army analysis~~
-# 6) ~~tab for high growth~~
-# 21) ~~Start in full screen mode ~~
-# 15) ~~Filters for strategy~~
-# 16) Not necessary: ~~Add RebornLater strategy - is it the same as NoReborn?  Stop right at reborn point & save souls?~~
-# 14) ~~RebornAndFreeze strategy~~
-# 10) ~~edit hg strategy~~
-# 11B) ~~save hg strategy~~
-# 10A) ~~edit widget for hg strategy~~
-# 7) ~~gold discount class, refactor~~
-# 9) ~~army column for hg strategy~~
-# 2) ~~add available souls to hero info~~
-# 11A) ~~load hg strategy~~
