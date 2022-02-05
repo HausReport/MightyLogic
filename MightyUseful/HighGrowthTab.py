@@ -1,4 +1,5 @@
 import pandas as pd
+from PySide2.QtGui import QTextDocument
 from PySide2.QtWidgets import QSplitter, QWidget, QVBoxLayout
 from PySide2.QtCore import Qt
 
@@ -18,6 +19,10 @@ class HighGrowthTab(QWidget):
         self.table = HighGrowthTable(self)
         self.splitter.addWidget(self.table)
         vbox.addWidget(self.splitter)
+        self.find_in_table("Bone Dragon", QTextDocument.FindFlag(0))
+
+    def find_in_table(self, text, flag=QTextDocument.FindFlag(0)):
+        self.table.find(text, flag)
 
     def table_changed(self, frame: pd.DataFrame):
         self.hdr.table_changed(frame)

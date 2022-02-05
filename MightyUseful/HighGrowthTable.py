@@ -2,6 +2,7 @@ import sys
 import warnings
 
 from PySide2.QtCore import Slot
+from PySide2.QtGui import QTextDocument
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
@@ -56,9 +57,10 @@ class HighGrowthTable(QWidget):
         IoGui.getArmy(self, self.army)
         self.hg = HighestGrowth(army=self.army)
 
-        self.TROOP_LIMIT = -1 # 14_050
+        self.TROOP_LIMIT = 14_050
         self.GOLD_LIMIT  = 3_000_000
         self.SCORE_LIMIT = 50
+        self.STOP_HG_AT  = 600
 
         #
         # Get base HG dataframe
@@ -78,6 +80,11 @@ class HighGrowthTable(QWidget):
         self.text_browser.setText(html)
         self.myLayout.addWidget(self.text_browser)
         # print(ret.to_string(max_cols=None))
+
+    def find(self, text, flag):
+        #flag = QTextDocument.FindBackward
+        #print(self.text_browser.toHtml(), self.text_browser.find(text, flag))
+        self.text_browser.find(text, flag)
 
     def rerun_high_growth(self):
         ret: pd.DataFrame = self.run_high_growth()  # note: saves to file also
@@ -116,6 +123,18 @@ class HighGrowthTable(QWidget):
             allMoves = allMoves[allMoves['Score'] > self.SCORE_LIMIT]
         allMoves = allMoves.copy(deep=True)
         allMoves = allMoves.reset_index()
+        #
+        # FIXME: THIS IS IN THE BALLPARK OF WORKING, BUT...
+        # 1) 'Strategy' isn't available without a join
+        # 2) You're dropping rows after the stop criteria has been met, meaning there might not be sufficient rows
+        #
+        # if self.STOP_HG_AT > 0:
+        #     #allMoves = allMoves.reset_index()
+        #     allMoves["Total LevelUps"] = allMoves['LevelUps'].cumsum()
+        #     allMoves.drop( (  (allMoves['Total LevelUps'] > 600) & (allMoves['Strategy']=="HighGrowth")).index , inplace=True)
+        #
+        #
+        #
         ret = self.hg._format_output(allMoves)
         self.hgt.table_changed(ret)
 
@@ -144,6 +163,8 @@ class HighGrowthTable(QWidget):
         return ret
 
     def df_to_html(self, ret) -> str:
+
+
         if self.TROOP_LIMIT > 0:
             ret = ret[ret['Total Troop Gain']< self.TROOP_LIMIT]
         if self.GOLD_LIMIT > 0:

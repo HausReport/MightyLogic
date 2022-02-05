@@ -2,7 +2,7 @@ import matplotlib
 import pandas as pd
 from PySide2.QtCore import Qt
 from PySide2.QtWidgets import QMainWindow, QWidget, QGridLayout, QLabel, \
-    QTextBrowser, QSizePolicy, QComboBox, QStyle
+    QTextBrowser, QSizePolicy, QComboBox, QStyle, QGroupBox, QVBoxLayout
 
 from MightyLogic.HighGrowth.Erlaed.Army import Army
 from MightyLogic.HighGrowth.Erlaed.FileIo import FileIO
@@ -76,52 +76,59 @@ class HeroInfoPanel(QWidget):
         self.btn.setMinimumWidth(375)
         self.setMaximumWidth(375)
         self.setMinimumWidth(375)
-        vbox = QGridLayout()
-        vbox.setContentsMargins(0, 0, 0, 0)
-        vbox.addWidget(self.btn, 0, 0, 1, 4, alignment=Qt.AlignCenter)
+
+        vbox = QVBoxLayout()
+        #self.setLayout(vbox)
+
+        typeBox = QGroupBox("Basic Info")
+        panelLayour = QGridLayout()
+        panelLayour.setContentsMargins(0, 0, 0, 0)
+        panelLayour.setColumnStretch(0, 0)
+        panelLayour.setRowStretch(0, 0)
+        panelLayour.addWidget(self.btn, 0, 0, 1, 4, alignment=Qt.AlignCenter)
 
         pixmap = IoGui.nameToPixmap(aName, 300, 300)
         picLabel = QLabel()
         picLabel.setPixmap(pixmap)
-        vbox.addWidget(picLabel, 1, 0, 1, 4, alignment=Qt.AlignCenter)
+        panelLayour.addWidget(picLabel, 1, 0, 1, 4, alignment=Qt.AlignCenter)
 
         rarity = row['Rarity'].values[0]
 
-        vbox.addWidget(QLabel("Level:"), 2, 0, 1, 1, Qt.AlignRight)
-        vbox.addWidget(self.getIntLabel('Level'), 2, 1, 1, 1)
+        panelLayour.addWidget(QLabel("Level:"), 2, 0, 1, 1, Qt.AlignRight)
+        panelLayour.addWidget(self.getIntLabel('Level'), 2, 1, 1, 1)
 
-        vbox.addWidget(QLabel("Reborn:"), 2, 2, 1, 1, Qt.AlignRight)
-        vbox.addWidget(self.getIntLabel('Reborns'), 2, 3, 1, 1)
+        panelLayour.addWidget(QLabel("Reborn:"), 2, 2, 1, 1, Qt.AlignRight)
+        panelLayour.addWidget(self.getIntLabel('Reborns'), 2, 3, 1, 1)
 
-        vbox.addWidget(QLabel("Rarity:"), 3, 0, 1, 1, Qt.AlignRight)
-        vbox.addWidget(self.getFieldStringLabel('Rarity'), 3, 1, 1, 1)
+        panelLayour.addWidget(QLabel("Rarity:"), 3, 0, 1, 1, Qt.AlignRight)
+        panelLayour.addWidget(self.getFieldStringLabel('Rarity'), 3, 1, 1, 1)
 
-        vbox.addWidget(QLabel("Gender:"), 3, 2, 1, 1, Qt.AlignRight)
-        vbox.addWidget(self.getFieldStringLabel('Gender'), 3, 3, 1, 1)
+        panelLayour.addWidget(QLabel("Gender:"), 3, 2, 1, 1, Qt.AlignRight)
+        panelLayour.addWidget(self.getFieldStringLabel('Gender'), 3, 3, 1, 1)
 
-        vbox.addWidget(QLabel("Alignment:"), 4, 0, 1, 1, Qt.AlignRight)
-        vbox.addWidget(self.getFieldStringLabel('Alignment'), 4, 1, 1, 1)
+        panelLayour.addWidget(QLabel("Alignment:"), 4, 0, 1, 1, Qt.AlignRight)
+        panelLayour.addWidget(self.getFieldStringLabel('Alignment'), 4, 1, 1, 1)
 
-        vbox.addWidget(QLabel("Type:"), 4, 2, 1, 1, Qt.AlignRight)
-        vbox.addWidget(self.getFieldStringLabel('Type'), 4, 3, 1, 1)
+        panelLayour.addWidget(QLabel("Type:"), 4, 2, 1, 1, Qt.AlignRight)
+        panelLayour.addWidget(self.getFieldStringLabel('Type'), 4, 3, 1, 1)
 
         ra = HighestGrowth.get_rarity_by_name(rarity)
         reborn = self.row['Reborns'].values[0]
         level = self.row['Level'].values[0]
         might, troops = ra.getMightAndTroops(reborn, level)
 
-        vbox.addWidget(self.getStringLabel("Troops:"), 5, 0, 1, 1, Qt.AlignRight)
+        panelLayour.addWidget(self.getStringLabel("Troops:"), 5, 0, 1, 1, Qt.AlignRight)
         tLabel = self.getStringLabel(str(troops))
-        vbox.addWidget(tLabel, 5, 1, 1, 1)
+        panelLayour.addWidget(tLabel, 5, 1, 1, 1)
 
-        vbox.addWidget(self.getStringLabel("Might:"), 5, 2, 1, 1, Qt.AlignRight)
+        panelLayour.addWidget(self.getStringLabel("Might:"), 5, 2, 1, 1, Qt.AlignRight)
         mLabel = self.getStringLabel(str(might))
-        vbox.addWidget(mLabel, 5, 3, 1, 1)
+        panelLayour.addWidget(mLabel, 5, 3, 1, 1)
 
         avail_souls = self.row['Available Souls'].values[0]
-        vbox.addWidget(self.getStringLabel("Available Souls:"), 6, 0, 1, 1, Qt.AlignRight)
+        panelLayour.addWidget(self.getStringLabel("Available Souls:"), 6, 0, 1, 1, Qt.AlignRight)
         tLabel = self.getStringLabel(str(avail_souls))
-        vbox.addWidget(tLabel, 6, 1, 1, 1)
+        panelLayour.addWidget(tLabel, 6, 1, 1, 1)
 
         self.shapeCombo = QComboBox(self)
         optionList = sorted(HeroInfoPanel.strategyList)
@@ -143,23 +150,26 @@ class HeroInfoPanel(QWidget):
 
         self.army.updateStrategy(aName, strat)
 
-        vbox.addWidget(self.getStringLabel("Strategy:"), 6, 2, 1, 1, Qt.AlignRight)
-        vbox.addWidget(self.shapeCombo, 6, 3, 1, 1)
+        panelLayour.addWidget(self.getStringLabel("Strategy:"), 6, 2, 1, 1, Qt.AlignRight)
+        panelLayour.addWidget(self.shapeCombo, 6, 3, 1, 1)
 
         box_row = 7
         evolves_from = self.army.get_evolve_froms(aName)
         evolves_to = self.army.get_evolve_tos(aName)
         if len(evolves_from) > 0:
             myLab = ",".join(evolves_from)
-            vbox.addWidget(self.getStringLabel("Evolves from:"), box_row, 0, 1, 1, Qt.AlignRight)
-            vbox.addWidget(self.getStringLabel(myLab), box_row, 1, 1, 3)
+            panelLayour.addWidget(self.getStringLabel("Evolves from:"), box_row, 0, 1, 1, Qt.AlignRight)
+            panelLayour.addWidget(self.getStringLabel(myLab), box_row, 1, 1, 3)
             box_row = box_row + 1
 
         if len(evolves_to) > 0:
             myLab = ",".join(evolves_to)
-            vbox.addWidget(self.getStringLabel("Evolves to:"), box_row, 0, 1, 1, Qt.AlignRight)
-            vbox.addWidget(self.getStringLabel(myLab), box_row, 1, 1, 3)
+            panelLayour.addWidget(self.getStringLabel("Evolves to:"), box_row, 0, 1, 1, Qt.AlignRight)
+            panelLayour.addWidget(self.getStringLabel(myLab), box_row, 1, 1, 3)
             box_row = box_row + 1
+
+        typeBox.setLayout(panelLayour)
+        vbox.addWidget(typeBox)
 
         some_html = self.nice_levelup_table(army, aName, rarity, might, troops)
         if some_html is not None:
@@ -195,11 +205,13 @@ class HeroInfoPanel(QWidget):
 }</style></head><body>
         """
             self.text_browser.setText("<h2>Recommended Level-Ups</h2>" + css + some_html)
-            vbox.addWidget(self.text_browser, box_row, 0, 15, 4)
+            vbox.addWidget(self.text_browser) #, box_row, 0, 15, 4)
             box_row = box_row + 1
             # text_browser.show()
             # text_browser.raise_()
 
+            #vbox.setRowStretch(99, 1)
+            #vbox.setColumnStretch(99, 1)
         # vbox.addWidget(QLabel("Evolves from:" + str(evolves_from)))
 
         # TODO:

@@ -395,15 +395,17 @@ sys.exit(0)
 # 12) load discounts
 # 13) Score - see Hanzo Sama case, lots of levels similar score to 1 level.  See also spreadsheet
 # 17) Help system
-# 23) Implement high-growth functionality
 # 25) dialogue input might, click rarity, get level, reborn, soulbinds
 # 25) dialogue input fame, get league and completion back
-# 28) Limit table results by gold, HG stage, troops
+# 28) Limit table results by ~~gold~~, HG stage, ~~troops~~
 # 29) Point out highest might lev/reb for reboosts
-# 30) EventReady isn't getting the moves NoReborn gets
+# 30) EventReady isn't getting the moves NoReborn gets (maybe fixed?)
 # 34) Get a pynsist hello world running
 # 35) Progress bar for HG calculation
+# 37) Spruce up find widget for HG tab
 
+# 36) ~~Implement find widget for HG tab~~
+# 23) ~~Implement high-growth functionality~~
 # 33) ~~Install pynsist installer system~~
 # 31) ~~Add top widget for HG tab~~
 # 32) ~~Install NSIS installer system~~

@@ -86,6 +86,9 @@ class HighestGrowth:
         total_souls = aHero["Total Souls"]
         strategy = aHero["Strategy"]
         rarity = aHero['Rarity']
+        #if strategy == 'Freeze':
+        #    return None
+
         return HighestGrowth._get_moves(level, reborn, avail_souls, total_souls, strategy, rarity)
         #
         # straight_level = False
@@ -120,7 +123,9 @@ class HighestGrowth:
         straight_level = False
         score_mode = Rarity.TROOP_EFFICIENCY
 
-        if strategy == "Troops":
+        if strategy == 'Freeze':
+            return None
+        elif strategy == "Troops":
             score_mode = Rarity.TROOP_EFFICIENCY
         elif strategy == "HighGrowth":
             score_mode = Rarity.GOLD_EFFICIENCY
