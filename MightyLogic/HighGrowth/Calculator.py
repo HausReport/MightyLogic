@@ -156,8 +156,11 @@ class HighGrowthCalculation:
              f" - progress to next tier: {level_ups_remaining:,} of {next_tier.level_ups:,} level ups\n"
         s += "End state for each hero:\n"
         for i, (hero, steps) in enumerate(self.steps_by_hero.items()):
-            s += f"{i + 1}. Take hero: {hero}\n    all the way to: {steps.final_level()}\n" \
-                 f"    for: {steps.aggregate_cost()}\n"
+            s += f"{i + 1}. Take {hero}\n" \
+                 f"    from: {self.strategy.original_collection.find_by_num(hero.num).level}\n" \
+                 f"    to: {steps.final_level()}\n" \
+                 f"    for: {steps.level_up_count()} level ups\n" \
+                 f"    cost: {steps.aggregate_cost()}\n"
         return s
 
     def add_steps(self, oh: OwnedHero, steps: LevelingSteps):

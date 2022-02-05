@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import re
+from copy import deepcopy
 from typing import Dict, Any
 from typing import Tuple, Optional
 
@@ -35,6 +36,15 @@ class OwnedHero:
                and self.level == other.soulbind_level\
                and self.souls == other.souls\
                and self.soulbinds_mask == other.soulbinds_mask
+
+    def __deepcopy__(self, memodict={}):
+        dc = OwnedHero(
+            hero=self.hero,  # immutable
+            level=deepcopy(self.level, memodict),
+            souls=deepcopy(self.souls, memodict),
+            soulbinds_mask=deepcopy(self.soulbinds_mask, memodict))  # immutable (but shouldn't be)
+        memodict[id(self)] = dc
+        return dc
 
     def __hash__(self):
         return self.hero.num

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import csv
 import json
+from copy import deepcopy
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Dict, Set, FrozenSet, Any, Callable, List, Iterable, Optional
@@ -28,6 +29,13 @@ class Collection:
         self.hero_dir = hero_dir
         self.owned_heroes = frozenset(owned_heroes)
         self.by_hero = create_secondary_index(owned_heroes, lambda oh: oh.hero)
+
+    def __deepcopy__(self, memodict={}):
+        dc = Collection(
+            hero_dir=self.hero_dir,  # immutable - ok to pass as-is
+            owned_heroes=deepcopy(self.owned_heroes, memodict))  # mutable - needs to be copied
+        memodict[id(self)] = dc
+        return dc
 
     def all_heroes(self) -> FrozenSet[Hero]:
         return self.hero_dir.values()

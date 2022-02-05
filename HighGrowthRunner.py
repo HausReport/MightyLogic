@@ -206,10 +206,14 @@ class Profile:
                 )
 
             def run_calculation(self, strategy: HighGrowthStrategy) -> HighGrowthCalculation:
-                return HighGrowthCalculation.for_level_ups(
+                return HighGrowthCalculation.with_gold_cap(
                     strategy=strategy,
-                    level_ups_goal=CompletionTier.aggregate_to(CompletionTier.TIER_10)[0]
+                    gold_cap=3_000_000,
                 )
+                # return HighGrowthCalculation.for_level_ups(
+                #     strategy=strategy,
+                #     level_ups_goal=CompletionTier.aggregate_to(CompletionTier.TIER_10)[0]
+                # )
 
         return SephProfile()
 
@@ -235,8 +239,8 @@ class Profile:
 # Runner
 # ----------------------------------------------------------------------------------------------------------------------
 
-profile = Profile.bobo()
-file = Path("tests/HighGrowth/2022-02-03-0931_Bobo_squad_export.txt")
+profile = Profile.seph()
+file = Path("tests/HighGrowth/2022-01-31_Seph_squad_export.txt")
 
 logger.info(f"Squad file: {file}")
 
