@@ -23,6 +23,14 @@ class Army:
         self.strat_file = strat_file
         if strat_file is None:
             self.data_frame['Strategy'] = "HighGrowth"
+            self.data_frame.loc[(self.data_frame.Rarity == 'Legendary'), 'Strategy'] = 'Freeze'
+            self.data_frame.loc[(self.data_frame.Rarity == 'Epic'), 'Strategy'] = 'Freeze'
+            # self.data_frame[self.data_frame['Rarity'] == 'Legendary'].Strategy = "Freeze"
+            # self.data_frame[self.data_frame['Rarity'] == 'Epic'].Strategy = "Freeze"
+            self.strat_file = "strategies.csv"  # FIXME: change to data dir
+            self.strats = self.data_frame[['Name', 'Strategy']]
+            self.strats.to_csv(self.strat_file, encoding='utf-8', index=False)
+
         else:
             try:
                 self.strats: pd.DataFrame = pd.read_csv(strat_file)
@@ -30,6 +38,13 @@ class Army:
                 self.data_frame = tmp
             except OSError as e:
                 self.data_frame['Strategy'] = "HighGrowth"
+                self.data_frame.loc[(self.data_frame.Rarity == 'Legendary'), 'Strategy'] = 'Freeze'
+                self.data_frame.loc[(self.data_frame.Rarity == 'Epic'), 'Strategy'] = 'Freeze'
+                #self.data_frame[self.data_frame['Rarity'] == 'Legendary'].Strategy = "Freeze"
+                #self.data_frame[self.data_frame['Rarity'] == 'Epic'].Strategy = "Freeze"
+                self.strat_file = "strategies.csv"  # FIXME: change to data dir
+                self.strats = self.data_frame[['Name', 'Strategy']]
+                self.strats.to_csv(self.strat_file, encoding='utf-8', index=False)
                 print(e.errno)
 
     def updateStrategy(self, aName, aStrat):

@@ -1,24 +1,36 @@
- # TODO:
- 1. heroInfoPanel - add "can level up"
- 2. heroInfoPanel - add "can reborn"/reborn level
+ ## TODO:
+ #### Hero Info Panel
+ 1. add "can level up"
+ 2. add "can reborn"/reborn level
+ 3. Widget resize issue when no levelups available
+ 4. Remove red debugging backgrounds
+#### High Growth Header 
  3. gold discount ui
  4. load discounts
- 5. Score - see Hanzo Sama case, lots of levels similar score to 1 level.  See also spreadsheet
- 6. Help system
- 7. dialogue input might, click rarity, get level, reborn, soulbinds
- 8. dialogue input fame, get league and completion back
- 9. Limit table results by ~~gold~~, HG stage, ~~troops~~
- 10. EventReady isn't getting the moves NoReborn gets (maybe fixed?)
- 11. Get a pynsist hello world running
- 12. Progress bar for HG calculation   
-13A. update progress 2% for each floor iteration
- 13. Put useful info in HG analysis   
- 14A. Get right table to HG analysis
- 14. Point out highest might lev/reb for reboosts
- 15. Reboost interface
+ 5. "head start" levels - from warlords, etc...
+####Internals
+ 9. EventReady isn't getting the moves NoReborn gets (maybe fixed?)  
+13. update progress 2% for each floor iteration  
+10. Show progress bar during HG calculation
+11. Put more useful info in HG analysis
+#### Extras
+10. Help system
+#### Utilities
+ 11. dialogue: input might, click rarity, get level, reborn, soulbinds
+ 12. dialogue: input fame, get league and completion back
+#### Reboost
+ 13. Point out highest might lev/reb for reboosts
+ 14. Reboost interface
+ 15. Level range combos break the table sometimes?  somehow?
+#### Installer
+ 16. Get a pynsist hello world running
+
   
-# Done:
- 1. ~~Implement find widget for HG tab~~
+## Done:
+ 1. ~~Implement find widget for HG tab~~  
+5.~~Score - see Hanzo Sama case, lots of levels similar score to 1 level.  See also spreadsheet~~
+4. ~~Get right table to HG analysis~~
+9. ~~Limit table results by gold, levels, troops~~
 16. ~~Spruce up find widget for HG tab~~
  23. ~~Implement high-growth functionality~~
  33. ~~Install pynsist installer system~~

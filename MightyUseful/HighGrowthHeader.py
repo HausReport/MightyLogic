@@ -64,10 +64,28 @@ class HighGrowthHeader(QWidget):
         totTroopGain = frame['Total Troop Gain'].max()
         html += f"Total Troop Gain: {totTroopGain:,} <br>"
 
-        GPL = int(totGold/totLU)
+        GPL = 0
+        try:
+            GPL = int(totGold/totLU)
+        except:
+            pass
         html += f"Gold per Level-Up: {GPL:,} <br>"
-        GPT = int(totGold/totTroopGain)
+
+        GPT = 0
+        try:
+            GPT = int(totGold / totTroopGain)
+        except:
+            pass
+
         html += f"Gold per Troop: {GPT:,} <br>"
+
+        rares = frame[frame['Rarity']=='Common']
+        totLU = rares['LevelUps'].sum()
+        html += f"Common Level-Ups: {totLU:,} <br>"
+
+        rares = frame[frame['Rarity']=='Rare']
+        totLU = rares['LevelUps'].sum()
+        html += f"Rare Level-Ups: {totLU:,} <br>"
 
         self.text_browser.setText(html)
 

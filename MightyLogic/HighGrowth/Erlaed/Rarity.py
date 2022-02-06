@@ -8,6 +8,7 @@ from MightyLogic.HighGrowth.Erlaed.RarityBase import RarityBase
 
 class Rarity(RarityBase, ABC):
     discounts = Discounts(guild=20, vip=15, crisis=0) # crisis 18
+    # discounts = Discounts(guild=18, vip=12, crisis=0) # crisis 18 iahobo
     # FIXME: move gold discount somewhere else
     FENCE = 10  # FIXME - change to average level for that rarity?
 

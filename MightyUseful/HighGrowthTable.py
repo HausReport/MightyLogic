@@ -57,10 +57,11 @@ class HighGrowthTable(QWidget):
         IoGui.getArmy(self, self.army)
         self.hg = HighestGrowth(army=self.army)
 
-        self.TROOP_LIMIT = 14_050
-        self.GOLD_LIMIT  = -1 # 2_700_000
-        self.SCORE_LIMIT = 50
-        self.STOP_HG_AT  = 950
+        self.TROOP_LIMIT =  14_050
+        self.GOLD_LIMIT  =  2_700_000
+        self.SCORE_LIMIT = -1 # 50
+        self.STOP_HG_AT  = -1 # 950
+        self.LEVELUP_LIMIT = -1 # 1300
 
         #
         # Get base HG dataframe
@@ -163,6 +164,10 @@ class HighGrowthTable(QWidget):
             firstHit =ret[ret['Total Troop Gain']> self.TROOP_LIMIT]
             firstHit = firstHit['Total Troop Gain'].min()
             ret = ret[ret['Total Troop Gain']<= firstHit]
+        if self.LEVELUP_LIMIT > 0:
+            firstHit =ret[ret['Total LevelUps']> self.LEVELUP_LIMIT]
+            firstHit = firstHit['Total LevelUps'].min()
+            ret = ret[ret['Total LevelUps']<= firstHit]
         if self.GOLD_LIMIT > 0:
             ret = ret[ret['Total Gold']< self.GOLD_LIMIT]
         self.hgt.table_changed(ret)
