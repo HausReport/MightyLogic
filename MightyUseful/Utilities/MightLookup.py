@@ -1,5 +1,3 @@
-from collections import defaultdict
-
 from MightyLogic.HighGrowth.Erlaed.Legendary import Legendary
 
 
@@ -42,7 +40,6 @@ class LevelRebornSoulbindMight:
         return aStr
 
 
-x = LevelRebornSoulbindMight(20,3,True, False, True, False)
+x = LevelRebornSoulbindMight(20, 3, True, False, True, False)
 print(x)
-print( str(x.might))
-
+print(str(x.might))

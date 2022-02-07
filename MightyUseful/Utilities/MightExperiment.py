@@ -1,6 +1,8 @@
-from MightyUseful.utilities.MightLookup import LevelRebornSoulbindMight
-from collections import defaultdict
 import timeit
+from collections import defaultdict
+
+from MightyUseful.utilities.MightLookup import LevelRebornSoulbindMight
+
 from MightyLogic.HighGrowth.Erlaed.Legendary import Legendary
 
 #
@@ -19,16 +21,15 @@ for reborn in range(1, 6):
         #     for sb2 in [True, False]:
         #         for sb3 in [True, False]:
         #             for sb4 in [True, False]:
-                        sb1 = False
-                        sb2 = False
-                        sb3 = False
-                        sb4 = False
-                        options += 1
-                        baseMight, troops = lego.getMightAndTroops(reborn, level)
-                        foo = LevelRebornSoulbindMight(level, reborn, sb1, sb2, sb3, sb4)
-                        #print( str(foo.might) + " <-" + str(foo))
-                        mightDict[foo.might].append(foo)
-
+        sb1 = False
+        sb2 = False
+        sb3 = False
+        sb4 = False
+        options += 1
+        baseMight, troops = lego.getMightAndTroops(reborn, level)
+        foo = LevelRebornSoulbindMight(level, reborn, sb1, sb2, sb3, sb4)
+        # print( str(foo.might) + " <-" + str(foo))
+        mightDict[foo.might].append(foo)
 
 baseMight = 4100
 answers = []
@@ -58,4 +59,4 @@ stop = timeit.default_timer()
 execution_time = stop - start
 print("Program executed in " + str(execution_time) + " seconds")
 
-#print( mightDict[3455].__str__())
+# print( mightDict[3455].__str__())

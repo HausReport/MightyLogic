@@ -1,19 +1,14 @@
-import sys
 import warnings
-
-from PySide2.QtCore import Slot
-from PySide2.QtGui import QTextDocument
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 import pandas as pd
-from PySide2.QtWidgets import QMainWindow, QVBoxLayout, QWidget, QApplication, QPushButton, QTextBrowser
-from jinja2 import Template, Environment, PackageLoader
+from PySide2.QtWidgets import QVBoxLayout, QWidget, QTextBrowser
+from jinja2 import Environment, PackageLoader
 
 from MightyLogic.HighGrowth.Erlaed.Army import Army
 from MightyLogic.HighGrowth.Erlaed.HighestGrowth import HighestGrowth
 from MightyUseful.IoGui import IoGui
-from MightyLogic.HighGrowth.Erlaed.Rarity import Rarity
 
 
 def add_comma(i):
@@ -57,11 +52,11 @@ class HighGrowthTable(QWidget):
         IoGui.getArmy(self, self.army)
         self.hg = HighestGrowth(army=self.army)
 
-        self.TROOP_LIMIT =  14_050
-        self.GOLD_LIMIT  =  2_700_000
-        self.SCORE_LIMIT = -1 # 50
-        self.STOP_HG_AT  = -1 # 950
-        self.LEVELUP_LIMIT = -1 # 1300
+        self.TROOP_LIMIT = 14_050
+        self.GOLD_LIMIT = 2_700_000
+        self.SCORE_LIMIT = -1  # 50
+        self.STOP_HG_AT = -1  # 950
+        self.LEVELUP_LIMIT = -1  # 1300
 
         #
         # Get base HG dataframe
@@ -83,8 +78,8 @@ class HighGrowthTable(QWidget):
         # print(ret.to_string(max_cols=None))
 
     def find(self, text, flag):
-        #flag = QTextDocument.FindBackward
-        #print(self.text_browser.toHtml(), self.text_browser.find(text, flag))
+        # flag = QTextDocument.FindBackward
+        # print(self.text_browser.toHtml(), self.text_browser.find(text, flag))
         self.text_browser.find(text, flag)
 
     def rerun_high_growth(self):
@@ -113,14 +108,14 @@ class HighGrowthTable(QWidget):
                 allMoves = allMoves.append(holder)
                 print("\t # moves is " + str(len(holder)))
                 army2 = army2.patch(holder)
-                percent_done +=2
+                percent_done += 2
                 self.hgt.percent_done(percent_done)
                 # finish with the current floor to look for better moves
             else:
                 if 0 < self.GOLD_LIMIT < allMoves['Cum Gold'].sum():
                     break
                 floor = floor - 10  # * 0.8
-                percent_done = (90 - ((9.0/4.0) * (floor - 50)) )
+                percent_done = (90 - ((9.0 / 4.0) * (floor - 50)))
                 self.hgt.percent_done(percent_done)
 
         percent_done = 100
@@ -168,15 +163,15 @@ class HighGrowthTable(QWidget):
         ret[['GPT']] = ret[['GPT']].astype('int')
         ret[['GPL']] = ret[['GPL']].astype('int')
         if self.TROOP_LIMIT > 0:
-            firstHit =ret[ret['Total Troop Gain']> self.TROOP_LIMIT]
+            firstHit = ret[ret['Total Troop Gain'] > self.TROOP_LIMIT]
             firstHit = firstHit['Total Troop Gain'].min()
-            ret = ret[ret['Total Troop Gain']<= firstHit]
+            ret = ret[ret['Total Troop Gain'] <= firstHit]
         if self.LEVELUP_LIMIT > 0:
-            firstHit =ret[ret['Total LevelUps']> self.LEVELUP_LIMIT]
+            firstHit = ret[ret['Total LevelUps'] > self.LEVELUP_LIMIT]
             firstHit = firstHit['Total LevelUps'].min()
-            ret = ret[ret['Total LevelUps']<= firstHit]
+            ret = ret[ret['Total LevelUps'] <= firstHit]
         if self.GOLD_LIMIT > 0:
-            ret = ret[ret['Total Gold']< self.GOLD_LIMIT]
+            ret = ret[ret['Total Gold'] < self.GOLD_LIMIT]
         self.hgt.table_changed(ret)
         return ret
 
@@ -214,5 +209,3 @@ class HighGrowthTable(QWidget):
 
         # self.setCentralWidget(self.widget)
         # self.show()
-
-

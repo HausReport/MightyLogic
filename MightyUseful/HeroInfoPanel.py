@@ -2,14 +2,14 @@ import matplotlib
 import pandas as pd
 from PySide2.QtCore import Qt
 from PySide2.QtWidgets import QMainWindow, QWidget, QGridLayout, QLabel, \
-    QTextBrowser, QSizePolicy, QComboBox, QStyle, QGroupBox, QVBoxLayout, QSpacerItem
+    QTextBrowser, QSizePolicy, QComboBox, QGroupBox, QVBoxLayout
 
 from MightyLogic.HighGrowth.Erlaed.Army import Army
 from MightyLogic.HighGrowth.Erlaed.FileIo import FileIO
 from MightyLogic.HighGrowth.Erlaed.HighestGrowth import HighestGrowth
-from MightyLogic.HighGrowth.Erlaed.Rarity import Rarity
 from MightyUseful.IoGui import IoGui
-#from MightyUseful.MightyUsefulApp import MightyUsefulApp
+
+# from MightyUseful.MightyUsefulApp import MightyUsefulApp
 
 matplotlib.use('Qt5Agg')
 
@@ -17,7 +17,7 @@ matplotlib.use('Qt5Agg')
 class HeroInfoPanel(QWidget):
     strategyList = ["Freeze", "Troops", "HighGrowth", "Might", "NoReborn", "RebornToLevel1", "EventReady"]
 
-    def __init__(self, aParent): # MightyUsefulApp):
+    def __init__(self, aParent):  # MightyUsefulApp):
         super().__init__()
         self.mua = aParent
 
@@ -75,10 +75,10 @@ class HeroInfoPanel(QWidget):
         self.nameLabel.setMaximumWidth(375)
         self.nameLabel.setMaximumHeight(100)
         self.setMaximumWidth(375)
-        #self.setMinimumHeight(375)
+        # self.setMinimumHeight(375)
 
         myLayout = QVBoxLayout()
-        #self.setLayout(vbox)
+        # self.setLayout(vbox)
 
         typeBox = QGroupBox("Basic Info")
         # typeBox.setStyleSheet("background-color: #00ff00;")
@@ -175,7 +175,7 @@ class HeroInfoPanel(QWidget):
 
         some_html = self.nice_levelup_table(army, aName, rarity, might, troops)
         if some_html is None:
-            self.spacer = QLabel("") #QSpacerItem(375,375)
+            self.spacer = QLabel("")  # QSpacerItem(375,375)
             panelLayour.addWidget(self.spacer, box_row, 0, 15, 4)
 
         else:
@@ -211,7 +211,7 @@ class HeroInfoPanel(QWidget):
 }</style></head><body>
         """
             self.text_browser.setText("<h2>Recommended Level-Ups</h2>" + css + some_html)
-            myLayout.addWidget(self.text_browser) #, box_row, 0, 15, 4)
+            myLayout.addWidget(self.text_browser)  # , box_row, 0, 15, 4)
             box_row = box_row + 1
             # text_browser.show()
             # text_browser.raise_()

@@ -1,6 +1,3 @@
-import re
-from abc import ABC
-
 from MightyUseful.PandaTables.AbstractFilter import AbstractFilter
 
 

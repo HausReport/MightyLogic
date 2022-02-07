@@ -8,16 +8,13 @@ from PySide2.QtWidgets import QApplication, QMainWindow, QAction, QVBoxLayout, Q
 
 from MightyLogic.HighGrowth.Erlaed.Army import Army
 from MightyLogic.HighGrowth.Erlaed.HighestGrowth import HighestGrowth
-from MightyUseful.ArmyAnalyzerTab import ArmyAnalyzerTab
+from MightyUseful.HeroInfoPanel import HeroInfoPanel
 from MightyUseful.HighGrowthTab import HighGrowthTab
-from MightyUseful.HighGrowthTable import HighGrowthTable
-from MightyUseful.PandaTables.IntRangeFilter import IntRangeFilter
-from MightyUseful.MplCanvas import MplCanvas
-from MightyUseful.PandaTables.RegExFilter import RegExFilter
 from MightyUseful.IoGui import IoGui
+from MightyUseful.PandaTables.IntRangeFilter import IntRangeFilter
 from MightyUseful.PandaTables.MultiFilterProxyModel import MultiFilterProxyModel
 from MightyUseful.PandaTables.PandasModel import PandasModel
-from MightyUseful.HeroInfoPanel import HeroInfoPanel
+from MightyUseful.PandaTables.RegExFilter import RegExFilter
 
 
 class MightyUsefulApp(QMainWindow):
@@ -391,5 +388,3 @@ myApp = QApplication(sys.argv)
 window = MightyUsefulApp()
 myApp.exec_()
 sys.exit(0)
-
-

@@ -25,31 +25,36 @@ table.example .red-circle {
   text-align: center;
   margin: auto;
 }
-</style>
+
+    </style>
 </head>
 <body>
 <table class="example collapse">
-  <thead>
+    <thead>
     <tr>
-      {% for c in columns %}
-      <th>{{ c }}</th>
-      {% endfor %}
+        {% for c in columns %}
+        <th>{{ c }}</th>
+        {% endfor %}
     </tr>
-  </thead>
-  <tbody>
-     {% for row in rows %}
-     <tr>
-     {% for k, v in row.items() %}
-     {% if v == 'a' %}
-     <td><div class="red-circle">{{ row.letter }}</div></td>
-     {% else %}
-     <td><div>{{ v }}</div></td>
-     {% endif %}
-     {% endfor %}
-     </tr>
-     {% endfor %}
-   </tr>
-  </tbody>
+    </thead>
+    <tbody>
+    {% for row in rows %}
+    <tr>
+        {% for k, v in row.items() %}
+        {% if v == 'a' %}
+        <td>
+            <div class="red-circle">{{ row.letter }}</div>
+        </td>
+        {% else %}
+        <td>
+            <div>{{ v }}</div>
+        </td>
+        {% endif %}
+        {% endfor %}
+    </tr>
+    {% endfor %}
+    </tr>
+    </tbody>
 </table>
 </body>
 </html>

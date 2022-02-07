@@ -7,7 +7,7 @@ class PandasModel(QtCore.QAbstractTableModel):
 
     def __init__(self, data, alignLeft=[1, 5, 6, 7, 8, 11], intColumns=[2, 3, 4, 9, 10]):
         QtCore.QAbstractTableModel.__init__(self)
-        self.alignLeft=alignLeft
+        self.alignLeft = alignLeft
         self.intColumns = intColumns
         self._data = data
 

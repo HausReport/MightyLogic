@@ -9,6 +9,6 @@ class RegExFilter(AbstractFilter):
         self.regex = re.compile(reg)
 
     def matches(self, val):
-        #if type(val) != str:
-            #print("In filter, type is " + str(type(val)))
+        # if type(val) != str:
+        # print("In filter, type is " + str(type(val)))
         return self.regex.match(str(val))

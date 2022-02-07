@@ -1,7 +1,6 @@
 import re
 
 from PySide2.QtCore import Qt, QSortFilterProxyModel, QModelIndex
-
 from MightyUseful.PandaTables.AbstractFilter import AbstractFilter
 
 
@@ -54,7 +53,7 @@ class MultiFilterProxyModel(QSortFilterProxyModel):
                 if text is None:
                     text = ''
                 if isinstance(regex, AbstractFilter):
-                    #print("Is filter")
+                    # print("Is filter")
                     results.append(regex.matches(text))
                 else:
                     results.append(regex.match(text))

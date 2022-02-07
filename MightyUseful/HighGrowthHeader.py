@@ -1,7 +1,8 @@
+import pandas as pd
+from PySide2.QtCore import Slot
 from PySide2.QtGui import QTextDocument
 from PySide2.QtWidgets import QWidget, QGridLayout, QPushButton, QVBoxLayout, QGroupBox, QLineEdit, QTextBrowser
-from PySide2.QtCore import Qt, Slot
-import pandas as pd
+
 
 class HighGrowthHeader(QWidget):
 
@@ -23,24 +24,23 @@ class HighGrowthHeader(QWidget):
         searchBox = QGroupBox("Search")
         searchBoxLayout = QGridLayout()
         self.textbox = QLineEdit(self)
-        searchBoxLayout.addWidget(self.textbox,0,0,1,2)
+        searchBoxLayout.addWidget(self.textbox, 0, 0, 1, 2)
         self.find = QPushButton("Find Forward")
         self.find.clicked.connect(self.find_in_table)
-        searchBoxLayout.addWidget(self.find,1,0,1,1)
+        searchBoxLayout.addWidget(self.find, 1, 0, 1, 1)
         self.find = QPushButton("Find Backward")
         self.find.clicked.connect(self.find_in_table_backwards)
-        searchBoxLayout.addWidget(self.find,1,1,1,1)
+        searchBoxLayout.addWidget(self.find, 1, 1, 1, 1)
 
         searchBox.setLayout(searchBoxLayout)
         self.myLayout.addWidget(searchBox)
-
 
         analysisBox = QGroupBox("Analysis")
         analysisBoxLayout = QVBoxLayout()
 
         self.text_browser = QTextBrowser()
         self.text_browser.setSearchPaths(["../MightyLogic/image/"])
-        #self.text_browser.setText(html)
+        # self.text_browser.setText(html)
         analysisBoxLayout.addWidget(self.text_browser)
 
         analysisBox.setLayout(analysisBoxLayout)
@@ -48,7 +48,7 @@ class HighGrowthHeader(QWidget):
 
     @Slot()
     def rerun_high_growth(self):
-       self.hgt.rerun_high_growth()
+        self.hgt.rerun_high_growth()
 
     def do_analysis(self, frame: pd.DataFrame):
         html = ""
@@ -66,7 +66,7 @@ class HighGrowthHeader(QWidget):
 
         GPL = 0
         try:
-            GPL = int(totGold/totLU)
+            GPL = int(totGold / totLU)
         except:
             pass
         html += f"Gold per Level-Up: {GPL:,} <br>"
@@ -79,11 +79,11 @@ class HighGrowthHeader(QWidget):
 
         html += f"Gold per Troop: {GPT:,} <br>"
 
-        rares = frame[frame['Rarity']=='Common']
+        rares = frame[frame['Rarity'] == 'Common']
         totLU = rares['LevelUps'].sum()
         html += f"Common Level-Ups: {totLU:,} <br>"
 
-        rares = frame[frame['Rarity']=='Rare']
+        rares = frame[frame['Rarity'] == 'Rare']
         totLU = rares['LevelUps'].sum()
         html += f"Rare Level-Ups: {totLU:,} <br>"
 
@@ -92,13 +92,13 @@ class HighGrowthHeader(QWidget):
     def table_changed(self, frame: pd.DataFrame):
         print("Header got table_changed")
         self.do_analysis(frame)
-        #self.hdr.table_changed(frame)
+        # self.hdr.table_changed(frame)
 
     @Slot()
-    def find_in_table(self): #, text):
+    def find_in_table(self):  # , text):
         self.hgt.find_in_table(self.textbox.text())
 
     @Slot()
-    def find_in_table_backwards(self, flag): #, text):
+    def find_in_table_backwards(self, flag):  # , text):
         flag = QTextDocument.FindBackward
         self.hgt.find_in_table(self.textbox.text(), flag)

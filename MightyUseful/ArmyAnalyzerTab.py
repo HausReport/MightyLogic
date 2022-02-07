@@ -1,7 +1,5 @@
-import pandas as pd
-from PySide2.QtGui import QTextDocument
-from PySide2.QtWidgets import QSplitter, QWidget, QVBoxLayout, QProgressDialog, QGroupBox, QCheckBox, QRadioButton
 from PySide2.QtCore import Qt
+from PySide2.QtWidgets import QSplitter, QWidget, QVBoxLayout, QGroupBox, QRadioButton
 
 from MightyLogic.HighGrowth.Erlaed.Army import Army
 from MightyUseful.MplCanvas import MplCanvas
