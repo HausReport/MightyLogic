@@ -1,6 +1,6 @@
 import pandas as pd
 from PySide2.QtGui import QTextDocument
-from PySide2.QtWidgets import QSplitter, QWidget, QVBoxLayout
+from PySide2.QtWidgets import QSplitter, QWidget, QVBoxLayout, QProgressDialog
 from PySide2.QtCore import Qt
 
 from MightyUseful.HighGrowthHeader import HighGrowthHeader
@@ -31,4 +31,11 @@ class HighGrowthTab(QWidget):
         self.table.rerun_high_growth()
 
     def percent_done(self, pct):
+        if pct < 1:
+            self.progress = QProgressDialog( "Working very hard to find the best level-ups...", "OK", 0, 100, self)
+            self.progress.setWindowModality(Qt.WindowModal)
+        elif pct > 99:
+            self.progress.close()
+        else:
+            self.progress.setValue(int(pct))
         print("Percent done: " + str(pct))

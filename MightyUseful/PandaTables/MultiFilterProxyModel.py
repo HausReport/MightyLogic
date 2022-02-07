@@ -2,7 +2,7 @@ import re
 
 from PySide2.QtCore import Qt, QSortFilterProxyModel, QModelIndex
 
-from MightyUseful.AbstractFilter import AbstractFilter
+from MightyUseful.PandaTables.AbstractFilter import AbstractFilter
 
 
 class MultiFilterMode:

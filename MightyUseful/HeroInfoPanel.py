@@ -2,7 +2,7 @@ import matplotlib
 import pandas as pd
 from PySide2.QtCore import Qt
 from PySide2.QtWidgets import QMainWindow, QWidget, QGridLayout, QLabel, \
-    QTextBrowser, QSizePolicy, QComboBox, QStyle, QGroupBox, QVBoxLayout
+    QTextBrowser, QSizePolicy, QComboBox, QStyle, QGroupBox, QVBoxLayout, QSpacerItem
 
 from MightyLogic.HighGrowth.Erlaed.Army import Army
 from MightyLogic.HighGrowth.Erlaed.FileIo import FileIO
@@ -27,7 +27,7 @@ class HeroInfoPanel(QWidget):
     def getIntLabel(self, field) -> QLabel:
         lab = QLabel(self.getInt(field))
         lab.setMaximumHeight(24)
-        lab.setStyleSheet("background-color: #ff0000;")
+        # lab.setStyleSheet("background-color: #ff0000;")
         return lab
 
     def getFieldStringLabel(self, field) -> QLabel:
@@ -37,7 +37,7 @@ class HeroInfoPanel(QWidget):
     def getStringLabel(self, aStr) -> QLabel:
         lab = QLabel(str(aStr))
         lab.setMaximumHeight(24)
-        lab.setStyleSheet("background-color: #ff0000;")
+        # lab.setStyleSheet("background-color: #ff0000;")
         return lab
 
     @staticmethod
@@ -69,23 +69,25 @@ class HeroInfoPanel(QWidget):
         self.row = row
         self.army = army
         aName = row['Name'].values[0]
-        self.btn = QLabel(aName)
-        self.btn.setStyleSheet("color: white; background-color: black; font-size: 24pt; text-align: center;")
-        self.btn.setSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.MinimumExpanding)
-        self.btn.setMaximumWidth(375)
-        self.btn.setMinimumWidth(375)
+        self.nameLabel = QLabel(aName)
+        self.nameLabel.setStyleSheet("color: white; background-color: black; font-size: 24pt; text-align: center;")
+        self.nameLabel.setSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.MinimumExpanding)
+        self.nameLabel.setMaximumWidth(375)
+        self.nameLabel.setMaximumHeight(100)
         self.setMaximumWidth(375)
-        self.setMinimumWidth(375)
+        #self.setMinimumHeight(375)
 
-        vbox = QVBoxLayout()
+        myLayout = QVBoxLayout()
         #self.setLayout(vbox)
 
         typeBox = QGroupBox("Basic Info")
+        # typeBox.setStyleSheet("background-color: #00ff00;")
         panelLayour = QGridLayout()
-        panelLayour.setContentsMargins(0, 0, 0, 0)
         panelLayour.setColumnStretch(0, 0)
         panelLayour.setRowStretch(0, 0)
-        panelLayour.addWidget(self.btn, 0, 0, 1, 4, alignment=Qt.AlignCenter)
+        panelLayour.setContentsMargins(0, 0, 0, 0)
+
+        panelLayour.addWidget(self.nameLabel, 0, 0, 1, 4, alignment=Qt.AlignCenter)
 
         pixmap = IoGui.nameToPixmap(aName, 300, 300)
         picLabel = QLabel()
@@ -169,10 +171,14 @@ class HeroInfoPanel(QWidget):
             box_row = box_row + 1
 
         typeBox.setLayout(panelLayour)
-        vbox.addWidget(typeBox)
+        myLayout.addWidget(typeBox)
 
         some_html = self.nice_levelup_table(army, aName, rarity, might, troops)
-        if some_html is not None:
+        if some_html is None:
+            self.spacer = QLabel("") #QSpacerItem(375,375)
+            panelLayour.addWidget(self.spacer, box_row, 0, 15, 4)
+
+        else:
             self.text_browser = QTextBrowser()
             css = """
 <html>
@@ -205,13 +211,13 @@ class HeroInfoPanel(QWidget):
 }</style></head><body>
         """
             self.text_browser.setText("<h2>Recommended Level-Ups</h2>" + css + some_html)
-            vbox.addWidget(self.text_browser) #, box_row, 0, 15, 4)
+            myLayout.addWidget(self.text_browser) #, box_row, 0, 15, 4)
             box_row = box_row + 1
             # text_browser.show()
             # text_browser.raise_()
 
-            #vbox.setRowStretch(99, 1)
-            #vbox.setColumnStretch(99, 1)
+            panelLayour.setRowStretch(99, 1)
+            panelLayour.setColumnStretch(99, 1)
         # vbox.addWidget(QLabel("Evolves from:" + str(evolves_from)))
 
         # TODO:
@@ -220,7 +226,7 @@ class HeroInfoPanel(QWidget):
         # ~~Image~~
         # ~~Possible Levelups~~
 
-        self.setLayout(vbox)
+        self.setLayout(myLayout)
 
     def stratChanged(self):
         newStrat = self.shapeCombo.currentText()

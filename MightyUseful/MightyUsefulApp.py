@@ -8,14 +8,15 @@ from PySide2.QtWidgets import QApplication, QMainWindow, QAction, QVBoxLayout, Q
 
 from MightyLogic.HighGrowth.Erlaed.Army import Army
 from MightyLogic.HighGrowth.Erlaed.HighestGrowth import HighestGrowth
+from MightyUseful.ArmyAnalyzerTab import ArmyAnalyzerTab
 from MightyUseful.HighGrowthTab import HighGrowthTab
 from MightyUseful.HighGrowthTable import HighGrowthTable
-from MightyUseful.IntRangeFilter import IntRangeFilter
+from MightyUseful.PandaTables.IntRangeFilter import IntRangeFilter
 from MightyUseful.MplCanvas import MplCanvas
-from MightyUseful.RegExFilter import RegExFilter
+from MightyUseful.PandaTables.RegExFilter import RegExFilter
 from MightyUseful.IoGui import IoGui
-from MightyUseful.MultiFilterProxyModel import MultiFilterProxyModel
-from MightyUseful.PandasModel import PandasModel
+from MightyUseful.PandaTables.MultiFilterProxyModel import MultiFilterProxyModel
+from MightyUseful.PandaTables.PandasModel import PandasModel
 from MightyUseful.HeroInfoPanel import HeroInfoPanel
 
 
@@ -210,33 +211,8 @@ class MightyUsefulApp(QMainWindow):
         wholeUiWidget.setLayout(wholeUiWidgetLayout)
 
         tabs.addTab(wholeUiWidget, "Army Explorer")
-
-        sc = MplCanvas(self, width=5, height=4, dpi=100)
-        # sc.axes.plot([0,1,2,3,4], [10,1,20,3,40])
-
-        series = self.army.getLegendaries()
-        x = series.Level
-        # plt.axvline(x=7)
-        stats = x.describe()
-        mean = stats['mean']
-        median = stats['50%']
-        lq = stats['25%']
-        rq = stats['75%']
-        ticks = int(stats['max'] + 1)
-        sc.axes.hist(x, bins=ticks)
-        sc.axes.set_xticks(ticks=range(1, ticks))
-        sc.axes.set_xlabel("Level")
-        sc.axes.set_ylabel("Count")
-
-        sc.axes.axvline(x=mean, color='r', label='Average Hero Level')
-        sc.axes.axvline(x=median, color='g', label='Median Hero Level')
-        sc.axes.axvline(x=lq, color='g', label='Bottom Quartile', ls=':')
-        sc.axes.axvline(x=rq, color='g', label='Top Quartile', ls=':')
-
-        # plt.axvline(x=median, color='g', label='Median Hero Level', ls=':')
-
-        sc.axes.legend(title="Rare Hero Level Distribution", bbox_to_anchor=(1.0, 1), loc='upper left')
-
+        # sc = ArmyAnalyzerTab(self.army)
+        sc = QPushButton("Hi")
         tabs.addTab(sc, "Army Analyzer")
         hgt = HighGrowthTab()
         tabs.addTab(hgt, "High Growth")

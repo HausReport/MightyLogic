@@ -98,7 +98,8 @@ class HighGrowthTable(QWidget):
         army2.data_frame = self.army.data_frame.copy(deep=True)
         allMoves = pd.DataFrame()
 
-        self.hgt.percent_done(0)
+        percent_done = 0
+        self.hgt.percent_done(percent_done)
         floor = 90
         while floor >= 50:
             print("Floor is " + str(floor))
@@ -112,12 +113,18 @@ class HighGrowthTable(QWidget):
                 allMoves = allMoves.append(holder)
                 print("\t # moves is " + str(len(holder)))
                 army2 = army2.patch(holder)
+                percent_done +=2
+                self.hgt.percent_done(percent_done)
                 # finish with the current floor to look for better moves
             else:
                 if 0 < self.GOLD_LIMIT < allMoves['Cum Gold'].sum():
                     break
                 floor = floor - 10  # * 0.8
-                self.hgt.percent_done(90 - ((9.0/4.0) * (floor - 50)) )
+                percent_done = (90 - ((9.0/4.0) * (floor - 50)) )
+                self.hgt.percent_done(percent_done)
+
+        percent_done = 100
+        self.hgt.percent_done(percent_done)
 
         allMoves.sort_values(by='Score', ascending=False, inplace=True)
         if self.SCORE_LIMIT > 0:
@@ -200,7 +207,7 @@ class HighGrowthTable(QWidget):
             rows=formatted_df.to_dict(orient='records'),
             columns=formatted_df.columns.to_list()
         )
-        print(html)
+        # print(html)
         with open("my_new_file.html", "w") as fh:
             fh.write(html)
         return html

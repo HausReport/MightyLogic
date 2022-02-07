@@ -1,6 +1,6 @@
 import re
 
-from MightyUseful.AbstractFilter import AbstractFilter
+from MightyUseful.PandaTables.AbstractFilter import AbstractFilter
 
 
 class RegExFilter(AbstractFilter):
