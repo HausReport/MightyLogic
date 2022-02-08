@@ -7,7 +7,7 @@ from MightyLogic.HighGrowth.IndexedMinHeap import IndexedMinHeap
 from MightyLogic.HighGrowth.Strategies import HighGrowthStrategy
 
 
-class MinimizeGold(HighGrowthStrategy):
+class Greedy(HighGrowthStrategy):
     """
     Always level up the cheapest hero, and reborn everything as soon as possible. At some point this should normalize to
     getting everything to a consistent level, i.e. the point at which the gold cost for level-ups converge: L6 for
@@ -21,23 +21,23 @@ class MinimizeGold(HighGrowthStrategy):
     def __init__(self, collection: Collection, exclude: HeroSelector = HeroSelector.none(),
                  minimize: HeroSelector = HeroSelector.none(), never_reborn: HeroSelector = HeroSelector.none(),
                  gold_discount: Optional[float] = None):
-        super(MinimizeGold, self).__init__(collection, exclude, gold_discount)
+        super(Greedy, self).__init__(collection, exclude, gold_discount)
 
         self.minimize = minimize
         self.never_reborn = never_reborn
 
         self.unconstrained_cost_heap = IndexedMinHeap(
-            index_fn=MinimizeGold.extract_rarity,
-            prioritization_fn=MinimizeGold.rank_by_cost)
+            index_fn=Greedy.extract_rarity,
+            prioritization_fn=Greedy.rank_by_cost)
         self.minimized_cost_heap = IndexedMinHeap(
-            index_fn=MinimizeGold.extract_rarity,
-            prioritization_fn=MinimizeGold.rank_by_cost)  # this only works because cost scale proportional to level
+            index_fn=Greedy.extract_rarity,
+            prioritization_fn=Greedy.rank_by_cost)  # this only works because cost scale proportional to level
 
         for oh in collection.all_owned_heroes():
             self.__offer(oh)
 
     def __str__(self):
-        return "minimize gold, i.e. always level up the cheapest hero, and reborn everything as soon as possible\n" \
+        return "always level up the cheapest hero, and reborn everything as soon as possible\n" \
                f" - exclude: {self.exclude.describe(self.collection)}\n" \
                f" - minimize: {self.minimize.describe(self.collection)}\n" \
                f" - never reborn: {self.never_reborn.describe(self.collection)}"

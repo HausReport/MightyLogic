@@ -31,11 +31,11 @@ def reborn_and_level(owned_heroes: Iterable[OwnedHero]):
                 oh.level_up()
 
 
-inp_file = "tests/HighGrowth/2022-01-09-1016_Bobo_squad_export.txt"
+inp_file = Path("tests/HighGrowth/2022-02-05-1107_Bobo_squad_export.txt")
 print(f"Loading collection from: {inp_file}...")
 
 collection = Collection.from_squad_export_file(
-    Path(inp_file),
+    inp_file,
     HeroDirectory.default()
 )
 
@@ -56,6 +56,6 @@ print(collection.summarize())
 # print_by_level(legs)
 
 header("Export")
-exp_file = inp_file.replace(".txt", ".csv")
+exp_file = inp_file.with_suffix(".csv")
 collection.to_csv_file(Path(exp_file))
 print(f"Exported collection to: {exp_file}...")

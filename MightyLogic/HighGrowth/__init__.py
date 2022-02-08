@@ -9,6 +9,7 @@ class Discount:
     NIGHT_FALL: float = 0.20  # L6
     NIGHT_MOON: float = 0.16  # L4
     NIGHT_TERROR: float = 0.18  # L5
+    NIGHT_SLEEPER: float = 0.10
 
     VIP8: float = 0.12
     VIP9: float = 0.15
