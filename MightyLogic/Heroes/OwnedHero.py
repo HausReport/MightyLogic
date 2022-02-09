@@ -1,33 +1,34 @@
 from __future__ import annotations
 
+import dataclasses
 import json
 import re
 from copy import deepcopy
+from dataclasses import field
 from typing import Dict, Any
 from typing import Tuple, Optional
 
-from MightyLogic.Heroes.Hero import Hero, Level, LevelingCost, LevelingSteps
+from MightyLogic.Heroes.Hero import Hero
 from MightyLogic.Heroes.HeroDirectory import HeroDirectory
+from MightyLogic.Heroes.Leveling.Level import Level
+from MightyLogic.Heroes.Leveling.LevelingCost import LevelingCost
+from MightyLogic.Heroes.Leveling.LevelingSteps import LevelingSteps
 
 
+@dataclasses.dataclass
 class OwnedHero:
     hero: Hero
     level: Level
     souls: int
-    soulbinds_mask: Tuple[bool, bool, bool, bool]
+    soulbinds_mask: Tuple[bool, bool, bool, bool] = field(default=(False, False, False, False))
+    might: int = field(init=False)
+    troops: int = field(init=False)
 
-    __next_level: Level
-    __steps_to_next_level: LevelingSteps
+    __next_level: Level = field(init=False, repr=False)
+    __steps_to_next_level: LevelingSteps = field(init=False, repr=False)
 
-    def __init__(self, hero: Hero, level: Level, souls: int,
-                 soulbinds_mask: Tuple[bool, bool, bool, bool] = (False, False, False, False)):  # FIXME
-        if souls < 0:
-            raise RuntimeError(f"Cannot have fewer than 0 souls (was: {hero}: {souls})")
-
-        self.hero = hero
-        self.level = level
-        self.souls = souls
-        self.soulbinds_mask = soulbinds_mask
+    def __post_init__(self):
+        assert self.souls >= 0, f"Cannot have fewer than 0 souls (was: {self})"
 
         self.__precompute_leveling_info()
 
@@ -56,6 +57,9 @@ class OwnedHero:
         return f"{self.hero} - {self.level} - {self.souls:,} available souls"
 
     def __precompute_leveling_info(self):
+        self.might = self.hero.might_at(self.level, self.soulbinds_mask)
+        self.troops = self.hero.troops_at(self.level, self.soulbinds_mask)
+
         self.__next_level = self.level.level_up()
         self.__steps_to_next_level = self.leveling_steps_to(self.__next_level)
 

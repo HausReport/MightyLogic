@@ -3,8 +3,9 @@ from dataclasses import dataclass, field
 from typing import Optional
 from typing import Tuple
 
-from MightyLogic.Heroes.Collection import Collection, HeroSelector
-from MightyLogic.Heroes.Hero import LevelingSteps
+from MightyLogic.Heroes.Collection import Collection
+from MightyLogic.Heroes.HeroSelector import HeroSelector
+from MightyLogic.Heroes.Leveling.LevelingSteps import LevelingSteps
 from MightyLogic.Heroes.OwnedHero import OwnedHero
 
 

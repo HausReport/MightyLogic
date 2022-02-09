@@ -29,7 +29,7 @@ for reborn in range(1, 6):
         baseMight, troops = lego.getMightAndTroops(reborn, level)
         foo = LevelRebornSoulbindMight(level, reborn, sb1, sb2, sb3, sb4)
         # print( str(foo.might) + " <-" + str(foo))
-        mightDict[foo.might].append(foo)
+        mightDict[foo.might_for].append(foo)
 
 baseMight = 4100
 answers = []

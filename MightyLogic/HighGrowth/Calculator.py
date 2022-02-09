@@ -3,7 +3,8 @@ from __future__ import annotations
 from enum import unique, Enum
 from typing import Dict, Optional, Tuple
 
-from MightyLogic.Heroes.Hero import LevelingSteps, Hero
+from MightyLogic.Heroes.Hero import Hero
+from MightyLogic.Heroes.Leveling.LevelingSteps import LevelingSteps
 from MightyLogic.Heroes.OwnedHero import OwnedHero
 from MightyLogic.HighGrowth.Strategies import HighGrowthStrategy
 
@@ -142,26 +143,47 @@ class HighGrowthCalculation:
 
         completion_tier, level_ups_remaining = CompletionTier.for_level_ups(self.level_ups_completed)
         next_tier = CompletionTier.next(completion_tier)
-        new_level_ups = self.level_ups_completed - (self.level_ups_already_completed if self.level_ups_already_completed else 0)
 
         s += f"Level-ups:\n" \
              f" - goal: " + ("none" if self.level_ups_goal is None else f"{self.level_ups_goal:,}") + "\n" \
-             f" - completed before: " + ("none" if self.level_ups_already_completed is None else f"{self.level_ups_already_completed:,}") + "\n" \
-             f" - completed total: {self.level_ups_completed:,} (+{new_level_ups:,})\n" \
+             f" - change: {self.stringify_change(self.level_ups_already_completed, self.level_ups_completed)}\n"
+
+        collection_before = self.strategy.original_collection
+        collection_after = self.strategy.collection
+
+        s += f"Army might:\n" \
+             f" - change: {self.stringify_change(collection_before.might(), collection_after.might())}\n"
+
+        s += f"Troops:\n" \
+             f" - change: {self.stringify_change(collection_before.troops(), collection_after.troops())}\n"
 
         s += f"Tier and gems:\n" \
              f" - tier completed: {'none' if completion_tier is None else completion_tier}\n" \
              f" - total gems: {CompletionTier.aggregate_to(completion_tier)[1]:,}\n" \
              f" - next tier: {next_tier}\n" \
              f" - progress to next tier: {level_ups_remaining:,} of {next_tier.level_ups:,} level ups\n"
+
         s += "End state for each hero:\n"
         for i, (hero, steps) in enumerate(self.steps_by_hero.items()):
+            oh_before = collection_before.find_by_num(hero.num)
+            oh_after = collection_after.find_by_num(hero.num)
+
             s += f"{i + 1}. Take {hero}\n" \
-                 f"    from: {self.strategy.original_collection.find_by_num(hero.num).level}\n" \
-                 f"    to: {steps.final_level()}\n" \
-                 f"    for: {steps.level_up_count()} level ups\n" \
+                 f"    from: {oh_before.level} ({oh_before.might:,} might, {oh_before.troops:,} troops)\n" \
+                 f"    to: {oh_after.level} ({oh_after.might:,} might, {oh_after.troops:,} troops)\n" \
+                 f"    for: {steps.level_up_count():+} level ups, {oh_after.might - oh_before.might:+,} might," \
+                 f" {oh_after.troops - oh_before.troops:+,} troops\n" \
                  f"    cost: {steps.aggregate_cost()}\n"
         return s
+
+    @staticmethod
+    def stringify_change(before: int, after: int) -> str:
+        if before is None:
+            diff = after
+            return f"none -> {after:,} ({diff:+,})"
+        else:
+            diff = after - before
+            return f"{before:,} -> {after:,} ({diff:+,}, {(diff / before) * 100:+.0f}%)"
 
     def add_steps(self, oh: OwnedHero, steps: LevelingSteps):
         if not steps:

@@ -2,7 +2,7 @@ from pathlib import Path
 from typing import Iterable
 
 from MightyLogic.Heroes.OwnedHero import OwnedHero
-from MightyLogic.Heroes.Hero import Rarity
+from MightyLogic.Heroes.Attributes.Rarity import Rarity
 from MightyLogic.Heroes.Collection import Collection
 from MightyLogic.Heroes.HeroDirectory import HeroDirectory
 
@@ -15,11 +15,11 @@ def header(s):
 
 
 def sort_by_level_desc(owned_heroes):
-    return list(sorted(owned_heroes, key=lambda oh: oh.level, reverse=True))
+    return list(sorted(owned_heroes, key=lambda oh: oh.level_count, reverse=True))
 
 
 def print_by_level(owned_heroes):
-    print(*map(lambda oh: f"{oh.level} - {oh.hero.name} ({oh.souls:,} souls)", owned_heroes), sep="\n")
+    print(*map(lambda oh: f"{oh.level_count} - {oh.hero.name} ({oh.souls:,} souls)", owned_heroes), sep="\n")
 
 
 def reborn_and_level(owned_heroes: Iterable[OwnedHero]):

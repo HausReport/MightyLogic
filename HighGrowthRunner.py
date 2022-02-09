@@ -3,9 +3,10 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from MightyLogic.Heroes.Collection import Collection, HeroSelector
-from MightyLogic.Heroes.Hero import Rarity
+from MightyLogic.Heroes.Attributes.Rarity import Rarity
+from MightyLogic.Heroes.Collection import Collection
 from MightyLogic.Heroes.HeroDirectory import HeroDirectory
+from MightyLogic.Heroes.HeroSelector import HeroSelector
 from MightyLogic.HighGrowth import Discount
 from MightyLogic.HighGrowth.Calculator import HighGrowthCalculation, CompletionTier
 from MightyLogic.HighGrowth.Strategies import HighGrowthStrategy
@@ -324,8 +325,8 @@ logger.info("-" * 120)
 
 collection = Collection.from_squad_export_file(file, HeroDirectory.default())
 
-logger.info(f"Your heroes (before): {pretty_format(collection.all_owned_heroes())}")
-logger.info(f"Summary:\n{collection.summarize()}")
+# logger.info(f"Your heroes (before): {pretty_format(collection.all_owned_heroes())}")
+logger.info(f"Summary (before):\n{collection.summarize()}")
 
 logger.info("-" * 120)
 
@@ -336,5 +337,5 @@ logger.info(calculation)
 
 logger.info("-" * 120)
 
-logger.info(f"Your heroes (after): {pretty_format(collection.all_owned_heroes())}")
-logger.info(f"Summary:\n{collection.summarize()}")
+# logger.info(f"Your heroes (after): {pretty_format(collection.all_owned_heroes())}")
+logger.info(f"Summary (after):\n{collection.summarize()}")

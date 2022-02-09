@@ -1,7 +1,9 @@
 from typing import Tuple, Optional
 
-from MightyLogic.Heroes.Collection import Collection, HeroSelector
-from MightyLogic.Heroes.Hero import LevelingSteps, Rarity
+from MightyLogic.Heroes.Collection import Collection
+from MightyLogic.Heroes.HeroSelector import HeroSelector
+from MightyLogic.Heroes.Attributes.Rarity import Rarity
+from MightyLogic.Heroes.Leveling.LevelingSteps import LevelingSteps
 from MightyLogic.Heroes.OwnedHero import OwnedHero
 from MightyLogic.HighGrowth.IndexedMinHeap import IndexedMinHeap
 from MightyLogic.HighGrowth.Strategies import HighGrowthStrategy
