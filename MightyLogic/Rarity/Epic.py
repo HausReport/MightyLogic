@@ -1,7 +1,7 @@
 import pandas
 import pandas as pd
 
-from MightyLogic.HighGrowth.Erlaed.PurpleGold import PurpleGold
+from Rarity.PurpleGold import PurpleGold
 
 
 class Epic(PurpleGold):

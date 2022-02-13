@@ -1,9 +1,9 @@
 from unittest import TestCase
 
 from MightyLogic.HighGrowth.Erlaed.Army import Army
-from MightyLogic.HighGrowth.Erlaed.Legendary import Legendary
+from Rarity.Legendary import Legendary
 from MightyLogic.HighGrowth.Erlaed.HighestGrowth import HighestGrowth
-import pandas as pd
+
 
 class TestLegendary(TestCase):
     def setUp(self):

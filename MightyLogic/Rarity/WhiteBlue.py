@@ -1,7 +1,7 @@
-from MightyLogic.HighGrowth.Erlaed.Rarity import Rarity
+from Rarity.RarityLeveller import RarityLeveller
 
 
-class WhiteBlue(Rarity):
+class WhiteBlue(RarityLeveller):
 
     def reborn_level(self, rb=0):
         if rb == 0:

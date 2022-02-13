@@ -3,10 +3,10 @@ from abc import ABC
 import pandas as pd
 
 from MightyLogic.HighGrowth.Erlaed.Discounts import Discounts
-from MightyLogic.HighGrowth.Erlaed.RarityBase import RarityBase
+from Rarity.RarityBase import RarityBase
 
 
-class Rarity(RarityBase, ABC):
+class RarityLeveller(RarityBase, ABC):
     discounts = Discounts(guild=20, vip=15, crisis=0) # crisis 18
     # discounts = Discounts(guild=18, vip=12, crisis=0) # crisis 18 iahobo
     # FIXME: move gold discount somewhere else
@@ -68,9 +68,9 @@ class Rarity(RarityBase, ABC):
         moves["Troop Gain"] = moves["Troops"] - curTroops
         moves["Might Gain"] = moves["Might"] - curMight
         moves = moves[moves['Troop Gain'] > 0]
-        if score_mode == Rarity.REBORN_TO_ONE:
+        if score_mode == RarityLeveller.REBORN_TO_ONE:
             moves = moves[moves['Level'] == 1]
-        elif score_mode == Rarity.EVENT_READY:
+        elif score_mode == RarityLeveller.EVENT_READY:
             tmp = moves[moves['Level'] > 15]
             if len(tmp) > 0:
                 moves = tmp
@@ -101,15 +101,15 @@ class Rarity(RarityBase, ABC):
         SCALE = 225_000.0
         TROOP_SCALE = 700.0/14_000.0 # 0.21213203435 # 0.35355339059 # = sqrt(1.0/8.0)
         TROOP_SCALE = 700.0/15_000.0 # 0.21213203435 # 0.35355339059 # = sqrt(1.0/8.0)
-        if score_mode == Rarity.GOLD_EFFICIENCY:
+        if score_mode == RarityLeveller.GOLD_EFFICIENCY:
             moves["Score"] = SCALE * (TROOP_SCALE * moves["Troop Gain"] + moves["LevelUps"]) / ( moves["Cum Gold"])
-        elif score_mode == Rarity.REBORN_TO_ONE:
+        elif score_mode == RarityLeveller.REBORN_TO_ONE:
             moves["Score"] = 226.0 - moves['LevelUps']
-        elif score_mode == Rarity.MIXED:
+        elif score_mode == RarityLeveller.MIXED:
             moves["Score"] = SCALE * (TROOP_SCALE * moves["Troop Gain"] + moves["LevelUps"]) / ( moves["Cum Gold"])
-        elif score_mode == Rarity.TROOP_EFFICIENCY or score_mode == Rarity.EVENT_READY:
+        elif score_mode == RarityLeveller.TROOP_EFFICIENCY or score_mode == RarityLeveller.EVENT_READY:
             moves["Score"] = SCALE * (TROOP_SCALE * moves["Troop Gain"] + moves["LevelUps"]) / ( moves["Cum Gold"])
-        elif score_mode == Rarity.MIGHT_EFFICIENCY:
+        elif score_mode == RarityLeveller.MIGHT_EFFICIENCY:
             moves["Score"] = 32000 * moves["Might Gain"]/moves["Cum Gold"]
                 #SCALE * (TROOP_SCALE * moves["Troop Gain"] + moves["LevelUps"]) / ( moves["Cum Gold"])
         else:

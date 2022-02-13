@@ -3,8 +3,8 @@ from PySide2.QtCore import Qt
 from PySide2.QtGui import QTextDocument
 from PySide2.QtWidgets import QSplitter, QWidget, QVBoxLayout, QProgressDialog
 
-from MightyUseful.HighGrowthHeader import HighGrowthHeader
-from MightyUseful.HighGrowthTable import HighGrowthTable
+from MightyUseful.HighGrowth.HighGrowthHeader import HighGrowthHeader
+from MightyUseful.HighGrowth.HighGrowthTable import HighGrowthTable
 
 
 class HighGrowthTab(QWidget):

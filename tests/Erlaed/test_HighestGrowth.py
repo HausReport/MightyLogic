@@ -2,9 +2,7 @@ from unittest import TestCase
 
 from MightyLogic.HighGrowth.Erlaed.HighestGrowth import HighestGrowth
 from MightyLogic.HighGrowth.Erlaed.Army import Army
-from MightyLogic.HighGrowth.Erlaed.Rarity import Rarity
 
-import pandas as pd
 
 class TestHighestGrowth(TestCase):
 

@@ -87,6 +87,14 @@ class HighGrowthHeader(QWidget):
         totLU = rares['LevelUps'].sum()
         html += f"Rare Level-Ups: {totLU:,} <br>"
 
+        rares = frame[frame['Rarity'] == 'Epic']
+        totLU = rares['LevelUps'].sum()
+        html += f"Epic Level-Ups: {totLU:,} <br>"
+
+        rares = frame[frame['Rarity'] == 'Legendary']
+        totLU = rares['LevelUps'].sum()
+        html += f"Legendary Level-Ups: {totLU:,} <br>"
+
         self.text_browser.setText(html)
 
     def table_changed(self, frame: pd.DataFrame):

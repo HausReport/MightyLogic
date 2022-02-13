@@ -1,7 +1,7 @@
 import pandas
 import pandas as pd
 
-from MightyLogic.HighGrowth.Erlaed.WhiteBlue import WhiteBlue
+from Rarity.WhiteBlue import WhiteBlue
 
 
 class Common(WhiteBlue):

@@ -1,10 +1,10 @@
 import pandas as pd
 
-from MightyLogic.HighGrowth.Erlaed.Common import Common
-from MightyLogic.HighGrowth.Erlaed.Epic import Epic
-from MightyLogic.HighGrowth.Erlaed.Legendary import Legendary
-from MightyLogic.HighGrowth.Erlaed.Rare import Rare
-from MightyLogic.HighGrowth.Erlaed.Rarity import Rarity
+from Rarity.Common import Common
+from Rarity.Epic import Epic
+from Rarity.Legendary import Legendary
+from Rarity.Rare import Rare
+from Rarity.RarityLeveller import RarityLeveller
 from MightyLogic.HighGrowth.Erlaed.Army import Army
 
 
@@ -121,20 +121,20 @@ class HighestGrowth:
         """
 
         straight_level = False
-        score_mode = Rarity.TROOP_EFFICIENCY
+        score_mode = RarityLeveller.TROOP_EFFICIENCY
 
         if strategy == 'Freeze':
             return None
         elif strategy == "Troops":
-            score_mode = Rarity.TROOP_EFFICIENCY
+            score_mode = RarityLeveller.TROOP_EFFICIENCY
         elif strategy == "HighGrowth":
-            score_mode = Rarity.GOLD_EFFICIENCY
+            score_mode = RarityLeveller.GOLD_EFFICIENCY
         elif strategy == "NoReborn":
             straight_level = True
         elif strategy == "RebornToLevel1":
-            score_mode = Rarity.REBORN_TO_ONE
+            score_mode = RarityLeveller.REBORN_TO_ONE
         elif strategy == "Might":
-            score_mode = Rarity.MIGHT_EFFICIENCY
+            score_mode = RarityLeveller.MIGHT_EFFICIENCY
         else:
             return None
 

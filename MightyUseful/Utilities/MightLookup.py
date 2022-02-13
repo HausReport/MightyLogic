@@ -1,4 +1,4 @@
-from MightyLogic.HighGrowth.Erlaed.Legendary import Legendary
+from Rarity.Legendary import Legendary
 
 
 class LevelRebornSoulbindMight:

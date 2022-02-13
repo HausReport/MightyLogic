@@ -1,8 +1,6 @@
 import pandas as pd
-import plotly.express as px
 
 from MightyLogic.Heroes.HeroDirectory import HeroDirectory
-from MightyLogic.HighGrowth.Erlaed.Rarity import Rarity
 
 
 class Army:

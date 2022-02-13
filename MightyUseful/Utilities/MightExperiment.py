@@ -3,7 +3,7 @@ from collections import defaultdict
 
 from MightyUseful.utilities.MightLookup import LevelRebornSoulbindMight
 
-from MightyLogic.HighGrowth.Erlaed.Legendary import Legendary
+from Rarity.Legendary import Legendary
 
 #
 # Obvious implementation of putting all values in the dict and looking up took 18s to run

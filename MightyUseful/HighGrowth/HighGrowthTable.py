@@ -179,8 +179,8 @@ class HighGrowthTable(QWidget):
         #
         # Convert dataframe to HTML
         #
-        env = Environment(loader=PackageLoader('MightyUseful', 'templates'))
-        tmpl = env.get_template("table2.html")
+        env = Environment(loader=PackageLoader(package_name="MightyUseful", package_path='../MightyUseful'))#, '../templates'))
+        tmpl = env.get_template("templates/table2.html")
 
         formatted_df = ret.assign(
             Gold=lambda x: x['Gold'].map(add_comma),
@@ -203,7 +203,7 @@ class HighGrowthTable(QWidget):
             columns=formatted_df.columns.to_list()
         )
         # print(html)
-        with open("my_new_file.html", "w") as fh:
+        with open("../my_new_file.html", "w") as fh:
             fh.write(html)
         return html
 

@@ -9,7 +9,7 @@ from PySide2.QtWidgets import QApplication, QMainWindow, QAction, QVBoxLayout, Q
 from MightyLogic.HighGrowth.Erlaed.Army import Army
 from MightyLogic.HighGrowth.Erlaed.HighestGrowth import HighestGrowth
 from MightyUseful.HeroInfoPanel import HeroInfoPanel
-from MightyUseful.HighGrowthTab import HighGrowthTab
+from MightyUseful.HighGrowth.HighGrowthTab import HighGrowthTab
 from MightyUseful.IoGui import IoGui
 from MightyUseful.PandaTables.IntRangeFilter import IntRangeFilter
 from MightyUseful.PandaTables.MultiFilterProxyModel import MultiFilterProxyModel
@@ -383,6 +383,12 @@ class MightyUsefulApp(QMainWindow):
     def exit_app(self):
         self.close()
 
+    @staticmethod
+    def run():
+        myApp = QApplication(sys.argv)
+        window = MightyUsefulApp()
+        myApp.exec_()
+        sys.exit(0)
 
 myApp = QApplication(sys.argv)
 window = MightyUsefulApp()

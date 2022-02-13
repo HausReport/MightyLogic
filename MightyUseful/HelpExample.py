@@ -8,7 +8,6 @@ CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))
 class HelpBrowser(QtWidgets.QTextBrowser):
     def __init__(self, helpEngine, parent=None):
         super().__init__(parent)
-        qcollectiongenerator
         self.helpEngine = helpEngine
 
     def loadResource(self, _type, name):
