@@ -10,65 +10,65 @@ from MightyLogic.Rewards.Reward import Reward
 def rare_chest(verbose=False):
     branch = randrange(0, 99)
     if branch < 75:
-        souls = randrange(80, 220)
+        tmp = randrange(80, 220)
         if verbose:
-            print(f"{souls} rare souls")
-        return Reward(myName="Rare Chest", rare=souls)
+            print(f"{tmp} rare souls")
+        return Reward(myName="Rare Chest", rare=tmp)
     elif branch < 77:
-        souls = 20
+        tmp = 20
         if verbose:
-            print(f"{souls} epic souls")
-        return Reward(myName="Rare Chest", epic=souls)
+            print(f"{tmp} epic souls")
+        return Reward(myName="Rare Chest", epic=tmp)
     elif branch < 97:
-        souls = randrange(175, 300)
+        tmp = randrange(175, 300)
         if verbose:
-            print(f"{souls} sparks")
-        return Reward(myName="Rare Chest", spark=souls)
+            print(f"{tmp} sparks")
+        return Reward(myName="Rare Chest", spark=tmp)
     else:
-        souls = randrange(50, 100)
+        tmp = randrange(50, 100)
         if verbose:
-            print(f"{souls} gems")
-        return Reward(myName="Rare Chest", gem=souls)
+            print(f"{tmp} gems")
+        return Reward(myName="Rare Chest", gem=tmp)
 
 
 def epic_chest(verbose=False):
     branch = randrange(0, 99)
     if branch < 75:
-        souls = randrange(80, 500)
+        tmp = randrange(80, 500)
         if verbose:
-            print(f"{souls} epic souls")
-        return Reward(myName="Epic Chest", epic=souls)
+            print(f"{tmp} epic souls")
+        return Reward(myName="Epic Chest", epic=tmp)
     elif branch < 77:
-        souls = 20
+        tmp = 20
         if verbose:
-            print(f"{souls} legendary souls")
-        return Reward(myName="Epic Chest", legendary=souls)
+            print(f"{tmp} legendary souls")
+        return Reward(myName="Epic Chest", legendary=tmp)
     elif branch < 97:
-        souls = randrange(750, 2000)
+        tmp = randrange(750, 2000)
         if verbose:
-            print(f"{souls} sparks")
-        return Reward(myName="Epic Chest", spark=souls)
+            print(f"{tmp} sparks")
+        return Reward(myName="Epic Chest", spark=tmp)
     else:
-        souls = randrange(150, 300)
+        tmp = randrange(150, 300)
         if verbose:
-            print(f"{souls} gems")
-        return Reward(myName="Epic Chest", gem=souls)
+            print(f"{tmp} gems")
+        return Reward(myName="Epic Chest", gem=tmp)
 
 
 def legendary_chest(verbose=False):
     branch = randrange(0, 99)
     if branch < 62:
-        souls = randrange(40, 160)
+        tmp = randrange(40, 160)
         if verbose:
-            print(f"{souls} legendary souls")
-        return Reward(myName="Legendary Chest", legendary=souls)
+            print(f"{tmp} legendary souls")
+        return Reward(myName="Legendary Chest", legendary=tmp)
     elif branch < 97:
-        souls = randrange(3500, 10000)
+        tmp = randrange(3500, 10000)
         if verbose:
-            print(f"{souls} sparks")
-        return Reward(myName="Legendary Chest", spark=souls)
+            print(f"{tmp} sparks")
+        return Reward(myName="Legendary Chest", spark=tmp)
     else:
-        souls = 1000
+        tmp = 1000
         if verbose:
-            print(f"{souls} gems")
-        return Reward(myName="Legendary Chest", gem=souls)
+            print(f"{tmp} gems")
+        return Reward(myName="Legendary Chest", gem=tmp)

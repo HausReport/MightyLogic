@@ -1,7 +1,8 @@
+from MightyLogic.HighGrowth.Erlaed.RebornLevel import RebornLevel
 
 
 class FarmedHero():
 
     def __init__(self):
-        self.start_reborn = 0
-        self.start_level = 0
+        self.start = RebornLevel(0,1)
+        self.target = RebornLevel(4,21)

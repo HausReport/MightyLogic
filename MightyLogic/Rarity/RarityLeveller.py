@@ -7,15 +7,15 @@ from Rarity.RarityBase import RarityBase
 
 
 class RarityLeveller(RarityBase, ABC):
-    discounts = Discounts(guild=20, vip=15, crisis=0) # crisis 18
-    # discounts = Discounts(guild=18, vip=12, crisis=0) # crisis 18 iahobo
+    discounts = Discounts(guild=20, vip=15, crisis=0)  # crisis 18
+    # discounts = Discounts(guild=18, vip=12, crisis=0) # crisis 18
     # FIXME: move gold discount somewhere else
     FENCE = 10  # FIXME - change to average level for that rarity?
 
-    COMMON = 0
-    RARE = 1
-    EPIC = 2
-    LEGENDARY = 3
+    # COMMON = 0
+    # RARE = 1
+    # EPIC = 2
+    # LEGENDARY = 3
 
     TROOP_EFFICIENCY = 0
     GOLD_EFFICIENCY = 1
@@ -23,11 +23,11 @@ class RarityLeveller(RarityBase, ABC):
     MIGHT_EFFICIENCY = 3
     REBORN_TO_ONE = 4
     EVENT_READY = 5
+    REBOOST = 6
 
     def straight_level(self, level: int, reborn: int, avail_souls: int) -> pd.DataFrame:
         """
         Return dataframe of possible level-ups without any reborns
-
         :param level: hero's current level
         :param reborn: hero's current reborn
         :param avail_souls: how many souls are available
@@ -54,14 +54,16 @@ class RarityLeveller(RarityBase, ABC):
         :param total_souls: total souls
         :param score_mode: how to reckon a good move
         :param straight_level: If True, don't consider reborns.
-        :return: dataframe of moves
+        :return: dataframe of moves or None
         """
         (curMight, curTroops) = self.getMightAndTroops(reborn, level)
-        if straight_level or level < self.FENCE:
+        if straight_level: # or level < self.FENCE:
             moves = self.straight_level(level, reborn, avail_souls)
         else:
             moves = self.fancy_level(level, reborn, avail_souls, total_souls)
 
+        # moves['Meta Level'] = moves.apply( lambda x: self.meta_level(x.Reborn, x.Level), axis=1)
+        moves["Meta Level"] = (moves["Reborn"] * 32) + moves["Level"]
         moves["Cur Level"] = level
         moves = moves.copy(deep=True)
         moves["Cur Reborn"] = reborn
@@ -70,6 +72,9 @@ class RarityLeveller(RarityBase, ABC):
         moves = moves[moves['Troop Gain'] > 0]
         if score_mode == RarityLeveller.REBORN_TO_ONE:
             moves = moves[moves['Level'] == 1]
+        elif score_mode == RarityLeveller.REBOOST:
+            maxLev = moves['Meta Level'].max()
+            moves = moves[moves['Meta Level'] == maxLev]
         elif score_mode == RarityLeveller.EVENT_READY:
             tmp = moves[moves['Level'] > 15]
             if len(tmp) > 0:
@@ -89,31 +94,33 @@ class RarityLeveller(RarityBase, ABC):
         moves['LevelUps'] = 0
         moves['Rarity'] = self.getName()
 
-
         # fixed problem with lambda freaking out with 0 moves
         if len(moves) < 1:
+            # noinspection PyTypeChecker
             return None
 
         moves['LevelUps'] = moves.apply(
-                lambda x: self.level_distance(x["Cur Reborn"], x["Cur Level"], x["Reborn"], x["Level"]),
-                axis=1)
+            lambda x: self.level_distance(x["Cur Reborn"], x["Cur Level"], x["Reborn"], x["Level"]),
+            axis=1)
 
         SCALE = 225_000.0
-        TROOP_SCALE = 700.0/14_000.0 # 0.21213203435 # 0.35355339059 # = sqrt(1.0/8.0)
-        TROOP_SCALE = 700.0/15_000.0 # 0.21213203435 # 0.35355339059 # = sqrt(1.0/8.0)
+        #  TROOP_SCALE = 700.0 / 14_000.0  # 0.21213203435 # 0.35355339059 # = sqrt(1.0/8.0)
+        TROOP_SCALE = 700.0 / 15_000.0  # 0.21213203435 # 0.35355339059 # = sqrt(1.0/8.0)
         if score_mode == RarityLeveller.GOLD_EFFICIENCY:
-            moves["Score"] = SCALE * (TROOP_SCALE * moves["Troop Gain"] + moves["LevelUps"]) / ( moves["Cum Gold"])
+            moves["Score"] = SCALE * (TROOP_SCALE * moves["Troop Gain"] + moves["LevelUps"]) / (moves["Cum Gold"])
+        elif score_mode == RarityLeveller.REBOOST:
+            moves["Score"] = 5000 + moves["Meta Level"]
         elif score_mode == RarityLeveller.REBORN_TO_ONE:
             moves["Score"] = 226.0 - moves['LevelUps']
         elif score_mode == RarityLeveller.MIXED:
-            moves["Score"] = SCALE * (TROOP_SCALE * moves["Troop Gain"] + moves["LevelUps"]) / ( moves["Cum Gold"])
+            moves["Score"] = SCALE * (TROOP_SCALE * moves["Troop Gain"] + moves["LevelUps"]) / (moves["Cum Gold"])
         elif score_mode == RarityLeveller.TROOP_EFFICIENCY or score_mode == RarityLeveller.EVENT_READY:
-            moves["Score"] = SCALE * (TROOP_SCALE * moves["Troop Gain"] + moves["LevelUps"]) / ( moves["Cum Gold"])
+            moves["Score"] = SCALE * (TROOP_SCALE * moves["Troop Gain"] + moves["LevelUps"]) / (moves["Cum Gold"])
         elif score_mode == RarityLeveller.MIGHT_EFFICIENCY:
-            moves["Score"] = 32000 * moves["Might Gain"]/moves["Cum Gold"]
-                #SCALE * (TROOP_SCALE * moves["Troop Gain"] + moves["LevelUps"]) / ( moves["Cum Gold"])
+            moves["Score"] = 32000 * moves["Might Gain"] / moves["Cum Gold"]
+            # SCALE * (TROOP_SCALE * moves["Troop Gain"] + moves["LevelUps"]) / ( moves["Cum Gold"])
         else:
-            moves["Score"] = SCALE * (TROOP_SCALE * moves["Troop Gain"] + moves["LevelUps"]) / ( moves["Cum Gold"])
+            moves["Score"] = SCALE * (TROOP_SCALE * moves["Troop Gain"] + moves["LevelUps"]) / (moves["Cum Gold"])
 
         # moves[moves['Level']==11].Score *= 1.1
         # moves[moves['Level']==16].Score *= 1.1
@@ -126,7 +133,6 @@ class RarityLeveller(RarityBase, ABC):
 
     def fancy_level(self, level: int, reborn: int, avail_souls: int, total_souls: int = -1) -> pd.DataFrame:
         """Get dataframe of possible level-ups including reborns
-
         :param level: hero's current level
         :param reborn: hero's current reborn
         :param avail_souls: hero's available souls

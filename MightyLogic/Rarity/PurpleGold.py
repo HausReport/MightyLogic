@@ -1,21 +1,15 @@
+from abc import ABC
+
 from Rarity.RarityLeveller import RarityLeveller
 
 
-class PurpleGold(RarityLeveller):
+class PurpleGold(RarityLeveller, ABC):
 
-    def reborn_level(self, rb=0):
-        if rb == 0:
-            return 0
-        elif rb == 1:
-            return 6
-        elif rb == 2:
-            return 11
-        elif rb == 3:
-            return 16
-        elif rb == 4:
-            return 21
-        elif rb == 5:
-            return 26
+    def reborn_level(self, rb: int = 0):
+        assert rb >= 0
+        assert rb <= 5
+        tmp = [0, 6, 11, 16, 21, 26]
+        return tmp[rb]
 
     # Return (reborn, level) to ordinal, ignoring levels over reborn point
     def to_ordinal(self, reborn, level):

@@ -46,7 +46,10 @@ class Epic(PurpleGold):
         r0_tab_epic['Gold'] = (r0_tab_epic['Gold'] * self.discounts.get_gold_discount())
         return r0_tab_epic
 
-    def getMightBonus(self, reborn):
+    def getMightBonus(self, reborn: int = 0):
+        assert reborn >= 0
+        assert reborn <= 5
+
         if reborn == 0:
             return 0
         elif reborn == 1:
@@ -60,7 +63,10 @@ class Epic(PurpleGold):
         elif reborn == 5:
             return 1000 + 600 + 350 + 200 + 150
 
-    def getTroopBonus(self, reborn):
+    def getTroopBonus(self, reborn: int = 0):
+        assert reborn >= 0
+        assert reborn <= 5
+
         if reborn == 0:
             return 0
         elif reborn == 1:
@@ -74,16 +80,19 @@ class Epic(PurpleGold):
         elif reborn == 5:
             return 1350 + 750 + 360 + 145 + 60
 
-    def sn(self, rb=0):
-        if rb == 0:
+    def souls_needed_to_reborn(self, reborn: int = 0):
+        assert reborn >= 0
+        assert reborn <= 5
+
+        if reborn == 0:
             return 0
-        elif rb == 1:
+        elif reborn == 1:
             return 230
-        elif rb == 2:
+        elif reborn == 2:
             return 230 + 950
-        elif rb == 3:
+        elif reborn == 3:
             return 230 + 950 + 3070
-        elif rb == 4:
+        elif reborn == 4:
             return 230 + 950 + 3070 + 10520
-        elif rb == 5:
+        elif reborn == 5:
             return 230 + 950 + 3070 + 10520 + 36820

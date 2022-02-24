@@ -74,7 +74,7 @@ class Rare(WhiteBlue):
         elif reborn == 5:
             return -1000
 
-    def sn(self, rb=0):
+    def souls_needed_to_reborn(self, rb=0):
         if rb == 0:
             return 0
         elif rb == 1:

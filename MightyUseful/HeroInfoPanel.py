@@ -15,7 +15,7 @@ matplotlib.use('Qt5Agg')
 
 
 class HeroInfoPanel(QWidget):
-    strategyList = ["Freeze", "Troops", "HighGrowth", "Might", "NoReborn", "RebornToLevel1", "EventReady"]
+    strategyList = ["Freeze", "Troops", "HighGrowth", "Might", "NoReborn", "Reboost", "RebornToLevel1", "EventReady"]
 
     def __init__(self, aParent):  # MightyUsefulApp):
         super().__init__()

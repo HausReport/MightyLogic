@@ -49,14 +49,32 @@ class RarityBase(ABC):
         pass
 
     @abstractmethod
-    def sn(self, rb: int = 0) -> int:
+    def souls_needed_to_reborn(self, rb: int = 0) -> int:
         """souls needed for given reborn point"""
         pass
+
+    def souls_needed(self, level: int = 0, reborn: int = 0):
+        r = self.souls_needed_to_reborn(reborn)
+        s2 = self._sn(level)
+        return r + s2
+
+    def souls_needed2(self, level1: int = 0, reborn1: int = 0, level2: int = 0, reborn2: int = 0):
+        sn1 = self.souls_needed(level1, reborn1)
+        sn2 = self.souls_needed(level2, reborn2)
+        return sn2 - sn1
+
+    def _sn(self, level):
+        rbTable = self.get_reborn_table(0)
+        soul_req = rbTable[rbTable.Level <= level].Souls.sum()
+        return soul_req
 
     @abstractmethod
     def reborn_level(self, rb: int = 0) -> int:
         """level at which the given reborn can be done"""
         pass
+
+    def meta_level(self, r0: int, l0: int) -> int:
+        return r0*32 + l0
 
     def level_distance(self, r0: int, l0: int, r1: int, l1: int) -> int:
         """shortest distance between two levels"""
@@ -73,7 +91,7 @@ class RarityBase(ABC):
         (cs, cg) = (0, 0)  # do rebate here
         tmp = self.get_reborn_table(rb + 1).copy(deep=True)
         tmp.loc[0, 'Gold'] = cg
-        tmp.loc[0, 'Souls'] = -1 * (total_souls - avail_souls - self.sn(rb + 1))
+        tmp.loc[0, 'Souls'] = -1 * (total_souls - avail_souls - self.souls_needed_to_reborn(rb + 1))
 
         tmp['Cum Souls'] = tmp.Souls.cumsum()
         tmp['Cum Gold'] = tmp.Gold.cumsum()

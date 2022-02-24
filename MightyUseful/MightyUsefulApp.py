@@ -155,6 +155,9 @@ class MightyUsefulApp(QMainWindow):
         self.showNoReborn = QCheckBox("NoReborn")
         self.showNoReborn.stateChanged.connect(self.checkBoxChange)
         box5.addWidget(self.showNoReborn)
+        self.showReboost = QCheckBox("Reboost")
+        self.showReboost.stateChanged.connect(self.checkBoxChange)
+        box5.addWidget(self.showReboost)
         self.showRebornToLevel1 = QCheckBox("RebornToLevel1")
         self.showRebornToLevel1.stateChanged.connect(self.checkBoxChange)
         box5.addWidget(self.showRebornToLevel1)
@@ -344,6 +347,8 @@ class MightyUsefulApp(QMainWindow):
             aList.append("Might")
         if self.showNoReborn.isChecked():
             aList.append("NoReborn")
+        if self.showReboost.isChecked():
+            aList.append("Reboost")
         if self.showRebornToLevel1.isChecked():
             aList.append("RebornToLevel1")
         if self.showTroops.isChecked():
@@ -351,7 +356,7 @@ class MightyUsefulApp(QMainWindow):
         reg = '(' + '|'.join(aList) + ')'
         self.proxy.setFilterByColumn(11, RegExFilter(reg))
 
-        strategyList = ["EventReady", "Freeze", "HighGrowth", "Might", "NoReborn", "RebornToLevel1", "Troops"]
+        strategyList = ["EventReady", "Freeze", "HighGrowth", "Might", "NoReborn", "Reboost", "RebornToLevel1", "Troops"]
 
     def create_menu(self):
         """

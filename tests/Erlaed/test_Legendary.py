@@ -14,7 +14,7 @@ class TestLegendary(TestCase):
         self.df = HighestGrowth.get_moves_by_name("Villano Mad Genius", self.army)
 
     def test_sn(self):
-        assert self.leg.sn(1) == 90
+        assert self.leg.souls_needed_to_reborn(1) == 90
 
     def test_reborn_level(self):
         assert self.leg.reborn_level(1) == 6

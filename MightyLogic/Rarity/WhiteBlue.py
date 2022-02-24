@@ -1,21 +1,15 @@
+from abc import ABC
+
 from Rarity.RarityLeveller import RarityLeveller
 
 
-class WhiteBlue(RarityLeveller):
+class WhiteBlue(RarityLeveller, ABC):
 
-    def reborn_level(self, rb=0):
-        if rb == 0:
-            return 0
-        elif rb == 1:
-            return 11
-        elif rb == 2:
-            return 16
-        elif rb == 3:
-            return 21
-        elif rb == 4:
-            return 26
-        elif rb == 5:
-            return 999
+    def reborn_level(self, rb: int=0):
+        assert rb >= 0
+        assert rb <= 5
+        tmp = [0, 11, 16, 21, 26, 999]
+        return tmp[rb]
 
     def to_ordinal(self, reborn, level):
         if reborn == 0:

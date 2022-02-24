@@ -61,7 +61,7 @@ class Legendary(PurpleGold):
         tmp = [0, 102, 268, 751, 1583, 2957]
         return sum(tmp[:reborn + 1])
 
-    def sn(self, reborn: int = 0):
+    def souls_needed_to_reborn(self, reborn: int = 0):
         if reborn < 0:
             return 0
         elif reborn > 5:

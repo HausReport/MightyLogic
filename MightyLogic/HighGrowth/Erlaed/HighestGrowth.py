@@ -133,6 +133,8 @@ class HighestGrowth:
             straight_level = True
         elif strategy == "RebornToLevel1":
             score_mode = RarityLeveller.REBORN_TO_ONE
+        elif strategy == "Reboost":
+            score_mode = RarityLeveller.REBOOST
         elif strategy == "Might":
             score_mode = RarityLeveller.MIGHT_EFFICIENCY
         else:
