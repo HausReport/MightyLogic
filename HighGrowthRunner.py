@@ -55,83 +55,63 @@ class Profile:
         raise NotImplementedError("Method needs to be implemented by subclasses")
 
     @staticmethod
-    def _1337():
-        class _1337Profile(Profile):
-
-            def get_strategy(self, collection: Collection) -> HighGrowthStrategy:
-                return Greedy(
-                    collection=collection,
-                    exclude=has_rarity(Rarity.LEGENDARY) + exactly({"caesar"}),
-                    never_reborn=exactly({"charon"}),
-                    gold_discount=Discount.combine(Discount.NIGHTMARE)
-                )
-
-            def run_calculation(self, strategy: HighGrowthStrategy) -> HighGrowthCalculation:
-                return HighGrowthCalculation.for_level_ups(
-                    strategy=strategy,
-                    level_ups_already_completed=CompletionTier.aggregate_to(CompletionTier.TIER_9)[0],
-                    level_ups_goal=CompletionTier.aggregate_to(CompletionTier.TIER_10)[0]
-                )
-
-        return _1337Profile()
-
-    @staticmethod
     def bobo():
         squad = {  # level/reborn these as much as possible | exclude their evolutions
             # melee
             "charon",  # never reborn!
-            "diana",
-            "groot",
+            "fury",  # R2
             "mosura",
-            "shaa",
-            "shao lin",  # 16/2
+            "shao lin",
 
             # ranged
-            "blair",  # 17/3
+            "aphro",  # R3
             "eostre",
             "grace",
-            "gremory",  # 19/3
-            "strik",
-            "villano",  # 1/1
-            "yuri",  # 16/3
+            "madam agony",
+            "villano",
         }
         to_farm = {  # level these heroes but never reborn them | exclude their evolutions
             # melee
-            "amaterasu",  # 11/1
-            "apep",  # 13/2 -- TBC
-            "d'arc",  # 1/0
-            "dominus",  # locked
-            "freddy",  # 11/0
-            "goliath",  # 11/0
-            "griffius",  # 11/1
-            "sheer",  # 11/0
+            "airavata",  # R0
+            "amaterasu",  # R1
+            "apep",  # R2 -- TBC
+            "d'arc",  # R0
+            "dominus",  # R0
+            "freddy",  # R0
+            "goliath",  # R0
+            "griffius",  # R1
+            "sheer",  # R0
 
             # ranged
-            "ghosta",  # 11/0
-            "mizu",  # 11/0
-            "necro",  # 11/1
-            "vixen",  # locked
-            "yorik",  # 11/0
+            "ghosta",  # R0
+            "gremory",  # R3
+            "mizu",  # R0
+            "necro",  # R1
+            "strik",  # R3
+            "vixen",  # R0
+            "yorik",  # R0
+            "yuri",  # R3
         }
         farming = {  # exclude these heroes | exclude their evolutions
             # melee
-            "chuba",  # 1/3
-            "dead lord",  # 1/2
-            "fury",  # 1/2
-            "legion",  # 1/2
-            "mi",  # 1/3
-            "scrap",  # 1/1
+            "chuba",  # R3
+            "dead lord",  # R2
+            "groot",  # R4
+            "legion",  # R2
+            "mi",  # R3
+            "scrap",  # R1
+            "shaa",  # R4
 
             # ranged
-            "aphro",  # 1/3
-            "frost",  # 1/1
-            "justia",  # 1/0
-            "madam agony",  # 1/2
-            "madam lo'trix",  # 1/2
-            "tai ling",  # 1/1
+            "blair",  # R4
+            "frost",  # R1
+            "justia",  # R0
+            "madam lo'trix",  # R2
+            "tai ling",  # R1
 
             # building
-            "caesar",  # 1/2
+            "caesar",  # R2
+            "void jewel",  # R3
         }
 
         class BoboProfile(Profile):
@@ -142,13 +122,13 @@ class Profile:
                     exclude=all_evolutions_to(squad) + all_evolutions_to(farming, inclusive=True) + all_evolutions_to(
                         to_farm),
                     never_reborn=exactly({"charon"}) + exactly(to_farm),
-                    gold_discount=Discount.combine(Discount.NIGHTMARE, Discount.VIP9)
+                    gold_discount=Discount.combine(Discount.NIGHTMARE, Discount.VIP9, Discount.CRISIS)
                 )
 
             def run_calculation(self, strategy: HighGrowthStrategy) -> HighGrowthCalculation:
                 # return HighGrowthCalculation.with_gold_cap(
                 #     strategy=strategy,
-                #     gold_cap=3_000_000,
+                #     gold_cap=1_700_000,
                 #     # level_ups_already_completed=CompletionTier.aggregate_to(CompletionTier.TIER_6)[0] + 21
                 # )
                 return HighGrowthCalculation.for_level_ups(
@@ -176,7 +156,7 @@ class Profile:
                     exclude=all_evolutions_to(squad) + all_evolutions_to(farming, inclusive=True) + all_evolutions_to(
                         to_farm),
                     never_reborn=exactly({"charon"}) + exactly(to_farm),
-                    gold_discount=Discount.combine(Discount.NIGHT_SLEEPER)
+                    gold_discount=Discount.combine(Discount.NIGHT_SLEEPER, Discount.CRISIS)
                 )
 
             def run_calculation(self, strategy: HighGrowthStrategy) -> HighGrowthCalculation:
@@ -192,107 +172,6 @@ class Profile:
                 # )
 
         return BoboboProfile()
-
-    @staticmethod
-    def barf():
-        squad = {
-            "dead lord",
-            "ghosta",
-            "mi",
-            "charon",
-            "eostre",
-            "grace",
-            "mosura",
-            "gremory"
-        }
-
-        class BarfProfile(Profile):
-
-            def get_strategy(self, collection: Collection) -> HighGrowthStrategy:
-                squad_epics = all_evolutions_to(squad) & has_rarity(Rarity.EPIC)
-                farming = has_level(level_count=1) & has_rarity(Rarity.LEGENDARY)
-                farming_epics = exactly(farming.select(collection)) & has_rarity(Rarity.EPIC)
-
-                return Greedy(
-                    collection=collection,
-                    exclude=squad_epics + farming + farming_epics,
-                    never_reborn=exactly(squad),
-                    gold_discount=Discount.combine(Discount.NIGHT_FALL, Discount.VIP13)
-                )
-
-            def run_calculation(self, strategy: HighGrowthStrategy) -> HighGrowthCalculation:
-                # return HighGrowthCalculation.with_gold_cap(
-                #     strategy=strategy,
-                #     # gold_cap=3_000_000,
-                #     # level_ups_already_completed=CompletionTier.aggregate_to(CompletionTier.TIER_6)[0] + 21
-                # )
-                return HighGrowthCalculation.for_level_ups(
-                    strategy=strategy,
-                    # level_ups_already_completed=CompletionTier.aggregate_to(CompletionTier.TIER_7)[0],
-                    level_ups_goal=CompletionTier.aggregate_to(CompletionTier.TIER_10)[0]
-                )
-
-        return BarfProfile()
-
-    @staticmethod
-    def iahobo():
-        class IahoboProfile(Profile):
-
-            def get_strategy(self, collection: Collection) -> HighGrowthStrategy:
-                return Greedy(
-                    collection=collection,
-                    exclude=has_rarity(Rarity.LEGENDARY) + has_rarity(Rarity.EPIC),
-                    never_reborn=none(),
-                    gold_discount=Discount.combine(Discount.NIGHT_TERROR, Discount.VIP8)
-                )
-
-            def run_calculation(self, strategy: HighGrowthStrategy) -> HighGrowthCalculation:
-                return HighGrowthCalculation.for_level_ups(
-                    strategy=strategy,
-                    level_ups_already_completed=CompletionTier.aggregate_to(CompletionTier.TIER_11)[0],
-                    level_ups_goal=CompletionTier.aggregate_to(CompletionTier.TIER_12)[0]
-                )
-
-        return IahoboProfile()
-
-    @staticmethod
-    def seph():
-        # never reborn any legendary heroes
-        # keep all of tai lings heroes at lvl 1, all of villano, ghosta, and justia at lvl 1.
-        # epics and rares of shaa, grace and eostre also at lvl 1 (some i accidently lvled).
-        farming = {  # exclude these heroes | exclude their evolutions
-            "tai ling",
-            "villano",
-            "ghosta",
-            "justia",
-        }
-        squad = {  # level/reborn these as much as possible | exclude their evolutions
-            "moona",
-            "grace",
-            "eostre"
-        }
-
-        class SephProfile(Profile):
-
-            def get_strategy(self, collection: Collection) -> HighGrowthStrategy:
-                return Greedy(
-                    collection=collection,
-                    exclude=all_evolutions_to(squad) + all_evolutions_to(farming, inclusive=True),
-                    never_reborn=has_rarity(Rarity.LEGENDARY),
-                    gold_discount=Discount.combine(Discount.NIGHT_TERROR)
-                )
-
-            def run_calculation(self, strategy: HighGrowthStrategy) -> HighGrowthCalculation:
-                return HighGrowthCalculation.with_gold_cap(
-                    strategy=strategy,
-                    gold_cap=3_000_000,
-                )
-                # return HighGrowthCalculation.for_level_ups(
-                #     strategy=strategy,
-                #     level_ups_goal=CompletionTier.aggregate_to(CompletionTier.TIER_10)[0]
-                # )
-
-        return SephProfile()
 
     @staticmethod
     def souldead():
@@ -317,7 +196,7 @@ class Profile:
 # ----------------------------------------------------------------------------------------------------------------------
 
 profile = Profile.bobo()
-file = Path("tests/HighGrowth/2022-02-06-1537_Bobo_squad_export.txt")
+file = Path("tests/HighGrowth/2022-04-19-2018_Bobo_squad_export.txt")
 
 logger.info(f"Squad file: {file}")
 

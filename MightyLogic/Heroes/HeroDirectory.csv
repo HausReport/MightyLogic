@@ -383,3 +383,6 @@ id,name,rarity,alignment,gender,shape,evolves_to
 383,Tai Ling Dragon Dance,Legendary,Order,Female,Ranged,[]
 384,Wu Dan,Epic,Order,Female,Ranged,[383]
 385,Novice,Rare,Order,Female,Ranged,[384]
+386,Airavata Heaven's Fury,Legendary,Nature,Male,Melee,[]
+387,Formidable Giant,Legendary,Nature,Male,Melee,[386]
+388,Elephant,Rare,Nature,Male,Melee,[387]
